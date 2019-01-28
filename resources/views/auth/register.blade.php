@@ -53,6 +53,7 @@
                             </div>
                         </div>
 
+
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
@@ -60,6 +61,28 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+
+                        @if(Auth::user())
+                        <div class="form-group row">
+                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="role" id="role" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" required>
+                                    <option value="0">{{ __('Selecciona Perfil') }}</option>
+                                    @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}" @if ( old('role')==$role->id)
+                                        selected
+                                        @endif>{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('role'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('role') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                        @endif
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

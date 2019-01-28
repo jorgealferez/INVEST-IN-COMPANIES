@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Role;
 use App\User;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -38,7 +40,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        // $this->middleware('guest');
+
     }
 
     /**
@@ -49,11 +52,20 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+        if(Auth::check()){
+            return Validator::make($data, [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:2', 'confirmed'],
+                'role' => ['required',Rule::notIn(['0'])],
+            ]);
+        }else{
+            return Validator::make($data, [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:2', 'confirmed']
+            ]);
+        }
     }
 
     /**
@@ -64,19 +76,30 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // return User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        // ]);
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-        $user
+        if(Auth::check()){
+            $user
             ->roles()
-            ->attach(Role::where('name', 'user')->first());
+            ->attach(Role::where('id',$data['role'])->first());
+        }else{
+            $user
+            ->roles()
+            ->attach(Role::where('name','User')->first());
+        }
+
         return $user;
+
     }
+
+    public function showRegistrationForm()
+    {
+        $roles=Role::all('id','name');
+
+        return view('auth.register',['roles'=>$roles]);
+    }
+
 }
