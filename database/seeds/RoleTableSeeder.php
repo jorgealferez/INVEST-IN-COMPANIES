@@ -19,7 +19,7 @@ class RoleTableSeeder extends Seeder
         $role->save();
 
         $role = new Role();
-        $role->name = 'Manager';
+        $role->name = 'Asociacion';
         $role->description = 'Responsable de zona';
         $role->save();
 
@@ -30,7 +30,7 @@ class RoleTableSeeder extends Seeder
 
         $role = new Role();
         $role->name = 'User';
-        $role->description = 'Usuario registrado';
+        $role->description = 'Inversores registrados';
         $role->save();
     }
 }
