@@ -49,15 +49,15 @@ File: scss
 /*******************
 Global Styles
 *******************/
-@import url(/css/icons/font-awesome/css/fontawesome-all.css);
-@import url(/css/icons/simple-line-icons/css/simple-line-icons.css);
-@import url(/css/icons/weather-icons/css/weather-icons.min.css);
-@import url(/css/icons/linea-icons/linea.css);
-@import url(/css/icons/themify-icons/themify-icons.css);
-@import url(/css/icons/flag-icon-css/flag-icon.min.css);
-@import url(/css/icons/material-design-iconic-font/css/materialdesignicons.min.css);
-@import url(/css/spinners.css);
-@import url(/css/animate.css);
+@import url(/css/dashboard/icons/font-awesome/css/fontawesome-all.css);
+@import url(/css/dashboard/icons/simple-line-icons/css/simple-line-icons.css);
+@import url(/css/dashboard/icons/weather-icons/css/weather-icons.min.css);
+@import url(/css/dashboard/icons/linea-icons/linea.css);
+@import url(/css/dashboard/icons/themify-icons/themify-icons.css);
+@import url(/css/dashboard/icons/flag-icon-css/flag-icon.min.css);
+@import url(/css/dashboard/icons/material-design-iconic-font/css/materialdesignicons.min.css);
+@import url(/css/dashboard/spinners.css);
+@import url(/css/dashboard/animate.css);
 
 * {
     outline: none;
