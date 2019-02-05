@@ -14,8 +14,11 @@ class AsociacionTableSeeder extends Seeder
     {
         //
         $asociacion = new Asociacion();
-        $asociacion->name = 'Asociacion Prueba';
-        $asociacion->description = 'Asociación de prueba';
+        $asociacion->name = 'CEPYME';
+        $asociacion->address = 'Calle luna';
+        $asociacion->email = 'info@cepyme.es';
+        $asociacion->phone = '666 66 66 66';
+        $asociacion->active = 1;
         $asociacion->save();
     }
 }

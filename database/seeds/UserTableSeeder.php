@@ -31,25 +31,25 @@ class UserTableSeeder extends Seeder
         $user_admin->save();
         $user_admin->roles()->attach($role_admin);
 
-        $role_asociacion = Role::where('name', 'Asociacion')->first();
-        $asociacion = Asociacion::where('name', 'Asociacion Prueba')->first();
-        $user_asociacion = new User();
-        $user_asociacion->name = 'Asociacion';
-        $user_asociacion->surname = 'Apellidos Apellidos';
-        $user_asociacion->phone = '666 66 66 66';
-        $user_asociacion->address = 'Calle Luna 1ºC';
-        $user_asociacion->LOPD = true;
-        $user_asociacion->active = true;
-        $user_asociacion->email = 'asociacion@asociacion.com';
-        $user_asociacion->password = bcrypt('secret');
-        $user_asociacion->email_verified_at = now();
-        $user_asociacion->save();
-        $user_asociacion->roles()->attach($role_asociacion);
-        $user_asociacion->asociacion()->attach($asociacion);
+        $role_asesor = Role::where('name', 'Asesor')->first();
+        $asociacion = Asociacion::where('id', '1')->first();
+        $user_asesor = new User();
+        $user_asesor->name = 'Asesor 1';
+        $user_asesor->surname = 'Apellidos Apellidos';
+        $user_asesor->phone = '666 66 66 66';
+        $user_asesor->address = 'Calle Luna 1ºC';
+        $user_asesor->LOPD = true;
+        $user_asesor->active = true;
+        $user_asesor->email = 'asesor@asesor.com';
+        $user_asesor->password = bcrypt('secret');
+        $user_asesor->email_verified_at = now();
+        $user_asesor->save();
+        $user_asesor->roles()->attach($role_asesor);
+        $user_asesor->asociacion()->attach($asociacion);
 
         $role_gestor = Role::where('name', 'Gestor')->first();
         $user_gestor = new User();
-        $user_gestor->name = 'Gestor';
+        $user_gestor->name = 'Gestor 1';
         $user_gestor->surname = 'Apellidos Apellidos';
         $user_gestor->phone = '666 66 66 66';
         $user_gestor->address = 'Calle Luna 1ºC';
@@ -65,8 +65,7 @@ class UserTableSeeder extends Seeder
 
         $role_user = Role::where('name', 'User')->first();
         $user = new User();
-        $user->name = 'User';
-        $user->name = 'Gestor';
+        $user->name = 'User 1';
         $user->surname = 'Apellidos Apellidos';
         $user->phone = '666 66 66 66';
         $user->address = 'Calle Luna 1ºC';

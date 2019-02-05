@@ -13,24 +13,26 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <!-- Favicon icon -->
-        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
         <!-- Bootstrap Core CSS -->
-        <link href="js/dashboard/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="js/dashboard/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+        <link href="{{ asset('js/dashboard/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('js/dashboard/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet">
         <!-- This page CSS -->
         <!-- chartist CSS -->
-        <link href="js/dashboard/plugins/chartist-js/dist/chartist.min.css" rel="stylesheet">
-        <link href="js/dashboard/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+        <link href="{{ asset('js/dashboard/plugins/chartist-js/dist/chartist.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('js/dashboard/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css') }}" rel="stylesheet">
         <!--c3 CSS -->
-        <link href="js/dashboard/plugins/c3-master/c3.min.css" rel="stylesheet">
+        <link href="{{ asset('js/dashboard/plugins/c3-master/c3.min.css') }}" rel="stylesheet">
         <!--Toaster Popup message CSS -->
-        <link href="js/dashboard/plugins/toast-master/css/jquery.toast.css" rel="stylesheet">
+        <link href="{{ asset('js/dashboard/plugins/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
+        @yield('estilos')
         <!-- Custom CSS -->
-        <link href="css/dashboard/style.css" rel="stylesheet">
+        <link href="{{ asset('css/dashboard/style.css') }}" rel="stylesheet">
         <!-- Dashboard 1 Page CSS -->
-        <link href="css/dashboard/pages/dashboard1.css" rel="stylesheet">
+        <link href="{{ asset('css/dashboard/pages/dashboard1.css') }}" rel="stylesheet">
         <!-- You can change the theme colors from here -->
-        <link href="css/dashboard/colors/default-dark.css" id="theme" rel="stylesheet">
+        <link href="{{ asset('css/dashboard/colors/default-dark.css') }}" id="theme" rel="stylesheet">
+        <link href="{{ asset('css/dashboard.css') }}" id="theme" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -60,21 +62,143 @@
 
         </div>
 
-        <script src="js/dashboard/plugins/jquery/jquery.min.js"></script>
-        <script src="js/dashboard/plugins/bootstrap/js/popper.min.js"></script>
-        <script src="js/dashboard/plugins/bootstrap/js/bootstrap.min.js"></script>
-        <script src="js/dashboard/perfect-scrollbar.jquery.min.js"></script>
-        <script src="js/dashboard/waves.js"></script>
-        <script src="js/dashboard/sidebarmenu.js"></script>
-        <script src="js/dashboard/custom.min.js"></script>
-        <script src="js/dashboard/plugins/sparkline/jquery.sparkline.min.js"></script>
-        <script src="js/dashboard/plugins/chartist-js/dist/chartist.min.js"></script>
-        <script src="js/dashboard/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
-        <script src="js/dashboard/plugins/d3/d3.min.js"></script>
-        <script src="js/dashboard/plugins/c3-master/c3.min.js"></script>
-        <script src="js/dashboard/plugins/toast-master/js/jquery.toast.js"></script>
-        <script src="js/dashboard/dashboard1.js"></script>
-        <script src="js/dashboard/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+        <script src="{{ asset('js/dashboard/plugins/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/dashboard/plugins/bootstrap/js/popper.min.js') }}"></script>
+        <script src="{{ asset('js/dashboard/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/dashboard/perfect-scrollbar.jquery.min.js') }}"></script>
+        <script src="{{ asset('js/dashboard/waves.js') }}"></script>
+        <script src="{{ asset('js/dashboard/sidebarmenu.js') }}"></script>
+
+        <script src="{{ asset('js/dashboard/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+        <script src="{{ asset('js/dashboard/plugins/chartist-js/dist/chartist.min.js') }}"></script>
+        <script src="{{ asset('js/dashboard/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js') }}"></script>
+        <script src="{{ asset('js/dashboard/plugins/d3/d3.min.js') }}"></script>
+        <script src="{{ asset('js/dashboard/plugins/c3-master/c3.min.js') }}"></script>
+        <script src="{{ asset('js/dashboard/plugins/toast-master/js/jquery.toast.js') }}"></script>
+        <script src="{{ asset('js/dashboard/plugins/styleswitcher/jQuery.style.switcher.js') }}"></script>
+        <script>
+            $(function () {
+                "use strict";
+                $(function () {
+                    $(".preloader").fadeOut();
+                });
+                jQuery(document).on('click', '.mega-dropdown', function (e) {
+                    e.stopPropagation()
+                });
+                // ==============================================================
+                // Para el Heeader y Sidebar
+                // ==============================================================
+                var set = function () {
+                    var width = (window.innerWidth > 0) ? window.innerWidth : this.screen.width;
+                    var topOffset = 0;
+                    if (width < 1170) {
+                        $("body").addClass("mini-sidebar");
+                        $('.navbar-brand span').hide();
+                        $(".sidebartoggler i").addClass("ti-menu");
+                    } else {
+                        $("body").removeClass("mini-sidebar");
+                        $('.navbar-brand span').show();
+                    }
+
+                    var height = ((window.innerHeight > 0) ? window.innerHeight : this.screen.height) - 1;
+                    height = height - topOffset;
+                    if (height < 1) height = 1;
+                    if (height > topOffset) {
+                        $(".page-wrapper").css("min-height", (height) + "px");
+                    }
+
+                };
+                $(window).ready(set);
+                $(window).on("resize", set);
+
+                // ==============================================================
+                // Theme options
+                // ==============================================================
+                $(".sidebartoggler").on('click', function () {
+                    if ($("body").hasClass("mini-sidebar")) {
+                        $("body").trigger("resize");
+                        $("body").removeClass("mini-sidebar");
+                        $('.navbar-brand span').show();
+
+                    } else {
+                        $("body").trigger("resize");
+                        $("body").addClass("mini-sidebar");
+                        $('.navbar-brand span').hide();
+
+                    }
+                });
+
+                // Icono de cierre en vista movil
+                $(".nav-toggler").click(function () {
+                    $("body").toggleClass("show-sidebar");
+                    $(".nav-toggler i").toggleClass("ti-menu");
+                    $(".nav-toggler i").addClass("ti-close");
+                });
+
+                $(".search-box a, .search-box .app-search .srh-btn").on('click', function () {
+                    $(".app-search").toggle(200);
+                });
+
+                // ==============================================================
+                // Auto Seleccion Menu lateral
+                // ==============================================================
+                $(function () {
+                    var url = window.location;
+                    
+                    var element = $('ul#sidebarnav a').filter(function () {
+                        var string = $(this).data('active')+" ";
+                        var string3 = string.split("/");
+                        
+                        console.log((window.location.pathname!= $(this).data('active')==false),string3.length,$(this).data('active'));
+                        if(window.location.pathname == $(this).data('active') ){
+                            return true;
+                        }else {
+                            if(string3.length<=2 && $(this).data('active')!=undefined && (window.location.pathname!= $(this).data('active')==false) ){
+                               
+                                return true;
+                              
+                            }else {
+                                console.log('false');
+                                return false;
+                            }
+                        }
+                    }).addClass('active').parent().addClass('active');
+                    while (true) {
+                        if (element.is('li')) {
+                            element = element.parent().addClass('in').parent().addClass('active');
+                        } else {
+                            break;
+                        }
+                    }
+
+                });
+
+
+                // ==============================================================
+                // Sidebarmenu
+                // ==============================================================
+                $(function () {
+                    $('#sidebarnav').AdminMenu();
+                });
+
+                // ==============================================================
+                // Perfact scrollbar
+                // ==============================================================
+                $('.scroll-sidebar, .right-side-panel, .message-center, .right-sidebar').perfectScrollbar();
+
+                // ==============================================================
+                // Resize all elements
+                // ==============================================================
+                $("body").trigger("resize");
+
+
+
+            });
+
+        </script>
+
+        @yield('scripts')
+
     </body>
 
 </html>

@@ -16,7 +16,10 @@ class CreateAsociacionsTable extends Migration
         Schema::create('asociacions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('description');
+            $table->string('address')->nullable();
+            $table->string('email')->unique();
+            $table->string('phone',15)->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

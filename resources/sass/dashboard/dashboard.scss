@@ -1,10 +1,17 @@
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-@import '/plugins/perfect-scrollbar/css/perfect-scrollbar.min.css';
-@import '/plugins/chartist-js/dist/chartist.min.css';
-@import '/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css';
-@import '/plugins/c3-master/c3.min.css';
-@import '/plugins/toast-master/css/jquery.toast.css';
-@import '/css/style.css'; //(All the predefine varialbes colors and etc)
-@import '/css/pages/dashboard1.css'; //(All the predefine varialbes colors and etc)
-@import '/css/colors/default-dark.css'; //(All the predefine varialbes colors and etc)
+@import 'variable'; //(All the predefine varialbes colors and etc)
+
+.roleAd {
+    background-color: $danger;
+}
+
+.roleAs {
+    background-color: $primary;
+}
+
+.roleGe {
+    background-color: $success;
+}
+
+.roleGe {
+    background-color: $warning;
+}
