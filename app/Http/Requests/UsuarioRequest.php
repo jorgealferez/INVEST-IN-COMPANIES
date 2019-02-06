@@ -25,6 +25,8 @@ class UsuarioRequest extends FormRequest
      */
     public function rules()
     {
+     //    dd($this->id);
+         
         $rules = [];
 
         if ($this->request->has('name')) {
@@ -50,7 +52,7 @@ class UsuarioRequest extends FormRequest
         if ($this->request->has('role')) {
              $rules['role'] = ['required',Rule::notIn(['0'])];
         }
-    
+       
         return $rules;
         // return [
         //     'name' => ['required'],
@@ -72,10 +74,11 @@ class UsuarioRequest extends FormRequest
             'role.*' => __('Debes seleccionar un role de usuario'),
             'email.required' => __('Debes escribir un email'),
             'email.email' => __('Debes escribir un email válido'),
-            // 'email.unique' => __('El email ya existe'),
+            'email.unique' => __('El email ya existe'),
             'password.confirmed' => __('Las contraseñas deben coincidir'),
             'phone.*' => __('Debes escribir un teléfono válido'),
             '*.max' => __('Hay demasiados'),
+            '*' =>  __('Error'),
         ];
     }
     

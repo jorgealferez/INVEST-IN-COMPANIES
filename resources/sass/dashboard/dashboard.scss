@@ -6,7 +6,7 @@
 @import 'app'; //( All the Common scss contain here )
 @import 'sidebar'; //( Left sidebar scss contain here )
 @import 'pages/pages.scss';  //(All pages scss contain here )
-@import 'icons/font-awesome/css/font-awesome.min.css'; //( This is for the icons )
+@import 'icons/font-awesome/css/fontawesome-all.min.css'; //( This is for the icons )
 @import 'icons/simple-line-icons/css/simple-line-icons.css';//( This is for the icons )
 @import 'icons/weather-icons/css/weather-icons.min.css';//( This is for the icons )
 @import 'icons/linea-icons/linea.css';//( This is for the icons )
@@ -18,6 +18,19 @@
 @import 'responsive'; //( This is for the responsive scss )
 @import 'spinners.css'; //( This is for the Loader )
 @import 'animate.css';//( This is for the Animation )
+@import '../../js/dashboard/plugins/select2/dist/css/select2.min.css';//( This is for the Animation )
+
+.container-fluid {
+    padding-top: 25px;
+}
+.fix-header .topbar {
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+    .topbar{
+        background-color: $white;
+    }
+
 
 .roleAd {
     background-color: $danger;

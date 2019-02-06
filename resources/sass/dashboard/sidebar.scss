@@ -79,14 +79,14 @@ sidebar navigation
                 font-weight: 400;
                 &.active,
                 &:hover {
-                    color: $themecolor;
+                    color: $white;
                     i {
-                        color: $themecolor;
+                        color: $white;
                     }
                 }
                 &.active {
                     font-weight: 500;
-                    color: $dark;
+                    color: $white;
                 }
             }
             ul {
@@ -102,7 +102,7 @@ sidebar navigation
                 font-size: 12px;
                 margin-bottom: 0px;
                 padding: 14px 14px 14px 20px;
-                color: $dark;
+                color: $sidebar-text;
                 font-weight: 500;
             }
             &.nav-devider {
@@ -134,10 +134,10 @@ sidebar navigation
     > ul > li {
         margin-bottom: 5px;
         &.active > a {
-            color: $themecolor;
+            color: $white;
             font-weight: 500;
             i {
-                color: $themecolor;
+                color: $white;
             }
         }
     }

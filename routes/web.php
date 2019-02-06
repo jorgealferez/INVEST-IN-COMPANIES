@@ -39,6 +39,8 @@ Route::namespace('dashboard')->group(function () {
             Route::get('/crear', 'UsuariosController@create')->name('dashboardUsuariosNuevo')->middleware(['admin']);
             Route::get('/store', 'UsuariosController@store')->middleware(['admin']);
             Route::get('/{usuario}/{tab?}', 'UsuariosController@show')->name('dashboardUsuario')->where('usuario', '[0-9]+')->middleware(['admin']);
+            Route::get('/perfil', 'UsuariosController@profile')->name('perfilUsuario')->where('usuario', '[0-9]+');
+            Route::any('/perfilUpdate', 'UsuariosController@profileUpdate');
             Route::any('/{id}/update', 'UsuariosController@update')->middleware(['admin'])->where('id', '[0-9]+');
             Route::any('/{id}/updateRol', 'UsuariosController@updateRol')->middleware(['admin'])->where('id', '[0-9]+');
             Route::post('/delete/{usuario}', 'UsuariosController@delete')->name('dashboardUsuarioDelete')->where('usuario', '[0-9]+')->middleware(['admin']);

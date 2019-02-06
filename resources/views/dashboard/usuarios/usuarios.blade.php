@@ -42,23 +42,24 @@
                                     <?php 
                                         $usuarioRole= $usuario->roles->first()->name; 
                                         $num_asociaciones = $usuario['asociacion']->count();
+                                        // dd($usuario->asociacion$relationMethod());
                                     ?>
                                     <tr>
-                                            <td>
-                                                
-                                                @if($usuario->email_verified_at)
-                                                    <i class="fa fa-check text-success"></i>
-                                                @else
-                                                    <i class="mdi mdi-close text-warning"></i>
-                                                @endif
-                                            </td>
+                                        <td>
+                                            
+                                            @if($usuario->email_verified_at)
+                                                <i class="fas fa-check text-success"></i>
+                                            @else
+                                                <i class="mdi mdi-close text-warning"></i>
+                                            @endif
+                                        </td>
                                         <td >
                                             <h6><span class="round role{{ substr($usuarioRole,0,2) }}">{{ substr($usuarioRole,0,1) }}</span> {{ e($usuario->name) }}</h6>
                                         </td>
                                         <td>{!! e($usuario->email) !!}</td>
                                         <td class="text-center">
                                             @if($num_asociaciones>0)
-                                            <span class="label label-rouded label-themecolor pull-right">{{ e($num_asociaciones) }}</span>
+                                            <span class="badge badge-primary  pull-right">{{ e($num_asociaciones) }}</span>
                                             @endif
                                         </td>
                                         <td>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Role;
 use App\User;
 use App\Asociacion;
 use Illuminate\Http\Request;
@@ -70,13 +71,15 @@ class AsociacionesController extends Controller
             $usuarios = User::where(['active'=>1])
             ->whereHas(
                 'roles', function($q){
-                            $q->whereIn('name', array('Gestor','Asesor','Gestor'))->groupBy('name');
+                            $q->whereIn('name', array('Gestor','Asesor'));
                         }
             )->get();
+            $rolesLista = Role::with('users')->whereIn('name', array('Gestor','Asesor'))->get();
+// dd($roles->first()->users()->first()->name);
 
             $usuariosIDs = $asociacion->users->pluck('id')->toArray();
             return view('dashboard.asociaciones.detalle')
-                ->with(compact('asociacion','usuarios','usuariosIDs','tab'));
+                ->with(compact('asociacion','usuarios','usuariosIDs','tab','rolesLista'));
         } else {
             abort(404);
         }

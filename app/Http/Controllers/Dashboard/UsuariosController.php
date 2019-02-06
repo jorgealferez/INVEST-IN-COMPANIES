@@ -33,10 +33,12 @@ class UsuariosController extends Controller
      */
     public function index()
     { 
+        
         $usuarios = User::where([
             ['active','=',1],
             ['id','<>',Auth::user()->id],
             ])->orderBy('updated_at', 'desc')->paginate(15);
+            
         return view('dashboard.usuarios.usuarios')
                 ->with(compact('usuarios'));
     }
@@ -87,27 +89,54 @@ class UsuariosController extends Controller
      */
     public function show(User $usuario, $tab='modificar', Request $request)
     {   
-        $errors = Session::get('errors');
-        // dd($errors);
-        if(isset($errors) && $errors->has('role')){
-           $tab="roles"; 
-        }else {
-            $tab="modificar"; 
-        }
-        // dd(Session::get('errors'));
-        if ($usuario && $usuario->active) {
-            $roles=Role::all('id','name');
-           
-            return view('dashboard.usuarios.detalle')
-                ->with(compact('usuario','roles','tab'));
-        } else {
-            abort(404);
+        if($usuario->id<>Auth::user()->id){
+            $errors = Session::get('errors');
+
+            if(isset($errors) && $errors->has('role')){
+                $tab="roles"; 
+            }else {
+                $tab="modificar"; 
+            }
+            if ($usuario && $usuario->active) {
+                $roles=Role::all('id','name');
+                return view('dashboard.usuarios.detalle')
+                    ->with(compact('usuario','roles','tab'));
+            } else {
+                abort(404);
+            }
+        }else{
+            // SI EL USUARIO COINCIDE REDIRIJO
+            return redirect()->route('perfilUsuario');
         }
            
       
     }
 
+    public function profile(UsuarioRequest $request)
+    {   
 
+        $usuario = Auth::user();
+        if ($usuario && $usuario->active) {
+            return view('dashboard.usuarios.profile')
+                ->with(compact('usuario'));
+        } else {
+            abort(404);
+        }
+
+    }
+
+
+   
+    public function profileUpdate(UsuarioRequest $request)
+    {
+       
+        $user = User::find($request->id);
+        $user->fill($request->all());
+        $user->save();
+        return redirect()->route('perfilUsuario')->with('success',true);
+        
+       
+    }
    
     public function update(UsuarioRequest $request)
     {
@@ -144,7 +173,7 @@ class UsuariosController extends Controller
      */
     public function delete(User $usuario)
     {
-        dd('del');
+        
         $relationMethods = ['asociacion'];
         foreach ($relationMethods as $relationMethod) {
             if ($usuario->$relationMethod()->count() > 0) {

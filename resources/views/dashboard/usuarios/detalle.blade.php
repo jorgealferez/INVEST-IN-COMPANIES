@@ -2,7 +2,7 @@
 
 
 @section('estilos')
-<link href="{{ asset('js/dashboard/plugins/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+{{-- <link href="{{ asset('js/dashboard/plugins/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" /> --}}
 
 {{-- <link href="{{ asset('js/dashboard/plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('js/dashboard/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}" rel="stylesheet" />
@@ -62,7 +62,7 @@
                             <form method="POST" class="form-control-line form-material" action="{{ action('dashboard\UsuariosController@update', ['id' => $usuario->id])}}">
                                 @csrf
                                 @method('POST')
-                                <input type="hidden" name="role" id="role" value="$usuario->roles->first()->id">
+                                {{-- <input type="hidden" name="role" id="role" value="$usuario->roles->first()->id"> --}}
                                 <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="col-md-12 form-control-label" for="error">{{ __('Nombre') }}</label>
                                     <div class="col-md-12">
@@ -160,7 +160,7 @@
 
 @section('scripts')
 
-<script src="{{ asset('js/dashboard/plugins/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
+{{-- <script src="{{ asset('js/dashboard/plugins/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script> --}}
 {{-- <script src="{{ asset('js/dashboard/plugins/switchery/dist/switchery.min.js') }}"></script>
 <script src="{{ asset('js/dashboard/plugins/bootstrap-select/bootstrap-select.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/dashboard/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>

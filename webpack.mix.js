@@ -16,7 +16,7 @@ mix.autoload({
 });
 
 mix.js('resources/js/app.js', 'public/js').sass('resources/sass/app.scss', 'public/css');
-mix.sass('resources/sass/dashboard/dashboard.scss', 'public/css');
+mix.sass('resources/sass/dashboard/dashboard.scss', 'public/css').sourceMaps();
 mix.js('resources/js/dashboard/plugins/jquery/jquery.min.js', 'public/js');
 mix.js(
     [
@@ -33,6 +33,7 @@ mix.js(
         'resources/js/dashboard/plugins/c3-master/c3.min.js',
         'resources/js/dashboard/plugins/toast-master/js/jquery.toast.js',
         'resources/js/dashboard/plugins/styleswitcher/jQuery.style.switcher.js',
+        'resources/js/dashboard/plugins/select2/dist/js/select2.full.min.js',
 
     ], 'public/js/dashboard.js').version();
 

@@ -2,7 +2,7 @@
 
 
 @section('estilos')
-<link href="{{ asset('js/dashboard/plugins/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+{{-- <link href="{{ asset('js/dashboard/plugins/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" /> --}}
 
 {{-- <link href="{{ asset('js/dashboard/plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('js/dashboard/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}" rel="stylesheet" />
@@ -115,6 +115,7 @@
                                     @method('PUT')
                                     
                                 <input type="hidden" value="usuarios" name="tab" id="tab_usuarios">
+                                <?php /*
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <select class="select2 m-b-10 select2-multiple" style="width: 100%" multiple="multiple" data-placeholder="Choose" name="usuarios[]" id="usuarios">
@@ -133,6 +134,27 @@
                                                             {{ e($usuario->email) }} 
                                                     
                                                     </option>
+                                                </optgroup>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>*/ ?>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <select class="select2 m-b-10 select2-multiple" style="width: 100%" multiple="multiple" data-placeholder="Choose" name="usuarios[]" id="usuarios">
+                                           
+                                            @foreach ($rolesLista as $role) 
+                                                <optgroup label="{{ e($role->users->first()->name) }}"> 
+                                                    @foreach ($role->users as $usuario) 
+                                                        <option value="{{ e($usuario->id) }}" 
+                                                            <?php 
+                                                                $retVal = (in_array($usuario->id, $usuariosIDs)) ? "selected" : "" ;
+                                                                echo $retVal;
+                                                            ?> data-style="role{{ substr($role->name,0,2) }}">
+                                                                {{ e($usuario->email) }} 
+                                                        
+                                                        </option> 
+                                                    @endforeach
                                                 </optgroup>
                                             @endforeach
                                         </select>
@@ -222,7 +244,9 @@
 
 @section('scripts')
 
-<script src="{{ asset('js/dashboard/plugins/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
+
+
+{{-- <script src="{{ asset('js/dashboard/plugins/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script> --}}
 {{-- <script src="{{ asset('js/dashboard/plugins/switchery/dist/switchery.min.js') }}"></script>
 <script src="{{ asset('js/dashboard/plugins/bootstrap-select/bootstrap-select.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/dashboard/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
@@ -236,7 +260,9 @@
 $(function() {
         // For select 2
         $(".select2").select2();
-
+        $(".alert-success").fadeTo(5000, 500).slideUp(500, function(){
+            $(".alert-success").slideUp(500);
+        });
         // $('.selectpicker').selectpicker();
     });
 </script>
