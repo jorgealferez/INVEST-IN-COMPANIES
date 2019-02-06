@@ -11,29 +11,35 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix.autoload({
+    jquery: ['$', 'global.jQuery', "jQuery", "global.$", "jquery", "global.jquery"]
+});
 
-
-
+mix.js('resources/js/app.js', 'public/js').sass('resources/sass/app.scss', 'public/css');
 mix.sass('resources/sass/dashboard/dashboard.scss', 'public/css');
-
+mix.js('resources/js/dashboard/plugins/jquery/jquery.min.js', 'public/js');
 mix.js(
     [
-        // 'resources/js/app.js',
-        'public/plugins/jquery/jquery.min.js',
-        'public/plugins/bootstrap/js/popper.min.js',
-        'public/plugins/bootstrap/js/bootstrap.min.js',
-        'public/js/perfect-scrollbar.jquery.min.js',
-        // 'public/js/waves.js',
-        // 'public/js/sidebarmenu.js',
-        // 'public/js/custom.min.js',
-        // 'public/plugins/sparkline/jquery.sparkline.min.js',
-        // 'public/plugins/chartist-js/dist/chartist.min.js',
-        // // 'public/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js',
-        // // 'public/plugins/d3/d3.min.js',
-        // 'public/plugins/c3-master/c3.min.js',
-        // 'public/plugins/toast-master/js/jquery.toast.js',
-        // 'public/js/dashboard1.js',
-        // 'public/plugins/styleswitcher/jQuery.style.switcher.js',
+        // 'resources/js/dashboard/plugins/jquery/jquery.min.js',
+        'resources/js/dashboard/plugins/bootstrap/js/popper.min.js',
+        'resources/js/dashboard/plugins/bootstrap/js/bootstrap.min.js',
+        'resources/js/dashboard/plugins/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js',
+        'resources/js/dashboard/waves.js',
+        'resources/js/dashboard/sidebarmenu.js',
+        'resources/js/dashboard/plugins/sparkline/jquery.sparkline.min.js',
+        'resources/js/dashboard/plugins/chartist-js/dist/chartist.min.js',
+        'resources/js/dashboard/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js',
+        'resources/js/dashboard/plugins/d3/d3.min.js',
+        'resources/js/dashboard/plugins/c3-master/c3.min.js',
+        'resources/js/dashboard/plugins/toast-master/js/jquery.toast.js',
+        'resources/js/dashboard/plugins/styleswitcher/jQuery.style.switcher.js',
+
     ], 'public/js/dashboard.js').version();
+
+mix.webpackConfig({
+    resolve: {
+        alias: {
+            jquery: "jquery/src/jquery"
+        }
+    }
+});

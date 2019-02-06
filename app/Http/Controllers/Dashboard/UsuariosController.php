@@ -1,0 +1,159 @@
+<?php
+
+namespace App\Http\Controllers\Dashboard;
+
+use App\Role;
+use App\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UsuarioRequest;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Foundation\Auth\RegistersUsers;
+
+class UsuariosController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Register Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles the registration of new users as well as their
+    | validation and creation. By default this controller uses a trait to
+    | provide this functionality without requiring any additional code.
+    |
+    */
+
+    use RegistersUsers;
+    /**
+     * Listado de usuarios excepto uno mismo
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    { 
+        $usuarios = User::where([
+            ['active','=',1],
+            ['id','<>',Auth::user()->id],
+            ])->orderBy('updated_at', 'desc')->paginate(15);
+        return view('dashboard.usuarios.usuarios')
+                ->with(compact('usuarios'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+        $roles=Role::all('id','name');
+        return view('dashboard.usuarios.crear',['roles'=>$roles]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\UsuarioRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(UsuarioRequest $request)
+    {
+        $usuario = User::create([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'phone' => $request->phone,
+        ]);
+        
+        $usuario
+            ->roles()
+            ->attach(Role::find($request->role));
+
+        $usuario->sendEmailVerificationNotification(); // Enviamos email de confirmación de cuenta
+        
+        return redirect()->route('dashboardUsuarios')->with(['success'=>true,'email'=> $usuario->email]);
+        
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Asociacion  $asociacion
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $usuario, $tab='modificar', Request $request)
+    {   
+        $errors = Session::get('errors');
+        // dd($errors);
+        if(isset($errors) && $errors->has('role')){
+           $tab="roles"; 
+        }else {
+            $tab="modificar"; 
+        }
+        // dd(Session::get('errors'));
+        if ($usuario && $usuario->active) {
+            $roles=Role::all('id','name');
+           
+            return view('dashboard.usuarios.detalle')
+                ->with(compact('usuario','roles','tab'));
+        } else {
+            abort(404);
+        }
+           
+      
+    }
+
+
+   
+    public function update(UsuarioRequest $request)
+    {
+       
+        $user = User::find($request->id);
+        $user->fill($request->all());
+        $user->save();
+        return redirect()->route('dashboardUsuario',$user)->with('success',true);
+        
+       
+    }
+   
+    public function updateRol(UsuarioRequest $request)
+    {
+       
+        $user = User::find($request->id);
+        
+        $user->roles()->detach();
+        $user
+            ->roles()
+            ->attach(Role::find($request->role));
+        
+        $tab="roles"; 
+        return redirect()->action('dashboard\UsuariosController@show',['usuario'=>$user,'tab'=>$tab])->with('success',true);
+        
+       
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Asociacion  $asociacion
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(User $usuario)
+    {
+        dd('del');
+        $relationMethods = ['asociacion'];
+        foreach ($relationMethods as $relationMethod) {
+            if ($usuario->$relationMethod()->count() > 0) {
+                return redirect()->route('dashboardUsuarios')->with(['error'=> true,'mensaje'=>__('No se puede eliminar el usuario '.$usuario->name)]);
+            }
+        }
+        $usuario->fill(['active'=>false]);
+        $usuario->save();
+               
+        return redirect()->route('dashboardUsuarios')->with('success', true);
+    }
+}

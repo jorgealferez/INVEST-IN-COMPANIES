@@ -64,9 +64,7 @@ class AsociacionesController extends Controller
      */
     public function show(Asociacion $asociacion, $tab='usuarios', Request $request)
     {   
-        if($errors = Session::get('errors')){
-           $tab="modificar"; 
-        }
+        $errors = Session::get('errors');
         if ($asociacion && $asociacion->active) {
            
             $usuarios = User::where(['active'=>1])
@@ -87,21 +85,6 @@ class AsociacionesController extends Controller
     }
 
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Asociacion  $asociacion
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Asociacion $asociacion)
-    {
-        //
-        
-    }
-
-
-
     /**
      * Update the specified resource in storage.
      *
@@ -111,11 +94,12 @@ class AsociacionesController extends Controller
      */
     public function update(AsociacionRequest $request,$tab=null)
     {
-        dd($request);
         $asociacion = \App\Asociacion::find($request->id);
         $asociacion->fill($request->all());
         $asociacion->save();
-        return redirect()->back()->with('success', true);   
+        $tab="modificar"; 
+        // return redirect()->back()->with('success', true);   
+        return redirect()->action('dashboard\AsociacionesController@show',['asociacion'=>$asociacion,'tab'=>$tab])->with('success',true);
         
        
     }

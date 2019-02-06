@@ -89,12 +89,11 @@
 <script>
 $(document).on('click', '.borrarAsociacion', function (e) {
     e.preventDefault();
-    // $("#delForm").attr('action', 'comments.destroy' + commentId);
     $('#texto-modal-borrar').html('{{ __('Seguro que deseas borrar la asociación') }}'+' <strong>'+ $(this).data('name')+' </strong>');
     $('#asociacion_id_borrar').val($(this).data('id'));
     $('#BotonEliminar').on('click', function(e) {
         e.preventDefault();
-        $('#formBorrar').attr('action',"/asociaciones/delete/"+$('#asociacion_id_borrar').val());
+        $('#formBorrar').attr('action',"/dashboard/asociaciones/delete/"+$('#asociacion_id_borrar').val());
         $('#formBorrar').submit();
         $form = '';
     });

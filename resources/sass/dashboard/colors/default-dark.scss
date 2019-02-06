@@ -8,14 +8,14 @@ File: scss
 @import '../variable';
 $themecolor: #398bf7;
 $themecolor-dark: #028ee1;
-$topbar: #fff;
+$topbar: #f4f6f9;
 $sidebar:#242a33;
 $sidebar-text: #687384;
 $sidebar-icons: #424a56;
 $sidebar-dark: #1c2128;
 $sidebar-alt:#1c2128;
 $themecolor-alt: #26c6da;
-$topbar-alt: #398bf7;
+$topbar-alt: #242a33;
 
 /*******************
 /*Top bar
@@ -23,8 +23,12 @@ $topbar-alt: #398bf7;
 
 .topbar {
     background: $topbar;
-    .top-navbar .navbar-header .navbar-brand .light-logo {
+    .top-navbar .navbar-header .navbar-brand .dark-logo {
         display: none;
+    }
+    .top-navbar .navbar-header .navbar-brand .light-logo {
+        display: inline-block;
+        color: rgba(255, 255, 255, 0.8);
     }
     .top-navbar{
         .navbar-nav>.nav-item>span {
@@ -40,7 +44,9 @@ $topbar-alt: #398bf7;
             }
         }
     }
-    
+    .navbar-header {
+        background: $topbar-alt;
+    }
 }
 
 .logo-center .topbar {

@@ -8,34 +8,26 @@ File: scss
 @import '../variable';
 $themecolor: #56c0d8;
 $themecolor-dark: #028ee1;
-$topbar: #56c0d8;
+$topbar: #f4f6f9;
 $themecolor-alt: #00897b;
 $topbar-alt: #ffffff;
 $sidebar-icons: #a6b7bf; 
 /*******************
 /*Top bar
 *******************/
-
 .topbar {
     background: $topbar;
     .navbar-header{
         background: $topbar-alt;
     }
-    
-    
     .top-navbar .navbar-header .navbar-brand .light-logo{
         display: none;
         color:rgba(255, 255, 255, 0.8);
     }
-    .navbar-light .navbar-nav .nav-item > {
-        a.nav-link {
-           
-            color: $white!important;
-            &:hover,
-            &:focus {
-                 color: rgba(255, 255, 255, 0.8)!important;
-            }
-        }
+}
+@media(max-width:767px) {
+.topbar{
+    background: $white;
     }
 }
 .hdr-nav-bar .navbar .navbar-nav>li.active>a{

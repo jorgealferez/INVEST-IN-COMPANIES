@@ -16,9 +16,12 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'surname','phone','address','email', 'password', 'active','LOPD'
+        'name', 'surname','phone','email', 'password', 'active','LOPD'
     ];
-
+    protected $attributes = [
+        'active' => true,
+    ];
+    
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -73,4 +76,12 @@ class User extends Authenticatable implements MustVerifyEmail
             ->belongsToMany('App\Asociacion')
             ->withTimestamps();
     }
+
+    public function getRoleClass(){
+        
+    return 'role'.substr($this->roles->first()->name,0,2);
+    
+    }
+
+    
 }

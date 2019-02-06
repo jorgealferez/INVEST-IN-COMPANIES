@@ -15,7 +15,7 @@
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
         <!-- Bootstrap Core CSS -->
-        <link href="{{ asset('js/dashboard/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        {{-- <link href="{{ asset('js/dashboard/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('js/dashboard/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet">
         <!-- This page CSS -->
         <!-- chartist CSS -->
@@ -24,14 +24,15 @@
         <!--c3 CSS -->
         <link href="{{ asset('js/dashboard/plugins/c3-master/c3.min.css') }}" rel="stylesheet">
         <!--Toaster Popup message CSS -->
-        <link href="{{ asset('js/dashboard/plugins/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
+        <link href="{{ asset('js/dashboard/plugins/toast-master/css/jquery.toast.css') }}" rel="stylesheet"> --}}
         @yield('estilos')
         <!-- Custom CSS -->
-        <link href="{{ asset('css/dashboard/style.css') }}" rel="stylesheet">
+        {{-- <link href="{{ asset('css/dashboard/style.css') }}" rel="stylesheet">
         <!-- Dashboard 1 Page CSS -->
         <link href="{{ asset('css/dashboard/pages/dashboard1.css') }}" rel="stylesheet">
         <!-- You can change the theme colors from here -->
-        <link href="{{ asset('css/dashboard/colors/default-dark.css') }}" id="theme" rel="stylesheet">
+        <link href="{{ asset('css/dashboard/colors/default-dark.css') }}" id="theme-dark" rel="stylesheet"> --}}
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
         <link href="{{ asset('css/dashboard.css') }}" id="theme" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -62,20 +63,21 @@
 
         </div>
 
-        <script src="{{ asset('js/dashboard/plugins/jquery/jquery.min.js') }}"></script>
+        {{-- <script src="{{ asset('js/dashboard/plugins/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('js/dashboard/plugins/bootstrap/js/popper.min.js') }}"></script>
         <script src="{{ asset('js/dashboard/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('js/dashboard/perfect-scrollbar.jquery.min.js') }}"></script>
-        <script src="{{ asset('js/dashboard/waves.js') }}"></script>
-        <script src="{{ asset('js/dashboard/sidebarmenu.js') }}"></script>
+        <script src="{{ asset('js/dashboard/perfect-scrollbar.jquery.min.js') }}"></script> --}}
+        {{-- <script src="{{ asset('js/dashboard/waves.js') }}"></script> --}}
+        {{-- <script src="{{ asset('js/dashboard/sidebarmenu.js') }}"></script> --}}
 
-        <script src="{{ asset('js/dashboard/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
-        <script src="{{ asset('js/dashboard/plugins/chartist-js/dist/chartist.min.js') }}"></script>
-        <script src="{{ asset('js/dashboard/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js') }}"></script>
-        <script src="{{ asset('js/dashboard/plugins/d3/d3.min.js') }}"></script>
-        <script src="{{ asset('js/dashboard/plugins/c3-master/c3.min.js') }}"></script>
-        <script src="{{ asset('js/dashboard/plugins/toast-master/js/jquery.toast.js') }}"></script>
-        <script src="{{ asset('js/dashboard/plugins/styleswitcher/jQuery.style.switcher.js') }}"></script>
+        {{-- <script src="{{ asset('js/dashboard/plugins/sparkline/jquery.sparkline.min.js') }}"></script> --}}
+        {{-- <script src="{{ asset('js/dashboard/plugins/chartist-js/dist/chartist.min.js') }}"></script> --}}
+        {{-- <script src="{{ asset('js/dashboard/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js') }}"></script> --}}
+        {{-- <script src="{{ asset('js/dashboard/plugins/d3/d3.min.js') }}"></script> --}}
+        {{-- <script src="{{ asset('js/dashboard/plugins/c3-master/c3.min.js') }}"></script> --}}
+        {{-- <script src="{{ asset('js/dashboard/plugins/toast-master/js/jquery.toast.js') }}"></script>
+        <script src="{{ asset('js/dashboard/plugins/styleswitcher/jQuery.style.switcher.js') }}"></script> --}}
+        <script src="{{ asset('js/dashboard.js') }}"></script>
         <script>
             $(function () {
                 "use strict";
@@ -135,9 +137,6 @@
                     $(".nav-toggler i").addClass("ti-close");
                 });
 
-                $(".search-box a, .search-box .app-search .srh-btn").on('click', function () {
-                    $(".app-search").toggle(200);
-                });
 
                 // ==============================================================
                 // Auto Seleccion Menu lateral
@@ -148,9 +147,7 @@
                     var element = $('ul#sidebarnav a').filter(function () {
                         var string = $(this).data('active')+" ";
                         var string3 = string.split("/");
-                        
-                        console.log((window.location.pathname!= $(this).data('active')==false),string3.length,$(this).data('active'));
-                        if(window.location.pathname == $(this).data('active') ){
+                        if(window.location.pathname == '/dashboard'+$(this).data('active') ){
                             return true;
                         }else {
                             if(string3.length<=2 && $(this).data('active')!=undefined && (window.location.pathname!= $(this).data('active')==false) ){
@@ -158,7 +155,6 @@
                                 return true;
                               
                             }else {
-                                console.log('false');
                                 return false;
                             }
                         }

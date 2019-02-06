@@ -17,7 +17,7 @@ class CreateAsociacionsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('address')->nullable();
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('phone',15)->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();

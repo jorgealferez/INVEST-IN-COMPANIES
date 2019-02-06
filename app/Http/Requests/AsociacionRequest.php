@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AsociacionRequest extends FormRequest
@@ -25,15 +24,34 @@ class AsociacionRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => ['required'],
-            'address',
-            // 'email' => ['required', 'string', 'email', 'max:255', Rule::unique('asociacion','email')->ignore('info@cepyme.es')],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'phone' => ['string','regex:^(\+34|0034|34)?[\s|\-|\.]?[6|7|8|9][\s|\-|\.]?([0-9][\s|\-|\.]?){8}$^','max:9|min:9'],
-            // 'phone' => ['max:9'],
-            'active'
-        ];
+        $rules = [];
+
+        if ($this->request->has('name')) {
+             $rules['name'] = ['required'];
+        }
+    
+    
+        if ($this->request->has('phone')) {
+             $rules['phone'] = ['string','regex:^(\+34|0034|34)?[\s|\-|\.]?[6|7|8|9][\s|\-|\.]?([0-9][\s|\-|\.]?){8}$^','max:9|min:9'];
+        }
+    
+        if ($this->request->has('email')) {
+             $rules['email'] = ['required', 'string', 'email', 'max:255'];
+        }
+    
+       
+    
+        return $rules;
+        // BORRAR
+        // return [
+        //     'name' => ['required'],
+        //     'address',
+        //     // 'email' => ['required', 'string', 'email', 'max:255', Rule::unique('asociacion','email')->ignore('info@cepyme.es')],
+        //     'email' => ['required', 'string', 'email', 'max:255'],
+        //     'phone' => ['string','regex:^(\+34|0034|34)?[\s|\-|\.]?[6|7|8|9][\s|\-|\.]?([0-9][\s|\-|\.]?){8}$^','max:9|min:9'],
+        //     // 'phone' => ['max:9'],
+        //     'active'
+        // ];
     }
 
     public function messages()
@@ -49,10 +67,10 @@ class AsociacionRequest extends FormRequest
     public function withValidator($validator)
     {
         if ($validator->fails()) {
-            return "FDFD";
+           
         } else {
 
-            return "adsadaasds";
+            
         }
 
     }

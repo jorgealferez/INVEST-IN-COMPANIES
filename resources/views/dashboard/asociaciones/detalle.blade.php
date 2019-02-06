@@ -87,9 +87,8 @@
                                 <tbody>
                                 @if($asociacion->users->isNotEmpty())
                                     @foreach ($asociacion->users as $usuario_asociacion)
-                                    <?php $usuario_asociacionRole= $usuario_asociacion->roles->first()->name; ?>
                                     <tr>
-                                        <td style="width:50px;"><span class="round role{{ substr($usuario_asociacionRole,0,2) }}">{{ substr($usuario_asociacionRole,0,1) }}</span></td>
+                                        <td style="width:50px;"><span class="round {{ $usuario_asociacion->getRoleClass() }} roleLarge">{{ substr($usuario_asociacion->getRoleClass(),4,1) }}</span></td>
                                         <td>
                                             <h6>{{ e($usuario_asociacion->name." ".$usuario_asociacion->surname) }}</h6>
                                             <small class="text-muted">{{ e($usuario_asociacion->email) }}</small>
@@ -139,13 +138,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                {{-- <div class="dropdown bootstrap-select show-tick show">
-                                    <select class="selectpicker" multiple="" data-style="form-control btn-info " tabindex="-98">
-                                        <option>Mustard</option>
-                                        <option>Ketchup</option>
-                                        <option>Relish</option>
-                                    </select>
-                                </div> --}}
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <button class="btn btn-success">{{ __('Actualizar Usuarios') }}</button>

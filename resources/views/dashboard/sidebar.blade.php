@@ -6,15 +6,7 @@
             <ul id="sidebarnav">
                 <li class="nav-small-cap">{{  __(strtoupper('Administración')) }}</li>
                 <li>
-                    
                     <a href="{{ route('dashboard') }}" data-active="/dashboard"><i class="mdi mdi-gauge"></i><span class="hide-menu">{{ __('Dashboard') }}</span></a>
-                    {{-- <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard <span class="label label-rouded label-themecolor pull-right">4</span></span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="index.html">Minimal </a></li>
-                        <li><a href="index2.html">Analytical</a></li>
-                        <li><a href="index3.html">Demographical</a></li>
-                        <li><a href="index4.html">Modern</a></li>
-                    </ul> --}}
                 </li>
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Asociaciones</span></a>
                     <ul aria-expanded="false" class="collapse">
@@ -22,22 +14,26 @@
                         <li><a href="{{ e(route('dashboardAsociacionesNueva')) }}"  data-active="/asociaciones/crear">Crear</a></li>
                     </ul>
                 </li>
-               
+                @if(Auth::user()->hasRole('admin'))
+                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Usuarios</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ e(route('dashboardUsuarios')) }}" data-active="/usuarios">Listado</a></li>
+                        <li><a href="{{ e(route('dashboardUsuariosNuevo')) }}"  data-active="/usuarios/crear">Crear</a></li>
+                    </ul>
+                </li>
+                @endif
                 <li class="nav-devider"></li>
                 <li class="user-profile">
                         <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
-                            <?php $usuario_asociacionRole= Auth::user()->roles->first()->name; ?>
-                            <span class="round role{{ substr($usuario_asociacionRole,0,2) }}" style="width: 30px;height: 30px;line-height: 30px;">{{ substr($usuario_asociacionRole,0,1) }}</span>
+                            <span class="round {{ Auth::user()->getRoleClass() }} roleSmall">{{ substr(Auth::user()->getRoleClass(),4,1) }} </span>
+                            &nbsp;
                             <span class="hide-menu">{{ Auth::user()->name }} </span>
                         </a>
                         <ul aria-expanded="false" class="collapse">
-                            <li><a href="javascript:void()">My Profile </a></li>
-                            <li><a href="javascript:void()">My Balance</a></li>
-                            <li><a href="javascript:void()">Inbox</a></li>
-                            <li><a href="javascript:void()">Account Setting</a></li>
+                            <li><a href="javascript:void()"> {{ __('Mi cuenta') }}</a></li>
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Salir') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

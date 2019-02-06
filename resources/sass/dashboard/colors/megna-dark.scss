@@ -8,7 +8,7 @@ File: scss
 @import '../variable';
 $themecolor: #56c0d8;
 $themecolor-dark: #028ee1;
-$topbar: #56c0d8;
+$topbar: #f4f6f9;
 $sidebar:#242a33;
 $sidebar-text: #687384;
 $sidebar-icons: #424a56;
@@ -29,15 +29,7 @@ $topbar-alt: #272c33;
         display: inline-block;
         color: rgba(255, 255, 255, 0.8);
     }
-    .navbar-nav .nav-item > {
-        a.nav-link {
-            color: rgba(255, 255, 255, 0.8); 
-            &:hover,
-            &:focus {
-                color:$white!important;
-            }
-        }
-    }
+    
     .top-navbar .navbar-nav>.nav-item>span{
         color:$white;
     }
@@ -45,7 +37,11 @@ $topbar-alt: #272c33;
         background: $topbar-alt;
     }
 }
-
+@media(max-width:767px) {
+.topbar{
+    background: $white;
+    }
+}
 .logo-center .topbar {
     .navbar-header {
         background: transparent;

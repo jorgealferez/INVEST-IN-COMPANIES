@@ -39,6 +39,7 @@ File: scss
 
 .container-fluid {
     padding: 25px 25px;
+    padding-top: 0px;
 }
 
 .card {
@@ -61,7 +62,7 @@ File: scss
     .topbar {
         position: fixed;
         width: 100%;
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+        
     }
     .page-wrapper {
         padding-top: 70px;
@@ -206,7 +207,6 @@ File: scss
             border-radius: 0px;
             font-size: 17px;
             transition: 0.5s ease-in;
-            height: 73px;
             &:focus {
                 border-color: $white;
             }
@@ -979,7 +979,6 @@ Notification page Jquery toaster
 .jq-icon-error {background-color: $danger; color:$white;}
 .jq-icon-warning{ background-color:$warning; color:$white;}
 
-
 /*******************
 form material page
 ******************/
@@ -993,3 +992,4 @@ form material page
 .table-responsive>.table-bordered{
     border: 1px solid $border;
 }
+

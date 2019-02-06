@@ -21,8 +21,7 @@ class UserTableSeeder extends Seeder
         $user_admin = new User();
         $user_admin->name = 'Admin';
         $user_admin->surname = 'Apellidos Apellidos';
-        $user_admin->phone = '666 66 66 66';
-        $user_admin->address = 'Calle Luna 1ºC';
+        $user_admin->phone = '666666666';
         $user_admin->LOPD = true;
         $user_admin->active = true;
         $user_admin->email = 'admin@admin.com';
@@ -36,8 +35,7 @@ class UserTableSeeder extends Seeder
         $user_asesor = new User();
         $user_asesor->name = 'Asesor 1';
         $user_asesor->surname = 'Apellidos Apellidos';
-        $user_asesor->phone = '666 66 66 66';
-        $user_asesor->address = 'Calle Luna 1ºC';
+        $user_asesor->phone = '666666666';
         $user_asesor->LOPD = true;
         $user_asesor->active = true;
         $user_asesor->email = 'asesor@asesor.com';
@@ -51,8 +49,7 @@ class UserTableSeeder extends Seeder
         $user_gestor = new User();
         $user_gestor->name = 'Gestor 1';
         $user_gestor->surname = 'Apellidos Apellidos';
-        $user_gestor->phone = '666 66 66 66';
-        $user_gestor->address = 'Calle Luna 1ºC';
+        $user_gestor->phone = '666666666';
         $user_gestor->LOPD = true;
         $user_gestor->active = true;
         $user_gestor->email = 'gestor@gestor.com';
@@ -67,8 +64,7 @@ class UserTableSeeder extends Seeder
         $user = new User();
         $user->name = 'User 1';
         $user->surname = 'Apellidos Apellidos';
-        $user->phone = '666 66 66 66';
-        $user->address = 'Calle Luna 1ºC';
+        $user->phone = '666666666';
         $user->LOPD = true;
         $user->active = true;
         $user->email = 'user@user.com';

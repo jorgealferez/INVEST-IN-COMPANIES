@@ -8,7 +8,7 @@ File: scss
 @import '../variable';
 $themecolor: #f62d51;
 $themecolor-dark: #028ee1;
-$topbar: #ef5350;
+$topbar: #f4f6f9;
 $themecolor-alt: #f62d51;
 $topbar-alt: #ffffff;
 $sidebar-icons: #a6b7bf; 
@@ -27,18 +27,13 @@ $sidebar-icons: #a6b7bf;
         display: none;
         color:rgba(255, 255, 255, 0.8);
     }
-    .navbar-light .navbar-nav .nav-item > {
-        a.nav-link {
-           
-            color: $white!important;
-            &:hover,
-            &:focus {
-                 color: rgba(255, 255, 255, 0.8)!important;
-            }
-        }
+    
+}
+@media(max-width:767px) {
+.topbar{
+    background: $white;
     }
 }
-
 .hdr-nav-bar .navbar .navbar-nav>li.active>a{
     border-color: $themecolor;
 }

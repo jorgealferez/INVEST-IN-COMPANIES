@@ -18,7 +18,7 @@ Main sidebar
     z-index: 20;
     padding-top: 70px;
     background: $sidebar;
-    box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+    
 }
 
 .fix-sidebar .left-sidebar {
@@ -106,7 +106,7 @@ sidebar navigation
                 font-weight: 500;
             }
             &.nav-devider {
-                height: 1px;
+                height: 0px; 
                 background: $border;
                 display: block;
                 margin: 15px 0;
