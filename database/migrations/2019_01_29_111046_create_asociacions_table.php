@@ -13,12 +13,16 @@ class CreateAsociacionsTable extends Migration
      */
     public function up()
     {
+        //'name', 'address','email','phone','active','contact','contactPhone','','state'
         Schema::create('asociacions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('address')->nullable();
             $table->string('email');
-            $table->string('phone',15)->nullable();
+            $table->string('phone')->nullable();
+            $table->string('contact')->nullable();
+            $table->string('contactPhone')->nullable();
+            $table->string('contactEmail')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

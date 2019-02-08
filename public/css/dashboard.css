@@ -22326,3 +22326,8 @@ File: scss
   border-radius: calc(.25rem - 1px);
 }
 
+.stylish-table tbody tr:hover,
+.stylish-table tbody tr.active {
+  border-left: 4px solid #006242;
+}
+

@@ -1,7 +1,8 @@
 <?php
 
 namespace App;
-
+use App\Traits\DatesTranslator;
+use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,7 +10,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
-
+    use Sortable;
+    use DatesTranslator;
     /**
      * The attributes that are mass assignable.
      *
@@ -21,7 +23,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $attributes = [
         'active' => true,
     ];
-    
+    public $sortable = ['name','email','asociacion_count'];
+   
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -79,7 +82,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getRoleClass(){
         
-    return 'role'.substr($this->roles->first()->name,0,2);
+        return 'role'.substr($this->roles->first()->name,0,2);
     
     }
 

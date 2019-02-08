@@ -17,13 +17,16 @@ class AsociacionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $asociaciones = Asociacion::where('active',1)->orderBy('updated_at', 'desc')->get();
-        // dd($asociaciones);
+        $query[]=["active" , "<>", NULL];
+        if($request->input('search')) { 
+            $query[]=["name","LIKE","%{$request->input('search')}%"];  
+        }
+        $asociaciones = Asociacion::where($query)->sortable(['created_at'=> 'desc'])->paginate(5);
+        $busqueda = ($request->input('search')) ? $request->input('search') : null ;
         return view('dashboard.asociaciones.asociaciones')
-                ->with(compact('asociaciones'));
+                ->with(compact('asociaciones','busqueda'));
     }
 
     /**
@@ -45,11 +48,6 @@ class AsociacionesController extends Controller
      */
     public function store(AsociacionRequest $request)
     {
-        //
-        // $asociacion = new Asociacion;
-        // $asociacion->fill($request->all());
-        // dd($request->all());
-        // $asociacion->save();
         $asociacion = new Asociacion;
         $asociacion->fill($request->all());
 
@@ -57,29 +55,21 @@ class AsociacionesController extends Controller
         return redirect()->route('dashboardAsociaciones');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Asociacion  $asociacion
-     * @return \Illuminate\Http\Response
-     */
     public function show(Asociacion $asociacion, $tab='usuarios', Request $request)
     {   
         $errors = Session::get('errors');
-        if ($asociacion && $asociacion->active) {
-           
-            $usuarios = User::where(['active'=>1])
-            ->whereHas(
+        if ($asociacion) {
+            if($request->old('tab')){ $tab=$request->old('tab'); }
+            $usuarios = User::whereHas(
                 'roles', function($q){
                             $q->whereIn('name', array('Gestor','Asesor'));
                         }
             )->get();
             $rolesLista = Role::with('users')->whereIn('name', array('Gestor','Asesor'))->get();
-// dd($roles->first()->users()->first()->name);
 
             $usuariosIDs = $asociacion->users->pluck('id')->toArray();
             return view('dashboard.asociaciones.detalle')
-                ->with(compact('asociacion','usuarios','usuariosIDs','tab','rolesLista'));
+                ->with(compact('asociacion','usuarios','usuariosIDs','tab','rolesLista','request'));
         } else {
             abort(404);
         }
@@ -87,14 +77,7 @@ class AsociacionesController extends Controller
       
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Asociacion  $asociacion
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(AsociacionRequest $request,$tab=null)
     {
         $asociacion = \App\Asociacion::find($request->id);
@@ -102,7 +85,7 @@ class AsociacionesController extends Controller
         $asociacion->save();
         $tab="modificar"; 
         // return redirect()->back()->with('success', true);   
-        return redirect()->action('dashboard\AsociacionesController@show',['asociacion'=>$asociacion,'tab'=>$tab])->with('success',true);
+        return redirect()->action('dashboard\AsociacionesController@show',['asociacion'=>$asociacion])->with('success',true);
         
        
     }
@@ -140,5 +123,16 @@ class AsociacionesController extends Controller
         $asociacion->save();
                
         return redirect()->route('dashboardAsociaciones')->with('success', true);
+    }
+
+    public function search(Request $request){
+        $data = ASociacion::select("name")
+                ->where([
+                    // ["active" , "=", 1],
+                    ["name","LIKE","%{$request->input('query')}%"]
+                ])
+                ->get();
+   
+        return response()->json($data);
     }
 }

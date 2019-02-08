@@ -31,16 +31,17 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     { 
-        
-        $usuarios = User::where([
-            ['active','=',1],
-            ['id','<>',Auth::user()->id],
-            ])->orderBy('updated_at', 'desc')->paginate(15);
-            
+        $query[]=["active" , "<>", NULL];
+        $query[]=['id','<>',Auth::user()->id];
+        if($request->input('search')) { 
+            $query[]=["name","LIKE","%{$request->input('search')}%"];  
+        }
+        $usuarios = User::withCount('asociacion')->where($query)->sortable()->orderBy('created_at', 'desc')->paginate(15);
+        $busqueda = ($request->input('search')) ? $request->input('search') : null ;
         return view('dashboard.usuarios.usuarios')
-                ->with(compact('usuarios'));
+                ->with(compact('usuarios','busqueda'));
     }
 
     /**
@@ -185,4 +186,15 @@ class UsuariosController extends Controller
                
         return redirect()->route('dashboardUsuarios')->with('success', true);
     }
+
+    public function search(Request $request){
+        $data = User::select("name")
+                ->where([
+                    ["name","LIKE","%{$request->input('query')}%"]
+                ])
+                ->get();
+   
+        return response()->json($data);
+    }
+
 }

@@ -3,6 +3,7 @@
 use App\Role;
 use App\User;
 use App\Asociacion;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
@@ -72,5 +73,51 @@ class UserTableSeeder extends Seeder
         $user->password = bcrypt('secret');
         $user->save();
         $user->roles()->attach($role_user);
+
+        $faker = Faker::create('es_ES');
+    	foreach (range(1,10) as $index) {
+            $role_user = Role::where('name', 'User')->first();
+            $user = new User();
+            $user->name = $faker->firstName;
+            $user->surname = $faker->lastName;
+            $user->phone = $faker->phoneNumber;
+            $user->LOPD = true;
+            $user->active = true;
+            $user->email = $faker->email;
+            $user->email_verified_at = now();
+            $user->password = bcrypt('secret');
+            $user->save();
+            $user->roles()->attach($role_user);
+
+            
+            $role_gestor = Role::where('name', 'Gestor')->first();
+            $user_gestor = new User();
+            $user_gestor->name = $faker->firstName;
+            $user_gestor->surname = $faker->lastName;
+            $user_gestor->phone = $faker->phoneNumber;
+            $user_gestor->LOPD = true;
+            $user_gestor->active = true;
+            $user_gestor->email = $faker->email;
+            $user_gestor->password = bcrypt('secret');
+            $user_gestor->email_verified_at = now();
+            $user_gestor->save();
+            $user_gestor->roles()->attach($role_gestor);
+            $user_gestor->asociacion()->attach($asociacion);
+
+            $role_asesor = Role::where('name', 'Asesor')->first();
+            $asociacion = Asociacion::where('id', '1')->first();
+            $user_asesor = new User();
+            $user_asesor->name = $faker->firstName;
+            $user_asesor->surname = $faker->lastName;
+            $user_asesor->phone = $faker->phoneNumber;
+            $user_asesor->LOPD = true;
+            $user_asesor->active = true;
+            $user_asesor->email = $faker->email;
+            $user_asesor->password = bcrypt('secret');
+            $user_asesor->email_verified_at = now();
+            $user_asesor->save();
+            $user_asesor->roles()->attach($role_asesor);
+            $user_asesor->asociacion()->attach($asociacion);
+	    }
     }
 }

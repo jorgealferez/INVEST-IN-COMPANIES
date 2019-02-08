@@ -37,6 +37,7 @@ mix.js(
 
     ], 'public/js/dashboard.js').version();
 
+mix.copy('resources/js/dashboard/bootstrap3-typeahead.min.js', 'public/js/');
 mix.webpackConfig({
     resolve: {
         alias: {

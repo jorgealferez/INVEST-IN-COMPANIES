@@ -75,3 +75,12 @@
     width: 100%;
     border-radius: calc(.25rem - 1px);
 }
+
+.stylish-table {
+    tbody tr {
+        &:hover,
+        &.active {
+            border-left: 4px solid $themecolor;
+        }
+    }
+}

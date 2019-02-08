@@ -19,13 +19,25 @@
                             <h4 class="card-title"><span class="lstick"></span>Listado Asociaciones</h4>
                         </div>
                     </div>
-                    <div class="table-responsive m-t-20 no-wrap">
-                        <table class="table vm no-th-brd pro-of-month">
+                    <form method="POST" class="" action="" id="formSearch">
+                            @csrf
+                            @method('POST')
+                            <div class="dataTables_filter">
+                                <label>{{ __('Buscar') }}
+                                    <input type="search" class="form-control typeahead" type="text" value="{{  $busqueda }}">
+                                </label>
+                            </div>
+                            
+                    </form>
+                    <div class="table-responsive m-t-20 ">
+                        <table class="table stylish-table">
                             <thead>
                                 <tr>
-                                    <th>Asociación</th>
-                                    <th>Email</th>
-                                    <th>Teléfono</th>
+                                    <th>@sortablelink('id', __('Id'))</th>
+                                    <th>@sortablelink('name', __('Asociación'))</th>
+                                    <th>{{ __('Ofertas') }}</th>
+                                    <th>@sortablelink('created_at', __('Fecha'))</th>
+                                    <th>@sortablelink('active', __('Estado'))</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -33,26 +45,52 @@
                                 @if($asociaciones->isNotEmpty())
                                     @foreach ($asociaciones as $asociacion)
                                     <tr>
+                                        <td># {!! e($asociacion->id) !!}</td>
                                         <td>
                                             <h6>{{ e($asociacion->name) }}</h6><small class="text-muted">{{ e($asociacion->address) }}</small>
                                         </td>
-                                        <td>{!! e($asociacion->email) !!}</td>
-                                        <td>{{ e($asociacion->phone) }}</td>
+                                        <td></td>
+                                        <td>{{ e($asociacion->created_at->format('d/m/Y')) }}</td>
                                         <td>
-                                            <a href="<?php echo urldecode(route('dashboardAsociacion',['asociacion'=>$asociacion])); ?>" class="label label-success label-rounded">{{ __('Ver') }}</a>
-                                           
-                                            <a href="#" class="label label-danger label-rounded borrarAsociacion" data-toggle="modal" data-url="<?php echo urldecode(route('dashboardAsociacionDelete',['asociacion'=>$asociacion])); ?>" data-id="{{$asociacion->id}}"  data-name="{{$asociacion->name}}" data-target="#custom-width-modal">{{ __('Borrar') }}</a>
+                                            @if($asociacion->active)
+                                                <span class="badge badge-success">{{ __('Activa') }}</span>
+                                            @else
+                                                <span class="badge badge-secondary">{{ __('Inactiva') }}</span>
+                                            @endif
                                         </td>
+                                        <td class="text-nowrap">
+                                                <a href="<?php echo urldecode(route('dashboardAsociacion',['asociacion'=>$asociacion])); ?>" data-toggle="tooltip" data-original-title="{{ __('Ver') }}"> <i class="fas fa-pencil-alt text-inverse m-r-10"></i> </a>
+                                                <a href="#" data-toggle="tooltip" data-original-title="{{ __('Borrar') }}" class="borrarAsociacion" data-toggle="modal" data-url="<?php echo urldecode(route('dashboardAsociacionDelete',['asociacion'=>$asociacion])); ?>" data-id="{{$asociacion->id}}"  data-name="{{$asociacion->name}}" data-target="#custom-width-modal"> <i class="fas fa-window-close text-danger"></i> </a>
+                                            </td>
+                                       
                                     </tr>
                                     @endforeach
                                 @else
                                 <tr>
-                                    <td colspan="4">
+                                    <td colspan="5">
                                        <p>{{ __('No hay resultados disponibles') }}</p>
                                     </td>
                                 </tr>
                                 @endif
                             </tbody>
+                            <tfoot>
+                                    <tr>
+                                        <td colspan="5" class="text-right">
+                                            @if ($asociaciones->count()>1)
+                                            <small>
+                                                <strong>
+                                                    {{ $asociaciones->count() }}
+                                                    </strong>
+                                                    @if ($asociaciones->count()>1)
+                                                        {{ __(' asociaciones encontradas') }}
+                                                    @elseif($asociaciones->count()==1)
+                                                        {{ __(' asociación encontrada') }}
+                                                    @endif
+                                                </small>
+                                            @endif
+                                        </td>
+                                    </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -86,6 +124,7 @@
 
 
 @section('scripts')
+<script src="{{ asset('js/bootstrap3-typeahead.min.js') }}" type="text/javascript"></script>
 <script>
 $(document).on('click', '.borrarAsociacion', function (e) {
     e.preventDefault();
@@ -99,7 +138,24 @@ $(document).on('click', '.borrarAsociacion', function (e) {
     });
     $('#borrar-modal').modal('show');
     // do anything else you need here
-});
+    });
+
+    var path = "{{ route('searchAsociaciones') }}";
+    $('input.typeahead').typeahead({
+        autoSelect: false,
+        highlight: true,
+        source:  function (query, process) {
+        return $.get(path, { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    }).on('blur change',function(e) {
+        // e.preventDefault();
+        $('#formSearch').attr('action',"{{ route('dashboardAsociaciones') }}?search="+$(this).val());
+        $('#formSearch').submit();
+        $form = '';
+    });
+
 
 </script>
 

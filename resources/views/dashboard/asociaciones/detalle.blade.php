@@ -70,6 +70,7 @@
                         <a class="nav-link @if($tab=='modificar') active show @endif" data-toggle="tab" href="#modificar" role="tab">Modificar</a> 
                     </li>
                 </ul>
+                
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane  @if($tab=='usuarios') active @endif" id="usuarios" role="tabpanel">
@@ -172,7 +173,7 @@
                     </div>
                     <div class="tab-pane  @if($tab=='modificar') active @endif" id="modificar" role="tabpanel">
                         <div class="card-body">
-                            <form method="POST" class="form-control-line form-material" action="{{ action('dashboard\AsociacionesController@update', ['id' => $asociacion->id,'tab' => 'modificar'])}}">
+                            <form method="POST" class="form-control-line form-material" action="{{ action('dashboard\AsociacionesController@update', ['id' => $asociacion->id])}}">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" value="{{$asociacion->id}}" name="asociacion_id" id="asociacion_id">

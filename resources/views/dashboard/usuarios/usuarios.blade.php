@@ -25,13 +25,24 @@
                             <h4 class="card-title"><span class="lstick"></span><i class="mdi mdi-account-multiple"></i> {{ __('Listado de usuarios') }}</h4>
                         </div>
                     </div>
+                    
+                    <form method="POST" class="" action="" id="formSearch">
+                            @csrf
+                            @method('POST')
+                            <div class="dataTables_filter">
+                                <label>{{ __('Buscar') }}
+                                    <input type="search" class="form-control typeahead" type="text" value="{{  $busqueda }}">
+                                </label>
+                            </div>
+                            
+                    </form>
                     <div class="table-responsive m-t-20 no-wrap">
                         <table class="table vm no-th-brd pro-of-month hover-table">
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>{{ __('Nombre') }}</th>
-                                    <th>{{ __('Email') }}</th>
+                                    <th>@sortablelink('name', __('Nombre'))</th>
+                                    <th>@sortablelink('email', __('Email'))</th>
                                     <th>{{ __('Asociaciones') }}</th>
                                     <th></th>
                                 </tr>
@@ -41,8 +52,8 @@
                                     @foreach ($usuarios as $usuario)
                                     <?php 
                                         $usuarioRole= $usuario->roles->first()->name; 
-                                        $num_asociaciones = $usuario['asociacion']->count();
-                                        // dd($usuario->asociacion$relationMethod());
+                                        // $usuario->asociacion_count = $usuario['asociacion']->count();
+                                        // dd($usuario->asociacion_count);
                                     ?>
                                     <tr>
                                         <td>
@@ -58,13 +69,13 @@
                                         </td>
                                         <td>{!! e($usuario->email) !!}</td>
                                         <td class="text-center">
-                                            @if($num_asociaciones>0)
-                                            <span class="badge badge-primary  pull-right">{{ e($num_asociaciones) }}</span>
+                                            @if($usuario->asociacion_count>0)
+                                            <span class="badge badge-primary  pull-right">{{ e($usuario->asociacion_count) }}</span>
                                             @endif
                                         </td>
                                         <td>
                                             <a href="<?php echo urldecode(route('dashboardUsuario',['usuario'=>$usuario])); ?>" class="label label-success label-rounded" title="{{ __('Ver') }}"><i class="mdi mdi-eye"></i></a>
-                                            @if($num_asociaciones==0 && $usuarioRole!="Admin")
+                                            @if($usuario->asociacion_count==0 && $usuarioRole!="Admin")
                                             <a href="#" class="label label-danger label-rounded borrarUsuario" data-toggle="modal" data-url="<?php echo urldecode(route('dashboardUsuarioDelete',['usuario'=>$usuario])); ?>" data-id="{{$usuario->id}}"  data-name="{{$usuario->name}}" data-target="#custom-width-modal"  title="{{ __('Eliminar') }}"><i class="mdi mdi-delete-forever"></i></a>
                                             @endif
                                         </td>
@@ -78,7 +89,26 @@
                                 </tr>
                                 @endif
                             </tbody>
+                            <tfoot>
+                                    <tr>
+                                        <td colspan="5" class="text-right">
+                                            @if ($usuarios->count()>1)
+                                            <small>
+                                                <strong>
+                                                    {{ $usuarios->count() }}
+                                                    </strong>
+                                                    @if ($usuarios->count()>1)
+                                                        {{ __(' usuarios encontradas') }}
+                                                    @elseif($usuarios->count()==1)
+                                                        {{ __(' asociación encontrada') }}
+                                                    @endif
+                                                </small>
+                                            @endif
+                                        </td>
+                                    </tr>
+                            </tfoot>
                         </table>
+                        
                     </div>
                
                     {{ $usuarios->links() }}
@@ -113,6 +143,8 @@
 
 
 @section('scripts')
+<script src="{{ asset('js/bootstrap3-typeahead.min.js') }}" type="text/javascript"></script>
+
 <script>
 $(document).on('click', '.borrarUsuario', function (e) {
     e.preventDefault();
@@ -127,6 +159,23 @@ $(document).on('click', '.borrarUsuario', function (e) {
     $('#borrar-modal').modal('show');
 });
 
+
+    
+var path = "{{ route('searchUsuarios') }}";
+$('input.typeahead').typeahead({
+    autoSelect: false,
+    highlight: true,
+    source:  function (query, process) {
+    return $.get(path, { query: query }, function (data) {
+            return process(data);
+        });
+    }
+}).on('blur change',function(e) {
+    // e.preventDefault();
+    $('#formSearch').attr('action',"{{ route('dashboardUsuarios') }}?search="+$(this).val());
+    $('#formSearch').submit();
+    $form = '';
+});
 </script>
 
 @endsection
