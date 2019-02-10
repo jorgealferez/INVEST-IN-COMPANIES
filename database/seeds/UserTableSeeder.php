@@ -2,6 +2,7 @@
 
 use App\Role;
 use App\User;
+use App\Oferta;
 use App\Asociacion;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
@@ -29,7 +30,7 @@ class UserTableSeeder extends Seeder
         $user_admin->password = bcrypt('secret');
         $user_admin->email_verified_at = now();
         $user_admin->save();
-        $user_admin->roles()->attach($role_admin);
+        $user_admin->roles()->save($role_admin);
 
         $role_asesor = Role::where('name', 'Asesor')->first();
         $asociacion = Asociacion::where('id', '1')->first();
@@ -43,8 +44,8 @@ class UserTableSeeder extends Seeder
         $user_asesor->password = bcrypt('secret');
         $user_asesor->email_verified_at = now();
         $user_asesor->save();
-        $user_asesor->roles()->attach($role_asesor);
-        $user_asesor->asociacion()->attach($asociacion);
+        $user_asesor->roles()->save($role_asesor);
+        $user_asesor->asociacion()->save($asociacion);
 
         $role_gestor = Role::where('name', 'Gestor')->first();
         $user_gestor = new User();
@@ -57,11 +58,12 @@ class UserTableSeeder extends Seeder
         $user_gestor->password = bcrypt('secret');
         $user_gestor->email_verified_at = now();
         $user_gestor->save();
-        $user_gestor->roles()->attach($role_gestor);
-        $user_gestor->asociacion()->attach($asociacion);
+        $user_gestor->roles()->save($role_gestor);
+        $user_gestor->ofertas()->save($user_gestor);
+        $user_gestor->asociacion()->save($asociacion);
 
 
-        $role_user = Role::where('name', 'User')->first();
+        $role_user = Role::where('name', 'Inversor')->first();
         $user = new User();
         $user->name = 'User 1';
         $user->surname = 'Apellidos Apellidos';
@@ -72,11 +74,13 @@ class UserTableSeeder extends Seeder
         $user->email_verified_at = now();
         $user->password = bcrypt('secret');
         $user->save();
-        $user->roles()->attach($role_user);
+        $user->roles()->save($role_user);
+        $oferta = Oferta::where('id', 2)->first();
+        $oferta->inversores()->save($user);
 
         $faker = Faker::create('es_ES');
     	foreach (range(1,10) as $index) {
-            $role_user = Role::where('name', 'User')->first();
+            $role_user = Role::where('name', 'Inversor')->first();
             $user = new User();
             $user->name = $faker->firstName;
             $user->surname = $faker->lastName;
@@ -87,7 +91,9 @@ class UserTableSeeder extends Seeder
             $user->email_verified_at = now();
             $user->password = bcrypt('secret');
             $user->save();
-            $user->roles()->attach($role_user);
+            $user->roles()->save($role_user);
+            $oferta = Oferta::where('id', 3)->first();
+            $oferta->inversores()->save($user);
 
             
             $role_gestor = Role::where('name', 'Gestor')->first();
@@ -101,8 +107,8 @@ class UserTableSeeder extends Seeder
             $user_gestor->password = bcrypt('secret');
             $user_gestor->email_verified_at = now();
             $user_gestor->save();
-            $user_gestor->roles()->attach($role_gestor);
-            $user_gestor->asociacion()->attach($asociacion);
+            $user_gestor->roles()->save($role_gestor);
+            $user_gestor->asociacion()->save($asociacion);
 
             $role_asesor = Role::where('name', 'Asesor')->first();
             $asociacion = Asociacion::where('id', '1')->first();
@@ -116,8 +122,8 @@ class UserTableSeeder extends Seeder
             $user_asesor->password = bcrypt('secret');
             $user_asesor->email_verified_at = now();
             $user_asesor->save();
-            $user_asesor->roles()->attach($role_asesor);
-            $user_asesor->asociacion()->attach($asociacion);
+            $user_asesor->roles()->save($role_asesor);
+            $user_asesor->asociacion()->save($asociacion);
 	    }
     }
 }

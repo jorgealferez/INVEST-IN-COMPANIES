@@ -14,6 +14,12 @@
                         <li><a href="{{ e(route('dashboardAsociacionesNueva')) }}"  data-active="/asociaciones/crear">Crear</a></li>
                     </ul>
                 </li>
+                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Ofertas</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ e(route('dashboardOfertas')) }}" data-active="/ofertas">Listado</a></li>
+                        <li><a href="{{ e(route('dashboardOfertasNueva')) }}"  data-active="/ofertas/crear">Crear</a></li>
+                    </ul>
+                </li>
                 @if(Auth::user()->hasRole('admin'))
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Usuarios</span></a>
                     <ul aria-expanded="false" class="collapse">

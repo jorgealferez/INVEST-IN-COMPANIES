@@ -16255,7 +16255,7 @@ File: scss
 .topbar .top-navbar .navbar-header .navbar-brand {
   margin-right: 0px;
   padding-bottom: 0px;
-  padding-top: 0px;
+  padding-top: 10px;
 }
 
 .topbar .top-navbar .navbar-header .navbar-brand .light-logo {

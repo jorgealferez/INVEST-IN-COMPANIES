@@ -4,10 +4,12 @@ namespace App;
 use App\Traits\DatesTranslator;
 use Kyslik\ColumnSortable\Sortable;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Asociacion extends Model
 {
+    
     
     use DatesTranslator;
     use Sortable;
@@ -28,6 +30,37 @@ class Asociacion extends Model
         ->belongsToMany('App\User');
     }
 
+    public function ofertas()
+    {
+        return $this
+        ->belongsToMany('App\Oferta')
+        ->withTimestamps();
+    }
+
+    public function getUsers()
+    {
+        return $this
+        ->belongsToMany('App\User')->toArray();
+    }
+
+    public function usuarios()
+    {
+        return $this
+        ->belongsToMany('App\User','asociacion_user','asociacion_id','user_id')->withTimestamps();
+        
+        // ->belongsToMany('App\Asociacion','asociacion_oferta','asociacion_id','oferta_id');
+    }
+
+    // public function scopeStatus (Builder $query, $name) {
+    //     return $query->whereHas('user_id', function ($q) use ($name) {
+    //             $q->where('id', $name);
+    //     });
+    // }
+
+    public function Asociaciones () {
+       
+        return $this->pluck('id');
+    }
 
    
 }

@@ -91,7 +91,7 @@ File: scss
             .navbar-brand {
                 margin-right: 0px;
                 padding-bottom: 0px;
-                padding-top: 0px;
+                padding-top: 10px;
                 .light-logo {
                     display: none;
                 }
@@ -992,4 +992,3 @@ form material page
 .table-responsive>.table-bordered{
     border: 1px solid $border;
 }
-

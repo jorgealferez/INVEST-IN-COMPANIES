@@ -16,7 +16,7 @@
                 <div class="card-body">
                     <div class="d-flex no-block">
                         <div>
-                            <h4 class="card-title"><span class="lstick"></span>Listado Asociaciones</h4>
+                            <h4 class="card-title"><span class="lstick"></span>Listado ofertas</h4>
                         </div>
                     </div>
                     <form method="POST" class="" action="" id="formSearch">
@@ -34,33 +34,33 @@
                             <thead>
                                 <tr>
                                     <th>@sortablelink('id', __('Id'))</th>
-                                    <th>@sortablelink('name', __('Asociación'))</th>
-                                    <th>{{ __('Ofertas') }}</th>
+                                    <th>@sortablelink('name', __('Oferta'))</th>
+                                    <th>@sortablelink('inversores_count', __('Inversores'))</th>
                                     <th>@sortablelink('created_at', __('Fecha'))</th>
                                     <th>@sortablelink('active', __('Estado'))</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if($asociaciones->isNotEmpty())
-                                    @foreach ($asociaciones as $asociacion)
+                                @if($ofertas->isNotEmpty())
+                                    @foreach ($ofertas as $oferta)
                                     <tr>
-                                        <td># {!! e($asociacion->id) !!}</td>
+                                        <td># {!! e($oferta->id) !!}</td>
                                         <td>
-                                            <h6>{{ e($asociacion->name) }}</h6><small class="text-muted">{{ e($asociacion->address) }}</small>
+                                            <h6>{{ e($oferta->name) }}</h6><small class="text-muted">{{ e($oferta->address) }}</small>
                                         </td>
-                                        <td>{{ e($asociacion->ofertas->count()) }}</td>
-                                        <td>{{ e($asociacion->created_at->format('d/m/Y')) }}</td>
+                                        <td>{{ e($oferta->inversores_count) }}</td>
+                                        <td>{{ e($oferta->created_at->format('d/m/Y')) }}</td>
                                         <td>
-                                            @if($asociacion->active)
+                                            @if($oferta->active)
                                                 <span class="badge badge-success">{{ __('Activa') }}</span>
                                             @else
                                                 <span class="badge badge-secondary">{{ __('Inactiva') }}</span>
                                             @endif
                                         </td>
                                         <td class="text-nowrap">
-                                                <a href="<?php echo urldecode(route('dashboardAsociacion',['asociacion'=>$asociacion])); ?>" data-toggle="tooltip" data-original-title="{{ __('Ver') }}"> <i class="fas fa-pencil-alt text-inverse m-r-10"></i> </a>
-                                                <a href="#" data-toggle="tooltip" data-original-title="{{ __('Borrar') }}" class="borrarAsociacion" data-toggle="modal" data-url="<?php echo urldecode(route('dashboardAsociacionDelete',['asociacion'=>$asociacion])); ?>" data-id="{{$asociacion->id}}"  data-name="{{$asociacion->name}}" data-target="#custom-width-modal"> <i class="fas fa-window-close text-danger"></i> </a>
+                                                <a href="<?php echo urldecode(route('dashboardOferta',['oferta'=>$oferta])); ?>" data-toggle="tooltip" data-original-title="{{ __('Ver') }}"> <i class="fas fa-pencil-alt text-inverse m-r-10"></i> </a>
+                                                <a href="#" data-toggle="tooltip" data-original-title="{{ __('Borrar') }}" class="borraroferta" data-toggle="modal" data-url="<?php echo urldecode(route('dashboardOfertaDelete',['oferta'=>$oferta])); ?>" data-id="{{$oferta->id}}"  data-name="{{$oferta->name}}" data-target="#custom-width-modal"> <i class="fas fa-window-close text-danger"></i> </a>
                                             </td>
                                        
                                     </tr>
@@ -76,14 +76,14 @@
                             <tfoot>
                                     <tr>
                                         <td colspan="5" class="text-right">
-                                            @if ($asociaciones->count()>1)
+                                            @if ($ofertas->count()>1)
                                             <small>
                                                 <strong>
-                                                    {{ $asociaciones->count() }}
+                                                    {{ $ofertas->total() }}
                                                     </strong>
-                                                    @if ($asociaciones->count()>1)
-                                                        {{ __(' asociaciones encontradas') }}
-                                                    @elseif($asociaciones->count()==1)
+                                                    @if ($ofertas->total()>1)
+                                                        {{ __(' ofertas encontradas') }}
+                                                    @elseif($ofertas->total()==1)
                                                         {{ __(' asociación encontrada') }}
                                                     @endif
                                                 </small>
@@ -93,6 +93,8 @@
                             </tfoot>
                         </table>
                     </div>
+                    
+                    {{ $ofertas->appends(request()->query())->links() }}
                 </div>
             </div>
         </div>
@@ -104,7 +106,7 @@
 <form method="POST" class="form-control-line form-material" action="" id="formBorrar">
         @csrf
         @method('POST')
-        <input type="hidden" value="" name="asociacion_id_borrar" id="asociacion_id_borrar">
+        <input type="hidden" value="" name="oferta_id_borrar" id="oferta_id_borrar">
     <div id="borrar-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog" style="width:55%;">
             <div class="modal-content">
@@ -126,13 +128,13 @@
 @section('scripts')
 <script src="{{ asset('js/bootstrap3-typeahead.min.js') }}" type="text/javascript"></script>
 <script>
-$(document).on('click', '.borrarAsociacion', function (e) {
+$(document).on('click', '.borraroferta', function (e) {
     e.preventDefault();
     $('#texto-modal-borrar').html('{{ __('Seguro que deseas borrar la asociación') }}'+' <strong>'+ $(this).data('name')+' </strong>');
-    $('#asociacion_id_borrar').val($(this).data('id'));
+    $('#oferta_id_borrar').val($(this).data('id'));
     $('#BotonEliminar').on('click', function(e) {
         e.preventDefault();
-        $('#formBorrar').attr('action',"/dashboard/asociaciones/delete/"+$('#asociacion_id_borrar').val());
+        $('#formBorrar').attr('action',"/dashboard/ofertas/delete/"+$('#oferta_id_borrar').val());
         $('#formBorrar').submit();
         $form = '';
     });
@@ -140,7 +142,7 @@ $(document).on('click', '.borrarAsociacion', function (e) {
     // do anything else you need here
     });
 
-    var path = "{{ route('searchAsociaciones') }}";
+    var path = "{{ route('searchOfertas') }}";
     $('input.typeahead').typeahead({
         autoSelect: false,
         highlight: true,
@@ -151,7 +153,7 @@ $(document).on('click', '.borrarAsociacion', function (e) {
         }
     }).on('blur change',function(e) {
         // e.preventDefault();
-        $('#formSearch').attr('action',"{{ route('dashboardAsociaciones') }}?search="+$(this).val());
+        $('#formSearch').attr('action',"{{ route('dashboardOfertas') }}?search="+$(this).val());
         $('#formSearch').submit();
         $form = '';
     });

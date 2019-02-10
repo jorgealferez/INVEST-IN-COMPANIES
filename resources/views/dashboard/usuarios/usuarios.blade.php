@@ -43,7 +43,8 @@
                                     <th></th>
                                     <th>@sortablelink('name', __('Nombre'))</th>
                                     <th>@sortablelink('email', __('Email'))</th>
-                                    <th>{{ __('Asociaciones') }}</th>
+                                    <th>@sortablelink('asociaciones_count', __('Asociaciones'))</th>
+                                    <th>@sortablelink('inversores_count', __('Inversiones'))</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -53,7 +54,7 @@
                                     <?php 
                                         $usuarioRole= $usuario->roles->first()->name; 
                                         // $usuario->asociacion_count = $usuario['asociacion']->count();
-                                        // dd($usuario->asociacion_count);
+                                        // dd($usuario->inversores_count);
                                     ?>
                                     <tr>
                                         <td>
@@ -73,6 +74,11 @@
                                             <span class="badge badge-primary  pull-right">{{ e($usuario->asociacion_count) }}</span>
                                             @endif
                                         </td>
+                                        <td class="text-center">
+                                            @if($usuario->inversores_count>0)
+                                            <span class="badge badge-primary  pull-right">{{ e($usuario->inversores_count) }}</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="<?php echo urldecode(route('dashboardUsuario',['usuario'=>$usuario])); ?>" class="label label-success label-rounded" title="{{ __('Ver') }}"><i class="mdi mdi-eye"></i></a>
                                             @if($usuario->asociacion_count==0 && $usuarioRole!="Admin")
@@ -83,7 +89,7 @@
                                     @endforeach
                                 @else
                                 <tr>
-                                    <td colspan="5">
+                                    <td colspan="6">
                                        <p>{{ __('No hay resultados disponibles') }}</p>
                                     </td>
                                 </tr>
@@ -91,16 +97,16 @@
                             </tbody>
                             <tfoot>
                                     <tr>
-                                        <td colspan="5" class="text-right">
-                                            @if ($usuarios->count()>1)
+                                        <td colspan="6" class="text-right">
+                                            @if ($usuarios->total()>1)
                                             <small>
                                                 <strong>
-                                                    {{ $usuarios->count() }}
+                                                    {{ $usuarios->total() }}
                                                     </strong>
-                                                    @if ($usuarios->count()>1)
-                                                        {{ __(' usuarios encontradas') }}
-                                                    @elseif($usuarios->count()==1)
-                                                        {{ __(' asociación encontrada') }}
+                                                    @if ($usuarios->total()>1)
+                                                        {{ __(' usuarios encontrados') }}
+                                                    @elseif($usuarios->total()==1)
+                                                        {{ __(' usuarios encontrado') }}
                                                     @endif
                                                 </small>
                                             @endif
@@ -110,8 +116,7 @@
                         </table>
                         
                     </div>
-               
-                    {{ $usuarios->links() }}
+                    {{ $usuarios->appends(request()->query())->links() }}
                 </div>
             </div>
         </div>

@@ -35,6 +35,18 @@ Route::namespace('dashboard')->group(function () {
             
             Route::get('/search', 'AsociacionesController@search')->name('searchAsociaciones');
         });
+        
+        Route::prefix('/ofertas')->group(function () {
+            Route::match(['get', 'post'],'/', 'OfertasController@index')->name('dashboardOfertas');
+            Route::get('/crear', 'OfertasController@create')->name('dashboardOfertasNueva');
+            Route::get('/store', 'OfertasController@store');
+            Route::match(['get', 'post'],'/{oferta}', 'OfertasController@show')->name('dashboardOferta')->where('oferta', '[0-9]+');
+            Route::put('/{id}/update', 'OfertasController@update')->where('id', '[0-9]+');
+            Route::put('/{id}/updateUsers', 'OfertasController@updateUsers')->middleware(['admin'])->where('id', '[0-9]+');
+            Route::post('/delete/{oferta}', 'OfertasController@delete')->name('dashboardOfertaDelete')->where('oferta', '[0-9]+');
+            
+            Route::get('/search', 'OfertasController@search')->name('searchOfertas');
+        });
 
         Route::prefix('/usuarios')->group(function () {
             Route::match(['get', 'post'],'/', 'UsuariosController@index')->name('dashboardUsuarios')->middleware(['admin']);

@@ -1,8 +1,9 @@
 <?php
 
+use App\Oferta;
 use App\Asociacion;
-use Faker\Factory as Faker;
 
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
 class AsociacionTableSeeder extends Seeder
@@ -18,7 +19,7 @@ class AsociacionTableSeeder extends Seeder
         $faker = Faker::create('es_ES');
     	foreach (range(1,10) as $index) {
             $asociacion = new Asociacion();
-            $asociacion->name = $faker->company;
+            $asociacion->name = 'Asociacion '.$index;
             $asociacion->address = $faker->address;
             $asociacion->email = $faker->email;
             $asociacion->phone = $faker->phoneNumber;
@@ -27,6 +28,9 @@ class AsociacionTableSeeder extends Seeder
             $asociacion->contactEmail = $faker->email;
             $asociacion->active = 1;
             $asociacion->save();
+            $oferta = Oferta::find(3);
+            $asociacion->ofertas()->save($oferta);
+            
 	    }
         
     }

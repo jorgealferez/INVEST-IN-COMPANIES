@@ -38,7 +38,18 @@ class UsuariosController extends Controller
         if($request->input('search')) { 
             $query[]=["name","LIKE","%{$request->input('search')}%"];  
         }
-        $usuarios = User::withCount('asociacion')->where($query)->sortable()->orderBy('created_at', 'desc')->paginate(15);
+        $usuarios = User::withCount('asociacion','inversores')->where($query);
+
+        if($request->get('sort')=="inversores_count"){
+            $usuarios= $usuarios
+                         ->orderBy('inversores_count',$request->get('direction'));
+       }else if($request->get('sort')=="asociaciones_count"){
+            $usuarios= $usuarios
+                        ->orderBy('asociacion_count',$request->get('direction'));
+
+       }
+       $usuarios= $usuarios->sortable()->paginate(15);
+
         $busqueda = ($request->input('search')) ? $request->input('search') : null ;
         return view('dashboard.usuarios.usuarios')
                 ->with(compact('usuarios','busqueda'));

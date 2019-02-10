@@ -14,24 +14,7 @@
         <meta name="author" content="">
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
-        <!-- Bootstrap Core CSS -->
-        {{-- <link href="{{ asset('js/dashboard/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('js/dashboard/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet">
-        <!-- This page CSS -->
-        <!-- chartist CSS -->
-        <link href="{{ asset('js/dashboard/plugins/chartist-js/dist/chartist.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('js/dashboard/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css') }}" rel="stylesheet">
-        <!--c3 CSS -->
-        <link href="{{ asset('js/dashboard/plugins/c3-master/c3.min.css') }}" rel="stylesheet">
-        <!--Toaster Popup message CSS -->
-        <link href="{{ asset('js/dashboard/plugins/toast-master/css/jquery.toast.css') }}" rel="stylesheet"> --}}
         @yield('estilos')
-        <!-- Custom CSS -->
-        {{-- <link href="{{ asset('css/dashboard/style.css') }}" rel="stylesheet">
-        <!-- Dashboard 1 Page CSS -->
-        <link href="{{ asset('css/dashboard/pages/dashboard1.css') }}" rel="stylesheet">
-        <!-- You can change the theme colors from here -->
-        <link href="{{ asset('css/dashboard/colors/default-dark.css') }}" id="theme-dark" rel="stylesheet"> --}}
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         <link href="{{ asset('css/dashboard.css') }}" id="theme" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
