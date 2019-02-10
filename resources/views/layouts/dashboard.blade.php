@@ -15,8 +15,8 @@
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
         @yield('estilos')
-        <script src="{{ asset('js/jquery.min.js') }}"></script>
-        {{-- <link href="{{ asset('css/dashboard.css') }}" id="theme" rel="stylesheet"> --}}
+        <script src="{{ asset('js/jquery.min.js') }}"></script> 
+        <link href="{{ asset('css/dashboard.css') }}" id="theme" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
