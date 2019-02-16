@@ -25,26 +25,26 @@ Route::namespace('dashboard')->group(function () {
     Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::prefix('/asociaciones')->group(function () {
-            Route::match(['get', 'post'],'/', 'AsociacionesController@index')->name('dashboardAsociaciones');
+            Route::match(['get', 'post'],'/', 'AsociacionesController@index')->middleware(['asesor'])->name('dashboardAsociaciones');
             Route::get('/crear', 'AsociacionesController@create')->name('dashboardAsociacionesNueva')->middleware(['admin']);
             Route::get('/store', 'AsociacionesController@store')->middleware(['admin']);
             Route::match(['get', 'post'],'/{asociacion}', 'AsociacionesController@show')->name('dashboardAsociacion')->where('asociacion', '[0-9]+');
-            Route::put('/{id}/update', 'AsociacionesController@update')->middleware(['admin'])->where('id', '[0-9]+');
-            Route::put('/{id}/updateUsers', 'AsociacionesController@updateUsers')->middleware(['admin'])->where('id', '[0-9]+');
+            Route::put('/{id}/update', 'AsociacionesController@update')->middleware(['asesor'])->where('id', '[0-9]+');
+            Route::put('/{id}/updateUsers', 'AsociacionesController@updateUsers')->middleware(['asesor'])->where('id', '[0-9]+');
             Route::post('/delete/{asociacion}', 'AsociacionesController@delete')->name('dashboardAsociacionDelete')->where('asociacion', '[0-9]+');
-            
+
             Route::get('/search', 'AsociacionesController@search')->name('searchAsociaciones');
         });
-        
-        Route::prefix('/ofertas')->group(function () {
+
+        Route::prefix('/ofertas')->middleware(['editor'])->group(function () {
             Route::match(['get', 'post'],'/', 'OfertasController@index')->name('dashboardOfertas');
             Route::get('/crear', 'OfertasController@create')->name('dashboardOfertasNueva');
             Route::get('/store', 'OfertasController@store');
             Route::match(['get', 'post'],'/{oferta}', 'OfertasController@show')->name('dashboardOferta')->where('oferta', '[0-9]+');
             Route::put('/{id}/update', 'OfertasController@update')->where('id', '[0-9]+');
-            Route::put('/{id}/updateUsers', 'OfertasController@updateUsers')->middleware(['admin'])->where('id', '[0-9]+');
+            Route::put('/{id}/updateUsers', 'OfertasController@updateUsers')->where('id', '[0-9]+');
             Route::post('/delete/{oferta}', 'OfertasController@delete')->name('dashboardOfertaDelete')->where('oferta', '[0-9]+');
-            
+
             Route::get('/search', 'OfertasController@search')->name('searchOfertas');
         });
 
@@ -60,6 +60,7 @@ Route::namespace('dashboard')->group(function () {
             Route::post('/delete/{usuario}', 'UsuariosController@delete')->name('dashboardUsuarioDelete')->where('usuario', '[0-9]+')->middleware(['admin']);
 
             Route::get('/search', 'UsuariosController@search')->name('searchUsuarios');
+            Route::post('/searchUsuariosByAsociacion', 'UsuariosController@searchUsuariosByAsociacion')->name('searchUsuariosByAsociacion');
         });
     });
 });

@@ -1,68 +1,65 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- Tell the browser to be responsive to screen width -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ config('app.name', 'Laravel') }}</title>
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <!-- Favicon icon -->
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
-        @yield('estilos')
-        <script src="{{ asset('js/jquery.min.js') }}"></script>
-        {{-- <link href="{{ asset('css/dashboard.css') }}" id="theme" rel="stylesheet"> --}}
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}"> @yield('estilos')
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <link href="{{ asset('css/dashboard.css') }}" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-    </head>
+</head>
 
-    <body class="fix-header fix-sidebar card-no-border">
+<body class="fix-header fix-sidebar card-no-border">
 
-        <div class="preloader">
-            <div class="loader">
-                <div class="loader__figure"></div>
-                <p class="loader__label">Admin Pro</p>
-            </div>
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">Admin Pro</p>
+        </div>
+    </div>
+
+    <div id="main-wrapper">
+    @include('dashboard.header')
+    @include('dashboard.sidebar')
+        <div class="page-wrapper">
+            @yield('content')
+    @include('dashboard.footer')
         </div>
 
-        <div id="main-wrapper">
+    </div>
 
-            @include('dashboard.header')
-
-            @include('dashboard.sidebar')
-            <div class="page-wrapper">
-                @yield('content')
-                @include('dashboard.footer')
-            </div>
-
-        </div>
-
-        {{-- <script src="{{ asset('js/dashboard/plugins/jquery/jquery.min.js') }}"></script>
-        <script src="{{ asset('js/dashboard/plugins/bootstrap/js/popper.min.js') }}"></script>
-        <script src="{{ asset('js/dashboard/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('js/dashboard/perfect-scrollbar.jquery.min.js') }}"></script> --}}
-        {{-- <script src="{{ asset('js/dashboard/waves.js') }}"></script> --}}
-        {{-- <script src="{{ asset('js/dashboard/sidebarmenu.js') }}"></script> --}}
-
-        {{-- <script src="{{ asset('js/dashboard/plugins/sparkline/jquery.sparkline.min.js') }}"></script> --}}
-        {{-- <script src="{{ asset('js/dashboard/plugins/chartist-js/dist/chartist.min.js') }}"></script> --}}
-        {{-- <script src="{{ asset('js/dashboard/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js') }}"></script> --}}
-        {{-- <script src="{{ asset('js/dashboard/plugins/d3/d3.min.js') }}"></script> --}}
-        {{-- <script src="{{ asset('js/dashboard/plugins/c3-master/c3.min.js') }}"></script> --}}
-        {{-- <script src="{{ asset('js/dashboard/plugins/toast-master/js/jquery.toast.js') }}"></script>
-        <script src="{{ asset('js/dashboard/plugins/styleswitcher/jQuery.style.switcher.js') }}"></script> --}}
-        <script src="{{ asset('js/dashboard.js') }}"></script>
-        <script>
-            $(function () {
+    {{--
+    <script src="{{ asset('js/dashboard/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/dashboard/plugins/bootstrap/js/popper.min.js') }}"></script>
+    <script src="{{ asset('js/dashboard/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/dashboard/perfect-scrollbar.jquery.min.js') }}"></script> --}} {{--
+    <script src="{{ asset('js/dashboard/waves.js') }}"></script> --}} {{--
+    <script src="{{ asset('js/dashboard/sidebarmenu.js') }}"></script> --}} {{--
+    <script src="{{ asset('js/dashboard/plugins/sparkline/jquery.sparkline.min.js') }}"></script> --}} {{--
+    <script src="{{ asset('js/dashboard/plugins/chartist-js/dist/chartist.min.js') }}"></script> --}} {{--
+    <script src="{{ asset('js/dashboard/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js') }}"></script> --}} {{--
+    <script src="{{ asset('js/dashboard/plugins/d3/d3.min.js') }}"></script> --}} {{--
+    <script src="{{ asset('js/dashboard/plugins/c3-master/c3.min.js') }}"></script> --}} {{--
+    <script src="{{ asset('js/dashboard/plugins/toast-master/js/jquery.toast.js') }}"></script>
+    <script src="{{ asset('js/dashboard/plugins/styleswitcher/jQuery.style.switcher.js') }}"></script> --}}
+    <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script>
+        $(function () {
                 "use strict";
                 $(function () {
                     $(".preloader").fadeOut();
@@ -126,20 +123,13 @@
                 // ==============================================================
                 $(function () {
                     var url = window.location;
-                    
+                    var parts = url.pathname.split('/');
+
                     var element = $('ul#sidebarnav a').filter(function () {
-                        var string = $(this).data('active')+" ";
-                        var string3 = string.split("/");
-                        if(window.location.pathname == '/dashboard'+$(this).data('active') ){
-                            return true;
-                        }else {
-                            if(string3.length<=2 && $(this).data('active')!=undefined && (window.location.pathname!= $(this).data('active')==false) ){
-                               
-                                return true;
-                              
-                            }else {
-                                return false;
-                            }
+                        if(/.*\/+\d*(?:\/+\d+)*$/.test(url)){
+                            return ('/'+parts[2]) == $(this).data('active');
+                        }else{
+                            return this.href == url;
                         }
                     }).addClass('active').parent().addClass('active');
                     while (true) {
@@ -173,11 +163,10 @@
 
 
             });
+    </script>
 
-        </script>
+    @yield('scripts')
 
-        @yield('scripts')
-
-    </body>
+</body>
 
 </html>

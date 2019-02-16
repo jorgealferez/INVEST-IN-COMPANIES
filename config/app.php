@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return [
     */
 
     'locale' => 'es',
-
+    'Barryvdh\Debugbar\ServiceProvider',
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
@@ -225,6 +225,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Date' => Jenssegers\Date\Date::class, //FECHA IDIOMA
+        'Debugbar' => 'Barryvdh\Debugbar\Facade', // DebugBar
 
     ],
 

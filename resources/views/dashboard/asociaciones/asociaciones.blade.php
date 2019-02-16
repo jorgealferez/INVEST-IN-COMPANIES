@@ -1,5 +1,4 @@
 @extends('layouts.dashboard')
-
 @section('content')
 
 <div class="container-fluid">
@@ -7,10 +6,9 @@
     <div class="row">
         <div class="col-md-12">
             @if (session()->has('success'))
-                <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-                        {{ __('La asociación se ha eliminado correctamente') }}
-                </div>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>                {{ __('La asociación se ha eliminado correctamente') }}
+            </div>
             @endif
             <div class="card">
                 <div class="card-body">
@@ -20,14 +18,13 @@
                         </div>
                     </div>
                     <form method="POST" class="" action="" id="formSearch">
-                            @csrf
-                            @method('POST')
-                            <div class="dataTables_filter">
-                                <label>{{ __('Buscar') }}
+                        @csrf @method('POST')
+                        <div class="dataTables_filter">
+                            <label>{{ __('Buscar') }}
                                     <input type="search" class="form-control typeahead" type="text" value="{{  $busqueda }}">
                                 </label>
-                            </div>
-                            
+                        </div>
+
                     </form>
                     <div class="table-responsive m-t-20 ">
                         <table class="table stylish-table">
@@ -35,49 +32,46 @@
                                 <tr>
                                     <th>@sortablelink('id', __('Id'))</th>
                                     <th>@sortablelink('name', __('Asociación'))</th>
-                                    <th>{{ __('Ofertas') }}</th>
+                                    <th>@sortablelink('ofertas_count', __('Ofertas'))</th>
                                     <th>@sortablelink('created_at', __('Fecha'))</th>
                                     <th>@sortablelink('active', __('Estado'))</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if($asociaciones->isNotEmpty())
-                                    @foreach ($asociaciones as $asociacion)
-                                    <tr>
-                                        <td># {!! e($asociacion->id) !!}</td>
-                                        <td>
-                                            <h6>{{ e($asociacion->name) }}</h6><small class="text-muted">{{ e($asociacion->address) }}</small>
-                                        </td>
-                                        <td>{{ e($asociacion->ofertas->count()) }}</td>
-                                        <td>{{ e($asociacion->created_at->format('d/m/Y')) }}</td>
-                                        <td>
-                                            @if($asociacion->active)
-                                                <span class="badge badge-success">{{ __('Activa') }}</span>
-                                            @else
-                                                <span class="badge badge-secondary">{{ __('Inactiva') }}</span>
-                                            @endif
-                                        </td>
-                                        <td class="text-nowrap">
-                                                <a href="<?php echo urldecode(route('dashboardAsociacion',['asociacion'=>$asociacion])); ?>" data-toggle="tooltip" data-original-title="{{ __('Ver') }}"> <i class="fas fa-pencil-alt text-inverse m-r-10"></i> </a>
-                                                <a href="#" data-toggle="tooltip" data-original-title="{{ __('Borrar') }}" class="borrarAsociacion" data-toggle="modal" data-url="<?php echo urldecode(route('dashboardAsociacionDelete',['asociacion'=>$asociacion])); ?>" data-id="{{$asociacion->id}}"  data-name="{{$asociacion->name}}" data-target="#custom-width-modal"> <i class="fas fa-window-close text-danger"></i> </a>
-                                            </td>
-                                       
-                                    </tr>
-                                    @endforeach
-                                @else
+                                @if($asociaciones->isNotEmpty()) @foreach ($asociaciones as $asociacion)
+                                <tr>
+                                    <td># {!! e($asociacion->id) !!}</td>
+                                    <td>
+                                        <h6>{{ e($asociacion->name) }}</h6><small class="text-muted">{{ e($asociacion->address) }}</small>
+                                    </td>
+                                    <td>{{ e($asociacion->ofertas_count) }}</td>
+                                    <td>{{ e($asociacion->created_at->format('d/m/Y')) }}</td>
+                                    <td>
+                                        @if($asociacion->active)
+                                        <span class="badge badge-success">{{ __('Activa') }}</span> @else
+                                        <span class="badge badge-secondary">{{ __('Inactiva') }}</span> @endif
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <a href="<?php echo urldecode(route('dashboardAsociacion',['asociacion'=>$asociacion])); ?>" data-toggle="tooltip" data-original-title="{{ __('Ver') }}"> <i class="fas fa-pencil-alt text-inverse m-r-10"></i> </a>
+                                        <a href="#" data-toggle="tooltip" data-original-title="{{ __('Borrar') }}" class="borrarAsociacion" data-toggle="modal" data-url="<?php echo urldecode(route('dashboardAsociacionDelete',['asociacion'=>$asociacion])); ?>"
+                                            data-id="{{$asociacion->id}}" data-name="{{$asociacion->name}}" data-target="#custom-width-modal"> <i class="fas fa-window-close text-danger"></i> </a>
+                                    </td>
+
+                                </tr>
+                                @endforeach @else
                                 <tr>
                                     <td colspan="5">
-                                       <p>{{ __('No hay resultados disponibles') }}</p>
+                                        <p>{{ __('No hay resultados disponibles') }}</p>
                                     </td>
                                 </tr>
                                 @endif
                             </tbody>
                             <tfoot>
-                                    <tr>
-                                        <td colspan="5" class="text-right">
-                                            @if ($asociaciones->count()>1)
-                                            <small>
+                                <tr>
+                                    <td colspan="5" class="text-right">
+                                        @if ($asociaciones->count()>1)
+                                        <small>
                                                 <strong>
                                                     {{ $asociaciones->count() }}
                                                     </strong>
@@ -86,10 +80,9 @@
                                                     @elseif($asociaciones->count()==1)
                                                         {{ __(' asociación encontrada') }}
                                                     @endif
-                                                </small>
-                                            @endif
-                                        </td>
-                                    </tr>
+                                                </small> @endif
+                                    </td>
+                                </tr>
                             </tfoot>
                         </table>
                     </div>
@@ -102,10 +95,10 @@
 
 <!-- Delete Model -->
 <form method="POST" class="form-control-line form-material" action="" id="formBorrar">
-        @csrf
-        @method('POST')
-        <input type="hidden" value="" name="asociacion_id_borrar" id="asociacion_id_borrar">
-    <div id="borrar-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+    @csrf @method('POST')
+    <input type="hidden" value="" name="asociacion_id_borrar" id="asociacion_id_borrar">
+    <div id="borrar-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true"
+        style="display: none;">
         <div class="modal-dialog" style="width:55%;">
             <div class="modal-content">
                 <div class="modal-body">
@@ -119,14 +112,12 @@
         </div>
     </div>
 </form>
-
 @endsection
-
 
 @section('scripts')
 <script src="{{ asset('js/bootstrap3-typeahead.min.js') }}" type="text/javascript"></script>
 <script>
-$(document).on('click', '.borrarAsociacion', function (e) {
+    $(document).on('click', '.borrarAsociacion', function (e) {
     e.preventDefault();
     $('#texto-modal-borrar').html('{{ __('Seguro que deseas borrar la asociación') }}'+' <strong>'+ $(this).data('name')+' </strong>');
     $('#asociacion_id_borrar').val($(this).data('id'));
@@ -156,7 +147,5 @@ $(document).on('click', '.borrarAsociacion', function (e) {
         $form = '';
     });
 
-
 </script>
-
 @endsection

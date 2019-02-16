@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAsociacionsTable extends Migration
+class CreateAsociacionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateAsociacionsTable extends Migration
     public function up()
     {
         //'name', 'address','email','phone','active','contact','contactPhone','','state'
-        Schema::create('asociacions', function (Blueprint $table) {
+        Schema::create('asociaciones', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('address')->nullable();
@@ -35,6 +35,6 @@ class CreateAsociacionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asociacions');
+        Schema::dropIfExists('asociaciones');
     }
 }

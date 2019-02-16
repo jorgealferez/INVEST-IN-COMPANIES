@@ -26,53 +26,56 @@ class OfertaRequest extends FormRequest
     {
         $rules = [];
 
-        if ($this->request->has('name')) {
-             $rules['name'] = ['required'];
+        if ($this->request->has('asociacion')) {
+             $rules['asociacion'] = ['required'];
         }
-    
-    
-        if ($this->request->has('phone')) {
-             $rules['phone'] = ['string','regex:^(\+34|0034|34)?[\s|\-|\.]?[6|7|8|9][\s|\-|\.]?([0-9][\s|\-|\.]?){8}$^','max:9|min:9'];
+        if ($this->request->has('usuario')) {
+             $rules['usuario'] = ['required'];
         }
-    
-        if ($this->request->has('email')) {
-             $rules['email'] = ['required', 'string', 'email', 'max:255'];
+        if ($this->request->has('cif')) {
+             $rules['cif'] = ['required','regex:/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/','max:9|min:9','unique:ofertas,cif,'.$this->cif.',cif'];
         }
-    
-       
-    
+
+
+        // if ($this->request->has('contactPhone')) {
+        //      $rules['contactPhone'] = ['string','regex:^(\+34|0034|34)?[\s|\-|\.]?[6|7|8|9][\s|\-|\.]?([0-9][\s|\-|\.]?){8}$^','max:9|min:9'];
+        // }
+
+        // if ($this->request->has('contactEmail')) {
+        //      $rules['contactEmail'] = ['required', 'string', 'email', 'max:255'];
+        // }
+
+
+
         return $rules;
-        // BORRAR
-        // return [
-        //     'name' => ['required'],
-        //     'address',
-        //     // 'email' => ['required', 'string', 'email', 'max:255', Rule::unique('asociacion','email')->ignore('info@cepyme.es')],
-        //     'email' => ['required', 'string', 'email', 'max:255'],
-        //     'phone' => ['string','regex:^(\+34|0034|34)?[\s|\-|\.]?[6|7|8|9][\s|\-|\.]?([0-9][\s|\-|\.]?){8}$^','max:9|min:9'],
-        //     // 'phone' => ['max:9'],
-        //     'active'
-        // ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => __('Debes escribir un nombre de asociación'),
-            'email.*' => __('Debes escribir un email válido'),
+            'asociacion.required' => __('Debes seleccionar una asociación'),
+            'usuario.required' => __('Debes seleccionar un usuario'),
+            'cif.unique' => __('El CIF ya existe'),
+            'cif.required' => __('Debes esacribir el CIF'),
+            'cif.regex' => __('El CIF no tiene un formato válido'),
+            'cif.min' => __('El CIF debe tener 9 dígitos'),
+            // 'email.*' => __('Debes escribir un email válido'),
             // 'email.string' => __('Debes escribir un email válido'),
-            'phone.*' => __('Debes escribir un teléfono válido'),
-            '*.max' => __('Hay demasiados'),
+            // 'phone.*' => __('Debes escribir un teléfono válido'),
+            '*.max' => __('Hay demasiados dígitos'),
         ];
     }
     public function withValidator($validator)
     {
-        if ($validator->fails()) {
-           
-        } else {
 
-            
-        }
+
+        // if ($validator->fails()) {
+
+        // } else {
+
+
+        // }
 
     }
-   
+
 }

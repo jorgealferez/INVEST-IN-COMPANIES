@@ -15,10 +15,10 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if($request->user()->authorizeRoles(['admin'])){
+        if($request->user()->hasAnyRole(['Admin'])){
             return $next($request);
         }
 
-        return redirect('home')->with('error','You have not admin access');
+        abort(401, 'Esta acción no está autorizada.');
     }
 }

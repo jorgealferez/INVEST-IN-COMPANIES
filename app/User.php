@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Role;
 use App\Traits\DatesTranslator;
 use Illuminate\Support\Facades\DB;
 use Kyslik\ColumnSortable\Sortable;
@@ -22,10 +23,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'name', 'surname','phone','email', 'password', 'active','LOPD'
     ];
     protected $attributes = [
-        'active' => true
+        'active' => true,
     ];
     public $sortable = ['name','email','asociacion_count'];
-   
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -34,9 +35,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
+
     public function role()
     {
-        return $this->roles->first()->name;
+        return $this
+        ->belongsTo('App\Role');
     }
     public function roles()
     {
@@ -77,19 +80,19 @@ class User extends Authenticatable implements MustVerifyEmail
         return false;
     }
 
-    public function asociacion()
+    public function asociaciones()
     {
         return $this
             ->belongsToMany('App\Asociacion')
             ->withTimestamps();
     }
+
     public function ofertas()
     {
         return $this
-            ->belongsToMany('App\Oferta')
-            ->withTimestamps();
+        ->hasMany('App\Oferta');
     }
-    public function inversores()
+    public function inversiones()
     {
         return $this
         ->belongsToMany('App\Oferta','oferta_inversor','user_id','oferta_id')->withTimestamps();
@@ -97,29 +100,116 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     public function getRoleClass(){
-        
+
         return 'role'.substr($this->roles->first()->name,0,2);
-    
+
     }
 
-    
+    public function statusClass(){
+        $status="";
+        switch ($this->active) {
+            case true:
+                $status= ($this->email_verified_at) ? "online" :  "away" ;
+                break;
+            case false:
+                $status= "busy" ;
+                break;
+        }
+        return $status;
+
+    }
+
+    public function statusName(){
+        $status="";
+        switch ($this->active) {
+            case true:
+                $status= ($this->email_verified_at) ? __('Activo') :  __('Sin verificar') ;
+                break;
+            case false:
+                $status=  __('No Activo') ;
+                break;
+        }
+        return $status;
+
+    }
+
+
     public function getAsociacionesDelUsario(){
-        
-        $asociacion = $this->asociacion()->pluck('asociacions.id');
-        
-        // $usuarios = DB::table('asociacion_user')->where('user_id', $this->id)->first();
+
+        $asociacion = $this->asociaciones()->pluck('asociaciones.id');
         return $asociacion;
-    
+
     }
-    
+
+
+    public function permisoOferta($asociacion_id){
+       if(
+            in_array(
+                $asociacion_id,
+                $this->getAsociacionesDelUsario()->toArray()
+            )){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+
+
+    public function asociacionesDisponiblesByRole(){
+
+        switch ($this->roles()->first()->name) {
+            case 'Admin':
+                $asociaciones=Asociacion::where('active',1)->get();
+                break;
+            case 'Asesor':
+            case 'Gestor':
+                $asociaciones=Asociacion::where([
+                    ['active','=',1],
+                    ['id','=',$this->asociaciones()->first()->id]
+                    ])->get();
+                break;
+
+            default:
+                $asociaciones=null;
+                break;
+        }
+        return  $asociaciones;
+    }
+
+    public function usuariosDeMiAsociacion(){
+
+        switch ($this->roles()->first()->name) {
+            case 'Admin':
+                $usuarios= User::whereHas('roles', function ($q) {
+                    $q->Where('name', 'Gestor')->
+                        orWhere('name', 'Asesor');
+
+                })->where('active', 1)->get();
+                break;
+            case 'Asesor':
+                $usuarios=Asociacion::find($this->asociaciones()->first()->id)
+                            ->usuarios->where('active', 1);
+                break;
+            case 'Gestor':
+            default:
+                $usuarios=null;
+                break;
+        }
+        return  $usuarios;
+    }
+
+
     public function getUsersFromThisAsociacion(){
-        $result = DB::table('asociacion_user')->select('user_id')->whereIn('asociacion_id', $this->getAsociacionesDelUsario())->get()->pluck('user_id');
-        $users = User::whereIn('id',$result); 
+        $result = DB::table('asociacion_user')
+            ->select('user_id')->whereIn('asociacion_id',$this->getAsociacionesDelUsario())
+            ->get()->pluck('user_id');
+        $users = User::whereIn('id',$result);
         return $users;
-        // return DB::table('asociacion_user')->whereIn('asociacion_id', $this->getAsociacionesDelUsario());
-    
+
     }
 
 
-    
+
 }

@@ -38,6 +38,8 @@ mix.js(
     ], 'public/js/dashboard.js').version();
 
 mix.copy('resources/js/dashboard/bootstrap3-typeahead.min.js', 'public/js/');
+mix.copy('resources/js/dashboard/plugins/bootstrap-switch/bootstrap-switch.min.js', 'public/js/');
+mix.copy('resources/js/dashboard/plugins/bootstrap-switch/bootstrap-switch.min.css', 'public/css/');
 mix.webpackConfig({
     resolve: {
         alias: {

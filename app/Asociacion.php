@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asociacion extends Model
 {
-    
-    
+
+
     use DatesTranslator;
     use Sortable;
+
+    protected $table = 'asociaciones';
     /**
      * The attributes that are mass assignable.
      *
@@ -24,7 +26,7 @@ class Asociacion extends Model
     public $sortable = ['id','name','active','created_at'];
 
 
-    public function users()
+    public function usuarios()
     {
         return $this
         ->belongsToMany('App\User');
@@ -33,8 +35,8 @@ class Asociacion extends Model
     public function ofertas()
     {
         return $this
-        ->belongsToMany('App\Oferta')
-        ->withTimestamps();
+        ->hasMany('App\Oferta','asociacion_id')
+        ;
     }
 
     public function getUsers()
@@ -43,13 +45,13 @@ class Asociacion extends Model
         ->belongsToMany('App\User')->toArray();
     }
 
-    public function usuarios()
-    {
-        return $this
-        ->belongsToMany('App\User','asociacion_user','asociacion_id','user_id')->withTimestamps();
-        
-        // ->belongsToMany('App\Asociacion','asociacion_oferta','asociacion_id','oferta_id');
-    }
+    // public function usuarios()
+    // {
+    //     return $this
+    //     ->belongsToMany('App\User','asociacion_user','asociacion_id','user_id')->withTimestamps();
+
+    //     // ->belongsToMany('App\Asociacion','asociacion_oferta','asociacion_id','oferta_id');
+    // }
 
     // public function scopeStatus (Builder $query, $name) {
     //     return $query->whereHas('user_id', function ($q) use ($name) {
@@ -58,9 +60,9 @@ class Asociacion extends Model
     // }
 
     public function Asociaciones () {
-       
+
         return $this->pluck('id');
     }
 
-   
+
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Oferta;
 use App\Asociacion;
 use App\Traits\DatesTranslator;
 use Kyslik\ColumnSortable\Sortable;
@@ -18,6 +19,16 @@ class Oferta extends Model
      * @var array
      */
     protected $fillable = [
+       'asociacion_id',
+       'user_id',
+       'forma',
+       'socios',
+       'forma_id',
+       'motivo',
+       'sector_id',
+       'empleados',
+       'año',
+       'valoracion_id',
        'name',
        'cif',
        'contact',
@@ -25,52 +36,56 @@ class Oferta extends Model
        'contactPhone',
        'contactEmail',
        'address',
+       'municipio',
+       'provincia_id',
        'web',
        'explotacion1',
        'explotacion2',
        'explotacion3',
        'endeudamiento',
-       'socios',
-       'motivo',
-       'año',
-       'valoracion',
        'local',
-       'phone',
        'active',
     ];
     public $sortable = ['id','name','cif','created_at'];
 
     public function userSortable($query, $direction)
     {
-     
-        dd('sdf');
+
     }
 
 
-    public function users()
+    public function usuario()
     {
         return $this
-        ->belongsToMany('App\User')->withTimestamps();
+        ->belongsTo('App\User','user_id');
     }
+
 
     public function asociacion()
     {
         return $this
-        ->belongsToMany('App\Asociacion')->withTimestamps();
-        
-        // ->belongsToMany('App\Asociacion','asociacion_oferta','asociacion_id','oferta_id');
+        ->belongsTo('App\Asociacion');
+
     }
-    
+
+    public function sector()
+    {
+        return $this
+        ->belongsTo('App\Sector');
+
+    }
+
+    public function provincia()
+    {
+        return $this
+        ->belongsTo('App\Provincia');
+
+    }
+
     public function inversores()
     {
         return $this
         ->belongsToMany('App\User','oferta_inversor','oferta_id','user_id')->withTimestamps();
     }
-    // public function getOfertasDeAsociacion ($query, $listado) {
-       
-    //     return $query->whereHas('asociacions', function ($q) use ($listado) {
-    //                     $q->whereIn('asociacion_oferta.asociacion_id', $listado);
-    //     });
-    // }
-    
+
 }

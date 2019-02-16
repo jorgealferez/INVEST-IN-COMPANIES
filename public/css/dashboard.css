@@ -22291,7 +22291,7 @@ File: scss
   background-color: #06d79c;
 }
 
-.roleGe {
+.roleIn {
   background-color: #ffb22b;
 }
 
@@ -22319,6 +22319,33 @@ File: scss
   line-height: 150px;
 }
 
+.profile-status {
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  height: 10px;
+  left: 30px;
+  position: absolute;
+  top: 1px;
+  width: 10px;
+}
+
+.online {
+  background: #06d79c;
+}
+
+.busy {
+  background: #ef5350;
+}
+
+.away {
+  background: #ffb22b;
+}
+
+.offline {
+  background: #ffb22b;
+}
+
 .userRoleCard {
   vertical-align: middle;
   border-style: none;
@@ -22329,5 +22356,17 @@ File: scss
 .stylish-table tbody tr:hover,
 .stylish-table tbody tr.active {
   border-left: 4px solid #006242;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-success {
+  color: #fff;
+  background: #006242;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-muted,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-muted {
+  color: #000;
+  background: #cccccc;
 }
 
