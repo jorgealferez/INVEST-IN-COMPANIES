@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::namespace('dashboard')->group(function () {
+Route::namespace('Dashboard')->group(function () {
 
 
     Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function () {

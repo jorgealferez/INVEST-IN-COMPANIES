@@ -70,7 +70,7 @@
                 <div class="tab-content">
                     <div class="tab-pane  @if($tab=='modificar') active @endif" id="modificar" role="tabpanel">
                         <div class="card-body">
-                            <form method="POST" class="form-control-line form-material" action="{{ action('dashboard\UsuariosController@update', ['id' => $usuario->id])}}">
+                            <form method="POST" class="form-control-line form-material" action="{{ action('Dashboard\UsuariosController@update', ['id' => $usuario->id])}}">
                                 @csrf @method('POST') {{-- <input type="hidden" name="role" id="role" value="$usuario->roles->first()->id">                                --}}
                                 <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="col-md-12 form-control-label" for="error">{{ __('Nombre') }}</label>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="tab-pane  @if($tab=='roles') active @endif" id="roles" role="tabpanel">
                         <div class="card-body">
-                            <form method="POST" class="form-control-line form-material" action="{{ action('dashboard\UsuariosController@updateRol', ['id' => $usuario->id])}}">
+                            <form method="POST" class="form-control-line form-material" action="{{ action('Dashboard\UsuariosController@updateRol', ['id' => $usuario->id])}}">
                                 @csrf @method('POST')
                                 <div class="form-group {{ $errors->has('role') ? ' has-danger' : '' }}">
                                     <label for="role" class="col-md-12 col-form-label">{{ __('Role') }}</label>

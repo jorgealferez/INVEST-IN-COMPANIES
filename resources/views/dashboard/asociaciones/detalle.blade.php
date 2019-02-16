@@ -133,7 +133,7 @@
                             </div>
                             @if(Auth::user()->hasAnyRole(array('Admin','Asesor')))
                             <h4 class="font-medium m-t-30">Modificar Usuarios</h4>
-                            <form method="POST" class="form-control-line form-material" action="{{ action('dashboard\AsociacionesController@updateUsers', ['id' => $asociacion->id])}}">
+                            <form method="POST" class="form-control-line form-material" action="{{ action('Dashboard\AsociacionesController@updateUsers', ['id' => $asociacion->id])}}">
                                 @csrf @method('PUT')
 
                                 <input type="hidden" value="usuarios" name="tab" id="tab_usuarios">
@@ -177,7 +177,7 @@
                     @if(Auth::user()->hasAnyRole(array('Admin','Asesor')))
                     <div class="tab-pane  @if($tab=='modificar') active @endif" id="modificar" role="tabpanel">
                         <div class="card-body">
-                            <form method="POST" class="form-control-line form-material" action="{{ action('dashboard\AsociacionesController@update', ['id' => $asociacion->id])}}">
+                            <form method="POST" class="form-control-line form-material" action="{{ action('Dashboard\AsociacionesController@update', ['id' => $asociacion->id])}}">
                                 @csrf @method('PUT')
                                 <input type="hidden" value="{{$asociacion->id}}" name="asociacion_id" id="asociacion_id">
                                 <input type="hidden" value="modificar" name="tab" id="tab_modificar">

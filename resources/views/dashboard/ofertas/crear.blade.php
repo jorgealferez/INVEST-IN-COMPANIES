@@ -12,7 +12,7 @@
                             <h4 class="card-title"><span class="lstick"></span>{{ __('Crear nueva Oferta') }}</h4>
                         </div>
                     </div>
-                    <form class="" action="{{ action('dashboard\OfertasController@store')}}">
+                    <form class="" action="{{ action('Dashboard\OfertasController@store')}}">
                         @csrf @method('PUT') {{-- SOLO SI ES ADMIN --}}
     @include('dashboard.ofertas.formulario')
 

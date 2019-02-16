@@ -77,7 +77,7 @@
                 <div class="tab-content">
                     <div class="tab-pane  @if($tab=='modificar') active @endif" id="modificar" role="tabpanel">
                         <div class="card-body">
-                            <form method="POST" class="" action="{{ action('dashboard\OfertasController@update', ['id' => $oferta->id])}}">
+                            <form method="POST" class="" action="{{ action('Dashboard\OfertasController@update', ['id' => $oferta->id])}}">
                                 @csrf @method('PUT') {{-- SOLO SI ES ADMIN --}}
     @include('dashboard.ofertas.formulario')
 
