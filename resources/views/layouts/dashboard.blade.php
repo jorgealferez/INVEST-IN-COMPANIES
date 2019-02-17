@@ -28,8 +28,8 @@
 
     <div class="preloader">
         <div class="loader">
-            <div class="loader__figure"></div>
-            <p class="loader__label">Admin Pro</p>
+            <div class="loader__figure" style="border-color: #006242;"></div>
+            <p class="loader__label text-themecolor">INVESTin</p>
         </div>
     </div>
 

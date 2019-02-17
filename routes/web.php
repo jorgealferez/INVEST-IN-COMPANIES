@@ -13,11 +13,12 @@
 
 Auth::routes(['verify' => true]);
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/','HomeController@index')->name('home');
+
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::namespace('Dashboard')->group(function () {
 

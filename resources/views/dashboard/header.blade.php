@@ -10,7 +10,7 @@
                 <!-- This is  -->
                 <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a>                    </li>
                 <li class="nav-item">
-                    <a class="nav-link navbar-brand waves-effect waves-dark" href="index.html">
+                    <a class="nav-link navbar-brand waves-effect waves-dark" href="{{ route('home') }}">
                         <!-- Logo text --><span>
                                 <!-- dark Logo text -->
                                 <img src="{{ asset('images/logo-text.png') }}" alt="homepage" class="dark-logo" />
