@@ -174,7 +174,7 @@ class UsuariosController extends Controller
             ->attach(Role::find($request->role));
 
         $tab="roles";
-        return redirect()->action('dashboard\UsuariosController@show',['usuario'=>$user,'tab'=>$tab])->with('success',true);
+        return redirect()->action('Dashboard\UsuariosController@show',['usuario'=>$user,'tab'=>$tab])->with('success',true);
 
 
     }

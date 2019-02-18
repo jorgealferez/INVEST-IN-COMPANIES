@@ -253,7 +253,7 @@ class OfertasController extends Controller
         }
         $oferta->save();
         $tab="modificar";
-        return redirect()->action('dashboard\OfertasController@show',['oferta'=>$oferta])
+        return redirect()->action('Dashboard\OfertasController@show',['oferta'=>$oferta])
         ->with([
             'success'=> true,
             'mensaje'=>__('<strong>'.$oferta->name.'</strong> modificada correctamente')

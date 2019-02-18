@@ -16,7 +16,8 @@ Auth::routes(['verify' => true]);
 
 
 
-Route::get('/','HomeController@index')->name('home');
+Route::get('/','PublicController@index')->name('home');
+Route::match(['get', 'post'],'/buscador','PublicController@buscador')->name('buscador');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 

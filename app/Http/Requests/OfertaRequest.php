@@ -32,6 +32,9 @@ class OfertaRequest extends FormRequest
         if ($this->request->has('usuario')) {
              $rules['usuario'] = ['required'];
         }
+        if ($this->request->has('usuario')) {
+             $rules['provincia_id'] = ['required'];
+        }
         if ($this->request->has('cif')) {
              $rules['cif'] = ['required','regex:/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/','max:9|min:9','unique:ofertas,cif,'.$this->cif.',cif'];
         }
@@ -55,6 +58,7 @@ class OfertaRequest extends FormRequest
         return [
             'asociacion.required' => __('Debes seleccionar una asociación'),
             'usuario.required' => __('Debes seleccionar un usuario'),
+            'provincia.required' => __('Debes seleccionar una provincia'),
             'cif.unique' => __('El CIF ya existe'),
             'cif.required' => __('Debes esacribir el CIF'),
             'cif.regex' => __('El CIF no tiene un formato válido'),

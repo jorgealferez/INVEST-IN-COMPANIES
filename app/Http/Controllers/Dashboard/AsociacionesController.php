@@ -113,7 +113,7 @@ class AsociacionesController extends Controller
         $asociacion->save();
         $tab="modificar";
         // return redirect()->back()->with('success', true);
-        return redirect()->action('dashboard\AsociacionesController@show',['asociacion'=>$asociacion,'tab'=>$tab])->with('success',true);
+        return redirect()->action('Dashboard\AsociacionesController@show',['asociacion'=>$asociacion,'tab'=>$tab])->with('success',true);
 
 
     }

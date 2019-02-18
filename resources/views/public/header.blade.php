@@ -1,4 +1,5 @@
 <header>
+
     <div class="d-flex flex-column flex-md-row align-items-center bg-primary text-white rss-header">
         <h5 class="my-0 mr-auto"><i class="fas fa-phone"></i> 91 762 456 123</h5>
         <nav class="">
@@ -22,16 +23,16 @@
             </ul>
         </nav>
     </div>
+
     <div class="py-3 text-center">
-        <img class="d-block mx-auto p-4 img-fluid" src="{{ asset('images/logo.png') }}" alt="{{ __('INVESTin Company') }}" width="547"
-            height="85">
+        <img class="d-block mx-auto p-4 img-fluid" src="{{ asset('images/logo.png') }}" alt="{{ __('INVESTin Company') }}" width="547" height="85">
     </div>
     <nav class="navbar navbar-expand-md navbar-dark bg-primary text-white">
 
-        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
-            aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
         <div class="navbar-collapse collapse  menu-principal" id="navbarCollapse" style="">
             <ul class="navbar-nav ml-auto mr-auto  text-center">
                 <li class="nav-item ">
@@ -44,7 +45,7 @@
                     <a class="nav-link " href="#">{{ __('Compra una empresa') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">{{ __('Buscador') }}</a>
+                    <a class="nav-link " href="{{ route('buscador') }}">{{ __('Buscador') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="#">{{ __('Documentación') }}</a>
@@ -62,11 +63,11 @@
                     @endif
 
                     ">
-                    @if (Auth::user())
-                    {{ __('Admin') }}
-                    @else
-                    {{ __('Acceso') }}
-                    @endif</a>
+                        @if (Auth::user())
+                        {{ __('Admin') }}
+                        @else
+                        {{ __('Acceso') }}
+                        @endif</a>
                 </li>
             </ul>
         </div>
