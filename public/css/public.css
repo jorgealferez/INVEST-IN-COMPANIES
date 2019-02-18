@@ -59,6 +59,10 @@ h2 {
   opacity: 1;
 }
 
+.carousel-item img {
+  height: auto;
+}
+
 .btn-invest {
   border-top: 1px solid #FFF;
   border-bottom: 1px solid #FFF;
