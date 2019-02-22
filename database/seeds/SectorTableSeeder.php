@@ -14,42 +14,91 @@ class SectorTableSeeder extends Seeder
     {
         //
         $sector = new Sector();
-        $sector->name = 'Automoción y transporte';
+        $sector->name = 'Agricultura, ganadería, silvicultura y pesca';
         $sector->save();
 
-       
+
         $sector = new Sector();
-        $sector->name = 'Químico, farmacéutico y sanitario';
+        $sector->name = 'Industrias extractivas';
         $sector->save();
-        
-        $sector = new Sector();
-        $sector->name = 'Textil, calzado y confección';
+
+        $sector= new Sector();
+        $sector->name = 'Industria manufacturera';
         $sector->save();
-        
-        $sector = new Sector();
+
+        $sector= new Sector();
+        $sector->name = 'Suministro de energía eléctrica, gas, vapor y aire acondicionado';
+        $sector->save();
+
+        $sector= new Sector();
+        $sector->name = 'Suministro de agua, actividades de saneamiento, gestión de residuos y descontaminación';
+        $sector->save();
+
+        $sector= new Sector();
         $sector->name = 'Construcción';
         $sector->save();
-        
-        $sector = new Sector();
-        $sector->name = 'Alimentación y restauración';
+
+        $sector= new Sector();
+        $sector->name = 'Comercio';
         $sector->save();
-        
-        $sector = new Sector();
-        $sector->name = 'Siderurgia, metalurgia, fabricación y comercialización de maquinaria';
+
+        $sector= new Sector();
+        $sector->name = 'Transporte y almacenamiento';
         $sector->save();
-        
-        $sector = new Sector();
-        $sector->name = 'Servicios a empresas';
+
+        $sector= new Sector();
+        $sector->name = 'Hostelería';
         $sector->save();
-        
-        $sector = new Sector();
-        $sector->name = 'Papel, cartón, artes gráficas, edición';
+
+        $sector= new Sector();
+        $sector->name = 'Información y comunicaciones';
         $sector->save();
-        
-        $sector = new Sector();
-        $sector->name = 'Servicios recreativos, culturales, ocio';
+
+        $sector= new Sector();
+        $sector->name = 'Actividades financieras y de seguros';
         $sector->save();
-        
-       
+
+        $sector= new Sector();
+        $sector->name = 'Actividades inmobiliarias';
+        $sector->save();
+
+        $sector= new Sector();
+        $sector->name = 'Actividades profesionales, científicas y técnicas';
+        $sector->save();
+
+        $sector= new Sector();
+        $sector->name = 'Actividades administrativas y servicios auxliares';
+        $sector->save();
+
+        $sector= new Sector();
+        $sector->name = 'Administración Pública y defensa; Seguridad Social obligatoria';
+        $sector->save();
+
+        $sector= new Sector();
+        $sector->name = 'Educación';
+        $sector->save();
+
+        $sector= new Sector();
+        $sector->name = 'Actividades sanitarias y de servicios sociales';
+        $sector->save();
+
+        $sector= new Sector();
+        $sector->name = 'Actividades artísticas, recreativas y de entrenimiento';
+        $sector->save();
+
+        $sector= new Sector();
+        $sector->name = 'Otros Servicios';
+        $sector->save();
+
+        $sector= new Sector();
+        $sector->name = 'Actividades de los hogares como empleadores de personal doméstico; actividades de los hogares como productores de bienes y servicios para uso propio';
+        $sector->save();
+
+        $sector= new Sector();
+        $sector->name = 'Actividades de organizaciones y organismos extraterritoriales';
+        $sector->save();
+
+
+
     }
 }

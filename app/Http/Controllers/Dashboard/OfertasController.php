@@ -11,11 +11,13 @@ use App\Provincia;
 use App\Asociacion;
 use App\Valoracion;
 use Illuminate\Http\Request;
+use App\Notifications\OfertaNueva;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OfertaRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\AsociacionRequest;
+use Illuminate\Support\Facades\Notification;
 
 class OfertasController extends Controller
 {
@@ -43,6 +45,9 @@ class OfertasController extends Controller
        }elseif($request->get('sort')=="asociaciones"){
             $ofertas= $ofertas
                 ->orderBy('asociaciones.name',$request->get('direction'));
+        }elseif(!$request->get('sort')){
+            $ofertas= $ofertas
+                ->orderBy('ofertas.created_at','DESC');
         }
 
        if (Auth::user()->hasAnyRole(['Gestor','Asesor','Inversor'])) {
@@ -63,9 +68,9 @@ class OfertasController extends Controller
 
         $ofertas= $ofertas->sortable()->paginate(5);
         $busqueda = ($request->input('search')) ? $request->input('search') : null ;
-
+        $notificaciones =Auth::User()->unreadNotifications->where("type","App\Notifications\OfertaNueva")->pluck('data')->pluck('oferta_id')->toArray();
         return view('dashboard.ofertas.ofertas')
-                ->with(compact('ofertas','busqueda'));
+                ->with(compact('ofertas','busqueda','notificaciones'));
     }
 
     /**
@@ -76,7 +81,7 @@ class OfertasController extends Controller
     public function search(Request $request){
         $data = Oferta::select("name")
                         ->where([
-                            ["name","LIKE","%{$request->input('query')}%"]
+                            ["name","LIKE","%{$request->input('query')}%"],
                         ]);
         switch (Auth::user()->roles()->first()->name) {
             case 'Asesor':
@@ -90,7 +95,7 @@ class OfertasController extends Controller
                 ->where('user_id',  Auth::user()->id);
             break;
         }
-        $data=$data->get();
+        $data=$data->get()->pluck('name');
         return response()->json($data);
     }
 
@@ -105,7 +110,6 @@ class OfertasController extends Controller
         $formasJuridicas=Forma::all();
         $sectores=Sector::all();
         $provincias=Provincia::all();
-        $valoraciones=Valoracion::all();
         $asociaciones = null;
         $oferta = null;
         $asociacionesDisponibles=Auth::user()->asociacionesDisponiblesByRole();
@@ -118,7 +122,6 @@ class OfertasController extends Controller
             'sectores',
             'provincias',
             'asociacionesDisponibles',
-            'valoraciones',
             'oferta'
         ));
     }
@@ -132,20 +135,27 @@ class OfertasController extends Controller
     public function store(OfertaRequest $request)
     {
 
-        $oferta = new Oferta;
+        $oferta = new Oferta();
+
+
+
         $oferta->fill($request->all());
         switch (Auth::user()->roles()->first()->name) {
 
             case 'Admin':
+
                 $oferta->save();
+                $this->NotificacionNuevaOferta($oferta);
                 return redirect()->route('dashboardOfertas')->with([
                     'success'=> true,
                     'mensaje'=>__('<strong>'.$oferta->name.'</strong> creada correctamente')
                 ]);
             break;
             case 'Asesor':
+
                 $oferta->asociacion_id = Auth::user()->asociaciones->first()->id;
                 $oferta->save();
+                $this->NotificacionNuevaOferta($oferta);
                 return redirect()->route('dashboardOfertas')->with([
                     'success'=> true,
                     'mensaje'=>__('<strong>'.$oferta->name.'</strong> creada correctamente')
@@ -156,6 +166,7 @@ class OfertasController extends Controller
                 $oferta->user_id = Auth::user()->id;
                 if(Auth::user()->permisoOferta($oferta->asociacion_id)){
                     $oferta->save();
+                    $this->NotificacionNuevaOferta($oferta);
                     return redirect()->route('dashboardOfertas')->with([
                         'success'=> true,
                         'mensaje'=>__('<strong>'.$oferta->name.'</strong> creada correctamente')
@@ -174,7 +185,13 @@ class OfertasController extends Controller
         $formasJuridicas=Forma::all();
         $sectores=Sector::all();
         $provincias=Provincia::all();
-        $valoraciones=Valoracion::all();
+
+
+        $notificacion =Auth::User()->unreadNotifications()->where('data->oferta_id',12)->get();
+        if(in_array($oferta->id,$notificacion->pluck('data')->pluck('oferta_id')->toArray())){
+            $notificacion->markAsRead();
+        }
+
 
         if ($oferta) {
             if($request->old('tab')){ $tab=$request->old('tab'); }
@@ -211,8 +228,7 @@ class OfertasController extends Controller
                         'formasJuridicas',
                         'sectores',
                         'provincias',
-                        'asociacionesDisponibles',
-                        'valoraciones'
+                        'asociacionesDisponibles'
                     ));
         } else {
             abort(404);
@@ -281,6 +297,13 @@ class OfertasController extends Controller
         ]);
     }
 
+
+    public function NotificacionNuevaOferta($oferta){
+
+        $asesores= $oferta->asociacion->asesores();
+        Notification::send($asesores, new OfertaNueva($oferta->id));
+        Notification::send(User::where('name','Admin')->first(), new OfertaNueva($oferta->id));
+    }
 
 
 }

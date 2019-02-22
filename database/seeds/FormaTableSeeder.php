@@ -20,18 +20,6 @@ class FormaTableSeeder extends Seeder
 
 
         $forma = new Forma();
-        $forma->name="Comunidad de Bienes";
-        $forma->save();
-
-        $forma = new Forma();
-        $forma->name="Sociedad Civil";
-        $forma->save();
-
-        $forma = new Forma();
-        $forma->name="Sociedad Colectiva";
-        $forma->save();
-
-        $forma = new Forma();
         $forma->name="Sociedad de Responsabilidad Limitada";
         $forma->save();
 
@@ -40,16 +28,13 @@ class FormaTableSeeder extends Seeder
         $forma->save();
 
         $forma = new Forma();
-        $forma->name="Sociedad Colectiva";
+        $forma->name="Comunidad de Bienes";
         $forma->save();
 
         $forma = new Forma();
-        $forma->name="Entidades de Capital-Riesgo";
+        $forma->name="Otras formas jurídicas";
         $forma->save();
 
-        $forma = new Forma();
-        $forma->name="Agrupación de Interés Económico";
-        $forma->save();
 
     }
 }

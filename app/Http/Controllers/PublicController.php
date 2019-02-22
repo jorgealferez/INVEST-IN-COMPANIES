@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Oferta;
+use App\Poblacion;
 use App\Provincia;
 use Illuminate\Http\Request;
 
@@ -80,4 +81,5 @@ class PublicController extends Controller
             )
         );
     }
+
 }

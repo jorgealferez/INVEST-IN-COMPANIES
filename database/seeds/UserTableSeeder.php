@@ -32,85 +32,42 @@ class UserTableSeeder extends Seeder
         $user_admin->save();
         $user_admin->roles()->save($role_admin);
 
-        $role_asesor = Role::where('name', 'Asesor')->first();
-        $asociacion = Asociacion::where('id', '1')->first();
-        $user_asesor = new User();
-        $user_asesor->name = 'Asesor 1';
-        $user_asesor->surname = 'Apellidos Apellidos';
-        $user_asesor->phone = '666666666';
-        $user_asesor->LOPD = true;
-        $user_asesor->active = true;
-        $user_asesor->email = 'asesor@asesor.com';
-        $user_asesor->password = bcrypt('secret');
-        $user_asesor->email_verified_at = now();
-        $user_asesor->save();
-        $user_asesor->roles()->save($role_asesor);
-        $user_asesor->asociaciones()->save($asociacion);
 
-        $role_gestor = Role::where('name', 'Gestor')->first();
-        $user_gestor = new User();
-        $user_gestor->name = 'Gestor 1';
-        $user_gestor->surname = 'Apellidos Apellidos';
-        $user_gestor->phone = '666666666';
-        $user_gestor->LOPD = true;
-        $user_gestor->active = true;
-        $user_gestor->email = 'gestor@gestor.com';
-        $user_gestor->password = bcrypt('secret');
-        $user_gestor->email_verified_at = now();
-        $user_gestor->save();
-        $user_gestor->roles()->save($role_gestor);
-        // $user_gestor->ofertas()->save($user_gestor);
-        $user_gestor->asociaciones()->save($asociacion);
-
-
-        $role_user = Role::where('name', 'Inversor')->first();
-        $user = new User();
-        $user->name = 'User 1';
-        $user->surname = 'Apellidos Apellidos';
-        $user->phone = '666666666';
-        $user->LOPD = true;
-        $user->active = true;
-        $user->email = 'user@user.com';
-        $user->email_verified_at = now();
-        $user->password = bcrypt('secret');
-        $user->save();
-        $user->roles()->save($role_user);
-        $oferta = Oferta::where('id', 2)->first();
-        // $oferta->inversores()->save($user);
+    	foreach (range(1,5) as $index) {
+            $role_asesor = Role::where('name', 'Asesor')->first();
+            $asociacion =   Asociacion::get()->random() ;
+            $user_asesor = new User();
+            $user_asesor->name = 'Asesor '.$index;
+            $user_asesor->surname = 'Apellidos Apellidos';
+            $user_asesor->phone = '666666666';
+            $user_asesor->LOPD = true;
+            $user_asesor->active = true;
+            $user_asesor->email = 'asesor'.$index.'@asesor.com';
+            $user_asesor->password = bcrypt('secret');
+            $user_asesor->email_verified_at = now();
+            $user_asesor->save();
+            $user_asesor->roles()->save($role_asesor);
+            $user_asesor->asociaciones()->save($asociacion);
 
 
 
-
-        $role_asesor = Role::where('name', 'Asesor')->first();
-        $asociacion = Asociacion::where('id', '2')->first();
-        $user_asesor = new User();
-        $user_asesor->name = 'Asesor 2';
-        $user_asesor->surname = 'Apellidos Apellidos';
-        $user_asesor->phone = '666666666';
-        $user_asesor->LOPD = true;
-        $user_asesor->active = true;
-        $user_asesor->email = 'asesor2@asesor.com';
-        $user_asesor->password = bcrypt('secret');
-        $user_asesor->email_verified_at = now();
-        $user_asesor->save();
-        $user_asesor->roles()->save($role_asesor);
-        $user_asesor->asociaciones()->save($asociacion);
+                $role_gestor = Role::where('name', 'Gestor')->first();
+                $user_gestor = new User();
+                $user_gestor->name = 'Gestor '.$index;
+                $user_gestor->surname = 'Apellidos Apellidos';
+                $user_gestor->phone = '666666666';
+                $user_gestor->LOPD = true;
+                $user_gestor->active = true;
+                $user_gestor->email = 'gestor'.$index.'@gestor.com';
+                $user_gestor->password = bcrypt('secret');
+                $user_gestor->email_verified_at = now();
+                $user_gestor->save();
+                $user_gestor->roles()->save($role_gestor);
+                $user_gestor->asociaciones()->save($asociacion);
 
 
-        $role_gestor = Role::where('name', 'Gestor')->first();
-        $user_gestor = new User();
-        $user_gestor->name = 'Gestor 2';
-        $user_gestor->surname = 'Apellidos Apellidos';
-        $user_gestor->phone = '666666666';
-        $user_gestor->LOPD = true;
-        $user_gestor->active = true;
-        $user_gestor->email = 'gestor2@gestor.com';
-        $user_gestor->password = bcrypt('secret');
-        $user_gestor->email_verified_at = now();
-        $user_gestor->save();
-        $user_gestor->roles()->save($role_gestor);
-        $user_gestor->asociaciones()->save($asociacion);
-        // $user_gestor->ofertas()->save($user_gestor);
+        }
+
 
         $faker = Faker::create('es_ES');
     	foreach (range(1,10) as $index) {
@@ -126,38 +83,6 @@ class UserTableSeeder extends Seeder
             $user->password = bcrypt('secret');
             $user->save();
             $user->roles()->save($role_user);
-            $oferta = Oferta::where('id', random_int(1,6))->first();
-            // $oferta->inversores()->save($user);
-
-
-            // $role_gestor = Role::where('name', 'Gestor')->first();
-            // $user_gestor = new User();
-            // $user_gestor->name = $faker->firstName;
-            // $user_gestor->surname = $faker->lastName;
-            // $user_gestor->phone = $faker->phoneNumber;
-            // $user_gestor->LOPD = true;
-            // $user_gestor->active = true;
-            // $user_gestor->email = $faker->email;
-            // $user_gestor->password = bcrypt('secret');
-            // $user_gestor->email_verified_at = now();
-            // $user_gestor->save();
-            // $user_gestor->roles()->save($role_gestor);
-            // $user_gestor->asociaciones()->save($asociacion);
-
-            // $role_asesor = Role::where('name', 'Asesor')->first();
-            // $asociacion = Asociacion::where('id', '1')->first();
-            // $user_asesor = new User();
-            // $user_asesor->name = $faker->firstName;
-            // $user_asesor->surname = $faker->lastName;
-            // $user_asesor->phone = $faker->phoneNumber;
-            // $user_asesor->LOPD = true;
-            // $user_asesor->active = true;
-            // $user_asesor->email = $faker->email;
-            // $user_asesor->password = bcrypt('secret');
-            // $user_asesor->email_verified_at = now();
-            // $user_asesor->save();
-            // $user_asesor->roles()->save($role_asesor);
-            // $user_asesor->asociaciones()->save($asociacion);
 	    }
     }
 }

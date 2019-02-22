@@ -17,7 +17,7 @@ class AsociacionTableSeeder extends Seeder
     {
         //
         $faker = Faker::create('es_ES');
-    	foreach (range(1,3) as $index) {
+    	foreach (range(1,5) as $index) {
             $asociacion = new Asociacion();
             $asociacion->name = 'Asociacion '.$index;
             $asociacion->address = $faker->address;

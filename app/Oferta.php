@@ -8,9 +8,11 @@ use Kyslik\ColumnSortable\Sortable;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Oferta extends Model
 {
+    use Notifiable;
     use DatesTranslator;
     use Sortable;
     /**
@@ -45,8 +47,9 @@ class Oferta extends Model
        'endeudamiento',
        'local',
        'active',
+       'approved',
     ];
-    public $sortable = ['id','name','cif','created_at'];
+    public $sortable = ['id','name','cif','created_at','approved'];
 
     public function userSortable($query, $direction)
     {

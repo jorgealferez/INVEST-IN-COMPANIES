@@ -5,116 +5,17 @@
 
 @import 'app'; //( All the Common scss contain here )
 @import 'sidebar'; //( Left sidebar scss contain here )
-@import 'pages/pages.scss';  //(All pages scss contain here )
+@import 'pages/pages.scss'; //(All pages scss contain here )
 @import 'icons/font-awesome/css/fontawesome-all.min.css'; //( This is for the icons )
-@import 'icons/simple-line-icons/css/simple-line-icons.css';//( This is for the icons )
-@import 'icons/weather-icons/css/weather-icons.min.css';//( This is for the icons )
-@import 'icons/linea-icons/linea.css';//( This is for the icons )
+@import 'icons/simple-line-icons/css/simple-line-icons.css'; //( This is for the icons )
+@import 'icons/weather-icons/css/weather-icons.min.css'; //( This is for the icons )
+@import 'icons/linea-icons/linea.css'; //( This is for the icons )
 @import 'icons/themify-icons/themify-icons.css'; //( This is for the icons )
-@import 'icons/flag-icon-css/flag-icon.min.css';//( This is for the icons )
-@import 'icons/material-design-iconic-font/css/materialdesignicons.min.css';//( This is for the icons )
-@import 'widgets/widgets';//( This is for the all widgets of the template )
+@import 'icons/flag-icon-css/flag-icon.min.css'; //( This is for the icons )
+@import 'icons/material-design-iconic-font/css/materialdesignicons.min.css'; //( This is for the icons )
+@import 'widgets/widgets'; //( This is for the all widgets of the template )
 @import 'grid'; //( This is for the extra grid of xlg )
 @import 'responsive'; //( This is for the responsive scss )
 @import 'spinners.css'; //( This is for the Loader )
-@import 'animate.css';//( This is for the Animation )
-@import '../../js/dashboard/plugins/select2/dist/css/select2.min.css';//( This is for the Animation )
-
-.container-fluid {
-    padding-top: 25px;
-}
-.fix-header .topbar {
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-}
-    .topbar{
-        background-color: $white;
-    }
-
-
-.roleAd {
-    background-color: $danger;
-}
-
-.roleAs {
-    background-color: $primary;
-}
-
-.roleGe {
-    background-color: $success;
-}
-
-.roleIn {
-    background-color: $warning;
-}
-
-.roleSmall{
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-}
-.roleMedium{
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-}
-.roleLarge{
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-}
-.roleBig{
-    width: 150px;
-    height: 150px;
-    line-height: 150px;
-}
-
-.profile-status {
-    border: 2px solid $white;
-    border-radius: 50%;
-    display: inline-block;
-    height: 10px;
-    left: 30px;
-    position: absolute;
-    top: 1px;
-    width: 10px;
-}
-.online {
-    background: $success;
-}
-.busy {
-    background: $danger;
-}
-.away {
-    background: $warning;
-}
-.offline {
-    background: $warning;
-}
-
-.userRoleCard {
-    vertical-align: middle;
-    border-style: none;
-    width: 100%;
-    border-radius: calc(.25rem - 1px);
-}
-
-.stylish-table {
-    tbody tr {
-        &:hover,
-        &.active {
-            border-left: 4px solid $themecolor;
-        }
-    }
-}
-
-.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success,
-.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-success {
-  color: #fff;
-  background: $themecolor;
-}
-.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-muted,
-.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-muted {
-  color: #000;
-  background: $secondary;
-}
+@import 'animate.css'; //( This is for the Animation )
+@import '../../js/dashboard/plugins/select2/dist/css/select2.min.css'; //( This is for the Animation )

@@ -1,9 +1,11 @@
 <?php
 
 namespace App;
+use App\User;
 use App\Traits\DatesTranslator;
-use Kyslik\ColumnSortable\Sortable;
 
+use Illuminate\Support\Facades\DB;
+use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,7 +31,31 @@ class Asociacion extends Model
     public function usuarios()
     {
         return $this
-        ->belongsToMany('App\User');
+        ->belongsToMany('App\User')->withTimestamps();
+    }
+
+    public function asesores()
+    {
+
+        $result = $this->usuarios->pluck('id');
+
+        $users = User::whereIn('id',$result)
+        ->whereHas('roles', function ($query) {
+            $query->where('name', '=', 'Asesor');
+        })->get();
+        return  $users;
+    }
+
+    public function gestores()
+    {
+
+        $result = $this->usuarios->pluck('id');
+
+        $users = User::whereIn('id',$result)
+        ->whereHas('roles', function ($query) {
+            $query->where('name', '=', 'Gestor');
+        })->get();
+        return  $users;
     }
 
     public function ofertas()

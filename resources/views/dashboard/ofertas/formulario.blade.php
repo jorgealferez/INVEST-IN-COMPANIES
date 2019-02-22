@@ -194,18 +194,11 @@
 
     <div class="col-md-4">
 
-        <div class="form-group {{ $errors->has('valoracion_id') ? ' has-danger' : '' }}">
-            <label for="valoracion_id">{{ __('Valoracion') }}</label>
-            <select name="valoracion_id" id="valoracion_id" class="form-control form-control-line {{ $errors->has('valoracion_id') ? ' form-control-danger' : '' }}">
-                <option value="">{{ __('Selecciona valoracion') }}</option>
-                @foreach ($valoraciones as $valoracion)
-                <option value="{{ $valoracion->id }}" @if ( old('valoracion_id')==$valoracion->id || (!empty($oferta) && $oferta->valoracion_id==$valoracion->id))
-                    selected
-                    @endif >{{$valoracion->name }}</option>
-                @endforeach
-            </select> @if ($errors->has('valoracion_id'))
+        <div class="form-group {{ $errors->has('valoracion') ? ' has-danger' : '' }}">
+            <label for="valoracion">{{ __('Valoracion') }}</label>
+            <input type="text" value="{{ (isset($oferta)) ?  $oferta->valoracion : (old( 'valoracion')) }} " class="form-control form-control-line {{ $errors->has('valoracion') ? ' form-control-danger' : '' }}" id="valoracion" name="valoracion"> @if ($errors->has('valoracion'))
 
-            <div class="col-md-12 form-control-feedback">{{ $errors->first('valoracion_id') }}</div>
+            <div class="col-md-12 form-control-feedback">{{ $errors->first('valoracion') }}</div>
             @endif
         </div>
     </div>
@@ -246,17 +239,6 @@
 
 <div class="row">
 
-    <div class="col-md-6">
-
-        <div class="form-group {{ $errors->has('municipio') ? ' has-danger' : '' }}">
-            <label for="municipio">{{ __('Municipio') }}</label>
-            <input type="text" value="{{ (isset($oferta)) ?  $oferta->municipio : (old( 'municipio')) }} " class="form-control form-control-line {{ $errors->has('municipio') ? ' form-control-danger' : '' }}" id="municipio" name="municipio"> @if ($errors->has('municipio'))
-
-            <div class="col-md-12 form-control-feedback">{{ $errors->first('municipio') }}</div>
-            @endif
-
-        </div>
-    </div>
 
     <div class="col-md-6">
 
@@ -276,6 +258,21 @@
             @endif
         </div>
 
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="form-group {{ $errors->has('poblacion_id') ? ' has-danger' : '' }}">
+            <label for="poblacion_id">{{ __('Población') }}</label>
+
+            <select name="poblacion_id" id="poblacion_id" class="form-control form-control-line {{ $errors->has('poblacion_id') ? ' form-control-danger' : '' }}" required>
+                <option value="">{{ __('Selecciona poblacion') }}</option>
+
+            </select> @if ($errors->has('poblacion_id'))
+
+            <div class="col-md-12 form-control-feedback">{{ $errors->first('poblacion_id') }}</div>
+            @endif
+        </div>
     </div>
 </div>
 

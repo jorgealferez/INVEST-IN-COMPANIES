@@ -50,19 +50,21 @@ Route::namespace('Dashboard')->group(function () {
             Route::get('/search', 'OfertasController@search')->name('searchOfertas');
         });
 
-        Route::prefix('/usuarios')->group(function () {
-            Route::match(['get', 'post'],'/', 'UsuariosController@index')->name('dashboardUsuarios')->middleware(['admin']);
-            Route::get('/crear', 'UsuariosController@create')->name('dashboardUsuariosNuevo')->middleware(['admin']);
-            Route::get('/store', 'UsuariosController@store')->middleware(['admin']);
-            Route::get('/{usuario}', 'UsuariosController@show')->name('dashboardUsuario')->where('usuario', '[0-9]+')->middleware(['admin']);
-            Route::get('/perfil', 'UsuariosController@profile')->name('perfilUsuario')->where('usuario', '[0-9]+');
+        Route::get('/perfil', 'UsuariosController@profile')->name('perfilUsuario')->where('usuario', '[0-9]+');
             Route::any('/perfilUpdate', 'UsuariosController@profileUpdate');
+        Route::prefix('/usuarios')->group(function () {
+
+            Route::match(['get', 'post'],'/', 'UsuariosController@index')->name('dashboardUsuarios')->middleware(['asesor']);
+            Route::get('/crear', 'UsuariosController@create')->name('dashboardUsuariosNuevo')->middleware(['asesor']);
+            Route::get('/store', 'UsuariosController@store')->middleware(['asesor']);
+            Route::get('/{usuario}', 'UsuariosController@show')->name('dashboardUsuario')->where('usuario', '[0-9]+')->middleware(['asesor']);
             Route::any('/{id}/update', 'UsuariosController@update')->middleware(['admin'])->where('id', '[0-9]+');
             Route::any('/{id}/updateRol', 'UsuariosController@updateRol')->middleware(['admin'])->where('id', '[0-9]+');
             Route::post('/delete/{usuario}', 'UsuariosController@delete')->name('dashboardUsuarioDelete')->where('usuario', '[0-9]+')->middleware(['admin']);
 
             Route::get('/search', 'UsuariosController@search')->name('searchUsuarios');
             Route::post('/searchUsuariosByAsociacion', 'UsuariosController@searchUsuariosByAsociacion')->name('searchUsuariosByAsociacion');
+            Route::post('/searchpoblacionesbyprovincia', 'UsuariosController@searchPoblacionesByProvincia')->name('searchpoblacionesbyprovincia');
         });
     });
 });

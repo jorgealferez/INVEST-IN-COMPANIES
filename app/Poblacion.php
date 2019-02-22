@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Valoracion extends Model
+class Poblacion extends Model
 {
     //
-    protected $table = 'valoraciones';
+    protected $table = 'poblaciones';
     public $timestamps = false;
+
+
 }

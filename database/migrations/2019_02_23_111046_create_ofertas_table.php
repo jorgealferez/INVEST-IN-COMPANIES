@@ -29,11 +29,14 @@ class CreateOfertasTable extends Migration
             $table->unsignedInteger('sector_id')->nullable();
             $table->foreign('sector_id')->references('id')->on('sectores');
 
-            $table->unsignedInteger('valoracion_id')->nullable();
-            $table->foreign('valoracion_id')->references('id')->on('valoraciones');
 
             $table->unsignedInteger('provincia_id')->nullable();
             $table->foreign('provincia_id')->references('id')->on('provincias');
+
+
+            $table->unsignedInteger('poblacion_id')->nullable();
+            $table->foreign('poblacion_id')->references('id')->on('poblaciones');
+
 
             $table->integer('socios')->default(0)->nullable();
             $table->text('motivo')->nullable();
@@ -46,14 +49,15 @@ class CreateOfertasTable extends Migration
             $table->string('contactPhone')->nullable();
             $table->string('contactEmail')->nullable();
             $table->string('address')->nullable();
-            $table->string('municipio')->nullable();
             $table->string('web')->nullable();
+            $table->string('valoracion')->nullable();
             $table->string('explotacion1')->nullable();
             $table->string('explotacion2')->nullable();
             $table->string('explotacion3')->nullable();
             $table->unsignedDecimal('endeudamiento',15,2)->nullable();
             $table->boolean('local')->nullable();
             $table->boolean('active')->default(true);
+            $table->boolean('approved')->default(false);
             $table->string('phone')->nullable();
             $table->timestamps();
         });

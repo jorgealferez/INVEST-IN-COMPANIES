@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
         // La creación de datos de roles debe ejecutarse primero
         $this->call(RoleTableSeeder::class);
         $this->call(ProvinciaTableSeeder::class);
-        $this->call(ValoracionTableSeeder::class);
+        $this->call(PoblacionTableSeeder::class);
+        // $this->call(ValoracionTableSeeder::class);
         $this->call(FormaTableSeeder::class);
         $this->call(SectorTableSeeder::class);
 
