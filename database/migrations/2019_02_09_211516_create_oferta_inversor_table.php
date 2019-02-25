@@ -15,8 +15,13 @@ class CreateOfertaInversorTable extends Migration
     {
         Schema::create('oferta_inversor', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('oferta_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+
+            $table->unsignedInteger('oferta_id');
+            // $table->foreign('oferta_id')->references('id')->on('ofertas');
+
+            $table->unsignedInteger('user_id');
+            // $table->foreign('user_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

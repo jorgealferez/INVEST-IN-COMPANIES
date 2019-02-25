@@ -19,10 +19,11 @@
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
+        "kyslik/column-sortable": "5.7.*",
+        "laravel/telescope": "^1.0",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
-        "phpunit/phpunit": "^7.0",
-        "kyslik/column-sortable": "5.7.*"
+        "phpunit/phpunit": "^7.0"
     },
     "config": {
         "optimize-autoloader": true,

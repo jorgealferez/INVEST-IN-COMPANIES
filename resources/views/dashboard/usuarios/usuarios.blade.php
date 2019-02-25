@@ -16,6 +16,8 @@
                     <h4 class="card-title mb-0 title-section">
                         <i class="mdi mdi-account-multiple"></i>
                         {{ __('Listado de usuarios')}}
+
+                        <a href="{{ e(route('dashboardUsuariosNuevo')) }}" class="btn btn-verde btn-sm float-right"><i class="fas fa-plus-circle text-white"></i> {{ __('Nuevo')}}</a>
                     </h4>
 
                 </div>
@@ -31,19 +33,20 @@
                                 <thead>
                                     <tr>
 
-                                        <th>@sortablelink('name', __('Nombre'))<br>
+                                        <th>@sortablelink('name', __('Nombre'),[],['class'=>'text-nowrap'])<br>
                                             <input name="name" id="name" class=" typeahead" type="text" value="{{ (!empty($busqueda)) ? $busqueda->input('name') : '' }}" placeholder="{{ __('Nombre') }}">
                                         </th>
-                                        <th>@sortablelink('email', __('Email'))<br>
+                                        <th>@sortablelink('email', __('Email'),[],['class'=>'text-nowrap'])<br>
                                             <input name="email" id="email" class="" type="text" value="{{ (!empty($busqueda)) ? $busqueda->input('email') : '' }}" placeholder="{{ __('Email') }}">
                                         </th>
-                                        <th>@sortablelink('phone', __('Teléfono'))<br>
+                                        <th>@sortablelink('phone', __('Teléfono'),[],['class'=>'text-nowrap'])<br>
                                             <input name="phone" id="phone" class="" type="text" value="{{ (!empty($busqueda)) ? $busqueda->input('phone') : '' }}" placeholder="{{ __('Teléfono') }}">
                                         </th>
-                                        @if(Auth::user()->hasRole(['Admin']))
-                                        <th>@sortablelink('asociacion', __('Asociación'))<br>
+
+                                        @if($isAdmin)
+                                        <th>@sortablelink('asociacion', __('Asociación'),[],['class'=>'text-nowrap'])<br>
                                             <select name="asociacion_id" id="asociacion_id" class="">
-                                                <option value="">{{ __('Asociación') }}</option>
+                                                <option value="">{{ __('Todas') }}</option>
                                                 @foreach ($asociacionesDisponibles as $asociacion)
                                                 <option value="{{ $asociacion->id }}" @if ( (!empty($busqueda)) && $asociacion->id==$busqueda->input('asociacion_id'))
                                                     selected
@@ -54,52 +57,60 @@
                                         </th>
                                         @endif
                                         <th>
-                                            <button type="submit" class="btn btn-primary  btn-sm">{{ __('Buscar') }}</button>
+
+                                            <div class="btn-group btn-group-toggle">
+                                                <button type="submit" class="btn btn-verde-alt  btn-sm">{{ __('Buscar') }}</button>
+                                                <button type="button" class="btn btn-secondary btn-sm" id="btnreset">{{ __('Todas') }}</button>
+                                            </div>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if($usuarios->isNotEmpty()) @foreach ($usuarios as $usuario)
+                                    @if($usuarios->isNotEmpty())
+                                    @foreach ($usuarios as $usuario)
                                     <?php
-                                        $usuarioRole= $usuario->roles->first()->name;
-                                    ?>
+                                            // $usuarioRole= $usuario->roles->first()->name;
+                                        ?>
                                     <tr>
                                         <?php /*   <td>
 
-                                            <div class="message-box contact-box">
+                                                <div class="message-box contact-box">
 
-                                                <div class="message-widget contact-widget">
+                                                    <div class="message-widget contact-widget">
 
-                                                    <div class="user-img " style="">
+                                                        <div class="user-img " style="">
 
-                                                        <span class="badge role{{ substr($usuarioRole,0,2) }} btn-sm text-white">{{ $usuarioRole }}</span>
-                                                        <span class="profile-status {{ $usuario->statusClass() }} pull-left" style="left:-7px;top:-2px;"></span>
+                                                            <span class="badge role{{ substr($usuarioRole,0,2) }} btn-sm text-white">{{ $usuarioRole }}</span>
+                                                            <span class="profile-status {{ $usuario->statusClass() }} pull-left" style="left:-7px;top:-2px;"></span>
 
-                                                        </span>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td> */ ?>
+                                            </td> */ ?>
                                         <td>
-                                            {{ e($usuario->name.' '.$usuario->surname) }}
+                                            {{ e($usuario->FullName) }}
                                         </td>
                                         <td>{!! e($usuario->email) !!}</td>
                                         <td class="text-center">{!! e($usuario->phone) !!}</td>
-                                        @if(Auth::user()->hasRole(['Admin']))
+                                        @if($isAdmin)
                                         <td>
                                             @foreach ($usuario->asociaciones as $asociacion)
                                             {{ e($asociacion->name) }}
                                             @endforeach
                                         </td>
                                         @endif
-                                        <td>
-                                            <a href="<?php echo urldecode(route('dashboardUsuario',['usuario'=>$usuario])); ?>" class="" title="{{ __('Ver') }}"><i class="fas fa-eye"></i></a> @if($usuario->asociacion_count==0 && $usuarioRole!="Admin")
-                                            @if(Auth::user()->hasRole(['Admin']))
-                                            <a href="#" class=" borrarUsuario" data-toggle="modal" data-url="<?php echo urldecode(route('dashboardUsuarioDelete',['usuario'=>$usuario])); ?>" data-id="{{$usuario->id}}" data-name="{{$usuario->name}}" data-target="#custom-width-modal" title="{{ __('Eliminar') }}"> <i class="fas fa-window-close text-danger"></i></a> @endif
+                                        <td class="text-right">
+                                            <a href="<?php echo urldecode(route('dashboardUsuario',['usuario'=>$usuario])); ?>" class="text-verde" title="{{ __('Ver') }}">
+                                                <i class="fas fa-eye text-verde"></i>
+                                            </a>
+                                            @if($usuario->asociacion_count==0 && $isAdmin)
+                                            <a href="#" class=" borrarUsuario" data-toggle="modal" data-url="<?php echo urldecode(route('dashboardUsuarioDelete',['usuario'=>$usuario])); ?>" data-id="{{$usuario->id}}" data-name="{{$usuario->name}}" data-target="#custom-width-modal" title="{{ __('Eliminar') }}"> <i class="fas fa-window-close text-danger"></i></a>
                                             @endif
                                         </td>
                                     </tr>
-                                    @endforeach @else
+                                    @endforeach
+                                    @else
                                     <tr>
                                         <td colspan="5">
                                             <p>{{ __('No hay resultados disponibles') }}</p>
@@ -131,9 +142,6 @@
 
                     </form>
 
-                    <div class="col-sm-12">
-                        <a href="{{ e(route('dashboardUsuariosNuevo')) }}" class="btn btn-success">{{ __('Crear nuevo usuario') }}</a>
-                    </div>
                 </div>
 
             </div>
@@ -182,6 +190,12 @@
             $form = '';
         });
         $('#borrar-modal').modal('show');
+    });
+
+    $("#btnreset").click(function () {
+        $("#formSearch").trigger("reset");
+        $("#formSearch :input,#formSearch select").not('#formSearch input[type="hidden"]').val('');
+        $("#formSearch").submit();
     });
 
 </script>

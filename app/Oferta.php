@@ -21,33 +21,37 @@ class Oferta extends Model
      * @var array
      */
     protected $fillable = [
-       'asociacion_id',
-       'user_id',
-       'forma',
-       'socios',
-       'forma_id',
-       'motivo',
-       'sector_id',
-       'empleados',
+       'active',
+       'address',
        'año',
-       'valoracion_id',
-       'name',
+       'approved',
+       'asociacion_id',
        'cif',
        'contact',
-       'contactSurname',
-       'contactPhone',
        'contactEmail',
-       'address',
-       'municipio',
-       'provincia_id',
-       'web',
+       'contactPhone',
+       'contactSurname',
+       'descripcion',
+       'empleados',
+       'endeudamiento',
        'explotacion1',
        'explotacion2',
        'explotacion3',
-       'endeudamiento',
+       'forma_id',
+       'forma',
        'local',
-       'active',
-       'approved',
+       'motivo',
+       'poblacion_id',
+       'name',
+       'provincia_id',
+       'sector_id',
+       'socios',
+       'user_id',
+       'valoracion',
+       'web',
+    ];
+    protected $casts = [
+        'endeudamiento' => 'decimal:2',
     ];
     public $sortable = ['id','name','cif','created_at','approved'];
 
@@ -70,6 +74,12 @@ class Oferta extends Model
         ->belongsTo('App\Asociacion');
 
     }
+    public function forma()
+    {
+        return $this
+        ->belongsTo('App\Forma');
+
+    }
 
     public function sector()
     {
@@ -85,10 +95,33 @@ class Oferta extends Model
 
     }
 
+    public function poblacion()
+    {
+        return $this
+        ->belongsTo('App\Poblacion');
+
+    }
+
     public function inversores()
     {
         return $this
         ->belongsToMany('App\User','oferta_inversor','oferta_id','user_id')->withTimestamps();
     }
+
+    public function getValoracionAttribute($value)
+    {
+        return number_format ($value,2,',','.');
+    }
+    public function getEndeudamientoAttribute($value)
+    {
+        return number_format ($value,2,',','.');
+    }
+
+    public function getContactFullNameAttribute()
+    {
+        return "{$this->contact} {$this->contactSurname}";
+    }
+
+
 
 }

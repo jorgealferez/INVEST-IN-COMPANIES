@@ -30,7 +30,10 @@
                                 <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }}">
 
                                     <label class="col-md-12 form-control-label" for="name">{{ __('Nombre') }}</label>
-                                    <input type="text" value="{{ old('name') }}" class="form-control form-control-line {{ $errors->has('name') ? ' form-control-danger' : '' }}" id="name" name="name" required>
+
+                                    <div class="col-md-12">
+                                        <input type="text" value="{{ old('name') }}" class="form-control form-control-line {{ $errors->has('name') ? ' form-control-danger' : '' }}" id="name" name="name" required>
+                                    </div>
                                 </div>
                                 @if ($errors->has('name'))
 
@@ -56,8 +59,6 @@
                         </div>
 
 
-
-
                         <div class="row">
 
                             <div class="col-md-8">
@@ -74,7 +75,6 @@
                                     @endif
 
                                 </div>
-
 
 
                             </div>
@@ -170,4 +170,12 @@
 @endsection
 
 @section('scripts')
+<script>
+    $(function () {
+        $(".alert-success ").fadeTo(5000, 500).slideUp(500, function () {
+            $(".alert-success ").slideUp(500);
+        });
+    });
+
+</script>
 @endsection

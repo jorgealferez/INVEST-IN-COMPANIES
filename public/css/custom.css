@@ -1,0 +1,257 @@
+/*
+Template Name: Admin Pro Admin
+Author: Wrappixel
+Email: niravjoshi87@gmail.com
+File: scss
+*/
+/*Theme Colors*/
+/*bootstrap Color*/
+/*Light colors*/
+/*Normal Color*/
+/*Extra Variable*/
+.container-fluid {
+  padding-top: 25px;
+}
+
+.fix-header .topbar {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.topbar {
+  background-color: #ffffff;
+}
+
+.roleAd {
+  background-color: #ef5350;
+}
+
+.roleAs {
+  background-color: #745af2;
+}
+
+.roleGe {
+  background-color: #06d79c;
+}
+
+.roleIn {
+  background-color: #ffb22b;
+}
+
+.roleSmall {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+
+.roleMedium {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.roleLarge {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+}
+
+.roleBig {
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+}
+
+.card-profile .profile-rol {
+  margin-bottom: -80px;
+}
+
+.profile-status {
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  height: 10px;
+  left: 30px;
+  position: absolute;
+  top: 1px;
+  width: 10px;
+}
+
+.online {
+  background: #06d79c;
+}
+
+.busy {
+  background: #ef5350;
+}
+
+.away {
+  background: #ffb22b;
+}
+
+.offline {
+  background: #ffb22b;
+}
+
+.userRoleCard {
+  vertical-align: middle;
+  border-style: none;
+  width: 100%;
+  border-radius: calc(.25rem - 1px);
+}
+
+.stylish-table tbody tr:hover, .stylish-table tbody tr.active {
+  border-left: 4px solid #006242;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-success {
+  color: #fff;
+  background: #006242;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-muted,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-muted {
+  color: #000;
+  background: #cccccc;
+}
+
+.card {
+  border: 1px solid #d7dfe3 !important;
+  border-radius: 4px !important;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05) !important;
+  -webkit-box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+.card h4.card-title,
+.card h3.card-title,
+.card h2.card-title {
+  color: #056633;
+  font-weight: 600;
+}
+
+ul.typeahead .active {
+  background-color: #006242;
+  color: #fff;
+}
+
+ul.typeahead .active a {
+  color: #fff;
+}
+
+table.table-bordered {
+  border-color: transparent !important;
+}
+
+table.tabla-usuarios {
+  font-size: 80%;
+}
+
+table.tabla-usuarios thead {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+table.tabla-usuarios thead tr th {
+  color: #67757c;
+  font-size: .8rem;
+}
+
+table.tabla-usuarios thead tr th a {
+  font-weight: 300;
+  color: #67757c;
+  white-space: nowrap;
+}
+
+table.tabla-usuarios thead tr th input[type=text],
+table.tabla-usuarios thead tr th select {
+  background-color: #ffffff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  padding: .25rem;
+  font-size: .8rem;
+  width: 100%;
+}
+
+table.tabla-usuarios tfoot {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+table.tabla-usuarios tfoot td {
+  border: none;
+}
+
+table.tabla-usuarios tbody tr {
+  border-left: 4px solid #ffffff;
+}
+
+table.tabla-usuarios tbody tr:hover {
+  border-left: 4px solid #006242;
+}
+
+table.table-hover tbody tr:nth-of-type(odd) {
+  background: #f2f2f2;
+}
+
+table.table-hover tbody tr:hover {
+  background: #ebefec;
+}
+
+.btn-verde {
+  color: #ffffff;
+  background-color: #006242;
+  border: 1px solid #006242;
+}
+
+.btn-verde:hover {
+  opacity: 0.7;
+  border: 1px solid #006242;
+  color: #ffffff;
+}
+
+.btn-verde-alt {
+  color: #ffffff;
+  background-color: #056633;
+  border: 1px solid #056633;
+}
+
+.btn-verde-alt:hover {
+  opacity: 0.7;
+  border: 1px solid #056633;
+  color: #ffffff;
+}
+
+.btn:hover {
+  box-shadow: none !important;
+}
+
+.bg-gray {
+  background-color: #242a33 !important;
+}
+
+.bg-verde {
+  background-color: #006242 !important;
+}
+
+.text-verde {
+  color: #006242 !important;
+}
+
+.title-section {
+  font-weight: 400;
+  color: #006242 !important;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #006242 !important;
+  border-color: #006242 !important;
+}
+
+form label {
+  color: #056633;
+}
+
+form .has-danger .form-control-label,
+form .has-danger .form-control-feedback {
+  font-weight: 500;
+}

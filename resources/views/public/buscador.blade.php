@@ -28,7 +28,6 @@
                     </div>
 
 
-
                     <button class="btn-invest d-inline-block bg-transparent text-uppercase fa-1x " type="submit">{{ __('Aplicar') }}</button>
             </div>
             </form>
@@ -39,19 +38,17 @@
             <table class="table table-striped table-hover">
                 <thead class="thead-primary">
                     <tr>
-                        <th scope="col">@sortablelink('id', __('#'))</th>
-                        <th scope="col">@sortablelink('name', __('Nombre'))</th>
                         <th scope="col">@sortablelink('sector', __('Sector'))</th>
-                        <th scope="col">@sortablelink('provincia', __('Provincia'))</th>
+                        <th scope="col">@sortablelink('name', __('Nombre'))</th>
+                        <th scope="col">@sortablelink('valoracion', __('Valoracion'))</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($ofertas as $oferta)
                     <tr>
-                        <th scope="row">{{ e($oferta->id) }}</th>
-                        <td>{{ e($oferta->name) }}</td>
                         <td>{{ e($oferta->sector['name']) }}</td>
-                        <td>{{ e($oferta->provincia['name']) }}</td>
+                        <td>{{ e($oferta->name) }}</td>
+                        <td>{{ e($oferta->valoracion) }}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -91,7 +88,6 @@
     </div>
 
 </div>
-
 
 
 @endsection

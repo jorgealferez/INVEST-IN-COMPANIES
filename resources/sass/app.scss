@@ -1,18 +1,15 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400');
+@import 'dashboard/icons/font-awesome/css/fontawesome-all.min.css'; //( This is for the icons )
+@import 'dashboard/icons/simple-line-icons/css/simple-line-icons.css'; //( This is for the icons )
+@import 'dashboard/icons/themify-icons/themify-icons.css'; //( This is for the icons )
+@import 'dashboard/icons/material-design-iconic-font/css/materialdesignicons.min.css'; //( This is for the icons )
 
 // Variables
-@import 'variables';
+@import 'variable';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-    background-color: #000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
 
-html,
-body {
-    background-color: #000 !important;
-}
+@import 'carousel.css';

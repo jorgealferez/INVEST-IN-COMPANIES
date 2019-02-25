@@ -24,8 +24,7 @@ class PublicController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
+    public function index(){
         $provincias=Provincia::all();
         return view('public.home')
         ->with(
@@ -36,8 +35,7 @@ class PublicController extends Controller
     }
 
 
-    public function buscador(Request $request)
-    {
+    public function buscador(Request $request){
         $provincias=Provincia::all();
 
         $query[]=["ofertas.active" , "=", 1];
@@ -78,6 +76,17 @@ class PublicController extends Controller
             'request',
             'provincias',
             'ofertas'
+            )
+        );
+    }
+
+    public function origintal()
+    {
+        $provincias=Provincia::all();
+        return view('public.home')
+        ->with(
+            compact(
+            'provincias'
             )
         );
     }

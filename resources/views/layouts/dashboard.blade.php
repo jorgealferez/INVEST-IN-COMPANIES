@@ -14,13 +14,15 @@
         <meta name="author" content="">
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
-        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        {{-- <script src="{{ asset('js/jquery.min.js') }}"></script> --}}
 
+        <script src="{{ asset('js/app.js') }}"></script>
 
+        <link href="{{ asset('css/dashboard.css') }}" id="theme" rel="stylesheet">
+        <link href="{{ asset('css/custom.css') }}" id="theme" rel="stylesheet">
 
         @yield('styles')
-        <link href="{{ asset('css/dashboard.css') }}" id="theme" rel="stylesheet">
-        <link href="{{ asset('css/dashboard/custom.css') }}" id="theme" rel="stylesheet">
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -51,9 +53,7 @@
 
         </div>
         <script src="{{ asset('js/dashboard.js') }}"></script>
-        <script src="{{ asset('js/dashboard/perfect-scrollbar.jquery.min.js') }}"></script>
-        <script src="{{ asset('js/dashboard/waves.js') }}"></script>
-        <script src="{{ asset('js/dashboard/sidebarmenu.js') }}"></script>
+
         {{--
     <script src="{{ asset('js/dashboard/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('js/dashboard/bootstrap/js/popper.min.js') }}"></script>
@@ -128,7 +128,6 @@
                     $(".nav-toggler i").addClass("ti-close");
                 });
 
-
                 // ==============================================================
                 // Auto Seleccion Menu lateral
                 // ==============================================================
@@ -153,7 +152,6 @@
 
                 });
 
-
                 // ==============================================================
                 // Sidebarmenu
                 // ==============================================================
@@ -170,8 +168,6 @@
                 // Resize all elements
                 // ==============================================================
                 $("body").trigger("resize");
-
-
 
             });
 

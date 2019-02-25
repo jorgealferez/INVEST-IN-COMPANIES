@@ -40,6 +40,7 @@ class CreateOfertasTable extends Migration
 
             $table->integer('socios')->default(0)->nullable();
             $table->text('motivo')->nullable();
+            $table->text('descripcion')->nullable();
             $table->integer('empleados')->default(0)->nullable();
             $table->integer('año')->nullable();
             $table->string('name');
@@ -50,11 +51,11 @@ class CreateOfertasTable extends Migration
             $table->string('contactEmail')->nullable();
             $table->string('address')->nullable();
             $table->string('web')->nullable();
-            $table->string('valoracion')->nullable();
+            $table->decimal('valoracion',8,2)->default(0)->nullable();
             $table->string('explotacion1')->nullable();
             $table->string('explotacion2')->nullable();
             $table->string('explotacion3')->nullable();
-            $table->unsignedDecimal('endeudamiento',15,2)->nullable();
+            $table->unsignedDecimal('endeudamiento',8,2)->default(0)->nullable();
             $table->boolean('local')->nullable();
             $table->boolean('active')->default(true);
             $table->boolean('approved')->default(false);

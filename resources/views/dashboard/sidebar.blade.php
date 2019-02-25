@@ -10,44 +10,44 @@
                     <a href="{{ route('dashboard') }}" data-active="/dashboard"><i class="mdi mdi-poll-box"></i><span class="hide-menu">{{ __('Dashboard') }}</span></a>
                 </li>
 
-                <li>
-                    <?php switch (Auth::user()->roles->first()->name) {
 
-                            case 'Admin':?>
+                @if($isAdmin )
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-security-home"></i><span class="hide-menu">{{ __('Asociaciones') }}</a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ e(route('dashboardAsociaciones')) }}" data-active="/asociaciones">Listado</a></li>
                         <li><a href="{{ e(route('dashboardAsociacionesNueva')) }}" data-active="/asociaciones/crear">Crear</a></li>
                     </ul>
                 </li>
-                <?php break;
-                            case 'Asesor': ?>
-                <a href="{{ e(route('dashboardAsociaciones')) }}" data-active="/asociaciones">
-                    <i class="mdi mdi-security-home"></i><span class="hide-menu">{{ __('Mis asociaciones') }}
-                    </span>
-                </a>
-                <?php
-                            break;
+                @endif
 
-                            case 'Gestor':
-                            if(!Auth::user()->asociaciones->isEmpty()){?>
-                <a href="{{ e(route('dashboardAsociacion', Auth::user()->asociaciones->first()->id)) }}" data-active="/asociaciones">
-                    <i class="mdi mdi-security-home"></i>
-                    <span class="hide-menu">{{ __('Mi Asociación') }}</span>
-                </a>
-                <?php
-                    }
-                            break;
-                        } ?>
+                @if($isAsesor)
+                <li>
+                    <a href="{{ e(route('dashboardAsociaciones')) }}" data-active="/asociaciones">
+                        <i class="mdi mdi-security-home"></i><span class="hide-menu">{{ __('Mis asociaciones') }}
+                        </span>
+                    </a>
                 </li>
-                @if ( !Auth::user()->asociaciones->isEmpty() || Auth::user()->hasRole('admin'))
+                @endif
+
+                @if($isGestor)
+                <?php if(!Auth::user()->asociaciones->isEmpty()){?>
+                <li>
+                    <a href="{{ e(route('dashboardAsociacion', Auth::user()->asociaciones->first()->id)) }}" data-active="/asociaciones">
+                        <i class="mdi mdi-security-home"></i>
+                        <span class="hide-menu">{{ __('Mi Asociación') }}</span>
+                    </a>
+                <li>
+                    <?php } ?>
+                    @endif
+
+                    @if ( !Auth::user()->asociaciones->isEmpty() || $isAdmin)
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-tag-text-outline"></i><span class="hide-menu">Ofertas</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ e(route('dashboardOfertas')) }}" data-active="/ofertas">Listado</a></li>
                         <li><a href="{{ e(route('dashboardOfertasNueva')) }}" data-active="/ofertas/crear">Crear</a></li>
                     </ul>
                 </li>
-                @endif @if(Auth::user()->hasAnyRole(['Admin','Asesor']) )
+                @endif @if($isAdmin || $isAsesor)
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Usuarios</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ e(route('dashboardUsuarios')) }}" data-active="/usuarios">Listado</a></li>

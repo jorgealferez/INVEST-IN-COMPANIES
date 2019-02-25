@@ -87,6 +87,12 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withTimestamps();
     }
 
+    public function getFullNameAttribute()
+    {
+        return "{$this->name} {$this->surname}";
+    }
+
+
     public function ofertas()
     {
         return $this
@@ -98,6 +104,16 @@ class User extends Authenticatable implements MustVerifyEmail
         ->belongsToMany('App\Oferta','oferta_inversor','user_id','oferta_id')->withTimestamps();
     }
 
+    public function isAdmin()
+    {
+        foreach ($this->roles()->get() as $role)
+        {
+            if ($role->name == 'Admin')
+            {
+                return true;
+            }
+        }
+    }
 
     public function getRoleClass(){
 

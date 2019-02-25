@@ -17,7 +17,8 @@ Auth::routes(['verify' => true]);
 
 
 Route::get('/','PublicController@index')->name('home');
-Route::match(['get', 'post'],'/buscador','PublicController@buscador')->name('buscador');
+Route::get('/buscador','PublicController@buscador')->name('buscador');
+Route::get('/origintal','PublicController@origintal')->name('origintal');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
@@ -25,7 +26,7 @@ Route::namespace('Dashboard')->group(function () {
 
 
     Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function () {
-        Route::get('/', 'DashboardController@index')->name('dashboard');
+        Route::get('/', 'BoardController@index')->name('dashboard');
         Route::prefix('/asociaciones')->group(function () {
             Route::match(['get', 'post'],'/', 'AsociacionesController@index')->middleware(['asesor'])->name('dashboardAsociaciones');
             Route::get('/crear', 'AsociacionesController@create')->name('dashboardAsociacionesNueva')->middleware(['admin']);
@@ -46,6 +47,7 @@ Route::namespace('Dashboard')->group(function () {
             Route::put('/{id}/update', 'OfertasController@update')->where('id', '[0-9]+');
             Route::put('/{id}/updateUsers', 'OfertasController@updateUsers')->where('id', '[0-9]+');
             Route::post('/delete/{oferta}', 'OfertasController@delete')->name('dashboardOfertaDelete')->where('oferta', '[0-9]+');
+            Route::put('/{id}/updateEstado', 'OfertasController@updateEstado')->name('dashboardOfertasUpdateEstado')->where('id', '[0-9]+');
 
             Route::get('/search', 'OfertasController@search')->name('searchOfertas');
         });

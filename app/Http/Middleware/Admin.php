@@ -15,7 +15,10 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
+
+
         if($request->user()->hasAnyRole(['Admin'])){
+
             return $next($request);
         }
 

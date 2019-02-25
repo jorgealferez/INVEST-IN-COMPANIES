@@ -38,7 +38,6 @@
 <!-- /.row -->
 
 
-
 <div class="featurette bg-primary">
     <form method="POST" class="" action="">
         @csrf @method('POST')
@@ -231,7 +230,6 @@
             disableDefaultUI: true
         });
 
-
         var geocoder = new google.maps.Geocoder;
         geocoder.geocode({
             'address': 'Madrid'
@@ -380,5 +378,6 @@
     }
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgRbrkzKVxsSF0f28mYMe39_Cjd4VkB3w&callback=initMap&region=ES" async defer></script>
+
+@include('public.googlemaps')
 @endsection

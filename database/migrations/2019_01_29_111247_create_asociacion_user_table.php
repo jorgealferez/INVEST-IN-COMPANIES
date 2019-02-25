@@ -15,8 +15,15 @@ class CreateAsociacionUserTable extends Migration
     {
         Schema::create('asociacion_user', function (Blueprint $table) {
             $table->increments('id');
+
+
             $table->integer('asociacion_id')->unsigned();
+            $table->foreign('asociacion_id')->references('id')->on('asociaciones');
+            // $table->integer('asociacion_id')->unsigned();
+
             $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            // $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

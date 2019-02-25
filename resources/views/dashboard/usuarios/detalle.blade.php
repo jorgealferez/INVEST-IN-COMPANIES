@@ -96,7 +96,7 @@
                                 </div>
 
                                 <div class="form-group {{ $errors->has('surname') ? ' has-danger' : '' }}">
-                                    <label class="col-md-12 form-control-label" for="error">{{ __('Nombre') }}</label>
+                                    <label class="col-md-12 form-control-label" for="error">{{ __('Apellidos') }}</label>
 
                                     <div class="col-md-12">
                                         <input type="text" value="{{ old('surname')?old('surname'): e($usuario->surname) }}" placeholder="{{ e($usuario->surname) }}" class="form-control form-control-line {{ $errors->has('surname') ? ' form-control-danger' : '' }}" id="surname" name="surname" required>
@@ -203,11 +203,9 @@
 --}}
 
 
-
 <script>
     $(function () {
         // For select 2
-
 
     });
 

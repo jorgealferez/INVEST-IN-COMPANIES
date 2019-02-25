@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Provincia;
 use Illuminate\Http\Request;
 
-class PublicController extends Controller
+class HomeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,12 +24,12 @@ class PublicController extends Controller
      */
     public function index()
     {
-        $provincias=Provincia::all();
-        return view('public.home')
-        ->with(
-            compact(
-            'provincias'
-            )
-        );
+        // $provincias=Provincia::all();
+        // return view('public.home')
+        // ->with(
+        //     compact(
+        //     'provincias'
+        //     )
+        // );
     }
 }
