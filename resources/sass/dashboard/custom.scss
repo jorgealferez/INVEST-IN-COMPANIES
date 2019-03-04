@@ -14,19 +14,28 @@
 }
 
 
-.roleAd {
+.roleAd,
+.estado-6 {
     background-color: $danger;
 }
 
-.roleAs {
+.roleAs,
+.estado-4 {
     background-color: $primary;
 }
 
-.roleGe {
+.roleGe,
+.estado-5 {
     background-color: $success;
 }
 
-.roleIn {
+.roleIn,
+.estado-3,
+.estado-2 {
+    background-color: $secondary;
+}
+
+.estado-1 {
     background-color: $warning;
 }
 
@@ -34,6 +43,7 @@
     width: 20px;
     height: 20px;
     line-height: 20px;
+    font-size: 75%;
 }
 
 .roleMedium {
@@ -59,6 +69,12 @@
     .profile-rol {
         margin-bottom: -80px;
     }
+}
+
+.etiqueta-sidebar {
+    font-size: 90%;
+    margin-top: 7px;
+    float: right;
 }
 
 .profile-status {
@@ -133,6 +149,131 @@
             font-weight: 600;
         }
     }
+
+    h6 {
+        line-height: 20px;
+    }
+
+    // .card-seccion-usuarios {
+    //     border-top: 5px solid $warning;
+    // }
+
+    // .card-seccion-asociaciones {
+    //     border-top: 5px solid $primary;
+    // }
+    .card-subtitle {
+        opacity: .7;
+    }
+
+    &.card-tabs {
+        border-top: none !important;
+    }
+}
+
+.mapa-asociaciones {
+    height: 130px;
+    border: 1px solid $themecolor;
+}
+
+.listaTabs {
+    display: inline-flex;
+    border: none;
+
+    li.nav-item {
+        box-shadow: $primary-shadow;
+        -webkit-box-shadow: $primary-shadow;
+        border: 1px solid #d7dfe3 !important;
+        border-bottom: none;
+
+        a {
+
+
+            &:hover {
+
+                background-color: $info;
+                opacity: .7;
+                color: $white;
+            }
+
+            &.active,
+            &.active:hover {
+                color: $white;
+                opacity: 1;
+                font-weight: 500;
+                background-color: $info;
+                border-bottom: none !important;
+            }
+        }
+    }
+}
+
+.tabsOferta {
+    li.nav-item {
+        a.nav-link {
+
+            padding: .65em;
+
+            font-size: 100%;
+        }
+    }
+}
+
+@media (max-width: 1390px) {
+
+    .tabsOferta {
+        li.nav-item {
+            a.nav-link {
+                padding: .5em;
+
+                font-size: 80%;
+            }
+        }
+    }
+}
+
+@media (max-width: 930px) {
+
+    .tabsOferta {
+        li.nav-item {
+            a.nav-link {
+                padding: .75em;
+
+                font-size: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 630px) {
+
+    .tabsOferta {
+        li.nav-item {
+            a.nav-link {
+                padding: .5em;
+
+                font-size: 80%;
+            }
+        }
+    }
+}
+
+.tab-usuarios-link {
+    padding: 1rem;
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    color: #67757c;
+
+    &:hover {
+        color: #67757c;
+
+    }
+}
+
+.tab-usuarios-content {
+    background-color: $white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 0;
 }
 
 ul.typeahead {
@@ -154,11 +295,16 @@ table {
 
     }
 
-    &.tabla-usuarios {
+    &.tabla-usuarios-asociacion {
         font-size: 80%;
+    }
+
+    &.tabla-usuarios {
+        font-size: 90%;
+        border-collapse: collapse;
 
         thead {
-            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+            border-bottom: none;
 
             tr {
                 th {
@@ -187,7 +333,7 @@ table {
 
         tfoot {
 
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-top: none;
 
             td {
                 border: none;
@@ -195,20 +341,56 @@ table {
         }
 
         tbody {
+            border-top: 2px solid $secondary;
+            border-bottom: 2px solid $secondary;
+
             tr {
+                background-color: #f2f2f2;
+                border-color: $sidebar-icons;
                 border-left: 4px solid $white;
 
                 &:hover {
                     border-left: 4px solid $themecolor;
+                    background: $info-over;
                 }
+
+                td {
+
+                    border-bottom: 1px solid #cccccc;
+                }
+
+                &.registro-eliminado {
+                    background-color: #f1dddd4a;
+                    color: #b3939382;
+
+                    &:hover {
+                        border-left: 4px solid $danger;
+                        background-color: #e29595f5;
+                        color: $white;
+
+                        span.badge {
+                            opacity: 1;
+                        }
+                    }
+
+                    span.badge {
+                        opacity: .5;
+                    }
+
+                }
+
             }
 
         }
     }
 
-    &.table-hover {
+
+    &.tabla-inversores {
         tbody {
-            tr:nth-of-type(odd) {
+
+            font-size: 80%;
+
+            tr {
                 background: #f2f2f2;
             }
 

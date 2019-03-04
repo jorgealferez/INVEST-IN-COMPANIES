@@ -7,10 +7,12 @@ use App\User;
 use App\Forma;
 use App\Oferta;
 use App\Sector;
+use App\Inversion;
 use App\Poblacion;
 use App\Provincia;
 use App\Asociacion;
 use App\Valoracion;
+use App\Estadoinversor;
 use Illuminate\Http\Request;
 use App\Notifications\OfertaNueva;
 use App\Http\Requests\OfertaRequest;
@@ -23,7 +25,6 @@ use App\Http\Controllers\DashBoardController;
 class OfertasController extends DashBoardController
 {
 
-
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +35,10 @@ class OfertasController extends DashBoardController
         Parent::RolesCheck();
         $provincias=Provincia::all();
         $asociaciones=Asociacion::all();
-        $query[]=["ofertas.active" , "<>", null];
+        $query=array();
+        if (!$this->isAdmin){
+            $query[]=["ofertas.active" , "=", 1];
+        }
         if ($request->input('name')) {
             $query[]=["ofertas.name","LIKE","%{$request->input('name')}%"];
         }
@@ -67,6 +71,7 @@ class OfertasController extends DashBoardController
         }
 
         if ($this->isAsesor) {
+            // dd(Auth::user()->getAsociacionesDelUsario(),Auth::user()->id);
             $ofertas= $ofertas
             ->whereHas('asociacion', function ($q) {
                 $q->whereIn('asociacion_id', Auth::user()->getAsociacionesDelUsario());
@@ -190,7 +195,7 @@ class OfertasController extends DashBoardController
         if ($this->isGestor) {
             $oferta->asociacion_id = Auth::user()->asociaciones->first()->id;
             $oferta->user_id = Auth::user()->id;
-            if (Auth::user()->permisoOferta($oferta->asociacion_id)) {
+            if (Auth::user()->permisoOferta($oferta->user_id)) {
                 $oferta->save();
                 $this->NotificacionNuevaOferta($oferta);
                 return redirect()->route('dashboardOfertas')->with([
@@ -209,12 +214,13 @@ class OfertasController extends DashBoardController
         $errors = Session::get('errors');
         $nueva = false;
         $formasJuridicas=Forma::all();
+        $estadosInversor=Estadoinversor::all();
         $sectores=Sector::all();
         $provincias=Provincia::all();
         if ($request->tab) {
             $tab=$request->tab;
         } else {
-            $tab="modificar";
+            $tab="inversores";
         }
         // if(old('provincia_id')){
         //     $poblaciones = Poblacion::where('provincia_id',old('provincia_id'))->get();
@@ -227,27 +233,30 @@ class OfertasController extends DashBoardController
             $notificacion->markAsRead();
             $nueva = true;
         }
+        $oferta->load('inversiones','provincia','poblacion','asociacion');
+        $oferta->inversiones->load('usuario.roles','estado');
         if ($oferta) {
             $poblaciones = Poblacion::where('provincia_id', $oferta->provincia_id)->get();
             if ($request->old('tab')) {
                 $tab=$request->old('tab');
             }
 
-            // dd(Auth::user()->permisoOferta($oferta->id));
             if ($this->isAdmin) {
                 $asociacionesDisponibles=Auth::user()->asociacionesDisponiblesByRole();
                 $usuariosAsociacion=$asociacionesDisponibles->find($oferta->asociacion->id)->usuarios;
             }
-            if ($this->isAsesor) {
+            if ($this->isAsesor && $oferta->active) {
                 $asociacionesDisponibles=Asociacion::whereIn('id', Auth::user()->getAsociacionesDelUsario())->get();
                 if (!empty($asociacionesDisponibles->find($oferta->asociacion_id)->usuarios)) {
                     $usuariosAsociacion=$asociacionesDisponibles->find($oferta->asociacion_id)->usuarios;
                 } else {
                     return redirect('dashboard/ofertas');
                 }
+            }elseif($this->isAsesor && $oferta->active==false) {
+                return redirect('dashboard/ofertas');
             }
-            if ($this->isGestor || $this->isInversor) {
-                if (!Auth::user()->permisoOferta($oferta->asociacion_id)) {
+            if ($this->isGestor || $this->isInversor ) {
+                if (!Auth::user()->permisoOferta($oferta->user_id)) {
                     return redirect('dashboard/ofertas');
                 }
             }
@@ -259,6 +268,7 @@ class OfertasController extends DashBoardController
                         'tab',
                         'request',
                         'usuariosAsociacion',
+                        'estadosInversor',
                         'formasJuridicas',
                         'sectores',
                         'provincias',
@@ -287,7 +297,7 @@ class OfertasController extends DashBoardController
         if ($request->tab) {
             $tab=$request->tab;
         }
-        // dd($oferta, $request->valoracion);
+        // dd($oferta->valoracion,$this->convierteNum($request->valoracion));
         if ($this->isAdmin && $request->user_id) {
             $oferta->user_id=$request->user_id;
         }
@@ -301,7 +311,7 @@ class OfertasController extends DashBoardController
             }
         }
         if ($this->isGestor) {
-            if (Auth::user()->permisoOferta($oferta->asociacion_id)) {
+            if (Auth::user()->permisoOferta($oferta->user_id)) {
                 $oferta->user_id= Auth::user()->id;
             } else {
                 return redirect('dashboard/ofertas');
@@ -327,6 +337,19 @@ class OfertasController extends DashBoardController
         ->with([
             'success'=> true,
             'mensaje'=>__('<strong>'.$oferta->name.'</strong> modificada correctamente')
+        ]);
+
+    }
+
+    public function updateEstadoInversor(OfertaRequest $request){
+        $inversion = Inversion::findOrFail($request->id);
+        $inversion->estado_id = $request->input('estado_id');
+        $inversion->save();
+        $tab = "inversores";
+        return redirect()->action('Dashboard\OfertasController@show', ['oferta'=>$inversion->oferta_id,'tab'=>$tab])
+        ->with([
+            'success'=> true,
+            'mensaje'=>__('Estado de inversión acutalizado')
         ]);
 
     }
@@ -358,8 +381,9 @@ class OfertasController extends DashBoardController
 
     public function convierteNUM($valor)
     {
-        $valor = str_replace(".", "", $valor);
-        $valor = str_replace(",", ".", $valor);
-        return $valor;
+        $valoracion = str_replace(".", "", $valor);
+
+        $valorFinal = str_replace(",", ".", $valoracion);
+        return $valorFinal;
     }
 }

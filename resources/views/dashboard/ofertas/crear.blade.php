@@ -18,7 +18,7 @@
 
                         <h4 class="card-title mb-0 title-section">
                             <i class="mdi mdi-tag-multiple"></i>
-                            {{ __('Crear nueva oferta')}}
+                            {{ __('Nueva oferta')}}
                         </h4>
                     </div>
                     <hr class="mt-0">

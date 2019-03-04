@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\DB;
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Asociacion extends Model
 {
 
 
+    use Notifiable;
     use DatesTranslator;
     use Sortable;
 
@@ -25,7 +27,7 @@ class Asociacion extends Model
     protected $fillable = [
         'name', 'address','email','phone','active','contact','contactPhone','contactEmail','state'
     ];
-    public $sortable = ['id','name','active','created_at'];
+    public $sortable = ['id','name','phone','email','address','created_at'];
 
 
     public function usuarios()
@@ -90,5 +92,9 @@ class Asociacion extends Model
         return $this->pluck('id');
     }
 
+    public function getFullNameAttribute()
+    {
+        return "{$this->name} {$this->surname}";
+    }
 
 }

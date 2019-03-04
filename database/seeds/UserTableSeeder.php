@@ -75,7 +75,7 @@ class UserTableSeeder extends Seeder
             $user = new User();
             $user->name = $faker->firstName;
             $user->surname = $faker->lastName;
-            $user->phone = $faker->phoneNumber;
+            $user->phone =  "6".$faker->ean8;
             $user->LOPD = true;
             $user->active = true;
             $user->email = $faker->email;

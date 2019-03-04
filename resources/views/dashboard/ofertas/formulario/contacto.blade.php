@@ -82,11 +82,11 @@
                     </span>
                 </div>
                 <input type="text" value="{{ ((old( 'contactPhone')) ? old( 'contactPhone') : $oferta->contactPhone ) }}" class="form-control form-control-line
-                {{ $errors->has('contactPhone') ? ' form-control-danger' : '' }}" id="contactPhone" name="contactPhone">
+                {{ $errors->has('contactPhone') ? ' form-control-danger' : '' }}" id="contactPhone" name="contactPhone" maxlength="9">
             </div>
-            @if($errors->has('phone'))
+            @if($errors->has('contactPhone'))
 
-            <div class="form-control-feedback">{{ $errors->first('phone') }}</div>
+            <div class="form-control-feedback">{{ $errors->first('contactPhone') }}</div>
             @endif
 
         </div>

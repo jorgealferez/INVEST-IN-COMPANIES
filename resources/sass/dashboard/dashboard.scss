@@ -1,7 +1,7 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-@import '../variable.scss'; //(All the predefine varialbes colors and etc)
+@import '..\\variable.scss'; //(All the predefine varialbes colors and etc)
 
 @import 'app'; //( All the Common scss contain here )
 @import 'sidebar'; //( Left sidebar scss contain here )

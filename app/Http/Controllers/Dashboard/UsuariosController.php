@@ -52,7 +52,7 @@ class UsuariosController extends DashBoardController
         if ($this->isAdmin){
             $query[]=['id','<>',Auth::user()->id];
          } else {
-            $query=array();
+            $query[]=["active" , "=", 1];
         }
         if($request->input('name')) {
             $query[]=[DB::raw("CONCAT(name, ' ', surname)"), 'LIKE', "%".$request->input('name')."%"];
@@ -163,14 +163,27 @@ class UsuariosController extends DashBoardController
          Parent::RolesCheck();
         if($usuario->id<>Auth::user()->id){
             $errors = Session::get('errors');
-
-            if(isset($errors) && $errors->has('role')){
-                $tab="roles";
-            }else {
+            if ($request->tab) {
+                $tab=$request->tab;
+            } else {
                 $tab="modificar";
             }
+            if(isset($errors)){
+                if ($errors->has('role')) {
+                    $tab = "roles";
+                }elseif ($errors->has('active')) {
+                    $tab = "estado";
+                }else {
+                    $tab="modificar";
+                }
+            }
             if ($usuario) {
-                $roles=Role::all('id','name');
+
+                if ($this->isAdmin) {
+                    $roles=Role::all('id', 'name');
+                }elseif ($this->isAsesor) {
+                    $roles=Role::all('id','name')->whereIn('name', ['Asesor','Gestor']);
+                }
 
                 $action = action('Dashboard\UsuariosController@update', ['id' => $usuario->id]);
                 return view('dashboard.usuarios.detalle')
@@ -228,13 +241,30 @@ class UsuariosController extends DashBoardController
         $user->fill($request->all());
         $user->active = ($request['active']=="on") ? 1 : 0;
         $user->save();
-        return redirect()->route('dashboardUsuario',$user)->with([
+        $tab="modificar";
+        return redirect()->action('Dashboard\UsuariosController@show',['usuario'=>$user,'tab'=>$tab])->with([
             'success'=> true,
             'mensaje'=>__('<strong>'.$user->name.'</strong> modificado correctamente')
         ]);
 
 
     }
+
+    public function updateEstado(UsuarioRequest $request)
+    {
+         Parent::RolesCheck();
+        $user = User::find($request->id);
+        $user->active = $request->active;
+        $user->save();
+        $tab="estado";
+        return redirect()->action('Dashboard\UsuariosController@show',['usuario'=>$user,'tab'=>$tab])->with([
+            'success'=> true,
+            'mensaje'=>__('Estado de <strong>'.$user->name.'</strong> modificado correctamente')
+        ]);
+
+
+    }
+
 
     public function updateRol(UsuarioRequest $request)
     {  Parent::RolesCheck();
@@ -262,12 +292,11 @@ class UsuariosController extends DashBoardController
      */
     public function delete(User $usuario)
     {
-        $relationMethods = ['asociacion'];
-        foreach ($relationMethods as $relationMethod) {
-            if ($usuario->$relationMethod()->count() > 0) {
-                return redirect()->route('dashboardUsuarios')->with(['error'=> true,'mensaje'=>__('No se puede eliminar el usuario '.$usuario->name)]);
-            }
-        }
+        // dd($usuario->asociaciones()->count());
+        //     if ($usuario->asociaciones()->count() > 0) {
+        //         return redirect()->route('dashboardUsuarios')->with(['error'=> true,'mensaje'=>__('No se puede eliminar el usuario '.$usuario->name)]);
+        //     }
+
         $usuario->fill(['active'=>false]);
         $usuario->save();
 

@@ -39,7 +39,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function role()
     {
         return $this
-        ->belongsTo('App\Role');
+        ->belongsTo('App\Role','role_user','user_id','role_id');
     }
     public function roles()
     {
@@ -101,8 +101,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function inversiones()
     {
         return $this
-        ->belongsToMany('App\Oferta','oferta_inversor','user_id','oferta_id')->withTimestamps();
+        ->hasMany('App\Inversion')->withTimestamps();
     }
+
 
     public function isAdmin()
     {
@@ -152,18 +153,15 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getAsociacionesDelUsario(){
 
-        $asociacion = $this->asociaciones()->pluck('asociaciones.id');
+        $asociacion = $this->asociaciones()->where('active',1)->pluck('asociaciones.id');
         return $asociacion;
 
     }
 
 
-    public function permisoOferta($asociacion_id){
-       if(
-            in_array(
-                $asociacion_id,
-                $this->getAsociacionesDelUsario()->toArray()
-            )){
+    public function permisoOferta($oferta_id){
+       if($this->id==$oferta_id){
+
             return true;
         }else{
             return false;
@@ -177,7 +175,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
         switch ($this->roles()->first()->name) {
             case 'Admin':
-                $asociaciones=Asociacion::where('active',1)->get();
+                $asociaciones=Asociacion::all();
                 break;
             case 'Asesor':
             case 'Gestor':

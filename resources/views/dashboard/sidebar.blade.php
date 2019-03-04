@@ -28,10 +28,11 @@
                     </a>
                 </li>
                 @endif
-
                 @if($isGestor)
-                <?php if(!Auth::user()->asociaciones->isEmpty()){?>
+                <?php if(!Auth::user()->asociaciones->isEmpty() && Auth::user()->asociaciones->contains('active',1) ){?>
                 <li>
+
+                    {{ dd(Auth::user()->asociaciones->contains('active',1)) }}
                     <a href="{{ e(route('dashboardAsociacion', Auth::user()->asociaciones->first()->id)) }}" data-active="/asociaciones">
                         <i class="mdi mdi-security-home"></i>
                         <span class="hide-menu">{{ __('Mi Asociación') }}</span>
@@ -41,14 +42,28 @@
                     @endif
 
                     @if ( !Auth::user()->asociaciones->isEmpty() || $isAdmin)
-                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-tag-text-outline"></i><span class="hide-menu">Ofertas</span></a>
+                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                        <i class="mdi mdi-tag-text-outline"></i>
+                        <span class="hide-menu">
+                            Ofertas
+                            @if (isset($notificaciones) && count ($notificaciones)>0)
+                            <span class="badge badge-success bg-warning etiqueta-sidebar">
+                                {{-- <i class="mdi mdi-star"></i> --}}
+                                {{ count ($notificaciones) }}</span>
+                            @endif
+                        </span>
+                    </a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ e(route('dashboardOfertas')) }}" data-active="/ofertas">Listado</a></li>
                         <li><a href="{{ e(route('dashboardOfertasNueva')) }}" data-active="/ofertas/crear">Crear</a></li>
                     </ul>
                 </li>
                 @endif @if($isAdmin || $isAsesor)
-                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Usuarios</span></a>
+                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                        <i class="mdi mdi-account-multiple"></i>
+                        <span class="hide-menu">Usuarios</span>
+                    </a>
+
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ e(route('dashboardUsuarios')) }}" data-active="/usuarios">Listado</a></li>
                         <li><a href="{{ e(route('dashboardUsuariosNuevo')) }}" data-active="/usuarios/crear">Crear</a></li>

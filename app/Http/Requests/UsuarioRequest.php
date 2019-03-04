@@ -26,33 +26,33 @@ class UsuarioRequest extends FormRequest
     public function rules()
     {
      //    dd($this->id);
-         
+
         $rules = [];
 
         if ($this->request->has('name')) {
              $rules['name'] = ['required'];
         }
-    
+
         if ($this->request->has('surname')) {
              $rules['surname'] = ['required'];
         }
-    
+
         if ($this->request->has('phone')) {
-             $rules['phone'] = ['string','regex:^(\+34|0034|34)?[\s|\-|\.]?[6|7|8|9][\s|\-|\.]?([0-9][\s|\-|\.]?){8}$^','max:9|min:9'];
+             $rules['phone'] = ['required','regex:/^[6|7|8|9][0-9]{8}$/','max:9|min:9'];
         }
-    
+
         if ($this->request->has('email')) {
              $rules['email'] = ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$this->id.',id'];
         }
-    
+
         if ($this->request->has('password')) {
              $rules['password'] = ['required', 'string', 'min:2', 'confirmed'];
         }
-    
+
         if ($this->request->has('role')) {
              $rules['role'] = ['required',Rule::notIn(['0'])];
         }
-       
+
         return $rules;
         // return [
         //     'name' => ['required'],
@@ -81,6 +81,6 @@ class UsuarioRequest extends FormRequest
             '*' =>  __('Error'),
         ];
     }
-    
-   
+
+
 }

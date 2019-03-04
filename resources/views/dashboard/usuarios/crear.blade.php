@@ -12,7 +12,7 @@
                 <div class="card-body">
 
 
-                    <h4 class="card-title"><i class="mdi mdi-account-multiple-plus"></i> {{ __('Crear nueva
+                    <h4 class="card-title"><i class="mdi mdi-account-multiple-plus"></i> {{ __('Nuevo
                                 usuario') }}</h4>
 
                 </div>

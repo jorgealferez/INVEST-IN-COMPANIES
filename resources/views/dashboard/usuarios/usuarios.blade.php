@@ -14,9 +14,7 @@
 
 
                     <h4 class="card-title mb-0 title-section">
-                        <i class="mdi mdi-account-multiple"></i>
-                        {{ __('Listado de usuarios')}}
-
+                        <span class="lstick"></span> {{ __('Listado de usuarios')}}
                         <a href="{{ e(route('dashboardUsuariosNuevo')) }}" class="btn btn-verde btn-sm float-right"><i class="fas fa-plus-circle text-white"></i> {{ __('Nuevo')}}</a>
                     </h4>
 
@@ -29,7 +27,7 @@
                         <input type="hidden" name="search" value="1">
 
                         <div class="table-responsive   no-wrap">
-                            <table class="table table-striped table-hover tabla-usuarios">
+                            <table class="table  table-hover tabla-usuarios">
                                 <thead>
                                     <tr>
 
@@ -71,7 +69,7 @@
                                     <?php
                                             // $usuarioRole= $usuario->roles->first()->name;
                                         ?>
-                                    <tr>
+                                    <tr class="@if(!$usuario->active) registro-eliminado @endif">
                                         <?php /*   <td>
 
                                                 <div class="message-box contact-box">
@@ -96,16 +94,16 @@
                                         @if($isAdmin)
                                         <td>
                                             @foreach ($usuario->asociaciones as $asociacion)
-                                            {{ e($asociacion->name) }}
+                                            {{ e($asociacion->name) }}<br>
                                             @endforeach
                                         </td>
                                         @endif
                                         <td class="text-right">
                                             <a href="<?php echo urldecode(route('dashboardUsuario',['usuario'=>$usuario])); ?>" class="text-verde" title="{{ __('Ver') }}">
-                                                <i class="fas fa-eye text-verde"></i>
+                                                <i class="fa fa-cog text-secondary" style="font-size:150%"></i>
                                             </a>
-                                            @if($usuario->asociacion_count==0 && $isAdmin)
-                                            <a href="#" class=" borrarUsuario" data-toggle="modal" data-url="<?php echo urldecode(route('dashboardUsuarioDelete',['usuario'=>$usuario])); ?>" data-id="{{$usuario->id}}" data-name="{{$usuario->name}}" data-target="#custom-width-modal" title="{{ __('Eliminar') }}"> <i class="fas fa-window-close text-danger"></i></a>
+                                            @if($isAdmin && $usuario->active)
+                                            <a href="#" class="borrarUsuario" data-toggle="modal" data-url="<?php echo urldecode(route('dashboardUsuarioDelete',['usuario'=>$usuario])); ?>" data-id="{{$usuario->id}}" data-name="{{$usuario->name}}"  data-target="#borrarModal" title="{{ __('Eliminar') }}"> <i class="mdi mdi-close-circle text-danger" style="font-size:150%"></i></a>
                                             @endif
                                         </td>
                                     </tr>
@@ -150,47 +148,26 @@
 
 </div>
 
-<!-- Delete Model -->
-<form method="POST" class="form-control-line form-material" action="" id="formBorrar">
-    @csrf @method('POST')
-    <input type="hidden" value="" name="usuario_id_borrar" id="usuario_id_borrar">
-
-    <div id="borrar-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
-
-        <div class="modal-dialog" style="width:55%;">
-
-            <div class="modal-content">
-
-                <div class="modal-body">
-                    <h4 id="texto-modal-borrar"></h4>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default waves-effect remove-data-from-delete-form" data-dismiss="modal">{{ __('Cerrar') }}</button>
-                    <button type="submit" class="btn btn-danger waves-effect waves-light" id="BotonEliminar">{{ __('Eliminar') }}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
+@include('dashboard.modalBorrar')
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/bootstrap3-typeahead.min.js') }}" type="text/javascript"></script>
+{{-- <script src="{{ asset('js/bootstrap3-typeahead.min.js') }}" type="text/javascript"></script> --}}
 
 <script>
-    $(document).on('click', '.borrarUsuario', function (e) {
-        e.preventDefault();
-        $('#texto-modal-borrar').html('Seguro que deseas borrar la asociación ' + ' <strong>' + $(this).data('name') + ' </strong>');
-        $('#usuario_id_borrar').val($(this).data('id'));
-        $('#BotonEliminar').on('click', function (e) {
-            e.preventDefault();
-            $('#formBorrar').attr('action', "/usuarios/delete/" + $('#usuario_id_borrar').val());
-            $('#formBorrar').submit();
-            $form = '';
+     $(document).ready(function ($) {
+        $('#borrarModal').on("show.bs.modal", function (event) {
+
+            $('#texto-modal-borrar').html('Seguro que deseas borrar el usuario ' + ' <strong>' + $(event.relatedTarget).data('name') + ' </strong>');
+            $('#id_borrar').val($(event.relatedTarget).data('id'));
+            $('#BotonEliminar').on('click', function (e) {
+                $('#formBorrar').attr('action', "/dashboard/usuarios/delete/" + $('#id_borrar').val());
+                $('#formBorrar').submit();
+                $form = '';
+            });
         });
-        $('#borrar-modal').modal('show');
     });
+   
 
     $("#btnreset").click(function () {
         $("#formSearch").trigger("reset");

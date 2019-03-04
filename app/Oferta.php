@@ -50,9 +50,9 @@ class Oferta extends Model
        'valoracion',
        'web',
     ];
-    protected $casts = [
-        'endeudamiento' => 'decimal:2',
-    ];
+    // protected $casts = [
+    //     'endeudamiento' => 'decimal:2',
+    // ];
     public $sortable = ['id','name','cif','created_at','approved'];
 
     public function userSortable($query, $direction)
@@ -102,16 +102,28 @@ class Oferta extends Model
 
     }
 
-    public function inversores()
+    // public function inversores()
+    // {
+    //     return $this
+    //     ->belongsToMany('App\User','oferta_inversor','oferta_id','user_id')->with('estado_id')->withTimestamps();
+    // }
+
+    public function inversiones()
     {
-        return $this
-        ->belongsToMany('App\User','oferta_inversor','oferta_id','user_id')->withTimestamps();
+        return $this->hasMany('App\Inversion');
     }
 
     public function getValoracionAttribute($value)
     {
-        return number_format ($value,2,',','.');
+        return number_format ($value,2,',','');
     }
+    // public function setValoracionAttribute($value)
+    // {
+    //     $valor = str_replace(".", "", $value);
+    //     $valorFinal = str_replace(",", ".", $valor);
+    //     // dd($valorFinal);
+    //     return $valorFinal;
+    // }
     public function getEndeudamientoAttribute($value)
     {
         return number_format ($value,2,',','.');

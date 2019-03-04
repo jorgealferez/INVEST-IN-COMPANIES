@@ -12,11 +12,13 @@ const mix = require('laravel-mix');
  */
 
 mix.autoload({
-    jquery: ['$', 'global.jQuery', "jQuery", "global.$", "jquery", "global.jquery"]
-});
-
-mix.js(['resources/js/app.js'], 'public/js/app.js').sass('resources/sass/app.scss', 'public/css');
-mix.copyDirectory('resources/images', 'public/images');
+    jquery: ['$', 'global.jQuery', "jQuery", "global.$", "jquery", "global.jquery"],
+    'popper.js/dist/umd/popper.js': ['Popper']
+}).js(['resources/js/app.js'], 'public/js/').sass('resources/sass/app.scss', 'public/css').version();
+mix.copyDirectory([
+    'resources/images',
+    'resources/js/dashboard/plugins/multiselect/img',
+], 'public/images');
 // mix.js('resources/js/dashboard/plugins/jquery/jquery.min.js', 'public/js');
 
 /*
@@ -28,7 +30,8 @@ mix.copyDirectory('resources/images', 'public/images');
 mix.js(
     [
         // 'resources/js/dashboard/plugins/bootstrap/js/popper.min.js',
-        // 'resources/js/dashboard/plugins/bootstrap/js/bootstrap.min.js'
+        // 'resources/js/dashboard/plugins/bootstrap/js/bootstrap.min.js',
+        // 'node_modules/bootstrap/dist/js/bootstrap.min.js',
         'resources/js/dashboard/plugins/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js',
         'resources/js/dashboard/waves.js',
         'resources/js/dashboard/sidebarmenu.js',
@@ -45,6 +48,9 @@ mix.sass('resources/sass/dashboard/dashboard.scss', 'public/css').sourceMaps();
  */
 mix.copy(
     [
+        'resources/js/dashboard/waves.js',
+        'resources/js/dashboard/sidebarmenu.js',
+        'resources/js/dashboard/plugins/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js',
         'resources/js/dashboard/plugins/sparkline/jquery.sparkline.min.js',
         'resources/js/dashboard/plugins/chartist-js/dist/chartist.min.js',
         'resources/js/dashboard/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js',
@@ -54,10 +60,14 @@ mix.copy(
         'resources/js/dashboard/plugins/styleswitcher/jQuery.style.switcher.js',
         'resources/js/dashboard/plugins/select2/dist/js/select2.full.min.js',
         'resources/js/dashboard/plugins/bootstrap-switch/bootstrap-switch.min.js',
+        'resources/js/dashboard/plugins/multiselect/js/jquery.multi-select.js',
         'resources/js/dashboard/bootstrap3-typeahead.min.js',
     ], 'public/js/dashboard/').version().sourceMaps();
 
-mix.copy('resources/js/dashboard/plugins/select2/dist/css/select2.min.css', 'public/css').sourceMaps();
+mix.copy([
+    'resources/js/dashboard/plugins/select2/dist/css/select2.min.css',
+    'resources/js/dashboard/plugins/multiselect/css/multi-select.css',
+], 'public/css').sourceMaps();
 mix.sass('resources/sass/dashboard/custom.scss', 'public/css').sourceMaps();
 
 // mix.copy('resources/js/dashboard/plugins/bootstrap-switch/bootstrap-switch.min.css', 'public/css/');

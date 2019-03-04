@@ -21,7 +21,6 @@ class OfertaTableSeeder extends Seeder
     {
         //
         $faker = Faker::create('es_ES');
-    	// foreach (range(1,6) as $index) {
             foreach (range(1,10) as $index) {
                 $oferta = new Oferta();
                 $oferta->user_id = User::whereHas('roles', function($q){$q->whereIn('name', ['Gestor','Asesor']);})->get()->random()->id;
@@ -31,10 +30,10 @@ class OfertaTableSeeder extends Seeder
                 $oferta->año = $faker->year;
                 $oferta->approved =  random_int(0,1);
                 $oferta->asociacion_id =  User::find($oferta->user_id)->getAsociacionesDelUsario()->first();
-                $oferta->cif = $faker->ean8;
+                $oferta->cif = "A".$faker->ean8;
                 $oferta->contact = $faker->firstName;
                 $oferta->contactEmail = $faker->email;
-                $oferta->contactPhone = $faker->phoneNumber;
+                $oferta->contactPhone = "6".$faker->ean8;
                 $oferta->contactSurname = $faker->lastName;
                 $oferta->descripcion = $faker->text;
                 $oferta->empleados =  random_int(1,100);
@@ -46,13 +45,12 @@ class OfertaTableSeeder extends Seeder
                 $oferta->local = $faker->boolean;
                 $oferta->motivo = $faker->text;
                 $oferta->name = 'Oferta '.$index;
-                $oferta->phone =  $faker->phoneNumber;
                 $oferta->provincia_id = Provincia::inRandomOrder()->first()->id;
                 $oferta->poblacion_id = Poblacion::where('provincia_id',$oferta->provincia_id )->inRandomOrder()->first()->id;
                 $oferta->sector_id = Sector::inRandomOrder()->first()->id;
                 $oferta->socios = $faker->numberBetween(1,5);
                 $oferta->valoracion = $faker->randomFloat(2,1000,1000000);
-                $oferta->web = $faker->freeEmailDomain;
+                $oferta->web = "www.google.es";
 
 
                 $oferta->save();

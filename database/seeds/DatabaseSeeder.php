@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(ValoracionTableSeeder::class);
         $this->call(FormaTableSeeder::class);
         $this->call(SectorTableSeeder::class);
+        $this->call(EstadoinversorTableSeeder::class);
 
         // La creación de ASociaciones de roles debe ejecutarse antes de la creación de usuarios
         $this->call(AsociacionTableSeeder::class);
@@ -33,5 +34,7 @@ class DatabaseSeeder extends Seeder
 
         // Ofertas
         $this->call(OfertaTableSeeder::class);
+        // Inersiones
+        $this->call(InversionesTableSeeder::class);
     }
 }

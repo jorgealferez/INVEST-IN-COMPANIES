@@ -48,20 +48,24 @@ Route::namespace('Dashboard')->group(function () {
             Route::put('/{id}/updateUsers', 'OfertasController@updateUsers')->where('id', '[0-9]+');
             Route::post('/delete/{oferta}', 'OfertasController@delete')->name('dashboardOfertaDelete')->where('oferta', '[0-9]+');
             Route::put('/{id}/updateEstado', 'OfertasController@updateEstado')->name('dashboardOfertasUpdateEstado')->where('id', '[0-9]+');
+            Route::put('/{id}/updateEstadoInversor', 'OfertasController@updateEstadoInversor')->name('dashboardOfertasUpdateEstadoInversor')->where('id', '[0-9]+');
 
             Route::get('/search', 'OfertasController@search')->name('searchOfertas');
         });
 
         Route::get('/perfil', 'UsuariosController@profile')->name('perfilUsuario')->where('usuario', '[0-9]+');
             Route::any('/perfilUpdate', 'UsuariosController@profileUpdate');
+
+
         Route::prefix('/usuarios')->group(function () {
 
             Route::match(['get', 'post'],'/', 'UsuariosController@index')->name('dashboardUsuarios')->middleware(['asesor']);
             Route::get('/crear', 'UsuariosController@create')->name('dashboardUsuariosNuevo')->middleware(['asesor']);
             Route::get('/store', 'UsuariosController@store')->middleware(['asesor']);
             Route::get('/{usuario}', 'UsuariosController@show')->name('dashboardUsuario')->where('usuario', '[0-9]+')->middleware(['asesor']);
-            Route::any('/{id}/update', 'UsuariosController@update')->middleware(['admin'])->where('id', '[0-9]+');
-            Route::any('/{id}/updateRol', 'UsuariosController@updateRol')->middleware(['admin'])->where('id', '[0-9]+');
+            Route::any('/{id}/update', 'UsuariosController@update')->middleware(['asesor'])->where('id', '[0-9]+');
+            Route::any('/{id}/updateEstado', 'UsuariosController@updateEstado')->middleware(['admin'])->where('id', '[0-9]+');
+            Route::any('/{id}/updateRol', 'UsuariosController@updateRol')->middleware(['asesor'])->where('id', '[0-9]+');
             Route::post('/delete/{usuario}', 'UsuariosController@delete')->name('dashboardUsuarioDelete')->where('usuario', '[0-9]+')->middleware(['admin']);
 
             Route::get('/search', 'UsuariosController@search')->name('searchUsuarios');

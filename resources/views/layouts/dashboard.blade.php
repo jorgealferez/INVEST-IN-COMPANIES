@@ -18,7 +18,10 @@
 
         <script src="{{ asset('js/app.js') }}"></script>
 
+        {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> --}}
+
         <link href="{{ asset('css/dashboard.css') }}" id="theme" rel="stylesheet">
+
         <link href="{{ asset('css/custom.css') }}" id="theme" rel="stylesheet">
 
         @yield('styles')
@@ -32,6 +35,7 @@
     </head>
 
     <body class="fix-header fix-sidebar card-no-border">
+
 
         <div class="preloader">
 
@@ -51,12 +55,14 @@
                 @include('dashboard.footer')
             </div>
 
-        </div>
-        <script src="{{ asset('js/dashboard.js') }}"></script>
 
-        {{--
+        </div>
+
+
+        {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
     <script src="{{ asset('js/dashboard/jquery/jquery.min.js') }}"></script>
-        <script src="{{ asset('js/dashboard/bootstrap/js/popper.min.js') }}"></script>
+
         <script src="{{ asset('js/dashboard/bootstrap/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/dashboard/perfect-scrollbar.jquery.min.js') }}"></script> --}} {{--
     <script src="{{ asset('js/dashboard/waves.js') }}"></script> --}} {{--
@@ -68,7 +74,14 @@
     <script src="{{ asset('js/dashboard/c3-master/c3.min.js') }}"></script> --}} {{--
     <script src="{{ asset('js/dashboard/toast-master/js/jquery.toast.js') }}"></script>
         <script src="{{ asset('js/dashboard/styleswitcher/jQuery.style.switcher.js') }}"></script> --}}
+        {{-- '',
+        'resources/js/dashboard/waves.js',
+        'resources/js/dashboard/sidebarmenu.js', --}}
+        {{-- <script src="{{ asset('js/dashboard.js') }}"></script> --}}
 
+        <script src="{{ asset('js/dashboard/perfect-scrollbar.jquery.min.js') }}"></script>
+        <script src="{{ asset('js/dashboard/waves.js') }}"></script>
+        <script src="{{ asset('js/dashboard/sidebarmenu.js') }}"></script>
         <script>
             $(function () {
                 "use strict";

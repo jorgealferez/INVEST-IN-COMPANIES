@@ -1,15 +1,11 @@
 @extends('layouts.dashboard')
-@section('estilos') {{--
-<link href="{{ asset('js/dashboard/plugins/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" /> --}} {{--
-<link href="{{ asset('js/dashboard/plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet" />
-<link href="{{ asset('js/dashboard/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}" rel="stylesheet" />
-<link href="{{ asset('js/dashboard/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet" />
-<link href="{{ asset('js/dashboard/plugins/multiselect/css/multi-select.css') }}" rel="stylesheet" type="text/css" /> --}}
+@section('estilos')
 @endsection
 
 @section('content')
 
 <div class="container-fluid">
+
 
     <div class="row">
         <!-- Column -->
@@ -20,20 +16,15 @@
 
                 <div class="card-body   bg-gray">
                     <h4 class="card-title text-white m-0">
-                        {{ e($oferta->name) }}
-                        @if ($oferta->approved)
-                        <span class="badge badge-success float-right"> <i class="mdi mdi-check-circle"></i> {{ __('Aprobada') }}</span>
-                        @else
-                        <span class="badge badge-danger float-right"> <i class="mdi mdi-alert-circle"></i> {{ __('Sin Aprobar') }}</span>
-                        @endif
-                        @if ($nueva)
-                        <span class="badge badge-warning float-right mr-2"> <i class="mdi mdi-star text-white "></i> {{ __('Nueva') }}</span>
-                        @endif
+                        {{ e($oferta->name) }} @if ($oferta->approved)
+                        <span class="badge badge-success float-right"> <i class="mdi mdi-check-circle"></i> {{ __('Aprobada') }}</span> @else
+                        <span class="badge badge-danger float-right"> <i class="mdi mdi-alert-circle"></i> {{ __('Sin Aprobar') }}</span> @endif @if ($nueva)
+                        <span class="badge badge-warning float-right mr-2"> <i class="mdi mdi-star text-white "></i> {{ __('Nueva') }}</span> @endif
                     </h4>
                 </div>
 
                 <div class="card-body   bg-info">
-                    <h6 class="card-subtitle text-white m-b-0 op-5">{{ e($oferta->descripcion) }}</h6>
+                    <h6 class="card-subtitle text-white m-0">{{ e($oferta->descripcion) }}</h6>
                 </div>
 
                 <div class="card-body row">
@@ -43,7 +34,7 @@
                         <h6>{{ e($oferta->forma->name) }}</h6>
                     </div>
 
-                    <div class="col-md-4 text-right">
+                    <div class="col-md-4 text-md-right">
                         <small class="verde font-weight-bold">{{ __('CIF') }}:</small>
                         <h6>{{ e($oferta->cif) }}</h6>
                     </div>
@@ -59,7 +50,7 @@
                         <h6>{{ e($oferta->empleados) }}</h6>
                     </div>
 
-                    <div class="col-md-4 text-right">
+                    <div class="col-md-4  text-md-right">
                         <small class=" font-weight-bold verde">{{ __('Año') }}:</small>
                         <h6>{{ e($oferta->año) }}</h6>
                     </div>
@@ -112,7 +103,7 @@
 
                     <div class="col-md-12">
                         <hr class=" verde">
-                        <small class=" font-weight-bold verde">{{ __('Valoracion') }}:</small>
+                        <small class=" font-weight-bold verde">{{ __('Valoración de la compañía') }}:</small>
                         <h6>{{ e($oferta->valoracion) }} €</h6>
                     </div>
 
@@ -130,14 +121,14 @@
                         <h6><i class="ti-user"></i> {{ e($oferta->contactFullName) }}</h6>
                     </div>
 
-                    <div class="col-md-6 ">
+                    <div class="col-md-12 ">
                         <small class="verde">{{ __('Email') }}:</small>
                         <a href="mailto:{{ e($oferta->contactEmail) }}" class="link text-muted" target="_blank">
                             <h6><i class="ti-email"></i> {{ e($oferta->contactEmail) }}</h6>
                         </a>
                     </div>
 
-                    <div class="col-md-6 ">
+                    <div class="col-md-12 ">
                         <small class="verde">{{ __('Teléfono') }}:</small>
                         <h6><i class="ti-mobile"></i> {{ e($oferta->contactPhone) }}</h6>
                     </div>
@@ -151,43 +142,41 @@
         <!-- Column -->
 
         <div class="col-lg-6 col-xlg-7 ">
-
             @include('dashboard.alertas')
 
-            <div class="card">
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs profile-tab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link @if($tab=='modificar') active show @endif" data-toggle="tab" href="#modificar" role="tab">{{ __('Oferta') }}</a>
-                    </li>
-                    @if ($isAdmin || $isAsesor)
-                    <li class="nav-item">
-                        <a class="nav-link @if($tab=='asociacion') active show @endif" data-toggle="tab" href="#asociacion" role="tab">
-                            {{ ($isAdmin)? __('Asociación') : __('Gestor') }}
-                        </a>
-                    </li>
-                    @endif
-                    <li class="nav-item">
-                        <a class="nav-link @if($tab=='empresa') active show @endif" data-toggle="tab" href="#empresa" role="tab">{{ __('Empresa') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link @if($tab=='contacto') active show @endif" data-toggle="tab" href="#contacto" role="tab">{{ __('Contacto') }}</a>
-                    </li>
 
-                    @if ($oferta->inversores->count()>0)
-                    <li class="nav-item">
-                        <a class="nav-link @if($tab=='inversores') active show @endif" data-toggle="tab" href="#inversores" role="tab">{{ __('Inversores') }}</a>
-                    </li>
-                    @endif
-                    @if ($isAdmin)
-                    <li class="nav-item">
-                        <a class="nav-link @if($tab=='estado') active show @endif" data-toggle="tab" href="#estado" role="tab">
-                            {{ __('Estado') }}
-                        </a>
-                    </li>
-                    @endif
-                </ul>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs profile-tab  listaTabs tabsOferta" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link @if($tab=='inversores') active show @endif" data-toggle="tab" href="#inversores" role="tab">{{ __('Inversores') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @if($tab=='modificar') active show @endif" data-toggle="tab" href="#modificar" role="tab">{{ __('Oferta') }}</a>
+                </li>
+                @if ($isAdmin || $isAsesor)
+                <li class="nav-item">
+                    <a class="nav-link @if($tab=='asociacion') active show @endif" data-toggle="tab" href="#asociacion" role="tab">
+                        {{ __('Gestor') }}
+                    </a>
+                </li>
+                @endif
+                <li class="nav-item">
+                    <a class="nav-link @if($tab=='empresa') active show @endif" data-toggle="tab" href="#empresa" role="tab">{{ __('Empresa') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @if($tab=='contacto') active show @endif" data-toggle="tab" href="#contacto" role="tab">{{ __('Contacto') }}</a>
+                </li>
 
+                @if ($isAdmin)
+                <li class="nav-item">
+                    <a class="nav-link @if($tab=='estado') active show @endif" data-toggle="tab" href="#estado" role="tab">
+                        {{ __('Estado') }}
+                    </a>
+                </li>
+                @endif
+            </ul>
+
+            <div class="card card-tabs">
                 <!-- Tab panes -->
 
 
@@ -196,9 +185,8 @@
 
                     <div class="tab-pane  @if($tab=='modificar') active @endif" id="modificar" role="tabpanel">
 
-                        <div class="card-body bg-info mt-3">
-                            <h4 class="text-white card-title">{{ __('Datos de la oferta') }}</h4>
-                            <h6 class="card-subtitle text-white m-b-0 op-5">{{ __('Modifica los datos de la oferta') }}</h6>
+                        <div class="card-body bg-info ">
+                            <h6 class="card-subtitle text-white m-0">{{ __('Modifica los datos de la oferta') }}</h6>
                         </div>
 
                         <div class="card-body">
@@ -224,9 +212,8 @@
 
                     <div class="tab-pane  @if($tab=='empresa') active @endif" id="empresa" role="tabpanel">
 
-                        <div class="card-body bg-info mt-3">
-                            <h4 class="text-white card-title">{{ __('Datos de la empresa') }}</h4>
-                            <h6 class="card-subtitle text-white m-b-0 op-5">{{ __('Modifica los datos de la empresa') }}</h6>
+                        <div class="card-body bg-info ">
+                            <h6 class="card-subtitle text-white m-0">{{ __('Modifica los datos de la empresa') }}</h6>
                         </div>
 
                         <div class="card-body">
@@ -253,9 +240,8 @@
 
                     <div class="tab-pane  @if($tab=='asociacion') active @endif" id="asociacion" role="tabpanel">
 
-                        <div class="card-body bg-info mt-3">
-                            <h4 class="text-white card-title">{{ __('Gestor de la oferta') }}</h4>
-                            <h6 class="card-subtitle text-white m-b-0 op-5">{{ __('Modifica la persona encargada de gestionar la oferta') }}</h6>
+                        <div class="card-body bg-info ">
+                            <h6 class="card-subtitle text-white m-0">{{ __('Modifica la persona encargada de gestionar la oferta') }}</h6>
                         </div>
 
                         <div class="card-body">
@@ -281,9 +267,8 @@
 
                     <div class="tab-pane  @if($tab=='contacto') active @endif" id="contacto" role="tabpanel">
 
-                        <div class="card-body bg-info mt-3">
-                            <h4 class="text-white card-title">{{ __('Datos de contacto') }}</h4>
-                            <h6 class="card-subtitle text-white m-b-0 op-5">{{ __('Modifica los datos de la persona de contacto de la empresa') }}</h6>
+                        <div class="card-body bg-info ">
+                            <h6 class="card-subtitle text-white m-0">{{ __('Modifica los datos de la persona de contacto de la empresa.') }}</h6>
                         </div>
 
                         <div class="card-body">
@@ -297,7 +282,7 @@
                                     <div class="col-md-12">
 
                                         <div class="form-group">
-                                            <button class="btn btn-verde waves-effect waves-light">{{ __('Modificar datos de Contacto') }}</button>
+                                            <button class="btn btn-verde waves-effect waves-light my-2 my-md-0">{{ __('Modificar datos de Contacto') }}</button>
                                             <a href="{{ e(route('dashboardOfertas')) }}" class="btn btn-inverse waves-effect waves-light">{{ __('Cancelar') }}</a>
                                         </div>
                                     </div>
@@ -311,9 +296,9 @@
 
                     <div class="tab-pane  @if($tab=='estado') active @endif" id="estado" role="tabpanel">
 
-                        <div class="card-body bg-info mt-3">
-                            <h4 class="text-white card-title">{{ __('Estado de la oferta') }}</h4>
-                            <h6 class="card-subtitle text-white m-b-0 op-5">{{ __('Activa o desactiva el estado de la oferta para que aparezca en listado') }}</h6>
+                        <div class="card-body bg-info ">
+                            <h6 class="card-subtitle text-white m-0">{{ __('Activa, o desactiva el estado de la oferta, para que aparezca en listado de ofertas en
+                                la parte pública.') }}</h6>
                         </div>
 
                         <div class="card-body">
@@ -350,83 +335,108 @@
                     </div>
                     @endif
 
-                    @if ($oferta->inversores->count()>0)
 
                     <div class="tab-pane  @if($tab=='inversores') active @endif" id="inversores" role="tabpanel">
 
-                        <div class="card">
 
-                            <div class="card-body bg-info mt-3">
-                                <h4 class="text-white card-title">{{ __('Inversores') }}</h4>
-                                <h6 class="card-subtitle text-white m-b-0 op-5">{{ __('Los inversores de la asociación') }}</h6>
-                            </div>
-
-                            <div class="card-body">
-
-                                <div class="message-box contact-box">
-
-                                    <div class="message-widget contact-widget">
-                                        @foreach ($oferta->inversores as $inversor)
-                                        <?php
-                                                $usuarioRole= $inversor->roles->first()->name;
-                                            ?>
-
-                                        <div class="card m-b-0">
-                                            <a href="#collapse{{ $inversor->id }}" class="card-header text-decoration-none" id="heading11" role="button" aria-expanded="false" aria-controls="collapse{{ $inversor->id }}" data-toggle="collapse" data-target="#collapse{{ $inversor->id }}">
-
-                                                <div class="user-img">
-                                                    <h6>
-                                                        <span class="round role{{ substr($usuarioRole,0,2) }}">{{ substr($usuarioRole,0,1) }}</span>
-                                                        <span class="profile-status {{ $inversor->statusClass() }} pull-right"></span>
-                                                    </h6>
-                                                    </span>
-                                                </div>
-
-                                                <div class="mail-contnet">
-                                                    <h5>{{ e( $inversor->name.' '. $inversor->surname) }} </h5> <span class="mail-desc">{{ e( $inversor->email) }}</span>
-                                                </div>
-
-                                            </a>
-
-                                            <div id="collapse{{ $inversor->id }}" class="collapse" aria-labelledby="heading11" style=" ">
-
-                                                <div class="card-body ">
-
-                                                    <div class="row">
-
-                                                        <div class="col-md-6">
-                                                            <small class="text-muted">{{ __('Nombre') }}</small>
-                                                            <h6>{{ e( $inversor->name.' '. $inversor->surname) }}</h6>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <small class="text-muted">{{ __('Email') }}</small>
-                                                            <h6>{{ e( $inversor->email) }}</h6>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-
-                                                        <div class="col-md-6">
-                                                            <small class="text-muted p-t-30 db">{{ __('Teléfono') }}</small>
-                                                            <h6>{{ e( $inversor->phone) }}</h6>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <small class="text-muted p-t-30 db">{{ __('Estado') }}</small>
-                                                            <span class=" badge {{ $inversor->statusClass() }} text-white">{{ $inversor->statusName() }}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="card-body bg-info ">
+                            <h6 class="card-subtitle text-white m-0">{{ __('Los inversores de la asociación') }}</h6>
                         </div>
+
+                        <div class="card-body">
+
+
+                            <div class="table-responsive ">
+                                <table class="table  table-hover table-boder  tabla-inversores">
+                                    <tbody>
+                                        @if($oferta->inversiones->isNotEmpty()) @foreach ($oferta->inversiones->sortByDesc('created_at') as $inversion)
+
+                                        <tr>
+                                            <td class="p-0">
+                                                <a href="#collapse{{ $inversion->usuario->id }}" class="tab-usuarios-link" role="button" aria-expanded="false" aria-controls="collapse{{ $inversion->usuario->id }}" data-toggle="collapse">
+                                                    <i class="mdi mdi-account " style="font-size: 120%"></i> {{ e( $inversion->usuario->FullName) }}
+                                                    <span class="badge estado-{{ $inversion->estado->id }} float-right text-white" style="font-size: 100%"> {{ e( $inversion->estado->name) }}</span>
+                                                </a>
+
+                                                <div class="tab-usuarios-content collapse" id="collapse{{ $inversion->usuario->id }}">
+
+                                                    <div class="px-2 py-4 row m-0">
+
+                                                        <div class="col-md-12 py-2">
+                                                            <span class="text-muted"><i class="ti-email"></i> {{ __('Email') }}</span>
+                                                            <h6>{{ e( $inversion->usuario->email) }}</h6>
+                                                        </div>
+
+                                                        <div class="col-md-6 py-2">
+                                                            <span class="text-muted"><i class="ti-mobile"></i> {{ __('Teléfono') }}</span>
+                                                            <h6>{{ e( $inversion->usuario->phone) }}</h6>
+                                                        </div>
+
+
+                                                        <div class="col-md-12 py-2">
+                                                            <span class=" font-weight-bold verde text-uppercase"> {{ __('Estado') }}</span>
+                                                            <form method="POST" class="" action="{{ action('Dashboard\OfertasController@updateEstadoInversor', ['id' => $inversion->id])}}">
+                                                                @csrf @method('PUT')
+
+
+                                                                <div class="input-group">
+                                                                    <select class="custom-select custom-select-sm cambio-estado" data-style="btn-primary" name="estado_id">
+
+                                                                        @foreach ($estadosInversor->sortBy('updated_at') as $estado)
+                                                                        <option value="{{ e($estado->id) }}" @if ($estado->id == $inversion->estado->id)
+                                                                            selected
+
+                                                                            @endif
+                                                                            >{{ e($estado->name) }}</option>
+                                                                        @endforeach
+                                                                    </select>
+
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-verde waves-effect waves-light btn-sm" type="submit">{{ __('Actualizar estado') }}</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+
+                                        @endforeach @else
+                                        <tr>
+                                            <td colspan="5" class="text-right">
+                                                <p>{{ __('No hay inversores en la oferta.') }}</p>
+                                            </td>
+                                        </tr>
+                                        @endif
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5" class="text-right">
+                                                @if ($oferta->inversiones->count()>1)
+                                                <small>
+                                                    {{ 'Hay ' }}
+                                                    <strong>
+                                                        {{ $oferta->inversiones->count() }}
+                                                    </strong>
+                                                    @if ($oferta->inversiones->count()>1)
+                                                    {{ __(' inversores ') }}
+                                                    @elseif($oferta->inversiones->count()==1)
+                                                    {{ __('  inversor') }}
+                                                    @endif
+                                                    {{ 'en la oferta ' }}
+                                                </small> @endif
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+
+                        </div>
+
                     </div>
-                    @endif
                 </div>
 
 
@@ -439,37 +449,34 @@
 </div>
 @endsection
 
-@section('scripts') {{--
-<script src="{{ asset( 'js/dashboard/plugins/select2/dist/js/select2.full.min.js') }} " type="text/javascript "></script> --}} {{--
-<script src="{{ asset( 'js/dashboard/plugins/switchery/dist/switchery.min.js') }} "></script>
-<script src="{{ asset( 'js/dashboard/plugins/bootstrap-select/bootstrap-select.min.js') }} " type="text/javascript "></script>
-<script src="{{ asset( 'js/dashboard/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }} "></script>
-<script src="{{ asset( 'js/dashboard/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js') }} " type="text/javascript "></script>
-<script src="{{ asset( 'js/dashboard/plugins/dff/dff.js') }} " type="text/javascript "></script>
-<script type="text/javascript " src="{{ asset( 'js/dashboard/plugins/multiselect/js/jquery.multi-select.js') }} "></script> --}}
-
-
+@section('scripts')
 <script>
     $(function () {
-        // For select 2
         $(".alert-success ").fadeTo(5000, 500).slideUp(500, function () {
             $(".alert-success ").slideUp(500);
         });
-        // $('.selectpicker').selectpicker();
+
     });
 
 </script>
 @if($isAdmin)
 <script>
     $('#asociacion_id').on('blur change load', function (e) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $.ajax({
             url: "{{ route( 'searchUsuariosByAsociacion') }} ",
             type: 'POST',
             data: {
-                "_token ": "{{ csrf_token() }} ",
-                "asociacion ": $('#asociacion_id').val()
+                "_token": "{{ csrf_token() }}",
+                "asociacion": $('#asociacion_id').val()
             },
             success: function (data) {
+                console.log(data);
+
                 var toAppend = '';
                 if (data.status && Object.keys(data.usuarios).length > 0) {
                     toAppend += '<option value=" ">Selecciona Usuario</option>';
@@ -517,4 +524,5 @@
     });
 
 </script>
+
 @endsection

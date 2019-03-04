@@ -8,8 +8,10 @@ use App\Asociacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use App\Notifications\AsociacionNueva;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\AsociacionRequest;
+use Illuminate\Support\Facades\Notification;
 use App\Http\Controllers\DashBoardController;
 
 class AsociacionesController extends DashBoardController
@@ -24,9 +26,21 @@ class AsociacionesController extends DashBoardController
     public function index(Request $request)
     {
         Parent::RolesCheck();
-        $query[]=["active" , "<>", null];
-        if ($request->input('search')) {
-            $query[]=["name","LIKE","%{$request->input('search')}%"];
+        $query=array();
+        if (!$this->isAdmin){
+            $query[]=["asociaciones.active" , "=", 1];
+        }
+        if ($request->input('name')) {
+            $query[]=["name","LIKE","%{$request->input('name')}%"];
+        }
+        if ($request->input('phone')) {
+            $query[]=["phone","LIKE","%{$request->input('phone')}%"];
+        }
+        if ($request->input('email')) {
+            $query[]=["email","LIKE","%{$request->input('email')}%"];
+        }
+        if ($request->input('address')) {
+            $query[]=["address","LIKE","%{$request->input('address')}%"];
         }
         $asociaciones = Asociacion::where($query);
         if ($this->isAsesor || $this->isGestor) {
@@ -36,14 +50,21 @@ class AsociacionesController extends DashBoardController
         $asociaciones->sortable(['created_at'=> 'desc'])
         ->withCount('ofertas');
 
+
         if ($request->get('sort')=="ofertas_count") {
             $asociaciones= $asociaciones
                 ->orderBy('ofertas_count', $request->get('direction'));
         }
         $asociaciones= $asociaciones->sortable()->paginate(5);
-        $busqueda = ($request->input('search')) ? $request->input('search') : null ;
+        $notificaciones =Auth::User()->unreadNotifications->where("type", "App\Notifications\AsociacionNueva")->pluck('data')->pluck('asociacion_id')->toArray();
+        $busqueda = ($request->input('search')) ? $request : null ;
         return view('dashboard.asociaciones.asociaciones')
-                ->with(compact('asociaciones', 'busqueda'));
+                ->with(
+                    compact(
+                        'asociaciones',
+                        'busqueda',
+                        'notificaciones'
+                    ));
     }
 
     /**
@@ -69,6 +90,8 @@ class AsociacionesController extends DashBoardController
         $asociacion = new Asociacion;
         $asociacion->fill($request->all());
         $asociacion->save();
+
+        $this->NotificacionNuevaAsociacion($asociacion);
         return redirect()->route('dashboardAsociaciones')->with([
             'success'=> true,
             'mensaje'=>__('Asociación creada correctamente')
@@ -78,8 +101,21 @@ class AsociacionesController extends DashBoardController
     public function show(Asociacion $asociacion, $tab='usuarios', Request $request)
     {
         Parent::RolesCheck();
+        $nueva = false;
         $errors = Session::get('errors');
+        $notificacion =Auth::User()->unreadNotifications()->where('data->asociacion_id', $asociacion->id)->get();
+        if (in_array($asociacion->id, $notificacion->pluck('data')->pluck('asociacion_id')->toArray())) {
+            $notificacion->markAsRead();
+            $nueva = true;
+        }
         if ($asociacion) {
+            if (($this->isGestor || $this->isInversor || $this->isAsesor) && $asociacion->active) {
+                if (!in_array(Auth::user()->id,$asociacion->usuarios()->get()->pluck('id')->toArray())) {
+                    return redirect('dashboard/asociaciones');
+                }
+            }elseif(($this->isGestor || $this->isInversor || $this->isAsesor) && !$asociacion->active) {
+                return redirect('dashboard/asociaciones');
+            }
             if ($request->old('tab')) {
                 $tab=$request->old('tab');
             } elseif ($request->tab) {
@@ -96,6 +132,7 @@ class AsociacionesController extends DashBoardController
 
             return view('dashboard.asociaciones.detalle')
                 ->with(compact(
+                    'nueva',
                     'asociacion',
                     'usuarios',
                     'usuariosIDs',
@@ -117,7 +154,10 @@ class AsociacionesController extends DashBoardController
         $asociacion->save();
         $tab="modificar";
         // return redirect()->back()->with('success', true);
-        return redirect()->action('Dashboard\AsociacionesController@show', ['asociacion'=>$asociacion,'tab'=>$tab])->with('success', true);
+        return redirect()->action('Dashboard\AsociacionesController@show', ['asociacion'=>$asociacion,'tab'=>$tab])->with([
+            'success'=> true,
+            'mensaje'=>__('Asociación modificada correctamente')
+        ]);
     }
 
 
@@ -134,7 +174,10 @@ class AsociacionesController extends DashBoardController
         //
         $asociacion = \App\Asociacion::find($request->id);
         $asociacion->usuarios()->sync($request->usuarios);
-        return redirect()->route('dashboardAsociacion', $asociacion)->with('success', true);
+        return redirect()->route('dashboardAsociacion', $asociacion)->with([
+            'success'=> true,
+            'mensaje'=>__('Usuarios de la asociación actualizados correctamente')
+        ]);
     }
 
 
@@ -151,7 +194,10 @@ class AsociacionesController extends DashBoardController
         $asociacion->fill(['active'=>false]);
         $asociacion->save();
 
-        return redirect()->route('dashboardAsociaciones')->with('success', true);
+        return redirect()->route('dashboardAsociaciones')->with([
+            'success'=> true,
+            'mensaje'=>__('<strong>'.$asociacion->name.'</strong> eliminada correctamente')
+        ]);
     }
 
 
@@ -179,4 +225,8 @@ class AsociacionesController extends DashBoardController
         return response()->json($data);
     }
 
+    public function NotificacionNuevaAsociacion($asociacion)
+    {
+        Notification::send(User::where('name', 'Admin')->first(), new AsociacionNueva($asociacion->id));
+    }
 }

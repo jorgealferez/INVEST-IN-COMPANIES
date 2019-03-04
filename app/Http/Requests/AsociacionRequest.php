@@ -29,18 +29,18 @@ class AsociacionRequest extends FormRequest
         if ($this->request->has('name')) {
              $rules['name'] = ['required'];
         }
-    
-    
+
+
         if ($this->request->has('phone')) {
-             $rules['phone'] = ['string','regex:^(\+34|0034|34)?[\s|\-|\.]?[6|7|8|9][\s|\-|\.]?([0-9][\s|\-|\.]?){8}$^','max:9|min:9'];
+             $rules['phone'] = ['required','regex:/^[6|7|8|9][0-9]{8}$/','max:9|min:9'];
         }
-    
+
         if ($this->request->has('email')) {
              $rules['email'] = ['required', 'string', 'email', 'max:255'];
         }
-    
-       
-    
+
+
+
         return $rules;
         // BORRAR
         // return [
@@ -67,12 +67,12 @@ class AsociacionRequest extends FormRequest
     public function withValidator($validator)
     {
         if ($validator->fails()) {
-           
+
         } else {
 
-            
+
         }
 
     }
-   
+
 }

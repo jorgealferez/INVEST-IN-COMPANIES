@@ -291,13 +291,13 @@
 
 <div class="row">
 
-    <div class="col-md-6">
+    <div class="col-md-12">
 
         <div class="form-group {{ $errors->has('valoracion') ? ' has-danger' : '' }}">
-            <label for="valoracion">{{ __('Valoracion') }}</label>
+            <label for="valoracion">{{ __('Valoración de la compañía') }}</label>
 
             <div class="input-group">
-                <input type="text" value="{{ (old( 'valoracion')) ?  old( 'valoracion') : $oferta->valoracion  }} " class="form-control form-control-line {{ $errors->has('valoracion') ? ' form-control-danger' : '' }}" id="valoracion" name="valoracion">
+                <input type="text" value="{{ (old( 'valoracion')) ?  old( 'valoracion') : $oferta->valoracion  }}" class="form-control form-control-line {{ $errors->has('valoracion') ? ' form-control-danger' : '' }}" id="valoracion" name="valoracion">
 
                 <div class="input-group-append">
                     <span class="input-group-text">€</span>
@@ -310,7 +310,7 @@
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-12">
 
         <div class="form-group {{ $errors->has('endeudamiento') ? ' has-danger' : '' }}">
             <label for="endeudamiento">{{ __('Endeudamiento') }}</label>

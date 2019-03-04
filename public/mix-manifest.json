@@ -1,9 +1,12 @@
 {
-    "/js/app.js": "/js/app.js?id=2b991b633679f456b673",
-    "/css/app.css": "/css/app.css?id=589aa6d624dfc01a1582",
-    "/css/dashboard.css": "/css/dashboard.css?id=2cf48f0a7cd1ef0061a8",
-    "/css/custom.css": "/css/custom.css?id=ba614e03b9fd3a0bd5d9",
+    "/js/app.js": "/js/app.js?id=1853f9aab61ba3e8ac19",
+    "/css/app.css": "/css/app.css?id=98466476dab8c4daaf86",
+    "/css/dashboard.css": "/css/dashboard.css?id=01b5b9171e6546a4f0b9",
+    "/css/custom.css": "/css/custom.css?id=1eea21dd22da2dceabba",
     "/js/dashboard.js": "/js/dashboard.js?id=49b6ed1ef4a3d0f94fa5",
+    "/js/dashboard/waves.js": "/js/dashboard/waves.js?id=8c9e397551418dd72781",
+    "/js/dashboard/sidebarmenu.js": "/js/dashboard/sidebarmenu.js?id=7b41e1bea80e36fc0d0d",
+    "/js/dashboard/perfect-scrollbar.jquery.min.js": "/js/dashboard/perfect-scrollbar.jquery.min.js?id=093306ba4e497dc22c25",
     "/js/dashboard/jquery.sparkline.min.js": "/js/dashboard/jquery.sparkline.min.js?id=56be28a1645466dc675d",
     "/js/dashboard/chartist.min.js": "/js/dashboard/chartist.min.js?id=cf9d912db488847b9ee2",
     "/js/dashboard/chartist-plugin-tooltip.min.js": "/js/dashboard/chartist-plugin-tooltip.min.js?id=1744776291bc59c46846",
@@ -13,6 +16,8 @@
     "/js/dashboard/jQuery.style.switcher.js": "/js/dashboard/jQuery.style.switcher.js?id=58c701a8dd852668fa5d",
     "/js/dashboard/select2.full.min.js": "/js/dashboard/select2.full.min.js?id=37befed5b538fbac224c",
     "/js/dashboard/bootstrap-switch.min.js": "/js/dashboard/bootstrap-switch.min.js?id=27d0f1f3f774af8d8305",
+    "/js/dashboard/jquery.multi-select.js": "/js/dashboard/jquery.multi-select.js?id=d0746563c47061f61e59",
     "/js/dashboard/bootstrap3-typeahead.min.js": "/js/dashboard/bootstrap3-typeahead.min.js?id=4a13d2ae04c089198c4a",
-    "/css/select2.min.css": "/css/select2.min.css?id=ba8ffe9bd503d4b78522"
+    "/css/select2.min.css": "/css/select2.min.css?id=ba8ffe9bd503d4b78522",
+    "/css/multi-select.css": "/css/multi-select.css?id=a032fc33cc04f8765ae7"
 }

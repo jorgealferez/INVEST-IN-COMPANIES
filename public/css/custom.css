@@ -4,11 +4,17 @@ Author: Wrappixel
 Email: niravjoshi87@gmail.com
 File: scss
 */
+
 /*Theme Colors*/
+
 /*bootstrap Color*/
+
 /*Light colors*/
+
 /*Normal Color*/
+
 /*Extra Variable*/
+
 .container-fluid {
   padding-top: 25px;
 }
@@ -22,19 +28,28 @@ File: scss
   background-color: #ffffff;
 }
 
-.roleAd {
+.roleAd,
+.estado-6 {
   background-color: #ef5350;
 }
 
-.roleAs {
+.roleAs,
+.estado-4 {
   background-color: #745af2;
 }
 
-.roleGe {
-  background-color: #06d79c;
+.roleGe,
+.estado-5 {
+  background-color: #08bf60;
 }
 
-.roleIn {
+.roleIn,
+.estado-3,
+.estado-2 {
+  background-color: #cccccc;
+}
+
+.estado-1 {
   background-color: #ffb22b;
 }
 
@@ -42,6 +57,7 @@ File: scss
   width: 20px;
   height: 20px;
   line-height: 20px;
+  font-size: 75%;
 }
 
 .roleMedium {
@@ -66,6 +82,12 @@ File: scss
   margin-bottom: -80px;
 }
 
+.etiqueta-sidebar {
+  font-size: 90%;
+  margin-top: 7px;
+  float: right;
+}
+
 .profile-status {
   border: 2px solid #ffffff;
   border-radius: 50%;
@@ -78,7 +100,7 @@ File: scss
 }
 
 .online {
-  background: #06d79c;
+  background: #08bf60;
 }
 
 .busy {
@@ -100,7 +122,8 @@ File: scss
   border-radius: calc(.25rem - 1px);
 }
 
-.stylish-table tbody tr:hover, .stylish-table tbody tr.active {
+.stylish-table tbody tr:hover,
+.stylish-table tbody tr.active {
   border-left: 4px solid #006242;
 }
 
@@ -130,6 +153,94 @@ File: scss
   font-weight: 600;
 }
 
+.card h6 {
+  line-height: 20px;
+}
+
+.card .card-subtitle {
+  opacity: 0.7;
+}
+
+.card.card-tabs {
+  border-top: none !important;
+}
+
+.mapa-asociaciones {
+  height: 130px;
+  border: 1px solid #006242;
+}
+
+.listaTabs {
+  display: inline-flex;
+  border: none;
+}
+
+.listaTabs li.nav-item {
+  box-shadow: 0 2px 2px 0 rgba(116, 96, 238, 0.14), 0 3px 1px -2px rgba(116, 96, 238, 0.2), 0 1px 5px 0 rgba(116, 96, 238, 0.12);
+  -webkit-box-shadow: 0 2px 2px 0 rgba(116, 96, 238, 0.14), 0 3px 1px -2px rgba(116, 96, 238, 0.2), 0 1px 5px 0 rgba(116, 96, 238, 0.12);
+  border: 1px solid #d7dfe3 !important;
+  border-bottom: none;
+}
+
+.listaTabs li.nav-item a:hover {
+  background-color: #386345;
+  opacity: 0.7;
+  color: #ffffff;
+}
+
+.listaTabs li.nav-item a.active,
+.listaTabs li.nav-item a.active:hover {
+  color: #ffffff;
+  opacity: 1;
+  font-weight: 500;
+  background-color: #386345;
+  border-bottom: none !important;
+}
+
+.tabsOferta li.nav-item a.nav-link {
+  padding: 0.65em;
+  font-size: 100%;
+}
+
+@media (max-width: 1390px) {
+  .tabsOferta li.nav-item a.nav-link {
+    padding: 0.5em;
+    font-size: 80%;
+  }
+}
+
+@media (max-width: 930px) {
+  .tabsOferta li.nav-item a.nav-link {
+    padding: 0.75em;
+    font-size: 100%;
+  }
+}
+
+@media (max-width: 630px) {
+  .tabsOferta li.nav-item a.nav-link {
+    padding: 0.5em;
+    font-size: 80%;
+  }
+}
+
+.tab-usuarios-link {
+  padding: 1rem;
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  color: #67757c;
+}
+
+.tab-usuarios-link:hover {
+  color: #67757c;
+}
+
+.tab-usuarios-content {
+  background-color: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  padding: 0;
+}
+
 ul.typeahead .active {
   background-color: #006242;
   color: #fff;
@@ -143,17 +254,22 @@ table.table-bordered {
   border-color: transparent !important;
 }
 
-table.tabla-usuarios {
+table.tabla-usuarios-asociacion {
   font-size: 80%;
 }
 
+table.tabla-usuarios {
+  font-size: 90%;
+  border-collapse: collapse;
+}
+
 table.tabla-usuarios thead {
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  border-bottom: none;
 }
 
 table.tabla-usuarios thead tr th {
   color: #67757c;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 table.tabla-usuarios thead tr th a {
@@ -168,32 +284,67 @@ table.tabla-usuarios thead tr th select {
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  padding: .25rem;
-  font-size: .8rem;
+  padding: 0.25rem;
+  font-size: 0.8rem;
   width: 100%;
 }
 
 table.tabla-usuarios tfoot {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: none;
 }
 
 table.tabla-usuarios tfoot td {
   border: none;
 }
 
+table.tabla-usuarios tbody {
+  border-top: 2px solid #cccccc;
+  border-bottom: 2px solid #cccccc;
+}
+
 table.tabla-usuarios tbody tr {
+  background-color: #f2f2f2;
+  border-color: #555f6d;
   border-left: 4px solid #ffffff;
 }
 
 table.tabla-usuarios tbody tr:hover {
   border-left: 4px solid #006242;
+  background: #ebefec;
 }
 
-table.table-hover tbody tr:nth-of-type(odd) {
+table.tabla-usuarios tbody tr td {
+  border-bottom: 1px solid #cccccc;
+}
+
+table.tabla-usuarios tbody tr.registro-eliminado {
+  background-color: #f1dddd4a;
+  color: #b3939382;
+}
+
+table.tabla-usuarios tbody tr.registro-eliminado:hover {
+  border-left: 4px solid #ef5350;
+  background-color: #e29595f5;
+  color: #ffffff;
+}
+
+table.tabla-usuarios tbody tr.registro-eliminado:hover span.badge {
+  opacity: 1;
+}
+
+table.tabla-usuarios tbody tr.registro-eliminado span.badge {
+  opacity: 0.5;
+}
+
+table.tabla-inversores tbody {
+  font-size: 80%;
+}
+
+table.tabla-inversores tbody tr {
   background: #f2f2f2;
 }
 
-table.table-hover tbody tr:hover {
+table.tabla-inversores tbody tr:hover {
   background: #ebefec;
 }
 
@@ -255,3 +406,4 @@ form .has-danger .form-control-label,
 form .has-danger .form-control-feedback {
   font-weight: 500;
 }
+

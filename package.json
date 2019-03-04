@@ -25,6 +25,7 @@
         "vue-template-compiler": "^2.5.22"
     },
     "dependencies": {
+        "bootstrap-select": "^1.13.5",
         "chartist": "^0.11.0",
         "corejs-typeahead": "^1.2.1",
         "d3": "^5.8.2"

@@ -4,19 +4,21 @@
         <!-- Logo -->
         <!-- ============================================================== -->
 
-        <div class="navbar-header">
+        <div class="navbar-header pl-0">
 
 
             <ul class="navbar-nav mr-auto">
                 <!-- This is  -->
-                <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                 <li class="nav-item">
-                    <a class="nav-link navbar-brand waves-effect waves-dark" href="{{ route('home') }}">
-                        <!-- Logo text --><span>
-                            <!-- dark Logo text -->
-                            <img src="{{ asset('images/logo-text.png') }}" alt="homepage" class="dark-logo" />
-                            <!-- Light Logo text -->
-                            <img src="{{ asset('images/logo-light-text.png') }}" class="light-logo" alt="homepage" /></span> </a>
+                    <a class="nav-link sidebartoggler waves-effect waves-dark" href="javascript:void(0)">
+                        <i class="ti-menu"></i>
+                    </a>
+                </li>
+                <!-- This is  -->
+                <li class="nav-item">
+                    <a class="nav-link px-0" href="{{ route('home') }}">
+                        <img src="{{ asset('images/logo-text.png') }}" alt="homepage" />
+                    </a>
                 </li>
             </ul>
 
@@ -26,6 +28,7 @@
         <!-- ============================================================== -->
 
         <div class="navbar-collapse">
+
             <!-- ============================================================== -->
             <!-- toggle and nav items -->
             <!-- ============================================================== -->
@@ -36,18 +39,6 @@
             <!-- User profile and search -->
             <!-- ============================================================== -->
             <ul class="navbar-nav my-lg-0">
-                {{--
-                <!-- ============================================================== -->
-                <!-- Language -->
-                <!-- ============================================================== -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-us"></i></a>
-                    <div class="dropdown-menu dropdown-menu-right animated bounceInDown"> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-in"></i> India</a> <a class="dropdown-item"
-                            href="#"><i class="flag-icon flag-icon-fr"></i> French</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-cn"></i> China</a>                        <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-de"></i> Dutch</a> </div>
-                </li> --}}
-                <!-- ============================================================== -->
-                <!-- Profile -->
-                <!-- ============================================================== -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="round {{ Auth::user()->getRoleClass() }} roleMedium">{{ substr(Auth::user()->getRoleClass(),4,1) }}</span>

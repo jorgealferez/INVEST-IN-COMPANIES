@@ -12999,7 +12999,7 @@ Text Colors
 }
 
 .text-success {
-  color: #06d79c !important;
+  color: #08bf60 !important;
 }
 
 .text-info {
@@ -13043,7 +13043,7 @@ Background Colors
 }
 
 .bg-success {
-  background-color: #06d79c !important;
+  background-color: #08bf60 !important;
 }
 
 .bg-info {
@@ -13154,7 +13154,7 @@ Rounds
 }
 
 .round.round-success {
-  background: #06d79c;
+  background: #08bf60;
 }
 
 .round.round-primary {
@@ -13183,7 +13183,7 @@ Labels
 }
 
 .label-success {
-  background-color: #06d79c;
+  background-color: #08bf60;
 }
 
 .label-info {
@@ -13228,7 +13228,7 @@ Labels
 
 .label-light-success {
   background-color: #e8fdeb;
-  color: #06d79c;
+  color: #08bf60;
 }
 
 .label-light-info {
@@ -13280,7 +13280,7 @@ Labels
 }
 
 .badge-success {
-  background-color: #06d79c;
+  background-color: #08bf60;
 }
 
 .badge-info {
@@ -14337,7 +14337,7 @@ ul#themecolors li a.working:before {
 }
 
 .green-theme {
-  background: #06d79c;
+  background: #08bf60;
 }
 
 .yellow-theme {
@@ -14373,7 +14373,7 @@ ul#themecolors li a.working:before {
   /* Old browsers */
   /* FF3.6-15 */
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, #263238 0%, #263238 23%, #06d79c 23%, #06d79c 99%);
+  background: linear-gradient(to right, #263238 0%, #263238 23%, #08bf60 23%, #08bf60 99%);
 }
 
 .yellow-dark-theme {
@@ -14681,7 +14681,7 @@ Notification page Jquery toaster
 }
 
 .jq-icon-success {
-  background-color: #06d79c;
+  background-color: #08bf60;
   color: #ffffff;
 }
 
@@ -14794,7 +14794,7 @@ Pagination
 ******************/
 
 .pagination-circle li.active a {
-  background: #06d79c;
+  background: #08bf60;
 }
 
 .pagination-circle li a {
@@ -14812,7 +14812,7 @@ Pagination
 }
 
 .pagination-circle li a:hover {
-  background: #06d79c;
+  background: #08bf60;
   color: #ffffff;
 }
 
@@ -15040,17 +15040,17 @@ Buttons
 
 .btn-success,
 .btn-success.disabled {
-  background: #06d79c;
-  border: 1px solid #06d79c;
+  background: #08bf60;
+  border: 1px solid #08bf60;
   box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
   transition: 0.2s ease-in;
 }
 
 .btn-success:hover,
 .btn-success.disabled:hover {
-  background: #06d79c;
+  background: #08bf60;
   box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
-  border: 1px solid #06d79c;
+  border: 1px solid #08bf60;
 }
 
 .btn-success.active,
@@ -15238,9 +15238,9 @@ Buttons
 }
 
 .btn-outline-success {
-  color: #06d79c;
+  color: #08bf60;
   background-color: transparent;
-  border-color: #06d79c;
+  border-color: #08bf60;
   box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
   transition: 0.2s ease-in;
 }
@@ -15248,8 +15248,8 @@ Buttons
 .btn-outline-success:hover,
 .btn-outline-success:focus,
 .btn-outline-success.focus {
-  background: #06d79c;
-  border-color: #06d79c;
+  background: #08bf60;
+  border-color: #08bf60;
   color: #ffffff;
   box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
 }
@@ -15680,7 +15680,7 @@ Form-control
 }
 
 .custom-control-input:checked ~ .custom-control-indicator {
-  background-color: #06d79c;
+  background-color: #08bf60;
 }
 
 form label {
@@ -17081,7 +17081,7 @@ pre {
 }
 
 .validate .form-control {
-  border-color: #06d79c;
+  border-color: #08bf60;
 }
 
 /*******************
@@ -17232,7 +17232,7 @@ Table-Layout
 }
 
 .color-table.success-table thead th {
-  background-color: #06d79c;
+  background-color: #08bf60;
   color: #ffffff;
 }
 
@@ -17286,11 +17286,11 @@ Table-Layout
 }
 
 .color-bordered-table.success-bordered-table {
-  border: 2px solid #06d79c;
+  border: 2px solid #08bf60;
 }
 
 .color-bordered-table.success-bordered-table thead th {
-  background-color: #06d79c;
+  background-color: #08bf60;
   color: #ffffff;
 }
 
@@ -17390,7 +17390,7 @@ Table-Layout
 }
 
 .full-color-table.full-success-table thead th {
-  background-color: #06d79c;
+  background-color: #08bf60;
   border: 0;
   color: #ffffff;
 }
@@ -17400,7 +17400,7 @@ Table-Layout
 }
 
 .full-color-table.full-success-table tr:hover {
-  background-color: #06d79c;
+  background-color: #08bf60;
   color: #ffffff;
 }
 
@@ -18075,7 +18075,7 @@ File: scss
 }
 
 .mailbox .message-center a .user-img .online {
-  background: #06d79c;
+  background: #08bf60;
 }
 
 .mailbox .message-center a .user-img .busy {
@@ -18403,7 +18403,7 @@ File: scss
 }
 
 .message-box .message-widget a .user-img .online {
-  background: #06d79c;
+  background: #08bf60;
 }
 
 .message-box .message-widget a .user-img .busy {
@@ -19363,7 +19363,7 @@ File: scss
 .has-success .form-check-label,
 .has-success .form-control-feedback,
 .has-success .form-control-label {
-  color: #06d79c;
+  color: #08bf60;
 }
 
 .has-success .form-control-success {
@@ -19371,7 +19371,7 @@ File: scss
 }
 
 .has-success .form-control {
-  border-color: #06d79c;
+  border-color: #08bf60;
 }
 
 .has-warning .col-form-label,
