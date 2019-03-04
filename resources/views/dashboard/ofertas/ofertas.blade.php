@@ -83,18 +83,16 @@
                                 <tbody>
                                     @if($ofertas->isNotEmpty()) @foreach ($ofertas as $oferta)
                                     <tr class="@if(!$oferta->active) registro-eliminado @endif">
-                                        <td>
-                                            @if (in_array($oferta->id,$notificaciones))
-                                            <span class="badge badge-success bg-warning" style="width:80px">
-                                                {{ __('Nueva') }}</span>
-                                            @elseif($oferta->approved)
-                                            <span class="badge badge-success bg-success" style="width:80px">
-                                                {{ __('Aprobada') }}</span>
-                                            @else
-                                            <span class="badge badge-success bg-danger" style="width:80px">
-                                                {{ __('No aprobada') }}</span>
-                                            @endif
-                                        </td>
+                                       
+                                            <td class="text-left">
+                                                    @if (in_array($oferta->id,$notificaciones))
+                                                    <span class="badge badge-success bg-warning" >
+                                                        {{ __('Nueva') }}</span> @elseif($oferta->approved)
+                                                    <span class="badge badge-success bg-success" >
+                                                        {{ __('Aprobada') }}</span> @else
+                                                    <span class="badge badge-success bg-danger" >
+                                                        {{ __('No aprobada') }}</span> @endif
+                                                </td>
                                         <td>{{ e($oferta->name) }}
                                         </td>
                                         <td>{!! e($oferta->cif) !!}</td>
@@ -109,13 +107,20 @@
                                             {!! e($oferta->valoracion." €") !!}
                                         </td>
                                         <td class="text-right">
-
-                                            <a href="<?php echo urldecode(route('dashboardOferta',['oferta'=>$oferta])); ?>" class="text-verde" title="{{ __('Ver') }}">
-                                                <i class="fa fa-cog text-secondary" style="font-size:150%"></i>
-                                            </a>
-                                            @if($oferta->active)
-                                            <a href="#" title="{{ __('Eliminar') }}" data-toggle="modal" data-original-title="{{ __('Borrar') }}" class="borraroferta " data-url="<?php echo urldecode(route('dashboardOfertaDelete',['oferta'=>$oferta])); ?>" data-id="{{$oferta->id}}" data-name="{{$oferta->name}}"  data-target="#borrarModal"><i class=" mdi mdi-close-circle text-danger" style="font-size:150%"></i></a>
-                                            @endif
+                                            <div class="btn-group" role="group" aria-label="...">
+                                                    <a href="<?php echo urldecode(route('dashboardOferta',['oferta'=>$oferta])); ?>" data-toggle="tooltip" data-original-title="{{ __('Ver') }}" class="btn btn-sm btn-secondary">
+                                                        {{ __('Ver') }}
+                                                    </a>
+                                                    @if($oferta->active)
+                                                    <a href="#" title="{{ __('Eliminar') }}" data-toggle="modal" data-original-title="{{ __('Borrar') }}" class="btn btn-sm btn-danger borraroferta " data-url="<?php echo urldecode(route('dashboardOfertaDelete',['oferta'=>$oferta])); ?>" data-id="{{$oferta->id}}" data-name="{{$oferta->name}}" data-target="#borrarModal" data-borrar="1">
+                                                            <i class="fa fas fa-trash"></i>
+                                                    </a>
+                                                    @else
+                                                    <a href="#" title="{{ __('Restablecer') }}" data-toggle="modal" data-borrar="0" data-original-title="{{ __('Restablecer') }}" class="borraroferta btn btn-sm btn-success" data-url="<?php echo urldecode(route('dashboardOfertaDelete',['oferta'=>$oferta])); ?>" data-id="{{$oferta->id}}" data-name="{{$oferta->name}}" data-target="#borrarModal">
+                                                            <i class="fa  fas fa-undo-alt"></i>
+                                                    </a>
+                                                    @endif
+                                                </div>
                                         </td>
                                     </tr>
                                     @endforeach @else
@@ -155,7 +160,6 @@
     </div>
 
 </div>
-
 @include('dashboard.modalBorrar')
 @endsection
 
@@ -163,8 +167,17 @@
 <script>
     $(document).ready(function ($) {
         $('#borrarModal').on("show.bs.modal", function (event) {
+            console.log($(event.relatedTarget).data());
+            if (!$(event.relatedTarget).data('borrar')) {
+                $('#modalborrar_action').val('1');
+                $("#BotonEliminar").removeClass("btn-danger").addClass("btn-success").html('Restablecer');
+                $('#texto-modal-borrar').html('Seguro que deseas volver a activar la oferta ' + ' <strong>' + $(event.relatedTarget).data('name') + ' </strong>');
+            } else {
+                $('#modalborrar_action').val('0');
+                $("#BotonEliminar").removeClass("btn-success").addClass("btn-danger").html('Eliminar');
+                $('#texto-modal-borrar').html('Seguro que deseas borrar la oferta ' + ' <strong>' + $(event.relatedTarget).data('name') + ' </strong>');
+            }
 
-            $('#texto-modal-borrar').html('Seguro que deseas borrar la oferta ' + ' <strong>' + $(event.relatedTarget).data('name') + ' </strong>');
             $('#id_borrar').val($(event.relatedTarget).data('id'));
             $('#BotonEliminar').on('click', function (e) {
                 $('#formBorrar').attr('action', "/dashboard/ofertas/delete/" + $('#id_borrar').val());
@@ -172,6 +185,7 @@
                 $form = '';
             });
         });
+
     });
 
     var path = "{{ route('searchOfertas') }}";

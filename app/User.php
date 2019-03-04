@@ -115,6 +115,36 @@ class User extends Authenticatable implements MustVerifyEmail
             }
         }
     }
+    public function isAsesor()
+    {
+        foreach ($this->roles()->get() as $role)
+        {
+            if ($role->name == 'Asesor')
+            {
+                return true;
+            }
+        }
+    }
+    public function isGestor()
+    {
+        foreach ($this->roles()->get() as $role)
+        {
+            if ($role->name == 'Gestor')
+            {
+                return true;
+            }
+        }
+    }
+    public function isInversor()
+    {
+        foreach ($this->roles()->get() as $role)
+        {
+            if ($role->name == 'Inversor')
+            {
+                return true;
+            }
+        }
+    }
 
     public function getRoleClass(){
 

@@ -331,6 +331,7 @@ class OfertasController extends DashBoardController
     public function updateEstado(OfertaRequest $request){
         $oferta = Oferta::find($request->id);
         $oferta->approved = $request->input('approved');
+        $oferta->active = $request->input('active');
         $oferta->save();
         $tab = "estado";
         return redirect()->action('Dashboard\OfertasController@show', ['oferta'=>$oferta,'tab'=>$tab])
@@ -360,14 +361,15 @@ class OfertasController extends DashBoardController
      * @param  \App\Oferta  $oferta
      * @return \Illuminate\Http\Response
      */
-    public function delete(Oferta $oferta)
+    public function delete(Oferta $oferta, Request $request)
     {
-        $oferta->fill(['active'=>false]);
+
+        $oferta->active= $request->input('modalborrar_action');
         $oferta->save();
 
         return redirect()->route('dashboardOfertas') ->with([
             'success'=> true,
-            'mensaje'=>__('<strong>'.$oferta->name.'</strong> eliminada correctamente')
+            'mensaje'=>__('<strong>'.$oferta->name.'</strong> modificada correctamente')
         ]);
     }
 

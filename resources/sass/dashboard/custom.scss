@@ -71,6 +71,28 @@
     }
 }
 
+.dropdown-menu {
+    padding: 0;
+    color: $white;
+
+    a {
+        &:hover {
+            background-color: $themecolor !important;
+        }
+    }
+
+    .activa {
+        background-color: $success;
+        color: $white !important;
+
+    }
+
+    .eliminada {
+        color: $white !important;
+        background-color: $danger;
+    }
+}
+
 .etiqueta-sidebar {
     font-size: 90%;
     margin-top: 7px;

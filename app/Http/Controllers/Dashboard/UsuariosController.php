@@ -290,19 +290,15 @@ class UsuariosController extends DashBoardController
      * @param  \App\Asociacion  $asociacion
      * @return \Illuminate\Http\Response
      */
-    public function delete(User $usuario)
+    public function delete(User $usuario,Request $request)
     {
-        // dd($usuario->asociaciones()->count());
-        //     if ($usuario->asociaciones()->count() > 0) {
-        //         return redirect()->route('dashboardUsuarios')->with(['error'=> true,'mensaje'=>__('No se puede eliminar el usuario '.$usuario->name)]);
-        //     }
-
-        $usuario->fill(['active'=>false]);
+      
+        $usuario->active= $request->input('modalborrar_action');
         $usuario->save();
 
         return redirect()->route('dashboardUsuarios')->with([
             'success'=> true,
-            'mensaje'=>__('El usuario se ha eliminado correctamente')
+            'mensaje'=>__('El usuario se ha modfiicado correctamente')
         ]);
     }
 

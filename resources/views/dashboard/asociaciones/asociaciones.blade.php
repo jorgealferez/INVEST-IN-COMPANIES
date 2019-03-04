@@ -73,11 +73,21 @@
                                             @if (in_array($asociacion->id,$notificaciones))
                                             <i class="mdi mdi-star text-warning float-left"></i>
                                             @endif
-                                            <a href="<?php echo urldecode(route('dashboardAsociacion',['asociacion'=>$asociacion])); ?>" data-toggle="tooltip" data-original-title="{{ __('Ver') }}"> <i class="fa fa-cog text-secondary" style="font-size:150%"></i>
-                                            </a>
-                                            @if($asociacion->active)
-                                            <a href="#" title="{{ __('Borrar') }}" class="borrarAsociacion" data-toggle="modal" data-target="#borrarModal" data-url="<?php echo urldecode(route('dashboardAsociacionDelete',['asociacion'=>$asociacion])); ?>" data-id="{{$asociacion->id}}" data-name="{{$asociacion->name}}"> <i class=" mdi mdi-close-circle text-danger" style="font-size:150%"></i></a>
-                                            @endif
+
+                                            <div class="btn-group" role="group" aria-label="...">
+                                                <a href="<?php echo urldecode(route('dashboardAsociacion',['asociacion'=>$asociacion])); ?>" data-toggle="tooltip" data-original-title="{{ __('Ver') }}" class="btn btn-sm btn-secondary">
+                                                    {{ __('Ver') }}
+                                                </a>
+                                                @if($asociacion->active)
+                                                <a href="#" title="{{ __('Eliminar') }}" data-toggle="modal" data-original-title="{{ __('Borrar') }}" class="btn btn-sm btn-danger borrarasociacion " data-url="<?php echo urldecode(route('dashboardAsociacionDelete',['asociacion'=>$asociacion])); ?>" data-id="{{$asociacion->id}}" data-name="{{$asociacion->name}}" data-target="#borrarModal" data-borrar="1">
+                                                        <i class="fa fas fa-trash"></i>
+                                                </a>
+                                                @else
+                                                <a href="#" title="{{ __('Restablecer') }}" data-toggle="modal" data-borrar="0" data-original-title="{{ __('Restablecer') }}" class="borrarasociacion btn btn-sm btn-success" data-url="<?php echo urldecode(route('dashboardAsociacionDelete',['asociacion'=>$asociacion])); ?>" data-id="{{$asociacion->id}}" data-name="{{$asociacion->name}}" data-target="#borrarModal">
+                                                        <i class="fa  fas fa-undo-alt"></i>
+                                                </a>
+                                                @endif
+                                            </div>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -126,11 +136,19 @@
 {{-- <script src="{{ asset('js/bootstrap3-typeahead.min.js') }}" type="text/javascript"></script> --}}
 <script>
     //
-    // jQuery.noConflict();
     $(document).ready(function ($) {
         $('#borrarModal').on("show.bs.modal", function (event) {
+            console.log($(event.relatedTarget).data());
+            if (!$(event.relatedTarget).data('borrar')) {
+                $('#modalborrar_action').val('1');
+                $("#BotonEliminar").removeClass("btn-danger").addClass("btn-success").html('Restablecer');
+                $('#texto-modal-borrar').html('Seguro que deseas volver a activar la asociación ' + ' <strong>' + $(event.relatedTarget).data('name') + ' </strong>');
+            } else {
+                $('#modalborrar_action').val('0');
+                $("#BotonEliminar").removeClass("btn-success").addClass("btn-danger").html('Eliminar');
+                $('#texto-modal-borrar').html('Seguro que deseas borrar la asociación ' + ' <strong>' + $(event.relatedTarget).data('name') + ' </strong>');
+            }
 
-            $('#texto-modal-borrar').html('Seguro que deseas borrar la asociación ' + ' <strong>' + $(event.relatedTarget).data('name') + ' </strong>');
             $('#id_borrar').val($(event.relatedTarget).data('id'));
             $('#BotonEliminar').on('click', function (e) {
                 $('#formBorrar').attr('action', "/dashboard/asociaciones/delete/" + $('#id_borrar').val());
@@ -138,6 +156,7 @@
                 $form = '';
             });
         });
+
     });
 
     $("#btnreset").click(function () {

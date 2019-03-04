@@ -189,9 +189,9 @@ class AsociacionesController extends DashBoardController
      * @param  \App\Asociacion  $asociacion
      * @return \Illuminate\Http\Response
      */
-    public function delete(Asociacion $asociacion)
+    public function delete(Asociacion $asociacion,Request $request)
     {
-        $asociacion->fill(['active'=>false]);
+        $asociacion->active= $request->input('modalborrar_action');
         $asociacion->save();
 
         return redirect()->route('dashboardAsociaciones')->with([

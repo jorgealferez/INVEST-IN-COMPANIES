@@ -15,12 +15,16 @@
                 <div class="card-body   bg-gray">
                     <h4 class="card-title text-white m-0">
                         {{ e($asociacion->name) }}
+
+                        @if (!$asociacion->active)
+                        <span class="badge badge-danger float-right mr-2"> {{ __('Eliminada') }}</span> @endif
                         @if ($nueva)
                         <span class="badge badge-warning float-right mr-2">
                             <i class="mdi mdi-star text-white "></i>
                             {{ __('Nueva') }}
                         </span>
                         @endif
+
                     </h4>
                 </div>
 
@@ -77,12 +81,15 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs profile-tab listaTabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link @if($tab=='usuarios') active show @endif" data-toggle="tab" href="#usuarios" role="tab">Usuarios</a>
+                            <a class="nav-link @if($tab=='usuarios') active show @endif" data-toggle="tab" href="#usuarios" role="tab">{{ __('Usuarios') }}</a>
                         </li>
 
                         @if($isAdmin)
                         <li class="nav-item">
-                            <a class="nav-link @if($tab=='modificar') active show @endif" data-toggle="tab" href="#modificar" role="tab">Modificar</a>
+                            <a class="nav-link @if($tab=='modificar') active show @endif" data-toggle="tab" href="#modificar" role="tab">{{ __('Modificar') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if($tab=='estado') active show @endif" data-toggle="tab" href="#estado" role="tab">{{ __('Estado') }}</a>
                         </li>
                         @endif
                     </ul>
@@ -292,6 +299,48 @@
                                 </div>
                             </div>
 
+                            @endif
+
+                            @if ($isAdmin)
+
+                            <div class="tab-pane  @if($tab=='estado') active @endif" id="estado" role="tabpanel">
+
+                                <div class="card-body bg-info ">
+                                    <h6 class="card-subtitle text-white m-0">{{ __('Cambia el estado de la asociación.') }}</h6>
+                                </div>
+
+                                <div class="card-body">
+                                    <form method="POST" class="" action="{{ action('Dashboard\AsociacionesController@update', ['id' => $asociacion->id])}}">
+                                        @csrf @method('PUT')
+
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+
+                                                <div class="form-group ">
+                                                    <label for="active" class=" col-form-label ">{{ __('Estado') }}</label>
+                                                    <select name="active" id="active" class="form-control form-control-line {{ $errors->has('active') ? ' form-control-danger' : '' }}" required>
+                                                        <option value="1" @if ( $asociacion->active) selected @endif>{{ __('Activa') }}</option>
+                                                        <option value="0" @if (! $asociacion->active) selected @endif>{{ __('Eliminada') }}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+
+                                                <div class="form-group">
+                                                    <button class="btn btn-verde waves-effect waves-light">{{ __('Modificar estado') }}</button>
+                                                    <a href="{{ e(route('dashboardOfertas')) }}" class="btn btn-inverse waves-effect waves-light">{{ __('Cancelar') }}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
                             @endif
                         </div>
                     </div>

@@ -99,12 +99,24 @@
                                         </td>
                                         @endif
                                         <td class="text-right">
-                                            <a href="<?php echo urldecode(route('dashboardUsuario',['usuario'=>$usuario])); ?>" class="text-verde" title="{{ __('Ver') }}">
-                                                <i class="fa fa-cog text-secondary" style="font-size:150%"></i>
+                                                <div class="btn-group" role="group" aria-label="...">
+                                                        <a href="<?php echo urldecode(route('dashboardUsuario',['usuario'=>$usuario])); ?>" class="btn btn-sm btn-secondary" title="{{ __('Ver') }}">
+                                                                {{ __('Ver') }}
+                                                        </a>
+                                                        @if($isAdmin )
+                                            @if($usuario->active)
+                                            <a href="#" title="{{ __('Eliminar') }}" data-toggle="modal" data-original-title="{{ __('Borrar') }}" class="btn btn-sm btn-danger  borrarUsuario " data-url="<?php echo urldecode(route('dashboardOfertaDelete',['usuario'=>$usuario])); ?>" data-id="{{$usuario->id}}" data-name="{{$usuario->name}}" data-target="#borrarModal" data-borrar="1">
+                                                    <i class="fa fas fa-trash"></i>
+                                            </a> 
+                                            @else
+                                            <a href="#" title="{{ __('Restablecer') }}" data-toggle="modal" data-borrar="0" data-original-title="{{ __('Restablecer') }}" class="borrarUsuario  btn btn-sm btn-success" data-url="<?php echo urldecode(route('dashboardUsuarioDelete',['usuario'=>$usuario])); ?>" data-id="{{$usuario->id}}" data-name="{{$usuario->name}}" data-target="#borrarModal">
+                                                    <i class="fa  fas fa-undo-alt"></i>
                                             </a>
-                                            @if($isAdmin && $usuario->active)
-                                            <a href="#" class="borrarUsuario" data-toggle="modal" data-url="<?php echo urldecode(route('dashboardUsuarioDelete',['usuario'=>$usuario])); ?>" data-id="{{$usuario->id}}" data-name="{{$usuario->name}}"  data-target="#borrarModal" title="{{ __('Eliminar') }}"> <i class="mdi mdi-close-circle text-danger" style="font-size:150%"></i></a>
                                             @endif
+                                            @endif
+                                                    </div>
+                                            
+                                           
                                         </td>
                                     </tr>
                                     @endforeach
@@ -155,10 +167,20 @@
 {{-- <script src="{{ asset('js/bootstrap3-typeahead.min.js') }}" type="text/javascript"></script> --}}
 
 <script>
-     $(document).ready(function ($) {
+    
+    $(document).ready(function ($) {
         $('#borrarModal').on("show.bs.modal", function (event) {
+            console.log($(event.relatedTarget).data());
+            if (!$(event.relatedTarget).data('borrar')) {
+                $('#modalborrar_action').val('1');
+                $("#BotonEliminar").removeClass("btn-danger").addClass("btn-success").html('Restablecer');
+                $('#texto-modal-borrar').html('Seguro que deseas volver a activar el usuario ' + ' <strong>' + $(event.relatedTarget).data('name') + ' </strong>');
+            } else {
+                $('#modalborrar_action').val('0');
+                $("#BotonEliminar").removeClass("btn-success").addClass("btn-danger").html('Eliminar');
+                $('#texto-modal-borrar').html('Seguro que deseas borrar el usuario ' + ' <strong>' + $(event.relatedTarget).data('name') + ' </strong>');
+            }
 
-            $('#texto-modal-borrar').html('Seguro que deseas borrar el usuario ' + ' <strong>' + $(event.relatedTarget).data('name') + ' </strong>');
             $('#id_borrar').val($(event.relatedTarget).data('id'));
             $('#BotonEliminar').on('click', function (e) {
                 $('#formBorrar').attr('action', "/dashboard/usuarios/delete/" + $('#id_borrar').val());
@@ -166,6 +188,7 @@
                 $form = '';
             });
         });
+
     });
    
 

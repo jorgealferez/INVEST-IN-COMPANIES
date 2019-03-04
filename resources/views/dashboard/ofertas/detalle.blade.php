@@ -16,9 +16,12 @@
 
                 <div class="card-body   bg-gray">
                     <h4 class="card-title text-white m-0">
-                        {{ e($oferta->name) }} @if ($oferta->approved)
+                        {{ e($oferta->name) }}
+                        @if (!$oferta->active)
+                        <span class="badge badge-danger float-right ml-2"> {{ __('Eliminada') }}</span> @endif
+                        @if ($oferta->approved)
                         <span class="badge badge-success float-right"> <i class="mdi mdi-check-circle"></i> {{ __('Aprobada') }}</span> @else
-                        <span class="badge badge-danger float-right"> <i class="mdi mdi-alert-circle"></i> {{ __('Sin Aprobar') }}</span> @endif @if ($nueva)
+                        <span class="badge badge-warning float-right"> <i class="mdi mdi-alert-circle"></i> {{ __('Sin Aprobar') }}</span> @endif @if ($nueva)
                         <span class="badge badge-warning float-right mr-2"> <i class="mdi mdi-star text-white "></i> {{ __('Nueva') }}</span> @endif
                     </h4>
                 </div>
@@ -297,20 +300,30 @@
                     <div class="tab-pane  @if($tab=='estado') active @endif" id="estado" role="tabpanel">
 
                         <div class="card-body bg-info ">
-                            <h6 class="card-subtitle text-white m-0">{{ __('Activa, o desactiva el estado de la oferta, para que aparezca en listado de ofertas en
-                                la parte pública.') }}</h6>
+                            <h6 class="card-subtitle text-white m-0">{{ __('Activa, o desactiva la oferta.') }}</h6>
                         </div>
+                        <form method="POST" class="" action="{{ action('Dashboard\OfertasController@updateEstado', ['id' => $oferta->id])}}">
+                            @csrf @method('PUT')
 
-                        <div class="card-body">
-                            <form method="POST" class="" action="{{ action('Dashboard\OfertasController@updateEstado', ['id' => $oferta->id])}}">
-                                @csrf @method('PUT')
+                            <div class="card-body">
 
                                 <div class="row">
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
 
                                         <div class="form-group ">
-                                            <label for="approved" class=" col-form-label ">{{ __('Estado') }}</label>
+                                            <label for="active" class=" col-form-label ">{{ __('Estado') }}</label>
+                                            <select name="active" id="active" class="form-control form-control-line {{ $errors->has('active') ? ' form-control-danger' : '' }}" required>
+                                                <option value="1" @if ( $oferta->active) selected @endif>{{ __('Activa') }}</option>
+                                                <option value="0" @if (! $oferta->active) selected @endif>{{ __('Eliminada') }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+
+                                        <div class="form-group ">
+                                            <label for="approved" class=" col-form-label ">{{ __('Aprobación de la oferta') }}</label>
                                             <select name="approved" id="approved" class="form-control form-control-line {{ $errors->has('approved') ? ' form-control-danger' : '' }}" required>
                                                 <option value="1" @if ( $oferta->approved) selected @endif>{{ __('Aprobada') }}</option>
                                                 <option value="0" @if (! $oferta->approved) selected @endif>{{ __('NO Aprobada') }}</option>
@@ -318,6 +331,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
 
                                 <div class="row">
 
@@ -329,9 +343,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
 
-                        </div>
+                            </div>
+
+
+                        </form>
                     </div>
                     @endif
 

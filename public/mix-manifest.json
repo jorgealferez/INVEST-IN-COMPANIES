@@ -18,6 +18,8 @@
     "/js/dashboard/bootstrap-switch.min.js": "/js/dashboard/bootstrap-switch.min.js?id=27d0f1f3f774af8d8305",
     "/js/dashboard/jquery.multi-select.js": "/js/dashboard/jquery.multi-select.js?id=d0746563c47061f61e59",
     "/js/dashboard/bootstrap3-typeahead.min.js": "/js/dashboard/bootstrap3-typeahead.min.js?id=4a13d2ae04c089198c4a",
+    "/js/dashboard/bootstrap-select.min.js": "/js/dashboard/bootstrap-select.min.js?id=db48dec5977a068162d0",
     "/css/select2.min.css": "/css/select2.min.css?id=ba8ffe9bd503d4b78522",
-    "/css/multi-select.css": "/css/multi-select.css?id=a032fc33cc04f8765ae7"
+    "/css/multi-select.css": "/css/multi-select.css?id=a032fc33cc04f8765ae7",
+    "/css/bootstrap-select.min.css": "/css/bootstrap-select.min.css?id=6a102e24481bc5e86c8b"
 }

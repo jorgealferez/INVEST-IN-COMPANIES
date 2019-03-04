@@ -62,11 +62,13 @@ mix.copy(
         'resources/js/dashboard/plugins/bootstrap-switch/bootstrap-switch.min.js',
         'resources/js/dashboard/plugins/multiselect/js/jquery.multi-select.js',
         'resources/js/dashboard/bootstrap3-typeahead.min.js',
+        'node_modules/bootstrap-select/dist/js/bootstrap-select.min.js',
     ], 'public/js/dashboard/').version().sourceMaps();
 
 mix.copy([
     'resources/js/dashboard/plugins/select2/dist/css/select2.min.css',
     'resources/js/dashboard/plugins/multiselect/css/multi-select.css',
+    'node_modules/bootstrap-select/dist/css/bootstrap-select.min.css',
 ], 'public/css').sourceMaps();
 mix.sass('resources/sass/dashboard/custom.scss', 'public/css').sourceMaps();
 

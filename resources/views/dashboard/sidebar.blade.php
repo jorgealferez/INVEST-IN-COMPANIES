@@ -29,11 +29,11 @@
                 </li>
                 @endif
                 @if($isGestor)
-                <?php if(!Auth::user()->asociaciones->isEmpty() && Auth::user()->asociaciones->contains('active',1) ){?>
+                <?php if(!auth()->user()->asociaciones->isEmpty() && auth()->user()->asociaciones->contains('active',1) ){?>
                 <li>
 
-                    {{ dd(Auth::user()->asociaciones->contains('active',1)) }}
-                    <a href="{{ e(route('dashboardAsociacion', Auth::user()->asociaciones->first()->id)) }}" data-active="/asociaciones">
+                    {{ dd(auth()->user()->asociaciones->contains('active',1)) }}
+                    <a href="{{ e(route('dashboardAsociacion', auth()->user()->asociaciones->first()->id)) }}" data-active="/asociaciones">
                         <i class="mdi mdi-security-home"></i>
                         <span class="hide-menu">{{ __('Mi Asociación') }}</span>
                     </a>
@@ -41,7 +41,7 @@
                     <?php } ?>
                     @endif
 
-                    @if ( !Auth::user()->asociaciones->isEmpty() || $isAdmin)
+                    @if ( !auth()->user()->asociaciones->isEmpty() || $isAdmin)
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                         <i class="mdi mdi-tag-text-outline"></i>
                         <span class="hide-menu">
@@ -73,9 +73,9 @@
                 <li class="nav-devider"></li>
                 <li class="user-profile">
                     <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
-                        <span class="round {{ Auth::user()->getRoleClass() }} roleSmall">{{ substr(Auth::user()->getRoleClass(),4,1) }} </span>
+                        <span class="round {{ auth()->user()->getRoleClass() }} roleSmall">{{ substr(auth()->user()->getRoleClass(),4,1) }} </span>
                         &nbsp;
-                        <span class="hide-menu">{{ Auth::user()->name }} </span>
+                        <span class="hide-menu">{{ auth()->user()->name }} </span>
                     </a>
                     <ul aria-expanded="false" class="collapse">
                         <li>
