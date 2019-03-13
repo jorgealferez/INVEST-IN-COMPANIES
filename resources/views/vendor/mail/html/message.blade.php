@@ -22,7 +22,7 @@
 @slot('footer')
 @component('mail::footer')
 
-![](data:image/png;base64,{{base64_encode(file_get_contents(public_path('/images/logo-light-text.png')))}} "Invest In Companies")
+![Invest In Companies]({{ config('app.url').'/images/logo-light-text.png' }})
 
 @2018 Copyright. Todos los derechos reservados por tu empresa
 
