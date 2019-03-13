@@ -50,51 +50,49 @@ class UsuariosController extends DashBoardController
     {
         Parent::RolesCheck();
         // $query[]=["active" , "<>", NULL];
-        if ($this->isAdmin){
+        if ($this->isAdmin) {
             $query[]=['id','<>',Auth::user()->id];
-         } else {
+        } else {
             $query[]=["active" , "=", 1];
         }
-        if($request->input('name')) {
+        if ($request->input('name')) {
             $query[]=[DB::raw("CONCAT(name, ' ', surname)"), 'LIKE', "%".$request->input('name')."%"];
         }
-        if($request->input('email')) {
+        if ($request->input('email')) {
             $query[]=["email","LIKE","%{$request->input('email')}%"];
         }
-        if($request->input('phone')) {
+        if ($request->input('phone')) {
             $query[]=["phone","LIKE","%{$request->input('phone')}%"];
         }
-        if($request->input('asociacion_id')) {
-            $usuarios = User::with('asociaciones','roles')->where($query)
-            ->whereHas('asociaciones', function ($query) use ( $request) {
+        if ($request->input('asociacion_id')) {
+            $usuarios = User::with('asociaciones', 'roles')->where($query)
+            ->whereHas('asociaciones', function ($query) use ($request) {
                 $query->where('asociaciones.id', '=', $request->input('asociacion_id'));
             });
-
-        }else{
-            $usuarios = User::with('asociaciones','roles')->where($query)->orderBy('created_at','DESC');
+        } else {
+            $usuarios = User::with('asociaciones', 'roles')->where($query)->orderBy('created_at', 'DESC');
         }
 
-        if($request->get('asociacion')=="inversores_count"){
+        if ($request->get('asociacion')=="inversores_count") {
             $usuarios= $usuarios
-            ->orderBy('asociaciones.name',$request->get('direction'));
-       }else if($request->get('sort')=="asociaciones_count"){
+            ->orderBy('asociaciones.name', $request->get('direction'));
+        } elseif ($request->get('sort')=="asociaciones_count") {
             $usuarios= $usuarios
-                        ->orderBy('asociacion_count',$request->get('direction'));
-
-       }
+                        ->orderBy('asociacion_count', $request->get('direction'));
+        }
         if ($this->isAsesor) {
             $usuarios= $usuarios
-            ->whereHas('asociaciones', function($q) {
+            ->whereHas('asociaciones', function ($q) {
                 $q->whereIn('asociaciones.id', Auth::user()->getAsociacionesDelUsario());
             });
         }
-       $usuarios= $usuarios->sortable()->paginate(10);
+        $usuarios= $usuarios->sortable()->paginate(10);
 
-       $asociacionesDisponibles=Auth::user()->asociacionesDisponiblesByRole();
+        $asociacionesDisponibles=Auth::user()->asociacionesDisponiblesByRole();
         $busqueda = ($request->input('search')) ? $request : null ;
 
         return view('dashboard.usuarios.usuarios')
-                ->with(compact('usuarios','busqueda','asociacionesDisponibles'));
+                ->with(compact('usuarios', 'busqueda', 'asociacionesDisponibles'));
     }
 
     /**
@@ -104,22 +102,21 @@ class UsuariosController extends DashBoardController
      */
     public function create()
     {
-         Parent::RolesCheck();
+        Parent::RolesCheck();
         $asociaciones=[];
         if ($this->isAsesor) {
-            $roles=Role::all('id','name')->whereIn('name', ['Asesor','Gestor']);
+            $roles=Role::all('id', 'name')->whereIn('name', ['Asesor','Gestor']);
             $asociaciones = Asociacion::find(auth()->user()->getAsociacionesDelUsario()->first());
 
-            if($asociaciones==null){
+            if ($asociaciones==null) {
                 return redirect()->route('dashboardUsuarios')->with(['error'=>true,'mensaje'=>  __('No puedes crear usuarios hasta tener una asociación asignada') ]);
             }
-        }else{
-            $roles=Role::all('id','name');
+        } else {
+            $roles=Role::all('id', 'name');
         }
 
 
-            return view('dashboard.usuarios.crear',['roles'=>$roles]);
-
+        return view('dashboard.usuarios.crear', ['roles'=>$roles]);
     }
 
     /**
@@ -130,7 +127,7 @@ class UsuariosController extends DashBoardController
      */
     public function store(UsuarioRequest $request)
     {
-         Parent::RolesCheck();
+        Parent::RolesCheck();
         $usuario = User::create([
             'name' => $request->name,
             'surname' => $request->surname,
@@ -150,7 +147,6 @@ class UsuariosController extends DashBoardController
         $usuario->NotificacionNuevoUsuario();
 
         return redirect()->route('dashboardUsuarios')->with(['success'=>true,'mensaje'=>  __('Usuario creado correctamente') ]);
-
     }
 
     /**
@@ -161,23 +157,23 @@ class UsuariosController extends DashBoardController
      */
     public function show(User $usuario, $tab='modificar', Request $request)
     {
-         Parent::RolesCheck();
+        Parent::RolesCheck();
         $nueva = false;
-        if($usuario->id<>Auth::user()->id){
+        if ($usuario->id<>Auth::user()->id) {
             $errors = Session::get('errors');
             if ($request->tab) {
                 $tab=$request->tab;
-            }elseif(session('tab')){
+            } elseif (session('tab')) {
                 $tab=session('tab');
             } else {
                 $tab="modificar";
             }
-            if(isset($errors)){
+            if (isset($errors)) {
                 if ($errors->has('role')) {
                     $tab = "roles";
-                }elseif ($errors->has('active')) {
+                } elseif ($errors->has('active')) {
                     $tab = "estado";
-                }else {
+                } else {
                     $tab="modificar";
                 }
             }
@@ -188,43 +184,42 @@ class UsuariosController extends DashBoardController
                 }
                 if ($this->isAdmin) {
                     $roles=Role::all('id', 'name');
-                }elseif ($this->isAsesor) {
-                    $roles=Role::all('id','name')->whereIn('name', ['Asesor','Gestor']);
+                } elseif ($this->isAsesor) {
+                    $roles=Role::all('id', 'name')->whereIn('name', ['Asesor','Gestor']);
                 }
 
                 $action = action('Dashboard\UsuariosController@update', ['id' => $usuario->id]);
                 return view('dashboard.usuarios.detalle')
-->with(compact('usuario','roles','tab','action','nueva'));
+->with(compact('usuario', 'roles', 'tab', 'action', 'nueva'));
             } else {
                 abort(404);
             }
-        }else{
+        } else {
             // SI EL USUARIO COINCIDE REDIRIJO
             return redirect()->route('perfilUsuario');
         }
-
-
     }
 
     public function profile(UsuarioRequest $request)
     {
-         Parent::RolesCheck();
+        Parent::RolesCheck();
+         
+        $nueva = false;
         $usuario = Auth::user();
         if ($usuario && $usuario->active) {
             $action = action('Dashboard\UsuariosController@profileUpdate', ['id' => $usuario->id]);
             return view('dashboard.usuarios.profile')
-                ->with(compact('usuario','action'));
+                ->with(compact('usuario', 'action', 'nueva'));
         } else {
             abort(404);
         }
-
     }
 
 
 
     public function profileUpdate(UsuarioRequest $request)
     {
-         Parent::RolesCheck();
+        Parent::RolesCheck();
         $usuario = Auth::user();
         if ($usuario && $usuario->active) {
             $user = User::find($request->id);
@@ -235,48 +230,43 @@ class UsuariosController extends DashBoardController
                 'mensaje'=>__('<strong>'.$user->name.'</strong> modificado correctamente')
             ]);
         } else {
-                abort(404);
+            abort(404);
         }
-
-
     }
 
     public function update(UsuarioRequest $request)
     {
-         Parent::RolesCheck();
+        Parent::RolesCheck();
         $user = User::find($request->id);
         $user->fill($request->all());
         $user->active = ($request['active']=="on") ? 1 : 0;
         $user->save();
         $tab="modificar";
-        return redirect()->action('Dashboard\UsuariosController@show',['usuario'=>$user])->with([
+        return redirect()->action('Dashboard\UsuariosController@show', ['usuario'=>$user])->with([
             'tab'=> $tab,
             'success'=> true,
             'mensaje'=>__('<strong>'.$user->name.'</strong> modificado correctamente')
         ]);
-
-
     }
 
     public function updateEstado(UsuarioRequest $request)
     {
-         Parent::RolesCheck();
+        Parent::RolesCheck();
         $user = User::find($request->id);
         $user->active = $request->active;
         $user->save();
         $tab="estado";
-        return redirect()->action('Dashboard\UsuariosController@show',['usuario'=>$user])->with([
+        return redirect()->action('Dashboard\UsuariosController@show', ['usuario'=>$user])->with([
             'tab'=> $tab,
             'success'=> true,
             'mensaje'=>__('Estado de <strong>'.$user->name.'</strong> modificado correctamente')
         ]);
-
-
     }
 
 
     public function updateRol(UsuarioRequest $request)
-    {  Parent::RolesCheck();
+    {
+        Parent::RolesCheck();
         $user = User::find($request->id);
 
         $user->roles()->detach();
@@ -285,13 +275,11 @@ class UsuariosController extends DashBoardController
             ->attach(Role::find($request->role));
 
         $tab="roles";
-        return redirect()->action('Dashboard\UsuariosController@show',['usuario'=>$user])->with([
+        return redirect()->action('Dashboard\UsuariosController@show', ['usuario'=>$user])->with([
             'tab'=> $tab,
             'success'=> true,
             'mensaje'=>__('El perfil de <strong>'.$user->name.'</strong> se ha modificado correctamente')
         ]);
-
-
     }
 
     /**
@@ -300,9 +288,8 @@ class UsuariosController extends DashBoardController
      * @param  \App\Asociacion  $asociacion
      * @return \Illuminate\Http\Response
      */
-    public function delete(User $usuario,Request $request)
+    public function delete(User $usuario, Request $request)
     {
-
         $usuario->active= $request->input('modalborrar_action');
         $usuario->save();
 
@@ -312,7 +299,8 @@ class UsuariosController extends DashBoardController
         ]);
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         $data = User::select("name")
                 ->where([
                     ["name","LIKE","%{$request->input('query')}%"]
@@ -322,38 +310,34 @@ class UsuariosController extends DashBoardController
         return response()->json($data);
     }
 
-    public function searchUsuariosByAsociacion(Request $request){
-
-
-        if( !empty( $request->except('asociacion') ) && $request->input('asociacion')!=null){
+    public function searchUsuariosByAsociacion(Request $request)
+    {
+        if (!empty($request->except('asociacion')) && $request->input('asociacion')!=null) {
             $data['usuarios'] = Asociacion::Find($request->input('asociacion'))
-            ->usuarios->pluck('name','id');
+            ->usuarios->pluck('name', 'id');
             $data['status']=true;
             return response()->json($data);
-        }else{
+        } else {
             return response()->json(['status'=>false]);
-
         }
     }
 
 
-    public function searchpoblacionesbyprovincia(Request $request){
-
-
-        if( $request->input('provincia_id')!=null){
-            $data['poblaciones'] = Poblacion::where('provincia_id',$request->input('provincia_id'))
-            ->pluck('name','id');
+    public function searchpoblacionesbyprovincia(Request $request)
+    {
+        if ($request->input('provincia_id')!=null) {
+            $data['poblaciones'] = Poblacion::where('provincia_id', $request->input('provincia_id'))
+            ->pluck('name', 'id');
             $data['status']=true;
             return response()->json($data);
-        }else{
+        } else {
             return response()->json(['status'=>false]);
-
         }
     }
 
-    public function reiniciarPassword(Request $email){
+    public function reiniciarPassword(Request $email)
+    {
         return $this->sendResetLinkEmail($email);
-
     }
 
     public function sendResetLinkEmail(Request $request)
@@ -427,5 +411,4 @@ class UsuariosController extends DashBoardController
     {
         return Password::broker();
     }
-   
 }
