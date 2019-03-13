@@ -1,13 +1,19 @@
 <?php
 
 namespace App;
-use App\Role;
-use App\Traits\DatesTranslator;
-use Illuminate\Support\Facades\DB;
+
 use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\DatesTranslator;
+use App\Role;
+use App\Notifications\Usuarios\UsuarioResetPassword;
+use App\Notifications\Usuarios\UsuarioNuevoVerificar;
+use App\Notifications\Usuarios\UsuarioNuevo;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -39,7 +45,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function role()
     {
         return $this
-        ->belongsTo('App\Role','role_user','user_id','role_id');
+        ->belongsTo('App\Role', 'role_user', 'user_id', 'role_id');
     }
     public function roles()
     {
@@ -101,58 +107,50 @@ class User extends Authenticatable implements MustVerifyEmail
     public function inversiones()
     {
         return $this
-        ->hasMany('App\Inversion')->withTimestamps();
+        ->hasMany('App\Inversion');
     }
 
 
     public function isAdmin()
     {
-        foreach ($this->roles()->get() as $role)
-        {
-            if ($role->name == 'Admin')
-            {
+        foreach ($this->roles()->get() as $role) {
+            if ($role->name == 'Admin') {
                 return true;
             }
         }
     }
     public function isAsesor()
     {
-        foreach ($this->roles()->get() as $role)
-        {
-            if ($role->name == 'Asesor')
-            {
+        foreach ($this->roles()->get() as $role) {
+            if ($role->name == 'Asesor') {
                 return true;
             }
         }
     }
     public function isGestor()
     {
-        foreach ($this->roles()->get() as $role)
-        {
-            if ($role->name == 'Gestor')
-            {
+        foreach ($this->roles()->get() as $role) {
+            if ($role->name == 'Gestor') {
                 return true;
             }
         }
     }
     public function isInversor()
     {
-        foreach ($this->roles()->get() as $role)
-        {
-            if ($role->name == 'Inversor')
-            {
+        foreach ($this->roles()->get() as $role) {
+            if ($role->name == 'Inversor') {
                 return true;
             }
         }
     }
 
-    public function getRoleClass(){
-
-        return 'role'.substr($this->roles->first()->name,0,2);
-
+    public function getRoleClass()
+    {
+        return 'role'.substr($this->roles->first()->name, 0, 2);
     }
 
-    public function statusClass(){
+    public function statusClass()
+    {
         $status="";
         switch ($this->active) {
             case true:
@@ -163,10 +161,10 @@ class User extends Authenticatable implements MustVerifyEmail
                 break;
         }
         return $status;
-
     }
 
-    public function statusName(){
+    public function statusName()
+    {
         $status="";
         switch ($this->active) {
             case true:
@@ -177,32 +175,29 @@ class User extends Authenticatable implements MustVerifyEmail
                 break;
         }
         return $status;
-
     }
 
 
-    public function getAsociacionesDelUsario(){
-
-        $asociacion = $this->asociaciones()->where('active',1)->pluck('asociaciones.id');
+    public function getAsociacionesDelUsario()
+    {
+        $asociacion = $this->asociaciones()->where('active', 1)->pluck('asociaciones.id');
         return $asociacion;
-
     }
 
 
-    public function permisoOferta($oferta_id){
-       if($this->id==$oferta_id){
-
+    public function permisoOferta($oferta_id)
+    {
+        if ($this->id==$oferta_id) {
             return true;
-        }else{
+        } else {
             return false;
         }
-
     }
 
 
 
-    public function asociacionesDisponiblesByRole(){
-
+    public function asociacionesDisponiblesByRole()
+    {
         switch ($this->roles()->first()->name) {
             case 'Admin':
                 $asociaciones=Asociacion::all();
@@ -222,14 +217,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return  $asociaciones;
     }
 
-    public function usuariosDeMiAsociacion(){
-
+    public function usuariosDeMiAsociacion()
+    {
         switch ($this->roles()->first()->name) {
             case 'Admin':
                 $usuarios= User::whereHas('roles', function ($q) {
                     $q->Where('name', 'Gestor')->
                         orWhere('name', 'Asesor');
-
                 })->where('active', 1)->get();
                 break;
             case 'Asesor':
@@ -245,15 +239,37 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-    public function getUsersFromThisAsociacion(){
+    public function getUsersFromThisAsociacion()
+    {
         $result = DB::table('asociacion_user')
-            ->select('user_id')->whereIn('asociacion_id',$this->getAsociacionesDelUsario())
+            ->select('user_id')->whereIn('asociacion_id', $this->getAsociacionesDelUsario())
             ->get()->pluck('user_id');
-        $users = User::whereIn('id',$result);
+        $users = User::whereIn('id', $result);
         return $users;
-
     }
 
+    public function NotificacionNuevoUsuario()
+    {
+        $administradores = Role::with('users')->where('name', 'Admin')->first()->users()->get();
+        Notification::send($this, new UsuarioNuevoVerificar($this));
+        // Mail::to($administradores)->send(new NuevoUsuario($order));
+       
+        foreach ($administradores as $administrador) {
+            Notification::send($administrador, new UsuarioNuevo($administrador, $this));
+        }
+    }
 
+    
 
+    /**
+    * Send the password reset notification.
+    * @note: This override Authenticatable methodology
+    *
+    * @param string $token
+    * @return void
+    */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new UsuarioResetPassword($token, $this));
+    }
 }

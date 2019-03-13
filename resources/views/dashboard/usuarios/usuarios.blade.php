@@ -6,7 +6,7 @@
     <div class="row">
 
         <div class="col-md-12">
-            @include('dashboard.alertas')
+    @include('dashboard.alertas')
 
             <div class="card">
 
@@ -32,7 +32,8 @@
                                     <tr>
 
                                         <th>@sortablelink('name', __('Nombre'),[],['class'=>'text-nowrap'])<br>
-                                            <input name="name" id="name" class=" typeahead" type="text" value="{{ (!empty($busqueda)) ? $busqueda->input('name') : '' }}" placeholder="{{ __('Nombre') }}">
+                                            <input name="name" id="name" class=" typeahead" type="text" value="{{ (!empty($busqueda)) ? $busqueda->input('name') : '' }}"
+                                                placeholder="{{ __('Nombre') }}">
                                         </th>
                                         <th>@sortablelink('email', __('Email'),[],['class'=>'text-nowrap'])<br>
                                             <input name="email" id="email" class="" type="text" value="{{ (!empty($busqueda)) ? $busqueda->input('email') : '' }}" placeholder="{{ __('Email') }}">
@@ -64,13 +65,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if($usuarios->isNotEmpty())
-                                    @foreach ($usuarios as $usuario)
+                                    @if($usuarios->isNotEmpty()) @foreach ($usuarios as $usuario)
                                     <?php
                                             // $usuarioRole= $usuario->roles->first()->name;
                                         ?>
-                                    <tr class="@if(!$usuario->active) registro-eliminado @endif">
-                                        <?php /*   <td>
+                                        <tr class="@if(!$usuario->active) registro-eliminado @endif">
+                                            <?php /*   <td>
 
                                                 <div class="message-box contact-box">
 
@@ -86,47 +86,48 @@
                                                     </div>
                                                 </div>
                                             </td> */ ?>
-                                        <td>
-                                            {{ e($usuario->FullName) }}
-                                        </td>
-                                        <td>{!! e($usuario->email) !!}</td>
-                                        <td class="text-center">{!! e($usuario->phone) !!}</td>
-                                        @if($isAdmin)
-                                        <td>
-                                            @foreach ($usuario->asociaciones as $asociacion)
-                                            {{ e($asociacion->name) }}<br>
-                                            @endforeach
-                                        </td>
-                                        @endif
-                                        <td class="text-right">
+                                            <td>
+                                                @if (in_array($usuario->id, $notifiacionesUsuarios->pluck('data')->pluck('usuario_id')->toArray()))
+                                                <span class="badge badge-success bg-warning">
+                                                                                                                                            {{ __('Nuevo') }}</span>                                                @endif {{ e($usuario->FullName) }}
+
+                                            </td>
+                                            <td>{!! e($usuario->email) !!}</td>
+                                            <td class="text-center">{!! e($usuario->phone) !!}</td>
+                                            @if($isAdmin)
+                                            <td>
+                                                @foreach ($usuario->asociaciones as $asociacion) {{ e($asociacion->name) }}<br>                                                @endforeach
+                                            </td>
+                                            @endif
+                                            <td class="text-right">
+
                                                 <div class="btn-group" role="group" aria-label="...">
-                                                        <a href="<?php echo urldecode(route('dashboardUsuario',['usuario'=>$usuario])); ?>" class="btn btn-sm btn-secondary" title="{{ __('Ver') }}">
-                                                                {{ __('Ver') }}
-                                                        </a>
-                                                        @if($isAdmin )
-                                            @if($usuario->active)
-                                            <a href="#" title="{{ __('Eliminar') }}" data-toggle="modal" data-original-title="{{ __('Borrar') }}" class="btn btn-sm btn-danger  borrarUsuario " data-url="<?php echo urldecode(route('dashboardOfertaDelete',['usuario'=>$usuario])); ?>" data-id="{{$usuario->id}}" data-name="{{$usuario->name}}" data-target="#borrarModal" data-borrar="1">
+                                                    <a href="<?php echo urldecode(route('dashboardUsuario',['usuario'=>$usuario])); ?>" class="btn btn-sm btn-secondary" title="{{ __('Ver') }}">
+                                                    {{ __('Ver') }}
+                                                </a> @if($isAdmin ) @if($usuario->active)
+                                                    <a href="#" title="{{ __('Eliminar') }}" data-toggle="modal" data-original-title="{{ __('Borrar') }}" class="btn btn-sm btn-danger  borrarUsuario "
+                                                        data-url="<?php echo urldecode(route('dashboardOfertaDelete',['usuario'=>$usuario])); ?>"
+                                                        data-id="{{$usuario->id}}" data-name="{{$usuario->name}}" data-target="#borrarModal"
+                                                        data-borrar="1">
                                                     <i class="fa fas fa-trash"></i>
-                                            </a> 
-                                            @else
-                                            <a href="#" title="{{ __('Restablecer') }}" data-toggle="modal" data-borrar="0" data-original-title="{{ __('Restablecer') }}" class="borrarUsuario  btn btn-sm btn-success" data-url="<?php echo urldecode(route('dashboardUsuarioDelete',['usuario'=>$usuario])); ?>" data-id="{{$usuario->id}}" data-name="{{$usuario->name}}" data-target="#borrarModal">
+                                                </a> @else
+                                                    <a href="#" title="{{ __('Restablecer') }}" data-toggle="modal" data-borrar="0" data-original-title="{{ __('Restablecer') }}"
+                                                        class="borrarUsuario  btn btn-sm btn-success" data-url="<?php echo urldecode(route('dashboardUsuarioDelete',['usuario'=>$usuario])); ?>"
+                                                        data-id="{{$usuario->id}}" data-name="{{$usuario->name}}" data-target="#borrarModal">
                                                     <i class="fa  fas fa-undo-alt"></i>
-                                            </a>
-                                            @endif
-                                            @endif
-                                                    </div>
-                                            
-                                           
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                    @else
-                                    <tr>
-                                        <td colspan="5">
-                                            <p>{{ __('No hay resultados disponibles') }}</p>
-                                        </td>
-                                    </tr>
-                                    @endif
+                                                </a> @endif @endif
+                                                </div>
+
+
+                                            </td>
+                                        </tr>
+                                        @endforeach @else
+                                        <tr>
+                                            <td colspan="5">
+                                                <p>{{ __('No hay resultados disponibles') }}</p>
+                                            </td>
+                                        </tr>
+                                        @endif
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -159,18 +160,15 @@
     </div>
 
 </div>
-
-@include('dashboard.modalBorrar')
+    @include('dashboard.modalBorrar')
 @endsection
 
-@section('scripts')
-{{-- <script src="{{ asset('js/bootstrap3-typeahead.min.js') }}" type="text/javascript"></script> --}}
+@section('scripts') {{--
+<script src="{{ asset('js/bootstrap3-typeahead.min.js') }}" type="text/javascript"></script> --}}
 
 <script>
-    
     $(document).ready(function ($) {
         $('#borrarModal').on("show.bs.modal", function (event) {
-            console.log($(event.relatedTarget).data());
             if (!$(event.relatedTarget).data('borrar')) {
                 $('#modalborrar_action').val('1');
                 $("#BotonEliminar").removeClass("btn-danger").addClass("btn-success").html('Restablecer');
@@ -190,7 +188,6 @@
         });
 
     });
-   
 
     $("#btnreset").click(function () {
         $("#formSearch").trigger("reset");

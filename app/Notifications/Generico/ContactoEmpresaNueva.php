@@ -1,25 +1,34 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\Generico;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class AsociacionNueva extends Notification
+class ContactoEmpresaNueva extends Notification
 {
     use Queueable;
-    public $subscription;
+    use SerializesModels;
+
+    public $empresaNombre;
+    public $empresaEmail;
+    public $empresaPhone;
+    public $usuario;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($asociacion)
+    public function __construct(User $usuario, $empresaNombre, $empresaEmail, $empresaPhone)
     {
-        $this->asociacion_id = $asociacion;
+        $this->usuario = $usuario;
+        $this->empresaNombre = $empresaNombre;
+        $this->empresaEmail = $empresaEmail;
+        $this->empresaPhone = $empresaPhone;
     }
 
     /**
@@ -30,9 +39,8 @@ class AsociacionNueva extends Notification
      */
     public function via($notifiable)
     {
-        // return ['mail'];
         return ['mail','database'];
-
+        // return ['database'];
     }
 
     /**
@@ -44,9 +52,14 @@ class AsociacionNueva extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        ->subject('Nuevo Empresa')
+            ->markdown('emails.generico.nuevaEmpresa', [
+                'usuario'=>$this->usuario,
+                'empresaNombre'=>$this->empresaNombre,
+                'empresaEmail'=>$this->empresaEmail,
+                'empresaPhone'=>$this->empresaPhone,
+
+            ]);
     }
 
 
@@ -59,7 +72,9 @@ class AsociacionNueva extends Notification
     public function toArray($notifiable)
     {
         return [
-            'asociacion_id' => $this->asociacion_id
+            'name' => $this->empresaNombre,
+            'email' => $this->empresaEmail,
+            'phone' => $this->empresaPhone
         ];
     }
 }

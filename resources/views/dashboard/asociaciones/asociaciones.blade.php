@@ -7,7 +7,7 @@
     <div class="row">
 
         <div class="col-md-12">
-            @include('dashboard.alertas')
+    @include('dashboard.alertas')
 
             <div class="card">
 
@@ -30,7 +30,8 @@
                                     <tr>
                                         <th>
                                             @sortablelink('name', __('Asociación'),[],['class'=>'text-nowrap'])<br>
-                                            <input name="name" id="name" class=" typeahead" type="text" value="{{ (!empty($busqueda)) ? $busqueda->input('name') : '' }}" placeholder="{{ __('Nombre') }}">
+                                            <input name="name" id="name" class=" typeahead" type="text" value="{{ (!empty($busqueda)) ? $busqueda->input('name') : '' }}"
+                                                placeholder="{{ __('Nombre') }}">
                                         </th>
                                         <th>
                                             @sortablelink('phone', __('Teléfono'),[],['class'=>'text-nowrap'])<br>
@@ -42,7 +43,8 @@
                                         </th>
                                         <th>
                                             @sortablelink('address', __('Dirección'),[],['class'=>'text-nowrap'])<br>
-                                            <input name="address" id="address" class="" type="text" value="{{ (!empty($busqueda)) ? $busqueda->input('address') : '' }}" placeholder="{{ __('Dirección') }}">
+                                            <input name="address" id="address" class="" type="text" value="{{ (!empty($busqueda)) ? $busqueda->input('address') : '' }}"
+                                                placeholder="{{ __('Dirección') }}">
                                         </th>
                                         <th>
 
@@ -54,11 +56,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if($asociaciones->isNotEmpty())
-                                    @foreach ($asociaciones as $asociacion)
+                                    @if($asociaciones->isNotEmpty()) @foreach ($asociaciones as $asociacion)
                                     <tr class="@if(!$asociacion->active) registro-eliminado @endif">
                                         <td>
-                                            {!! e($asociacion->name) !!}
+                                            @if (in_array($asociacion->id, $notifiacionesAsociaciones->pluck('data')->pluck('asociacion_id')->toArray()))
+                                            <span class="badge badge-success bg-warning">
+                                                                                            {{ __('Nueva') }}</span>                                            @endif {!! e($asociacion->name) !!}
                                         </td>
                                         <td>
                                             {{ e($asociacion->phone) }}
@@ -71,27 +74,28 @@
                                         </td>
                                         <td class="text-right">
                                             @if (in_array($asociacion->id,$notificaciones))
-                                            <i class="mdi mdi-star text-warning float-left"></i>
-                                            @endif
+                                            <i class="mdi mdi-star text-warning float-left"></i> @endif
 
                                             <div class="btn-group" role="group" aria-label="...">
-                                                <a href="<?php echo urldecode(route('dashboardAsociacion',['asociacion'=>$asociacion])); ?>" data-toggle="tooltip" data-original-title="{{ __('Ver') }}" class="btn btn-sm btn-secondary">
+                                                <a href="<?php echo urldecode(route('dashboardAsociacion',['asociacion'=>$asociacion])); ?>" data-toggle="tooltip" data-original-title="{{ __('Ver') }}"
+                                                    class="btn btn-sm btn-secondary">
                                                     {{ __('Ver') }}
-                                                </a>
-                                                @if($asociacion->active)
-                                                <a href="#" title="{{ __('Eliminar') }}" data-toggle="modal" data-original-title="{{ __('Borrar') }}" class="btn btn-sm btn-danger borrarasociacion " data-url="<?php echo urldecode(route('dashboardAsociacionDelete',['asociacion'=>$asociacion])); ?>" data-id="{{$asociacion->id}}" data-name="{{$asociacion->name}}" data-target="#borrarModal" data-borrar="1">
-                                                        <i class="fa fas fa-trash"></i>
-                                                </a>
-                                                @else
-                                                <a href="#" title="{{ __('Restablecer') }}" data-toggle="modal" data-borrar="0" data-original-title="{{ __('Restablecer') }}" class="borrarasociacion btn btn-sm btn-success" data-url="<?php echo urldecode(route('dashboardAsociacionDelete',['asociacion'=>$asociacion])); ?>" data-id="{{$asociacion->id}}" data-name="{{$asociacion->name}}" data-target="#borrarModal">
-                                                        <i class="fa  fas fa-undo-alt"></i>
-                                                </a>
-                                                @endif
+                                                </a> @if($asociacion->active)
+                                                <a href="#" title="{{ __('Eliminar') }}" data-toggle="modal" data-original-title="{{ __('Borrar') }}" class="btn btn-sm btn-danger borrarasociacion "
+                                                    data-url="<?php echo urldecode(route('dashboardAsociacionDelete',['asociacion'=>$asociacion])); ?>"
+                                                    data-id="{{$asociacion->id}}" data-name="{{$asociacion->name}}" data-target="#borrarModal"
+                                                    data-borrar="1">
+                                                    <i class="fa fas fa-trash"></i>
+                                                </a> @else
+                                                <a href="#" title="{{ __('Restablecer') }}" data-toggle="modal" data-borrar="0" data-original-title="{{ __('Restablecer') }}"
+                                                    class="borrarasociacion btn btn-sm btn-success" data-url="<?php echo urldecode(route('dashboardAsociacionDelete',['asociacion'=>$asociacion])); ?>"
+                                                    data-id="{{$asociacion->id}}" data-name="{{$asociacion->name}}" data-target="#borrarModal">
+                                                    <i class="fa  fas fa-undo-alt"></i>
+                                                </a> @endif
                                             </div>
                                         </td>
                                     </tr>
-                                    @endforeach
-                                    @else
+                                    @endforeach @else
                                     <tr>
                                         <td colspan="5">
                                             <p>{{ __('No hay resultados disponibles') }}</p>
@@ -103,14 +107,14 @@
                                     <tr>
                                         <td colspan="3">{{ $asociaciones->appends(request()->query())->links() }}</td>
                                         <td colspan="2" class="text-right">
-                                            @if ($asociaciones->count()>1)
+                                            @if ($asociaciones->total()>1)
                                             <small>
                                                 <strong>
-                                                    {{ $asociaciones->count() }}
+                                                    {{ $asociaciones->total() }}
                                                 </strong>
-                                                @if ($asociaciones->count()>1)
+                                                @if ($asociaciones->total()>1)
                                                 {{ __(' asociaciones encontradas') }}
-                                                @elseif($asociaciones->count()==1)
+                                                @elseif($asociaciones->total()==1)
                                                 {{ __(' asociación encontrada') }}
                                                 @endif
                                             </small> @endif
@@ -127,13 +131,11 @@
     </div>
 
 </div>
-
-
-@include('dashboard.modalBorrar')
+    @include('dashboard.modalBorrar')
 @endsection
 
-@section('scripts')
-{{-- <script src="{{ asset('js/bootstrap3-typeahead.min.js') }}" type="text/javascript"></script> --}}
+@section('scripts') {{--
+<script src="{{ asset('js/bootstrap3-typeahead.min.js') }}" type="text/javascript"></script> --}}
 <script>
     //
     $(document).ready(function ($) {

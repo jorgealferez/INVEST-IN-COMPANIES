@@ -1,28 +1,35 @@
 <header>
 
-    <div class="d-flex flex-column flex-md-row align-items-center bg-primary text-white rss-header">
-        <h5 class="my-0 mr-auto"><i class="fas fa-phone"></i> 91 762 456 123</h5>
-        <nav class="">
-            <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+    <div class="row justify-content-end bg-primary text-white rss-header mx-0">
 
-                <li class="nav-item">
-                    <a class="nav-link px-3 py-2 text-white mx-auto" href="#"><i class="fas fa-rss"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-3 py-2 text-white" href="#"><i class="fab fa-twitter"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-3 py-2 text-white" href="#"><i class="fab fa-tumblr"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-3 py-2 text-white" href="#"><i class="fab fa-facebook-f"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-3 py-2 text-white" href="#"><i class="fas fa-search"></i></a>
-                </li>
-            </ul>
-        </nav>
+        <div class="text-center col-sm-12 col-md-4">
+            <h5 class="my-0 mr-auto align-middle py-2"><i class="fas fa-phone"></i> 91 762 456 123</h5>
+        </div>
+
+        <div class="col-4 pr-0">
+            <nav class="">
+                <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex float-right">
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3 py-2 text-white mx-auto" href="#"><i class="fas fa-rss"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 py-2 text-white" href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 py-2 text-white" href="#"><i class="fab fa-tumblr"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 py-2 text-white" href="#"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 py-2 text-white" href="#"><i class="fas fa-search"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
+
 
     <div class="py-3 text-center">
         <img class="d-block mx-auto p-4 img-fluid" src="{{ asset('images/logo.png') }}" alt="{{ __('INVESTin Company') }}" width="547" height="85">
@@ -33,25 +40,25 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="navbar-collapse collapse  menu-principal" id="navbarCollapse" style="">
+        <div class="navbar  navbar-collapse collapse  menu-principal" id="menu-principal" style="">
             <ul class="navbar-nav ml-auto mr-auto  text-center">
                 <li class="nav-item ">
-                    <a class="nav-link " href="{{ route('home') }}">{{ __('Home') }}<span class="sr-only">(current)</span></a>
+                    <a class="nav-link " href="{{ route('home') }}/">{{ __('Home') }}<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">{{ __('Vende tu empresa') }}</a>
+                    <a class="nav-link " href="{{ route('vendeEmpresa') }}">{{ __('Vende tu empresa') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">{{ __('Compra una empresa') }}</a>
+                    <a class="nav-link " href="{{ route('compraEmpresa') }}">{{ __('Compra una empresa') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="{{ route('buscador') }}">{{ __('Buscador') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">{{ __('Documentación') }}</a>
+                    <a class="nav-link " href="{{ route('documentacion') }}">{{ __('Documentación') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">{{ __('¿Quiénes Somos?') }}</a>
+                    <a class="nav-link " href="{{ route('quienesSomos') }}">{{ __('¿Quiénes Somos?') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="

@@ -34,6 +34,11 @@
                         {{ __('Estado') }}
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link @if($tab=='reset') active show @endif" data-toggle="tab" href="#reset" role="tab">
+                        {{ __('Contraseña') }}
+                    </a>
+                </li>
                 @endif
             </ul>
 
@@ -45,12 +50,12 @@
 
                     <div class="tab-pane  @if($tab=='modificar') active @endif" id="modificar" role="tabpanel">
 
-                        <div class="card-body bg-info ">
+                        <div class="card-body bg-verde ">
                             <h6 class="card-subtitle text-white m-0">{{ __('Modifica los datos del usuario.') }}</h6>
                         </div>
 
                         <div class="card-body">
-                            <form method="POST" class="form-control-line form-material" action="{{ $action }}">
+                            <form method="POST" class="" action="{{ $action }}">
                                 @csrf @method('POST')
                                 @include('dashboard.usuarios.formulario')
 
@@ -71,12 +76,12 @@
 
                     <div class="tab-pane  @if($tab=='roles') active @endif" id="roles" role="tabpanel">
 
-                        <div class="card-body bg-info ">
+                        <div class="card-body bg-verde ">
                             <h6 class="card-subtitle text-white m-0">{{ __('Modifica el perfil del usuario.') }}</h6>
                         </div>
 
                         <div class="card-body">
-                            <form method="POST" class="form-control-line form-material" action="{{ action('Dashboard\UsuariosController@updateRol', ['id' => $usuario->id])}}">
+                            <form method="POST" class="" action="{{ action('Dashboard\UsuariosController@updateRol', ['id' => $usuario->id])}}">
                                 @csrf @method('POST')
 
                                 <div class="form-group {{ $errors->has('role') ? ' has-danger' : '' }}">
@@ -113,7 +118,7 @@
 
                     <div class="tab-pane  @if($tab=='estado') active @endif" id="estado" role="tabpanel">
 
-                        <div class="card-body bg-info ">
+                        <div class="card-body bg-verde ">
                             <h6 class="card-subtitle text-white m-0">{{ __('Cambia el estado del usuario.') }}</h6>
                         </div>
 
@@ -141,12 +146,43 @@
 
                                         <div class="form-group">
                                             <button class="btn btn-verde waves-effect waves-light">{{ __('Modificar estado') }}</button>
-                                            <a href="{{ e(route('dashboardOfertas')) }}" class="btn btn-inverse waves-effect waves-light">{{ __('Cancelar') }}</a>
                                         </div>
                                     </div>
                                 </div>
                             </form>
 
+                        </div>
+                    </div>
+
+                    <div class="tab-pane  @if($tab=='reset') active @endif" id="reset" role="tabpanel">
+
+                        <div class="card-body bg-verde ">
+                            <h6 class="card-subtitle text-white m-0">{{ __('Envía un enlace al correo electrónico del usuario para que pueda reiniciar su contraseña.') }}</h6>
+                        </div>
+
+                        <div class="card-body">
+
+                            <form method="POST" action="{{ route('UsuarioResetPassword',['usuario'=>$usuario]) }}">
+                                @csrf
+
+                                <input type="hidden" name="email" value="{{ $usuario->email }}">
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-danger waves-effect waves-light">{{ __('Reiniciar contraseña') }}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            @if (session('status'))
+
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                            @endif
                         </div>
                     </div>
                     @endif
@@ -169,11 +205,9 @@
 <script src="{{ asset('js/dashboard/plugins/dff/dff.js') }}" type="text/javascript"></script>
 --}}
 
-
 <script>
     $(function () {
         // For select 2
-
     });
 
 </script>

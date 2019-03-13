@@ -1,9 +1,3 @@
 {
-    "typescript.format.insertSpaceAfterTypeAssertion": true,
-    "html.format.endWithNewline": true,
-    "prettier.trailingComma": "es5",
-    "prettier.endOfLine": "auto",
-    "prettier.useTabs": true,
-    "easysass.targetDir": "E:\\Pgs\\public\\css",
-    "prettier.tslintIntegration": true
+
 }

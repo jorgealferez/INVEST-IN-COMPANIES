@@ -23,7 +23,8 @@ class AsociacionTableSeeder extends Seeder
             $asociacion->address = $faker->address;
             $asociacion->email = $faker->email;
             $asociacion->phone =  "9".$faker->ean8;
-            $asociacion->contact = $faker->name;
+            $asociacion->contact = $faker->Firstname;
+            $asociacion->contactSurname = $faker->lastName;
             $asociacion->contactPhone =  "6".$faker->ean8;
             $asociacion->contactEmail = $faker->email;
             $asociacion->active = 1;

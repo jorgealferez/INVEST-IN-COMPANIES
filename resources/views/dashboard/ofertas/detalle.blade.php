@@ -6,7 +6,6 @@
 
 <div class="container-fluid">
 
-
     <div class="row">
         <!-- Column -->
 
@@ -26,7 +25,7 @@
                     </h4>
                 </div>
 
-                <div class="card-body   bg-info">
+                <div class="card-body   bg-verde">
                     <h6 class="card-subtitle text-white m-0">{{ e($oferta->descripcion) }}</h6>
                 </div>
 
@@ -41,7 +40,6 @@
                         <small class="verde font-weight-bold">{{ __('CIF') }}:</small>
                         <h6>{{ e($oferta->cif) }}</h6>
                     </div>
-
 
                     <div class="col-md-4 ">
                         <small class=" font-weight-bold verde">{{ __('Socios') }}:</small>
@@ -58,7 +56,6 @@
                         <h6>{{ e($oferta->año) }}</h6>
                     </div>
 
-
                     <div class="col-md-12">
                         <hr class=" verde">
                         <small class=" font-weight-bold verde">{{ __('Motivo') }}:</small>
@@ -71,7 +68,7 @@
                     </div>
 
                     <div class="col-md-12 ">
-                        <small class=" font-weight-bold verde">{{ __('Local') }}:</small>
+                        <small class=" font-weight-bold verde">{{ __('Local propio') }}:</small>
                         <h6>{{ ($oferta->local)? 'Si':'No' }}</h6>
                     </div>
 
@@ -89,30 +86,15 @@
                         <hr class=" verde">
                     </div>
 
-                    <div class="col-md-4 ">
-                        <small class=" font-weight-bold verde">{{ __('Explotación 1') }}:</small>
-                        <h6>{{ e($oferta->explotacion1) }}</h6>
-                    </div>
-
-                    <div class="col-md-4 ">
-                        <small class=" font-weight-bold verde">{{ __('Explotación 2') }}:</small>
-                        <h6>{{ e($oferta->explotacion2) }}</h6>
-                    </div>
-
-                    <div class="col-md-4 ">
-                        <small class=" font-weight-bold verde">{{ __('Explotación 3') }}:</small>
-                        <h6>{{ e($oferta->explotacion3) }}</h6>
-                    </div>
-
                     <div class="col-md-12">
                         <hr class=" verde">
                         <small class=" font-weight-bold verde">{{ __('Valoración de la compañía') }}:</small>
-                        <h6>{{ e($oferta->valoracion) }} €</h6>
+                        <h6>{{ number_format($oferta->valoracion,0,'','.') }} €</h6>
                     </div>
 
                     <div class="col-md-12">
                         <small class=" font-weight-bold verde">{{ __('Endeudamiento') }}:</small>
-                        <h6 class="text-danger">{{ e($oferta->endeudamiento) }} €</h6>
+                        <h6 class="text-danger">{{ number_format($oferta->endeudamiento,0,'','.') }} €</h6>
                     </div>
                 </div>
                 <hr class="m-0 verde">
@@ -123,6 +105,7 @@
                         <small class="verde">{{ __('Contacto') }}:</small>
                         <h6><i class="ti-user"></i> {{ e($oferta->contactFullName) }}</h6>
                     </div>
+                    @if($oferta->contactEmail)
 
                     <div class="col-md-12 ">
                         <small class="verde">{{ __('Email') }}:</small>
@@ -130,11 +113,14 @@
                             <h6><i class="ti-email"></i> {{ e($oferta->contactEmail) }}</h6>
                         </a>
                     </div>
+                    @endif
+                    @if($oferta->contactPhone)
 
                     <div class="col-md-12 ">
                         <small class="verde">{{ __('Teléfono') }}:</small>
                         <h6><i class="ti-mobile"></i> {{ e($oferta->contactPhone) }}</h6>
                     </div>
+                    @endif
                 </div>
 
                 <hr class="m-0">
@@ -146,7 +132,6 @@
 
         <div class="col-lg-6 col-xlg-7 ">
             @include('dashboard.alertas')
-
 
             <!-- Nav tabs -->
             <ul class="nav nav-tabs profile-tab  listaTabs tabsOferta" role="tablist">
@@ -182,13 +167,11 @@
             <div class="card card-tabs">
                 <!-- Tab panes -->
 
-
                 <div class="tab-content">
-
 
                     <div class="tab-pane  @if($tab=='modificar') active @endif" id="modificar" role="tabpanel">
 
-                        <div class="card-body bg-info ">
+                        <div class="card-body bg-verde ">
                             <h6 class="card-subtitle text-white m-0">{{ __('Modifica los datos de la oferta') }}</h6>
                         </div>
 
@@ -215,7 +198,7 @@
 
                     <div class="tab-pane  @if($tab=='empresa') active @endif" id="empresa" role="tabpanel">
 
-                        <div class="card-body bg-info ">
+                        <div class="card-body bg-verde ">
                             <h6 class="card-subtitle text-white m-0">{{ __('Modifica los datos de la empresa') }}</h6>
                         </div>
 
@@ -243,7 +226,7 @@
 
                     <div class="tab-pane  @if($tab=='asociacion') active @endif" id="asociacion" role="tabpanel">
 
-                        <div class="card-body bg-info ">
+                        <div class="card-body bg-verde ">
                             <h6 class="card-subtitle text-white m-0">{{ __('Modifica la persona encargada de gestionar la oferta') }}</h6>
                         </div>
 
@@ -270,7 +253,7 @@
 
                     <div class="tab-pane  @if($tab=='contacto') active @endif" id="contacto" role="tabpanel">
 
-                        <div class="card-body bg-info ">
+                        <div class="card-body bg-verde ">
                             <h6 class="card-subtitle text-white m-0">{{ __('Modifica los datos de la persona de contacto de la empresa.') }}</h6>
                         </div>
 
@@ -299,7 +282,7 @@
 
                     <div class="tab-pane  @if($tab=='estado') active @endif" id="estado" role="tabpanel">
 
-                        <div class="card-body bg-info ">
+                        <div class="card-body bg-verde ">
                             <h6 class="card-subtitle text-white m-0">{{ __('Activa, o desactiva la oferta.') }}</h6>
                         </div>
                         <form method="POST" class="" action="{{ action('Dashboard\OfertasController@updateEstado', ['id' => $oferta->id])}}">
@@ -346,21 +329,17 @@
 
                             </div>
 
-
                         </form>
                     </div>
                     @endif
 
-
                     <div class="tab-pane  @if($tab=='inversores') active @endif" id="inversores" role="tabpanel">
 
-
-                        <div class="card-body bg-info ">
+                        <div class="card-body bg-verde ">
                             <h6 class="card-subtitle text-white m-0">{{ __('Los inversores de la asociación') }}</h6>
                         </div>
 
                         <div class="card-body">
-
 
                             <div class="table-responsive ">
                                 <table class="table  table-hover table-boder  tabla-inversores">
@@ -388,12 +367,10 @@
                                                             <h6>{{ e( $inversion->usuario->phone) }}</h6>
                                                         </div>
 
-
                                                         <div class="col-md-12 py-2">
                                                             <span class=" font-weight-bold verde text-uppercase"> {{ __('Estado') }}</span>
                                                             <form method="POST" class="" action="{{ action('Dashboard\OfertasController@updateEstadoInversor', ['id' => $inversion->id])}}">
                                                                 @csrf @method('PUT')
-
 
                                                                 <div class="input-group">
                                                                     <select class="custom-select custom-select-sm cambio-estado" data-style="btn-primary" name="estado_id">
@@ -449,12 +426,10 @@
                                 </table>
                             </div>
 
-
                         </div>
 
                     </div>
                 </div>
-
 
             </div>
         </div>
@@ -471,7 +446,6 @@
         $(".alert-success ").fadeTo(5000, 500).slideUp(500, function () {
             $(".alert-success ").slideUp(500);
         });
-
     });
 
 </script>
@@ -492,7 +466,6 @@
             },
             success: function (data) {
                 console.log(data);
-
                 var toAppend = '';
                 if (data.status && Object.keys(data.usuarios).length > 0) {
                     toAppend += '<option value=" ">Selecciona Usuario</option>';
@@ -504,7 +477,6 @@
                     toAppend += '<option value=" ">No hay usuarios</option>';
                     $('#user_id').prop('disabled', true);
                 }
-
                 $('#user_id').html(toAppend);
             }
         });
@@ -513,7 +485,9 @@
 </script>
 @endif
 <script>
-    $('#provincia_id').on('blur change', function (e) {
+    $('#provincia_id').on('change', function (e) {
+        $('#poblacion_id').prop('disabled', true);
+        $('#poblacion_id').html('<option>Cargando...</option>');
         $.ajax({
             url: "{{ route('searchpoblacionesbyprovincia') }}",
             type: 'POST',
@@ -533,7 +507,6 @@
                     toAppend += '<option value="">No hay poblaciones</option>';
                     $('#poblacion_id').prop('disabled', true);
                 }
-
                 $('#poblacion_id').html(toAppend);
             }
         });

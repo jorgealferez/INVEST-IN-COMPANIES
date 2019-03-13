@@ -31,23 +31,30 @@
 
                 <div class="card-body ">
 
+                    @if ($asociacion->email)
+
                     <div class="col-md-12  ">
                         <small class=" font-weight-bold verde">{{ __('Email') }}:</small>
                         <a href="mailto:{{ e($asociacion->email) }}" class="link text-muted">
                             <h6>{{ e($asociacion->email) }}</h6>
                         </a>
                     </div>
+                    @endif
+
+
+                    @if ($asociacion->phone)
 
                     <div class="col-md-12 ">
                         <small class=" font-weight-bold verde">{{ __('Teléfono') }}:</small>
                         <h6>{{ e($asociacion->phone) }}</h6>
                     </div>
+                    @endif
+
 
                     <div class="col-md-12">
                         <small class=font-weight-bold verde ">{{ __('Direccion') }}:</small>
                         <h6>{{ e($asociacion->address) }}</h6>
                     </div>
-
                 </div>
 
                 <hr class=" m-0">
@@ -57,20 +64,26 @@
                                     <i class=" ti-user "></i>
                                     {{ __('Persona de contacto') }}
                                 </small>
-                                <h6>{{ e($asociacion->contact) }}</h6>
+                                <h6>{{ e($asociacion->FullName) }}</h6>
+
+                                @if ($asociacion->contactEmail)
                                 <small class=" text-muted ">
                                     <i class=" ti-email "></i>
                                     {{ __('Email') }}
                                 </small>
                                 <a href=" mailto:{{ e($asociacion->contactEmail) }}" class="link text-muted">
-                                    {{ e($asociacion->contactEmail) }}
+                                    <h6>{{ e($asociacion->contactEmail) }}</h6>
                                 </a>
+                                @endif
+
+                                @if ($asociacion->contactPhone)
                                 <small class="text-muted ">
                                     <i class="ti-mobile"></i>
                                     {{ __('Teléfono') }}
                                 </small>
                                 <h6>{{ e($asociacion->contactPhone) }}</h6>
 
+                                @endif
 
                             </div>
                     </div>
@@ -89,6 +102,9 @@
                             <a class="nav-link @if($tab=='modificar') active show @endif" data-toggle="tab" href="#modificar" role="tab">{{ __('Modificar') }}</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link @if($tab=='contacto') active show @endif" data-toggle="tab" href="#contacto" role="tab">{{ __('Contacto') }}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link @if($tab=='estado') active show @endif" data-toggle="tab" href="#estado" role="tab">{{ __('Estado') }}</a>
                         </li>
                         @endif
@@ -103,7 +119,7 @@
 
                             <div class="tab-pane  @if($tab=='usuarios') active @endif" id="usuarios" role="tabpanel">
 
-                                <div class="card-body bg-info ">
+                                <div class="card-body bg-verde ">
                                     <h6 class="card-subtitle text-white m-0 ">{{ __('Listado de usuarios que pertenecen a la asociación.') }}</h6>
                                 </div>
 
@@ -224,7 +240,7 @@
 
                             <div class="tab-pane  @if($tab=='modificar') active @endif" id="modificar" role="tabpanel">
 
-                                <div class="card-body bg-info ">
+                                <div class="card-body bg-verde ">
                                     <h6 class="card-subtitle text-white m-0 ">{{ __('Modifica los datos de la asociación.') }}</h6>
                                 </div>
 
@@ -235,7 +251,7 @@
                                         <input type="hidden" value="modificar" name="tab" id="tab_modificar">
 
                                         <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }}">
-                                            <label class="col-md-12 form-control-label" for="error">{{ __('Nombre') }}</label>
+                                            <label class="col-md-12 form-control-label" for="error">{{ __('Nombre') }}(*)</label>
 
                                             <div class="col-md-12">
                                                 <input type="text" value="{{ old('name')?old('name'): e($asociacion->name) }}" placeholder="{{ e($asociacion->name) }}" class="form-control form-control-line {{ $errors->has('name') ? ' form-control-danger' : '' }}" id="name" name="name" required>
@@ -248,7 +264,7 @@
                                         </div>
 
                                         <div class="form-group {{ $errors->has('address') ? ' has-danger' : '' }}">
-                                            <label class="col-md-12 form-control-label" for="error">{{ __('Dirección') }}</label>
+                                            <label class="col-md-12 form-control-label" for="error">{{ __('Dirección') }}(*)</label>
 
                                             <div class="col-md-12">
                                                 <input type="text" value="{{ old('address')?old('address'): e($asociacion->address) }}" placeholder="{{ e($asociacion->address) }}" class="form-control form-control-line {{ $errors->has('address') ? ' form-control-danger' : '' }}" id="address" name="address" required>
@@ -262,10 +278,10 @@
 
 
                                         <div class="form-group {{ $errors->has('email') ? ' has-danger' : '' }}">
-                                            <label class="col-md-12 form-control-label" for="error">{{ __('Email') }}</label>
+                                            <label class="col-md-12 form-control-label" for="error">{{ __('Email') }}(*)</label>
 
                                             <div class="col-md-12">
-                                                <input type="text" value="{{ old('email')?old('email'): e($asociacion->email) }}" placeholder="{{ e($asociacion->email) }}" class="form-control form-control-line {{ $errors->has('email') ? ' form-control-danger' : '' }}" id="email" name="email" required>
+                                                <input type="text" value="{{ old('email')?old('email'): e($asociacion->email) }}" placeholder="{{ e($asociacion->email) }}" class="form-control form-control-line {{ $errors->has('email') ? ' form-control-danger' : '' }}" id="email" name="email">
                                             </div>
                                             @if ($errors->has('email'))
 
@@ -275,10 +291,10 @@
                                         </div>
 
                                         <div class="form-group {{ $errors->has('phone') ? ' has-danger' : '' }}">
-                                            <label class="col-md-12 form-control-label" for="error">{{ __('Teléfono') }}</label>
+                                            <label class="col-md-12 form-control-label" for="error">{{ __('Teléfono') }}(*)</label>
 
                                             <div class="col-md-12">
-                                                <input type="text" value="{{ old('phone')?old('phone'): e($asociacion->phone) }}" placeholder="{{ e($asociacion->phone) }}" class="form-control form-control-line {{ $errors->has('phone') ? ' form-control-danger' : '' }}" id="phone" name="phone" required>
+                                                <input type="text" value="{{ old('phone')?old('phone'): e($asociacion->phone) }}" placeholder="{{ e($asociacion->phone) }}" class="form-control form-control-line {{ $errors->has('phone') ? ' form-control-danger' : '' }}" id="phone" name="phone">
                                             </div>
                                             @if ($errors->has('phone'))
 
@@ -299,13 +315,36 @@
                                 </div>
                             </div>
 
-                            @endif
+                            <div class="tab-pane  @if($tab=='contacto') active @endif" id="contacto" role="tabpanel">
 
-                            @if ($isAdmin)
+                                <div class="card-body bg-verde ">
+                                    <h6 class="card-subtitle text-white m-0">{{ __('Modifica los datos de la persona de contacto de la asociacion.') }}</h6>
+                                </div>
+
+                                <div class="card-body">
+                                    <form method="POST" class="" action="{{ action('Dashboard\AsociacionesController@update', ['id' => $asociacion->id,'tab'=>'contacto'])}}">
+                                        @csrf @method('PUT')
+                                        <input type="hidden" name="tab" value="contacto">
+                                        @include('dashboard.asociaciones.formulario.contacto')
+
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+
+                                                <div class="form-group">
+                                                    <button class="btn btn-verde waves-effect waves-light my-2 my-md-0">{{ __('Modificar datos de Contacto') }}</button>
+                                                    <a href="{{ e(route('dashboardOfertas')) }}" class="btn btn-inverse waves-effect waves-light">{{ __('Cancelar') }}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
 
                             <div class="tab-pane  @if($tab=='estado') active @endif" id="estado" role="tabpanel">
 
-                                <div class="card-body bg-info ">
+                                <div class="card-body bg-verde ">
                                     <h6 class="card-subtitle text-white m-0">{{ __('Cambia el estado de la asociación.') }}</h6>
                                 </div>
 

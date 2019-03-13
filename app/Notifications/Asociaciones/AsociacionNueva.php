@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\Asociaciones;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Bus\Queueable;
 
-class OfertaNueva extends Notification
+class AsociacionNueva extends Notification
 {
     use Queueable;
     public $subscription;
@@ -17,9 +17,9 @@ class OfertaNueva extends Notification
      *
      * @return void
      */
-    public function __construct($oferta)
+    public function __construct($asociacion)
     {
-        $this->oferta_id = $oferta;
+        $this->asociacion_id = $asociacion;
     }
 
     /**
@@ -30,7 +30,7 @@ class OfertaNueva extends Notification
      */
     public function via($notifiable)
     {
-        // return ['mail'];
+        // return ['database'];
         return ['mail','database'];
 
     }
@@ -59,7 +59,7 @@ class OfertaNueva extends Notification
     public function toArray($notifiable)
     {
         return [
-            'oferta_id' => $this->oferta_id
+            'asociacion_id' => $this->asociacion_id
         ];
     }
 }

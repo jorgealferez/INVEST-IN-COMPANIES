@@ -1,20 +1,21 @@
 <?php
 
 namespace App\Http\Controllers\Dashboard;
+
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\EditAsociacionRequest;
+use Illuminate\Support\Facades\Notification;
 use App\Http\Controllers\DashBoardController;
 
-class BoardController extends  DashBoardController
+class BoardController extends DashBoardController
 {
-     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    /**
+    * Create a new controller instance.
+    *
+    * @return void
+    */
 
 
     public function __construct()
@@ -29,11 +30,28 @@ class BoardController extends  DashBoardController
      */
     public function index()
     {
+        $contactosEmpresasNuevas =Auth::User()->notifications()->where('type', 'App\Notifications\ContactoEmpresaNueva')->paginate(5);
 
+
+        // dd($contactosEmpresasNuevas);
         Parent::RolesCheck();
-        return view('dashboard.dashboard');
+        return view('dashboard.dashboard')->with(
+            compact(
+                'contactosEmpresasNuevas'
+            )
+        );
     }
 
 
+    public function borrarNotificacion(Request $request)
+    {
+        if ($request->input('notificacion_id')!=null) {
+            Auth::User()->notifications()->where('id', $request->input('notificacion_id'))->delete();
 
+            $data['status']=true;
+            return response()->json($data);
+        } else {
+            return response()->json(['status'=>false]);
+        }
+    }
 }

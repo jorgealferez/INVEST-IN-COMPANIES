@@ -29,11 +29,17 @@ class OfertaRequest extends FormRequest
         if ($this->request->has('nombre')) {
              $rules['nombre'] = ['required'];
         }
+        if ($this->request->has('descripcion')) {
+            $rules['descripcion'] = ['required'];
+       }
 
 
 
+        if ($this->request->has('contact')) {
+            $rules['contact'] = ['required'];
+        }
         if ($this->request->has('contactEmail')) {
-            $rules['contactEmail'] = ['string', 'email', 'max:255'];
+            $rules['contactEmail'] = ['string', 'email', 'max:255','nullable'];
         }
         if ($this->request->has('contactPhone')) {
             $rules['contactPhone'] = ['required','regex:/^[6|7|8|9][0-9]{8}$/','max:9|min:9'];
@@ -47,19 +53,23 @@ class OfertaRequest extends FormRequest
              $rules['forma_id'] = ['required'];
         }
         if ($this->request->has('socios')) {
-             $rules['socios'] = ['integer'];
+             $rules['socios'] = ['required','integer'];
+        }
+        if ($this->request->has('motivo')) {
+             $rules['motivo'] = ['required'];
         }
         if ($this->request->has('empleados')) {
-             $rules['empleados'] = ['integer'];
+             $rules['empleados'] = ['integer','nullable'];
         }
         if ($this->request->has('año')) {
-             $rules['año'] = ['digits:4','integer','min:1800','max:'.(date('Y')+1)];
+             $rules['año'] = ['digits:4','integer','min:1800','nullable','max:'.(date('Y')+1)];
         }
         if ($this->request->has('sector_id')) {
              $rules['sector_id'] = ['required'];
         }
         if ($this->request->has('valoracion')) {
-             $rules['valoracion'] = ['regex:/^(\d+(?:[\,]\d{2})?)$/'];
+            //  $rules['valoracion'] = ['regex:/^(\d+(?:[\,]\d{2})?)$/'];
+             $rules['valoracion'] = ['integer'];
         }
         if ($this->request->has('provincia_id')) {
              $rules['provincia_id'] = ['required'];
@@ -68,10 +78,11 @@ class OfertaRequest extends FormRequest
              $rules['poblacion_id'] = ['required'];
         }
         if ($this->request->has('web')) {
-             $rules['web'] = ['regex:/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/'];
+             $rules['web'] = ['regex:/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/','nullable'];
         }
         if ($this->request->has('endeudamiento')) {
-             $rules['endeudamiento'] = ['regex:/^(\d+(?:[\,]\d{2})?)$/'];
+            //  $rules['endeudamiento'] = ['regex:/^(\d+(?:[\,]\d{2})?)$/'];
+             $rules['endeudamiento'] = ['integer','nullable'];
         }
 
 
@@ -100,7 +111,9 @@ class OfertaRequest extends FormRequest
     {
         return [
             'nombre.*' => __('Debes un nombre para la oferta'),
+            'descripcion.*' => __('Debes dar una descripción de la empresa'),
 
+            'contact.*' => __('Debes escribir una persona de contacto'),
             'contactPhone.*' => __('Debes escribir un teléfono válido'),
             'contactEmail.*' => __('Debes escribir un email válido'),
 
@@ -110,7 +123,8 @@ class OfertaRequest extends FormRequest
             'cif.regex' => __('El CIF no tiene un formato válido'),
             'cif.min' => __('El CIF debe tener 9 dígitos'),
             'forma_id.*' => __('Debes seleccionar una forma jurídica'),
-            'socios.*' => __('Debe ser un número'),
+            'socios.*' => __('Debes inclduir un número de socios'),
+            'motivo.*' => __('Debes dar un motivo de la venta'),
             'empleados.*' => __('Debe ser un número'),
             'año.*' => __('Debes escribir un ano válido'),
             'sector_id.*' => __('Debes seleccionar un sector'),

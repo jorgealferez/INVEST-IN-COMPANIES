@@ -51,11 +51,8 @@ class CreateOfertasTable extends Migration
             $table->string('contactEmail')->nullable();
             $table->string('address')->nullable();
             $table->string('web')->nullable();
-            $table->decimal('valoracion',15,2)->default(0)->nullable();
-            $table->string('explotacion1')->nullable();
-            $table->string('explotacion2')->nullable();
-            $table->string('explotacion3')->nullable();
-            $table->unsignedDecimal('endeudamiento',15,2)->default(0)->nullable();
+            $table->bigInteger('valoracion')->default(0)->nullable();
+            $table->bigInteger('endeudamiento')->default(0)->nullable();
             $table->boolean('local')->nullable();
             $table->boolean('active')->default(true);
             $table->boolean('approved')->default(false);

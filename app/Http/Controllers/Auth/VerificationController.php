@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use App\Http\Controllers\Controller;
 
 class VerificationController extends Controller
 {
@@ -39,4 +39,6 @@ class VerificationController extends Controller
         // $this->middleware('guest')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
+
+    
 }

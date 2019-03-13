@@ -1,4 +1,3 @@
-<!-- Delete Model -->
 <form method="POST" class="form-control-line form-material" action="" id="formBorrar">
     @csrf @method('POST')
     <input type="hidden" value="" name="id_borrar" id="id_borrar">

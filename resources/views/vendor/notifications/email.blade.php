@@ -6,7 +6,7 @@
 @if ($level === 'error')
 # @lang('Whoops!')
 @else
-# @lang('Hello!')
+# @lang('Hello!'):
 @endif
 @endif
 
@@ -50,12 +50,12 @@
 @isset($actionText)
 @component('mail::subcopy')
 @lang(
-    "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
-    'into your web browser: [:actionURL](:actionURL)',
-    [
-        'actionText' => $actionText,
-        'actionURL' => $actionUrl,
-    ]
+"If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
+'into your web browser: [:actionURL](:actionURL)',
+[
+'actionText' => $actionText,
+'actionURL' => $actionUrl,
+]
 )
 @endcomponent
 @endisset

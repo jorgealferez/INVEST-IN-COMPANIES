@@ -1,5 +1,6 @@
 @import "variable";
 
+
 html,
 body {
     font-family: $bodyfont;
@@ -35,16 +36,54 @@ h2 {
     background-color: $gris;
 }
 
-.menu-principal {
-    a {
-        &.nav-link {
-            color: white;
-            text-transform: uppercase;
-            padding-right: 1rem;
-            padding-left: 1rem;
+.navbar {
+    padding: 0;
+
+    .menu-principal {
+        ul {
+            li.nav-item {
+
+                a.nav-link {
+                    color: white;
+                    text-transform: uppercase;
+                    padding-right: 1rem;
+                    padding-left: 1rem;
+                    padding-top: 1.5em;
+                    padding-bottom: 1.5em;
+
+                    &:hover {
+                        background-color: $themecolor-alt;
+                    }
+                }
+
+                &.active {
+                    background-color: $themecolor-dark;
+                }
+            }
         }
     }
 }
+
+.login-register {
+    background-color: $sidebar;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+    padding: 10% 0;
+    position: fixed;
+
+    .login-box {
+        max-width: 400px;
+        margin: 0 auto;
+
+        .card-body {
+            padding: 2rem;
+        }
+    }
+}
+
 
 .bg-primary {
     background-color: $principal !important;
@@ -96,6 +135,37 @@ h2 {
     }
 }
 
+.btn-verde {
+    color: $white;
+    background-color: $themecolor;
+    border: 1px solid $themecolor;
+
+    &:hover {
+        // background-color: $light-success ;
+        opacity: 0.7;
+        border: 1px solid $themecolor;
+        color: $white;
+    }
+}
+
+.btn-verde-alt {
+    color: $white;
+    background-color: $themecolor-alt;
+    border: 1px solid $themecolor-alt;
+
+    &:hover {
+        // background-color: $light-success ;
+        opacity: 0.7;
+        border: 1px solid $themecolor-alt;
+        color: $white;
+    }
+}
+
+
+.btn-desactivado {
+    background-color: $muted;
+}
+
 #map {
     height: 450px;
     border: 1px solid $principal;
@@ -104,6 +174,20 @@ h2 {
 @media (min-width: 768px) {
     .navbar-expand-md .navbar-nav .nav-link {
         padding: 1rem;
+    }
+}
+
+.collapse-row {
+    cursor: pointer;
+
+    &.bg-verde {
+        background-color: $themecolor-alt !important;
+        color: $white;
+
+        td {
+
+            color: $white;
+        }
     }
 }
 
@@ -147,6 +231,59 @@ h2 {
 
         .page-link {
             color: $principal;
+        }
+    }
+}
+
+strong {
+    font-weight: 800;
+}
+
+p {
+    margin-bottom: 30px;
+}
+
+.lista {
+    list-style-type: none;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding-left: 0;
+
+    li {
+        color: #666666;
+        font-size: 14px;
+        line-height: 24px;
+        padding: 10px 0;
+        font-weight: 500;
+
+        i {
+            font-size: 15px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 15px;
+            color: $themecolor-alt;
+            line-height: 30px;
+            // float: left;
+        }
+
+    }
+
+}
+
+.servicio {
+    border-top: 5px solid $themecolor;
+    background-color: #f7f7f7;
+    padding: 10%;
+
+    h4 {
+        color: #386244;
+        font-size: 2.143em;
+        margin-bottom: 1em;
+
+        i {
+            font-size: 3em;
+            display: block;
+
         }
     }
 }

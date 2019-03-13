@@ -21,7 +21,7 @@
 
         <div class="form-group {{ $errors->has('descripcion') ? ' has-danger' : '' }}">
             <label for="descripcion">{{ __('Descripción') }}</label>
-            <textarea name="descripcion" id="descripcion" class="form-control form-control-line {{ $errors->has('descripcion') ? ' form-control-danger' : '' }}" rows="5">{{ ((old( 'descripcion')) ? old( 'descripcion') : $oferta->descripcion ) }}</textarea>
+            <textarea name="descripcion" id="descripcion" class="form-control form-control-line {{ $errors->has('descripcion') ? ' form-control-danger' : '' }}" rows="5" required>{{ ((old( 'descripcion')) ? old( 'descripcion') : $oferta->descripcion ) }}</textarea>
             @if ($errors->has('descripcion'))
 
             <div class="form-control-feedback">{{ $errors->first('descripcion') }}</div>

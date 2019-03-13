@@ -20,7 +20,7 @@
 
                 <div class="card-body">
 
-                    <form class="form-control-line form-material" action="{{ action('Dashboard\UsuariosController@store')}}">
+                    <form class="" action="{{ action('Dashboard\UsuariosController@store')}}">
                         @csrf
 
                         <div class="row">
@@ -153,11 +153,13 @@
                             @endif
                         </div>
 
+                        <hr>
 
                         <div class="form-group">
 
                             <div class="col-sm-12">
-                                <button class="btn btn-success">{{ __('Crear Usuario') }}</button>
+                                <button class="btn btn-verde waves-effect waves-light">{{ __('Crear Usuario') }}</button>
+                                <a href="{{ e(route('dashboardUsuarios')) }}" class="btn btn-inverse waves-effect waves-light">{{ __('Cancelar') }}</a>
                             </div>
                         </div>
                     </form>

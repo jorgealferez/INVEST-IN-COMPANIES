@@ -20,13 +20,13 @@
             class="form-control form-control-line {{ $errors->has('surname') ? ' form-control-danger' : '' }}" id="surname" name="surname"
             required>
     </div>
+
     @if ($errors->has('surname'))
 
     <div class="col-md-12 form-control-feedback">{{ $errors->first('surname') }}</div>
     @endif
 
 </div>
-
 <div class="form-group {{ $errors->has('email') ? ' has-danger' : '' }}">
     <label class="col-md-12 form-control-label" for="error">{{ __('Email') }}</label>
 

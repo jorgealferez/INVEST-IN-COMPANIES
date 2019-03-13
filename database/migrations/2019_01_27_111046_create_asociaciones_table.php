@@ -21,6 +21,7 @@ class CreateAsociacionesTable extends Migration
             $table->string('email');
             $table->string('phone')->nullable();
             $table->string('contact')->nullable();
+            $table->string('contactSurname')->nullable();
             $table->string('contactPhone')->nullable();
             $table->string('contactEmail')->nullable();
             $table->boolean('active')->default(true);

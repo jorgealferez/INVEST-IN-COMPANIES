@@ -13,12 +13,25 @@
 
 Auth::routes(['verify' => true]);
 
+Route::get('mailable', function () {
+$nuevo = App\User::find(21);
+$usuario = App\User::find(1);
+
+return new App\Mail\TestEmail($usuario,$nuevo);
+});
 
 
-
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout' );
 Route::get('/','PublicController@index')->name('home');
-Route::get('/buscador','PublicController@buscador')->name('buscador');
+Route::get('/vende-tu-empresa','PublicController@vende')->name('vendeEmpresa');
+Route::put('/vende-tu-empresa/contacto','PublicController@vendeContacto')->name('vendeEmpresaContacto');
+Route::post('/inversion','PublicController@inversion')->name('inversion')->middleware(['auth', 'verified']);
+Route::get('/compra-tu-empresa','PublicController@compra')->name('compraEmpresa');
+Route::any('/buscador','PublicController@buscador')->name('buscador');
+Route::get('/documentacion','PublicController@documentacion')->name('documentacion');
+Route::get('/quienes-somos','PublicController@quienes')->name('quienesSomos');
 Route::get('/origintal','PublicController@origintal')->name('origintal');
+Route::post('/registro','PublicController@registro');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
@@ -26,7 +39,10 @@ Route::namespace('Dashboard')->group(function () {
 
 
     Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function () {
+
         Route::get('/', 'BoardController@index')->name('dashboard');
+        Route::post('/notificacion/{id}/delete', 'BoardController@borrarNotificacion')->name('boorarNotificacion');
+
         Route::prefix('/asociaciones')->group(function () {
             Route::match(['get', 'post'],'/', 'AsociacionesController@index')->middleware(['asesor'])->name('dashboardAsociaciones');
             Route::get('/crear', 'AsociacionesController@create')->name('dashboardAsociacionesNueva')->middleware(['admin']);
@@ -66,11 +82,16 @@ Route::namespace('Dashboard')->group(function () {
             Route::any('/{id}/update', 'UsuariosController@update')->middleware(['asesor'])->where('id', '[0-9]+');
             Route::any('/{id}/updateEstado', 'UsuariosController@updateEstado')->middleware(['admin'])->where('id', '[0-9]+');
             Route::any('/{id}/updateRol', 'UsuariosController@updateRol')->middleware(['asesor'])->where('id', '[0-9]+');
+            Route::any('/{id}/reiniciarPassword', 'UsuariosController@reiniciarPassword')->name('UsuarioResetPassword')->middleware(['admin'])->where('id', '[0-9]+');
             Route::post('/delete/{usuario}', 'UsuariosController@delete')->name('dashboardUsuarioDelete')->where('usuario', '[0-9]+')->middleware(['admin']);
 
             Route::get('/search', 'UsuariosController@search')->name('searchUsuarios');
             Route::post('/searchUsuariosByAsociacion', 'UsuariosController@searchUsuariosByAsociacion')->name('searchUsuariosByAsociacion');
             Route::post('/searchpoblacionesbyprovincia', 'UsuariosController@searchPoblacionesByProvincia')->name('searchpoblacionesbyprovincia');
+        });
+
+        Route::prefix('/inversiones')->group(function () {
+            Route::get('/inversiones', 'InversionesController@index')->middleware(['auth', 'verified'])->name('dashboardInversiones');
         });
     });
 });

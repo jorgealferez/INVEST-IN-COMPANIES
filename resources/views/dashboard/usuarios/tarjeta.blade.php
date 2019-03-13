@@ -4,29 +4,35 @@
 
         <div class="card-body text-center  bg-gray" style="max-height: 120px;">
             <span class="round {{ $usuario->getRoleClass() }} roleBig profile-rol ">
-                        @switch($usuario->roles->first()->name)
-                        @case("Admin")
-                        @case("Gestor")
-                        @case("Asesor")
-                        @if (!$usuario->active)
-                        <i class="mdi mdi-account-off" style="font-size: 570%;"></i>
-                        @else
-                        <i class="mdi mdi-account" style="font-size: 570%;"></i>
-                        @endif
-                        @break
-                        @case("Inversor")
-                        @default
-                        <i class="mdi mdi-chart-line" style="font-size: 570%;"></i>
-                        @break
+                @switch($usuario->roles->first()->name)
+                @case("Admin")
+                @case("Gestor")
+                @case("Asesor")
+                @if (!$usuario->active)
+                <i class="mdi mdi-account-off" style="font-size: 570%;"></i>
+                @else
+                <i class="mdi mdi-account" style="font-size: 570%;"></i>
+                @endif
+                @break
+                @case("Inversor")
+                @default
+                <i class="mdi mdi-chart-line" style="font-size: 570%;"></i>
+                @break
 
-                        @endswitch
-                    </span>
+                @endswitch
+            </span>
         </div>
 
         <div class="card-body pro-img text-center pt-5">
             <h4 class="card-title m-t-10">{{ e($usuario->fullName) }}</h4>
             @if (!$usuario->active)
             <span class="badge badge-danger"> {{ __('Usuario Eliminado') }}</span> @endif
+            @if ($nueva)
+            <span class="badge badge-warning float-right mr-2">
+                <i class="mdi mdi-star text-white "></i>
+                {{ __('Nuevo') }}
+            </span>
+            @endif
         </div>
 
         <hr class="m-0">

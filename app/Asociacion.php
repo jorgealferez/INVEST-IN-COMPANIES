@@ -1,14 +1,17 @@
 <?php
 
 namespace App;
+use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Traits\DatesTranslator;
-
-use Illuminate\Support\Facades\DB;
-use Kyslik\ColumnSortable\Sortable;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
+use App\Role;
+use App\Notifications\Asociaciones\AsociacionNueva;
 
 class Asociacion extends Model
 {
@@ -25,7 +28,7 @@ class Asociacion extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'address','email','phone','active','contact','contactPhone','contactEmail','state'
+        'name', 'address','email','phone','active','contact','contactSurname','contactPhone','contactEmail','state'
     ];
     public $sortable = ['id','name','phone','email','address','created_at'];
 
@@ -73,19 +76,7 @@ class Asociacion extends Model
         ->belongsToMany('App\User')->toArray();
     }
 
-    // public function usuarios()
-    // {
-    //     return $this
-    //     ->belongsToMany('App\User','asociacion_user','asociacion_id','user_id')->withTimestamps();
 
-    //     // ->belongsToMany('App\Asociacion','asociacion_oferta','asociacion_id','oferta_id');
-    // }
-
-    // public function scopeStatus (Builder $query, $name) {
-    //     return $query->whereHas('user_id', function ($q) use ($name) {
-    //             $q->where('id', $name);
-    //     });
-    // }
 
     public function Asociaciones () {
 
@@ -94,7 +85,11 @@ class Asociacion extends Model
 
     public function getFullNameAttribute()
     {
-        return "{$this->name} {$this->surname}";
+        return "{$this->contact} {$this->contactSurname}";
     }
-
+    public function NotificacionNuevaAsociacion()
+    {
+        $administradores = Role::with('users')->where('name', 'Admin')->first()->users()->get();
+        Notification::send($administradores, new AsociacionNueva($this->id));
+    }
 }

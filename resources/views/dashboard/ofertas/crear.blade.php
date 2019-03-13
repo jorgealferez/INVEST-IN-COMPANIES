@@ -105,7 +105,6 @@
                     toAppend += '<option value="">No hay usuarios</option>';
                     $('#user_id').prop('disabled', true);
                 }
-
                 $('#user_id').html(toAppend);
             }
         });
@@ -114,7 +113,8 @@
 </script>
 @endif
 <script>
-    $('#provincia_id').on('blur change', function (e) {
+    $('#provincia_id').on('change', function (e) {
+        $('#poblacion_id').html('<option>Cargando...</option>');
         $.ajax({
             url: "{{ route('searchpoblacionesbyprovincia') }}",
             type: 'POST',
@@ -134,7 +134,6 @@
                     toAppend += '<option value="">No hay poblaciones</option>';
                     $('#poblacion_id').prop('disabled', true);
                 }
-
                 $('#poblacion_id').html(toAppend);
             }
         });

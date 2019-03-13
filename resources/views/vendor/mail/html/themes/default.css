@@ -1,12 +1,12 @@
 /* Base */
 
-body, body *:not(html):not(style):not(br):not(tr):not(code) {
+body,
+body *:not(html):not(style):not(br):not(tr):not(code) {
     font-family: Avenir, Helvetica, sans-serif;
     box-sizing: border-box;
 }
 
 body {
-    background-color: #f5f8fa;
     color: #74787E;
     height: 100%;
     hyphens: auto;
@@ -30,7 +30,7 @@ blockquote {
 }
 
 a {
-    color: #3869D4;
+    color: #2d4f36;
 }
 
 a img {
@@ -82,7 +82,6 @@ img {
 /* Layout */
 
 .wrapper {
-    background-color: #f5f8fa;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -93,7 +92,7 @@ img {
 
 .content {
     margin: 0;
-    padding: 0;
+    padding-top: 20px;
     width: 100%;
     -premailer-cellpadding: 0;
     -premailer-cellspacing: 0;
@@ -118,9 +117,6 @@ img {
 /* Body */
 
 .body {
-    background-color: #FFFFFF;
-    border-bottom: 1px solid #EDEFF2;
-    border-top: 1px solid #EDEFF2;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -157,10 +153,11 @@ img {
     margin: 0 auto;
     padding: 0;
     text-align: center;
-    width: 570px;
+    width: 100%;
     -premailer-cellpadding: 0;
     -premailer-cellspacing: 0;
-    -premailer-width: 570px;
+    -premailer-width: 100%;
+    background-color: #2d4f36;
 }
 
 .footer p {
@@ -227,13 +224,13 @@ img {
     border-left: 18px solid #3097D1;
 }
 
-.button-green,
+.button-verde,
 .button-success {
-    background-color: #2ab27b;
-    border-top: 10px solid #2ab27b;
-    border-right: 18px solid #2ab27b;
-    border-bottom: 10px solid #2ab27b;
-    border-left: 18px solid #2ab27b;
+    background-color: #006242;
+    border-top: 10px solid #006242;
+    border-right: 18px solid #006242;
+    border-bottom: 10px solid #006242;
+    border-left: 18px solid #006242;
 }
 
 .button-red,

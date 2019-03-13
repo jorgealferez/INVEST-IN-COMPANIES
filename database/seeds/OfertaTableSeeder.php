@@ -37,10 +37,7 @@ class OfertaTableSeeder extends Seeder
                 $oferta->contactSurname = $faker->lastName;
                 $oferta->descripcion = $faker->text;
                 $oferta->empleados =  random_int(1,100);
-                $oferta->endeudamiento = $faker->buildingNumber;
-                $oferta->explotacion1 = $faker->word;
-                $oferta->explotacion2 = $faker->word;
-                $oferta->explotacion3 = $faker->word;
+                $oferta->endeudamiento = random_int(1000,1000000);
                 $oferta->forma_id = Forma::inRandomOrder()->first()->id;
                 $oferta->local = $faker->boolean;
                 $oferta->motivo = $faker->text;
@@ -49,7 +46,7 @@ class OfertaTableSeeder extends Seeder
                 $oferta->poblacion_id = Poblacion::where('provincia_id',$oferta->provincia_id )->inRandomOrder()->first()->id;
                 $oferta->sector_id = Sector::inRandomOrder()->first()->id;
                 $oferta->socios = $faker->numberBetween(1,5);
-                $oferta->valoracion = $faker->randomFloat(2,1000,1000000);
+                $oferta->valoracion = random_int(1000,1000000);
                 $oferta->web = "www.google.es";
 
 

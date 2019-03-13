@@ -71,7 +71,7 @@ class SectorTableSeeder extends Seeder
         $sector->save();
 
         $sector= new Sector();
-        $sector->name = 'Administración Pública y defensa; Seguridad Social obligatoria';
+        $sector->name = 'Administración Pública y defensa';
         $sector->save();
 
         $sector= new Sector();
@@ -91,7 +91,7 @@ class SectorTableSeeder extends Seeder
         $sector->save();
 
         $sector= new Sector();
-        $sector->name = 'Actividades de los hogares como empleadores de personal doméstico; actividades de los hogares como productores de bienes y servicios para uso propio';
+        $sector->name = 'Actividades de los hogares como empleadores de personal doméstico';
         $sector->save();
 
         $sector= new Sector();

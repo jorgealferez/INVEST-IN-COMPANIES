@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Role;
-use App\User;
-use App\Poblacion;
-use App\Asociacion;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\UsuarioRequest;
-use App\Notifications\OfertaSinAprobar;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Notification;
-use App\Http\Controllers\DashBoardController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\User;
+use App\Role;
+use App\Poblacion;
+use App\Http\Requests\UsuarioRequest;
+use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\Controller;
+use App\Asociacion;
 
 class UsuariosController extends DashBoardController
 {
@@ -32,6 +32,7 @@ class UsuariosController extends DashBoardController
     */
 
     use RegistersUsers;
+
 
     public function __construct()
     {
@@ -146,7 +147,7 @@ class UsuariosController extends DashBoardController
             ->roles()
             ->attach(Role::find($request->role));
 
-        $usuario->sendEmailVerificationNotification(); // Enviamos email de confirmación de cuenta
+        $usuario->NotificacionNuevoUsuario();
 
         return redirect()->route('dashboardUsuarios')->with(['success'=>true,'mensaje'=>  __('Usuario creado correctamente') ]);
 
@@ -161,10 +162,13 @@ class UsuariosController extends DashBoardController
     public function show(User $usuario, $tab='modificar', Request $request)
     {
          Parent::RolesCheck();
+        $nueva = false;
         if($usuario->id<>Auth::user()->id){
             $errors = Session::get('errors');
             if ($request->tab) {
                 $tab=$request->tab;
+            }elseif(session('tab')){
+                $tab=session('tab');
             } else {
                 $tab="modificar";
             }
@@ -178,7 +182,10 @@ class UsuariosController extends DashBoardController
                 }
             }
             if ($usuario) {
-
+                if (in_array($usuario->id, $this->notifiacionesUsuarios->pluck('data')->pluck('usuario_id')->toArray())) {
+                    $this->notifiacionesUsuarios->where('data', ['usuario_id'=>$usuario->id])->markAsRead();
+                    $nueva = true;
+                }
                 if ($this->isAdmin) {
                     $roles=Role::all('id', 'name');
                 }elseif ($this->isAsesor) {
@@ -187,7 +194,7 @@ class UsuariosController extends DashBoardController
 
                 $action = action('Dashboard\UsuariosController@update', ['id' => $usuario->id]);
                 return view('dashboard.usuarios.detalle')
-                    ->with(compact('usuario','roles','tab','action'));
+->with(compact('usuario','roles','tab','action','nueva'));
             } else {
                 abort(404);
             }
@@ -242,7 +249,8 @@ class UsuariosController extends DashBoardController
         $user->active = ($request['active']=="on") ? 1 : 0;
         $user->save();
         $tab="modificar";
-        return redirect()->action('Dashboard\UsuariosController@show',['usuario'=>$user,'tab'=>$tab])->with([
+        return redirect()->action('Dashboard\UsuariosController@show',['usuario'=>$user])->with([
+            'tab'=> $tab,
             'success'=> true,
             'mensaje'=>__('<strong>'.$user->name.'</strong> modificado correctamente')
         ]);
@@ -257,7 +265,8 @@ class UsuariosController extends DashBoardController
         $user->active = $request->active;
         $user->save();
         $tab="estado";
-        return redirect()->action('Dashboard\UsuariosController@show',['usuario'=>$user,'tab'=>$tab])->with([
+        return redirect()->action('Dashboard\UsuariosController@show',['usuario'=>$user])->with([
+            'tab'=> $tab,
             'success'=> true,
             'mensaje'=>__('Estado de <strong>'.$user->name.'</strong> modificado correctamente')
         ]);
@@ -276,7 +285,8 @@ class UsuariosController extends DashBoardController
             ->attach(Role::find($request->role));
 
         $tab="roles";
-        return redirect()->action('Dashboard\UsuariosController@show',['usuario'=>$user,'tab'=>$tab])->with([
+        return redirect()->action('Dashboard\UsuariosController@show',['usuario'=>$user])->with([
+            'tab'=> $tab,
             'success'=> true,
             'mensaje'=>__('El perfil de <strong>'.$user->name.'</strong> se ha modificado correctamente')
         ]);
@@ -292,7 +302,7 @@ class UsuariosController extends DashBoardController
      */
     public function delete(User $usuario,Request $request)
     {
-      
+
         $usuario->active= $request->input('modalborrar_action');
         $usuario->save();
 
@@ -341,4 +351,81 @@ class UsuariosController extends DashBoardController
         }
     }
 
+    public function reiniciarPassword(Request $email){
+        return $this->sendResetLinkEmail($email);
+
+    }
+
+    public function sendResetLinkEmail(Request $request)
+    {
+        $this->validateEmail($request);
+
+        // We will send the password reset link to this user. Once we have attempted
+        // to send the link, we will examine the response then see the message we
+        // need to show to the user. Finally, we'll send out a proper response.
+        $response = $this->broker()->sendResetLink(
+            $request->only('email')
+        );
+
+        return $response == Password::RESET_LINK_SENT
+                    ? $this->sendResetLinkResponse($request, $response)
+                    : $this->sendResetLinkFailedResponse($request, $response);
+    }
+
+    /**
+     * Validate the email for the given request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function validateEmail(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+    }
+
+    /**
+     * Get the response for a successful password reset link.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendResetLinkResponse(Request $request, $response)
+    {
+        return back()->with([
+            'tab'=> 'reset',
+            'success'=> true,
+            'mensaje'=>__('Se ha enviado un correo electrónico a <strong>'.$request->input('email').'</strong> para reiniciar la contraseña')
+        ]);
+    }
+
+    /**
+     * Get the response for a failed password reset link.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendResetLinkFailedResponse(Request $request, $response)
+    {
+        return back()
+                ->with([
+                    'tab'=> 'reset',
+                ])
+                 ->witherrorsResetEmail([
+                     'envio' => trans($response),
+                     'mensaje'=>__('No se ha podido enviar el correo electrónico a <strong>'.$request->input('email').'</strong>. Inténtalo de nuevo.')
+                ]);
+    }
+
+    /**
+     * Get the broker to be used during password reset.
+     *
+     * @return \Illuminate\Contracts\Auth\PasswordBroker
+     */
+    public function broker()
+    {
+        return Password::broker();
+    }
+   
 }

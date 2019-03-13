@@ -8,7 +8,7 @@
     <div class="col-md-6">
 
         <div class="form-group {{ $errors->has('cif') ? ' has-danger' : '' }}">
-            <label for="cif">{{ __('Cif') }}</label>
+            <label for="cif">{{ __('Cif') }}(*)</label>
             <input type="text" value="{{ ((old( 'cif')) ? old( 'cif') : $oferta->cif ) }}" class="form-control form-control-line {{ $errors->has('cif') ? ' form-control-danger' : '' }}" id="cif" name="cif" required maxlength="9"> @if ($errors->has('cif'))
 
             <div class="form-control-feedback">{{ $errors->first('cif') }}</div>
@@ -22,7 +22,7 @@
 
         <div class="form-group {{ $errors->has('año') ? ' has-danger' : '' }}">
             <label for="año">{{ __('Año de constitución') }}</label>
-            <input type="text" value="{{ ((old( 'año')) ? old( 'año') : $oferta->año ) }}" class=" text-right form-control form-control-line {{ $errors->has('año') ? ' form-control-danger' : '' }}" id="año" name="año" maxlength="4"> @if ($errors->has('año'))
+            <input type="number" value="{{ ((old( 'año')) ? old( 'año') : $oferta->año ) }}" class=" text-right form-control form-control-line {{ $errors->has('año') ? ' form-control-danger' : '' }}" id="año" name="año" maxlength="4"> @if ($errors->has('año'))
 
             <div class="form-control-feedback">{{ $errors->first('año') }}</div>
             @endif
@@ -32,8 +32,8 @@
     <div class="col-md-12">
 
         <div class="form-group {{ $errors->has('forma_id') ? ' has-danger' : '' }}">
-            <label for="forma_id">{{ __('Forma Jurídica') }}</label>
-            <select name="forma_id" id="forma_id" class="form-control form-control-line {{ $errors->has('forma_id') ? ' form-control-danger' : '' }}">
+            <label for="forma_id">{{ __('Forma Jurídica') }}(*)</label>
+            <select name="forma_id" id="forma_id" class="form-control form-control-line {{ $errors->has('forma_id') ? ' form-control-danger' : '' }}" required>
                 <option value="">{{ __('Selecciona forma') }}</option>
                 @foreach ($formasJuridicas as $formaJuridica)
                 @if (old('forma_id'))
@@ -62,8 +62,8 @@
     <div class="col-md-6">
 
         <div class="form-group {{ $errors->has('socios') ? ' has-danger' : '' }}">
-            <label for="socios">{{ __('Socios') }}</label>
-            <input type="text" value="{{ ((old( 'socios')) ? old( 'socios') : $oferta->socios ) }}" class="form-control form-control-line {{ $errors->has('socios') ? ' form-control-danger' : '' }}" id="socios" name="socios"> @if ($errors->has('socios'))
+            <label for="socios">{{ __('Socios') }}(*)</label>
+            <input type="number" value="{{ ((old( 'socios')) ? old( 'socios') : $oferta->socios ) }}" class="form-control form-control-line {{ $errors->has('socios') ? ' form-control-danger' : '' }}" id="socios" name="socios" required> @if ($errors->has('socios'))
 
             <div class="form-control-feedback">{{ $errors->first('socios') }}</div>
             @endif
@@ -76,7 +76,7 @@
 
         <div class="form-group {{ $errors->has('empleados') ? ' has-danger' : '' }}">
             <label for="empleados">{{ __('Empleados') }}</label>
-            <input type="text" value="{{ ((old( 'empleados')) ? old( 'empleados') : $oferta->empleados ) }}" class="form-control form-control-line {{ $errors->has('empleados') ? ' form-control-danger' : '' }}" id="empleados" name="empleados"> @if ($errors->has('empleados'))
+            <input type="number" value="{{ ((old( 'empleados')) ? old( 'empleados') : $oferta->empleados ) }}" class="form-control form-control-line {{ $errors->has('empleados') ? ' form-control-danger' : '' }}" id="empleados" name="empleados"> @if ($errors->has('empleados'))
 
             <div class="form-control-feedback">{{ $errors->first('empleados') }}</div>
             @endif
@@ -92,9 +92,9 @@
     <div class="col-md-12">
 
         <div class="form-group {{ $errors->has('motivo') ? ' has-danger' : '' }}">
-            <label for="motivo">{{ __('Motivo de la venta') }}</label>
+            <label for="motivo">{{ __('Motivo de la venta') }}(*)</label>
 
-            <textarea name="motivo" id="motivo" class="form-control form-control-line {{ $errors->has('motivo') ? ' form-control-danger' : '' }}" rows="5">{{ ((old( 'motivo')) ? old( 'motivo') : $oferta->motivo ) }}</textarea> @if ($errors->has('motivo'))
+            <textarea name="motivo" id="motivo" class="form-control form-control-line {{ $errors->has('motivo') ? ' form-control-danger' : '' }}" rows="5" required>{{ ((old( 'motivo')) ? old( 'motivo') : $oferta->motivo ) }}</textarea> @if ($errors->has('motivo'))
 
             <div class="form-control-feedback">{{ $errors->first('motivo') }}</div>
             @endif
@@ -106,7 +106,7 @@
 
 <div class="row">
 
-    <div class="col-md-9">
+    <div class="col-md-12">
 
         <div class="form-group {{ $errors->has('sector_id') ? ' has-danger' : '' }}">
             <label for="sector_id">{{ __('Sector') }}</label>
@@ -134,10 +134,10 @@
     </div>
 
 
-    <div class="col-md-3 ">
+    <div class="col-md-12 ">
 
         <div class="form-group">
-            <label for="local">{{ __('Local') }}</label>
+            <label for="local">{{ __('Local propio') }}</label>
 
             <div class="switch">
                 <label>
@@ -176,7 +176,7 @@
     <div class="col-md-6">
 
         <div class="form-group {{ $errors->has('provincia_id') ? ' has-danger' : '' }}">
-            <label for="provincia_id">{{ __('Provincia') }}</label>
+            <label for="provincia_id">{{ __('Provincia') }}(*)</label>
 
             <select name="provincia_id" id="provincia_id" class="form-control form-control-line {{ $errors->has('provincia_id') ? ' form-control-danger' : '' }}" required>
                 <option value="">{{ __('Selecciona provincia') }}</option>
@@ -202,7 +202,7 @@
     <div class="col-md-6">
 
         <div class="form-group {{ $errors->has('poblacion_id') ? ' has-danger' : '' }}">
-            <label for="poblacion_id">{{ __('Población') }}</label>
+            <label for="poblacion_id">{{ __('Población') }}(*)</label>
 
             <select name="poblacion_id" id="poblacion_id" class="form-control form-control-line {{ $errors->has('poblacion_id') ? ' form-control-danger' : '' }}" required>
                 <option value="">{{ __('Selecciona poblacion') }}</option>
@@ -244,7 +244,7 @@
                         <i class="ti-world"></i>
                     </span>
                 </div>
-                <input type="text" value="{{ ((old( 'web')) ? old( 'web') : $oferta->web ) }}" class="form-control form-control-line {{ $errors->has('web') ? ' form-control-danger' : '' }}" id="web" name="web">
+                <input type="url" value="{{ ((old( 'web')) ? old( 'web') : $oferta->web ) }}" class="form-control form-control-line {{ $errors->has('web') ? ' form-control-danger' : '' }}" id="web" name="web">
             </div>
             @if ($errors->has('web'))
 
@@ -255,38 +255,7 @@
     </div>
 </div>
 
-<div class="row">
 
-    <div class="col-md-4">
-
-        <div class="form-group {{ $errors->has(['explotacion1','explotacion2','explotacion3']) ? ' has-danger' : '' }}">
-            <label class="form-control-label" for="explotacion1">{{ __('explotacion1') }}</label>
-            <input type="text" value="{{ ((old( 'explotacion1')) ? old( 'explotacion1') : $oferta->explotacion1 ) }}" class="form-control form-control-line {{ $errors->has('explotacion1') ? ' form-control-danger' : '' }}" id="explotacion1" name="explotacion1">
-        </div>
-    </div>
-
-    <div class="col-md-4">
-
-        <div class="form-group {{ $errors->has(['explotacion1','explotacion2','explotacion3']) ? ' has-danger' : '' }}">
-            <label class="form-control-label" for="explotacion2">{{ __('explotacion2') }}</label>
-            <input type="text" value="{{ ((old( 'explotacion2')) ? old( 'explotacion2') : $oferta->explotacion2 ) }}" class="form-control form-control-line {{ $errors->has('explotacion2') ? ' form-control-danger' : '' }}" id="explotacion2" name="explotacion2">
-        </div>
-    </div>
-
-    <div class="col-md-4">
-
-        <div class="form-group {{ $errors->has(['explotacion1','explotacion2','explotacion3']) ? ' has-danger' : '' }}">
-            <label class="form-control-label" for="explotacion3">{{ __('explotacion3') }}</label>
-            <input type="text" value="{{ ((old( 'explotacion3')) ? old( 'explotacion3') : $oferta->explotacion3 ) }}" class="form-control form-control-line {{ $errors->has('explotacion3') ? ' form-control-danger' : '' }}" id="explotacion3" name="explotacion3">
-        </div>
-    </div>
-
-    @if ($errors->has(['explotacion1','explotacion2','explotacion3']))
-
-    <div class="form-control-feedback">{{ $errors->first('explotacion1') }}</div>
-    @endif
-
-</div>
 <hr>
 
 <div class="row">
@@ -294,10 +263,10 @@
     <div class="col-md-12">
 
         <div class="form-group {{ $errors->has('valoracion') ? ' has-danger' : '' }}">
-            <label for="valoracion">{{ __('Valoración de la compañía') }}</label>
+            <label for="valoracion">{{ __('Valoración de la compañía') }}(*)</label>
 
             <div class="input-group">
-                <input type="text" value="{{ (old( 'valoracion')) ?  old( 'valoracion') : $oferta->valoracion  }}" class="form-control form-control-line {{ $errors->has('valoracion') ? ' form-control-danger' : '' }}" id="valoracion" name="valoracion">
+                <input type="number" value="{{ (old( 'valoracion')) ?  old( 'valoracion') : $oferta->valoracion  }}" class="form-control form-control-line {{ $errors->has('valoracion') ? ' form-control-danger' : '' }}" id="valoracion" name="valoracion" required>
 
                 <div class="input-group-append">
                     <span class="input-group-text">€</span>
@@ -316,7 +285,7 @@
             <label for="endeudamiento">{{ __('Endeudamiento') }}</label>
 
             <div class="input-group">
-                <input type="text" value="{{ ((old( 'endeudamiento')) ? old( 'endeudamiento') : $oferta->endeudamiento ) }}" class="form-control form-control-line
+                <input type="number" value="{{ ((old( 'endeudamiento')) ? old( 'endeudamiento') : $oferta->endeudamiento ) }}" class="form-control form-control-line
                     {{ $errors->has('endeudamiento') ? ' form-control-danger' : '' }}" id="endeudamiento" name="endeudamiento">
 
                 <div class="input-group-append">
