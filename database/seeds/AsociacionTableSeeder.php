@@ -17,7 +17,20 @@ class AsociacionTableSeeder extends Seeder
     {
         //
         $faker = Faker::create('es_ES');
-    	foreach (range(1,5) as $index) {
+
+        $asociacion = new Asociacion();
+        $asociacion->name = 'Asociacion Raul';
+        $asociacion->address = $faker->address;
+        $asociacion->email = $faker->email;
+        $asociacion->phone =  "9".$faker->ean8;
+        $asociacion->contact = $faker->Firstname;
+        $asociacion->contactSurname = $faker->lastName;
+        $asociacion->contactPhone =  "6".$faker->ean8;
+        $asociacion->contactEmail = $faker->email;
+        $asociacion->active = 1;
+        $asociacion->save();
+
+        foreach (range(1, 5) as $index) {
             $asociacion = new Asociacion();
             $asociacion->name = 'Asociacion '.$index;
             $asociacion->address = $faker->address;
@@ -29,8 +42,6 @@ class AsociacionTableSeeder extends Seeder
             $asociacion->contactEmail = $faker->email;
             $asociacion->active = 1;
             $asociacion->save();
-
-	    }
-
+        }
     }
 }

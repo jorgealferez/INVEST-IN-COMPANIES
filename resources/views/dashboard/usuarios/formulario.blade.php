@@ -46,7 +46,7 @@
 
     <div class="col-md-12">
         <input type="text" value="{{ old('phone')?old('phone'): e($usuario->phone) }}" placeholder="{{ e($usuario->phone) }}" class="form-control form-control-line {{ $errors->has('phone') ? ' form-control-danger' : '' }}"
-            id="phone" name="phone" required>
+            id="phone" name="phone" required maxlength="9">
     </div>
     @if ($errors->has('phone'))
 
