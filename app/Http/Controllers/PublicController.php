@@ -200,6 +200,9 @@ class PublicController extends Controller
         if ($request->input('sector_id')) {
             $query[]=["ofertas.sector_id","=",$request->input('sector_id')];
         }
+        if ($request->input('asociacion_id')) {
+            $query[]=[ "ofertas.asociacion_id","=",$request->input( 'asociacion_id')];
+        }
 
 
 
