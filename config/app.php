@@ -232,12 +232,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Faker Locale
+    | Email
     |--------------------------------------------------------------------------
     |
-    | This locale will be used by the Faker PHP library when generating fake
-    | data for your database seeds. For example, this will be used to get
-    | localized telephone numbers, street address information and more.
+    | Cuenta de email para la parte pública y de contacto.
     |
     */
 

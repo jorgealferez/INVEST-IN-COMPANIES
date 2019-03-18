@@ -124,12 +124,6 @@ h2 {
   color: #006242;
 }
 
-.btn-invest.verde:hover {
-  color: white;
-  background-color: #006242 !important;
-  border-color: #343a40 !important;
-}
-
 .btn-verde {
   color: #ffffff;
   background-color: #006242;
@@ -262,29 +256,4 @@ p {
 .servicio h4 i {
   font-size: 3em;
   display: block;
-}
-
-.servicio input {
-  padding: 5%;
-}
-
-.info {
-  border-top: 5px solid #006242;
-  background-color: #f7f7f7;
-}
-
-.info i {
-  font-size: 2em;
-  float: right;
-  color: #386244;
-  padding: 0 20px 0 20px;
-}
-
-.info a {
-  color: #386244;
-}
-
-.info a,
-.info p {
-  line-height: 2em;
 }

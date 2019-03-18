@@ -133,6 +133,17 @@ h2 {
         color: white;
         background-color: #343a40 !important;
     }
+
+    &.verde {
+        border-color: $themecolor;
+        color: $themecolor;
+
+        &:hover {
+            color: white;
+            background-color: $themecolor !important;
+            border-color: #343a40 !important;
+        }
+    }
 }
 
 .btn-verde {
@@ -286,4 +297,31 @@ p {
 
         }
     }
+
+    input {
+        padding: 5%;
+    }
+}
+
+.info {
+    border-top: 5px solid $themecolor;
+    background-color: #f7f7f7;
+
+    i {
+        font-size: 2em;
+        float: right;
+        color: #386244;
+        padding: 0 20px 0 20px;
+
+    }
+
+    a {
+        color: #386244;
+    }
+
+    a,
+    p {
+        line-height: 2em;
+    }
+
 }

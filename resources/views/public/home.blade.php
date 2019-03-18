@@ -39,7 +39,7 @@
 
 
 <div class="featurette bg-primary">
-    <form method="POST" class="" action="">
+    <form method="POST" class="" action="{{ route('buscador') }}">
         @csrf @method('POST')
 
 
@@ -56,14 +56,30 @@
 
                 <div class="col-md-3 ">
 
-                    <div class="form-group ">
-                        <label for="provincia" class="col-md-12 col-form-label text-white text-uppercase">{{ __('Provincia') }}</label>
+                     <div class="form-group ">
+                        <label for="asociacion_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __('Asociación') }}</label>
 
                         <div class="col-md-12">
-                            <select name="provincia" id="provincia" class="form-control ">
-                                <option value="0">{{ __('Selecciona Perfil') }}</option>
+                            <select name="asociacion_id" id="asociacion_id" class="form-control ">
+                                <option value="0">{{ __('Todas') }}</option>
+                                @foreach ($asociaciones as $asociacion)
+                                <option value="{{ $asociacion->id }}" @if ($request->input('asociacion_id')== $asociacion->id) selected @endif>{{ $asociacion->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 ">
+
+                     <div class="form-group ">
+                        <label for="provincia_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __('Provincia') }}</label>
+
+                        <div class="col-md-12">
+                            <select name="provincia_id" id="provincia_id" class="form-control ">
+                                <option value="0">{{ __('Todas') }}</option>
                                 @foreach ($provincias as $provincia)
-                                <option value="{{ $provincia->id }}">{{ $provincia->name }}</option>
+                                <option value="{{ $provincia->id }}" @if ($request->input('provincia_id')== $provincia->id) selected @endif>{{ $provincia->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -73,13 +89,13 @@
                 <div class="col-md-3 ">
 
                     <div class="form-group ">
-                        <label for="provincia" class="col-md-12 col-form-label text-white text-uppercase">{{ __('Provincia') }}</label>
+                        <label for="sector_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __('Sector') }}</label>
 
                         <div class="col-md-12">
-                            <select name="provincia" id="provincia" class="form-control ">
-                                <option value="0">{{ __('Selecciona Perfil') }}</option>
-                                @foreach ($provincias as $provincia)
-                                <option value="{{ $provincia->id }}">{{ $provincia->name }}</option>
+                            <select name="sector_id" id="sector_id" class="form-control ">
+                                <option value="0">{{ __('Todos') }}</option>
+                                @foreach ($sectores as $sector)
+                                <option value="{{ $sector->id }}" @if ($request->input('sector_id')== $sector->id) selected @endif>{{ $sector->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -89,33 +105,18 @@
                 <div class="col-md-3 ">
 
                     <div class="form-group ">
-                        <label for="provincia" class="col-md-12 col-form-label text-white text-uppercase">{{ __('Provincia') }}</label>
+                        <label for="precio" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __('Precio') }}</label>
 
                         <div class="col-md-12">
-                            <select name="provincia" id="provincia" class="form-control ">
-                                <option value="0">{{ __('Selecciona Perfil') }}</option>
-                                @foreach ($provincias as $provincia)
-                                <option value="{{ $provincia->id }}">{{ $provincia->name }}</option>
+                            <select name="precio" id="precio" class="form-control ">
+                                <option value="0">{{ __('Selecciona cantidad') }}</option>
+                                @foreach ($precios as $precio)
+                                <option value="{{ $precio->value }}" @if ($request->input('precio')== $precio->value) selected @endif>{{ $precio->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-3 ">
-
-                    <div class="form-group ">
-                        <label for="provincia" class="col-md-12 col-form-label text-white text-uppercase">{{ __('Provincia') }}</label>
-
-                        <div class="col-md-12">
-                            <select name="provincia" id="provincia" class="form-control ">
-                                <option value="0">{{ __('Selecciona Perfil') }}</option>
-                                @foreach ($provincias as $provincia)
-                                <option value="{{ $provincia->id }}">{{ $provincia->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
                 </div>
             </div>
 

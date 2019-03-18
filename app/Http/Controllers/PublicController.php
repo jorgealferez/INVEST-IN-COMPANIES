@@ -1,24 +1,25 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\User;
-use App\Sector;
 use App\Role;
-use App\Provincia;
-use App\Poblacion;
+use App\User;
 use App\Oferta;
-use App\Notifications\Generico\ContactoEmpresaNueva;
+use App\Sector;
 use App\Inversion;
-use App\Http\Requests\RegistroRequest;
-use App\Http\Requests\NuevaEmpresaRequest;
+use App\Poblacion;
+use App\Provincia;
 use App\Asociacion;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\RegistroRequest;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\NuevaEmpresaRequest;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\Generico\ContactoEmpresaNueva;
 
 class PublicController extends Controller
 {
+    public $precios;
     /**
      * Create a new controller instance.
      *
@@ -26,6 +27,18 @@ class PublicController extends Controller
      */
     public function __construct()
     {
+        $this->precios = collect([
+            (object)['value' => 1, 'name' => '< 10.000 €'],
+            (object)['value' => 2, 'name' => '10.000 – 25.000 €'],
+            (object)['value' => 3, 'name' => '25.000 – 50.000 €'],
+            (object)['value' => 4, 'name' => '50.000 – 100.000 €'],
+            (object)['value' => 5, 'name' => '100.000 – 250.000 €'],
+            (object)['value' => 6, 'name' => '250.000 – 500.000 €'],
+            (object)['value' => 7, 'name' => '500.000 – 1.000.000 €'],
+            (object)['value' => 8, 'name' => '> 1.000.000 €'],
+        ]);
+        
+
         // $this->middleware(['auth', 'verified']);
     }
 
@@ -34,13 +47,33 @@ class PublicController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $provincias=Provincia::all();
+        $sectores=Sector::all();
+        $asociaciones=Asociacion::all();
+        $precios = $this->precios;
+
+        if (Auth::check()) {
+            $inversiones = Auth::User()->inversiones->pluck('oferta_id')->toArray();
+            $invitado = 0;
+        } else {
+            $inversiones = array();
+            $invitado = 1;
+        }
+
+        
+
         return view('public.home')
         ->with(
             compact(
-                'provincias'
+                'request',
+                'provincias',
+                'sectores',
+                'asociaciones',
+                'precios',
+                'inversiones',
+                'invitado'
             )
         );
     }
@@ -57,6 +90,7 @@ class PublicController extends Controller
     public function vende(NuevaEmpresaRequest $request)
     {
         $provincias=Provincia::all();
+        
         return view('public.vende')
         ->with(
             compact(
@@ -90,7 +124,7 @@ class PublicController extends Controller
             ->attach(Role::where('name', 'Inversor')->first());
 
         $enviado = true;
-        return redirect()->route('compraEmpresa')->with(compact(
+        return redirect(url()->previous() . '#formulario')->with(compact(
             'enviado'
             ));
     }
@@ -126,8 +160,6 @@ class PublicController extends Controller
             Notification::send($administrador, new ContactoEmpresaNueva($administrador, $request->input('name'), $request->input('email'), $request->input('phone')));
         }
 
-        
-
         $enviado = true;
         $provincias=Provincia::all();
         return redirect()->route('vendeEmpresa')->with(compact(
@@ -151,17 +183,9 @@ class PublicController extends Controller
             $invitado = 1;
         }
 
-        // dd($sectores);
-        $precios = collect([
-            (object)['value' => 1, 'name' => '< 10.000 €'],
-            (object)['value' => 2, 'name' => '10.000 – 25.000 €'],
-            (object)['value' => 3, 'name' => '25.000 – 50.000 €'],
-            (object)['value' => 4, 'name' => '50.000 – 100.000 €'],
-            (object)['value' => 5, 'name' => '100.000 – 250.000 €'],
-            (object)['value' => 6, 'name' => '250.000 – 500.000 €'],
-            (object)['value' => 7, 'name' => '500.000 – 1.000.000 €'],
-            (object)['value' => 8, 'name' => '> 1.000.000 €'],
-        ]);
+       
+        $precios = $this->precios;
+
 
         $query[]=["ofertas.active" , "=", 1];
         $query[]=["ofertas.approved" , "=", 1];
