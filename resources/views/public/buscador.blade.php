@@ -1,4 +1,5 @@
-@extends('layouts.public') @section('contenido')
+@extends('layouts.public') 
+@section('contenido')
 
 <div class="container-fluid my-3">
 	<div class="row ">
@@ -7,121 +8,76 @@
 				<h3 class="text-uppercase text-white py-3 mx-auto ">
 					{{ __("Filtros") }}
 				</h3>
-				<form
-					method="POST"
-					class=""
-					action="{{ action('PublicController@buscador') }}"
-				>
+				<form method="POST" class="" action="{{ action('PublicController@buscador') }}">
 					@csrf @method('POST')
 
 					<div class="form-group ">
-						<label
-							for="provincia_id"
-							class="col-md-12 col-form-label text-white text-uppercase text-left"
-							>{{ __("Título") }}</label
-						>
+						<label for="provincia_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __("Título") }}</label>
 
 						<div class="col-md-12">
-							<input
-								name="name"
-								id="name"
-								class=" form-control"
-								type="text"
-								value="{{ (!empty($request)) ? $request->input('name') : '' }}"
-								placeholder="{{ __('Nombre') }}"
-							/>
+							<input name="name" id="name" class=" form-control" type="text" value="{{ (!empty($request)) ? $request->input('name') : '' }}"
+							 placeholder="{{ __('Nombre') }}" />
 						</div>
 					</div>
 
 					<div class="form-group ">
-						<label
-							for="asociacion_id"
-							class="col-md-12 col-form-label text-white text-uppercase text-left"
-							>{{ __("Asociación") }}</label
-						>
+						<label for="asociacion_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __("Asociación") }}</label>
 
 						<div class="col-md-12">
-							<select
-								name="asociacion_id"
-								id="asociacion_id"
-								class="form-control "
-							>
+							<select name="asociacion_id" id="asociacion_id" class="form-control ">
 								<option value="0">{{ __("Todas") }}</option>
 								@foreach ($asociaciones as $asociacion)
-								<option value="{{ $asociacion->id }}" @if ($request-
-									>input('asociacion_id')== $asociacion->id) selected @endif>{{ $asociacion->name }}</option
-								>
+								<option value="{{ $asociacion->id }}" 
+								@if ($request->input('asociacion_id')== $asociacion->id) selected @endif>{{ $asociacion->name }}</option>
 								@endforeach
 							</select>
 						</div>
 					</div>
 
 					<div class="form-group ">
-						<label
-							for="provincia_id"
-							class="col-md-12 col-form-label text-white text-uppercase text-left"
-							>{{ __("Provincia") }}</label
-						>
+						<label for="provincia_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __("Provincia") }}</label>
 
 						<div class="col-md-12">
-							<select
-								name="provincia_id"
-								id="provincia_id"
-								class="form-control "
-							>
+							<select name="provincia_id" id="provincia_id" class="form-control ">
 								<option value="0">{{ __("Todas") }}</option>
 								@foreach ($provincias as $provincia)
-								<option value="{{ $provincia->id }}" @if ($request-
-									>input('provincia_id')== $provincia->id) selected @endif>{{ $provincia->name }}</option
-								>
+								<option value="{{ $provincia->id }}" 
+								@if ($request->input('provincia_id')== $provincia->id) selected @endif>{{ $provincia->name }}</option>
 								@endforeach
 							</select>
 						</div>
 					</div>
 
 					<div class="form-group ">
-						<label
-							for="sector_id"
-							class="col-md-12 col-form-label text-white text-uppercase text-left"
-							>{{ __("Sector") }}</label
-						>
+						<label for="sector_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __("Sector") }}</label>
 
 						<div class="col-md-12">
 							<select name="sector_id" id="sector_id" class="form-control ">
 								<option value="0">{{ __("Todos") }}</option>
 								@foreach ($sectores as $sector)
-								<option value="{{ $sector->id }}" @if ($request-
-									>input('sector_id')== $sector->id) selected @endif>{{ $sector->name }}</option
-								>
+								<option value="{{ $sector->id }}" 
+								@if ($request->input('sector_id')== $sector->id) selected @endif>{{ $sector->name }}</option>
 								@endforeach
 							</select>
 						</div>
 					</div>
 
 					<div class="form-group ">
-						<label
-							for="precio"
-							class="col-md-12 col-form-label text-white text-uppercase text-left"
-							>{{ __("Precio") }}</label
-						>
+						<label for="precio" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __("Precio") }}</label>
 
 						<div class="col-md-12">
 							<select name="precio" id="precio" class="form-control ">
 								<option value="0">{{ __("Selecciona cantidad") }}</option>
 								@foreach ($precios as $precio)
-								<option value="{{ $precio->value }}" @if ($request-
-									>input('precio')== $precio->value) selected @endif>{{ $precio->name }}</option
-								>
+								<option value="{{ $precio->value }}" 
+									@if ($request->input('precio')== $precio->value) selected @endif>{{ $precio->name }}</option>
 								@endforeach
 							</select>
 						</div>
 					</div>
 
 					<div class="form-group my-5">
-						<button
-							class="btn-invest  bg-transparent text-uppercase fa-1x "
-							type="submit"
-						>
+						<button class="btn-invest  bg-transparent text-uppercase fa-1x " type="submit">
 							{{ __("Aplicar") }}
 						</button>
 					</div>
@@ -142,12 +98,7 @@
 				</thead>
 				<tbody>
 					@if ($ofertas->count()>0) @foreach ($ofertas as $oferta)
-					<tr
-						aria-controls="collapse{{ $oferta->id }}"
-						data-toggle="collapse"
-						data-target="#collapse{{ $oferta->id }}"
-						class="collapse-row"
-					>
+					<tr aria-controls="collapse{{ $oferta->id }}" data-toggle="collapse" data-target="#collapse{{ $oferta->id }}" class="collapse-row">
 						<td style="width: 30%">{{ e($oferta->sector_name) }}</td>
 						<td style="width: 50%">{{ e($oferta->name) }}</td>
 						<td style="width: 20%" class="text-right">
@@ -157,10 +108,7 @@
 
 					<tr>
 						<td colspan="3" style="padding:0px;">
-							<div
-								class="collapse oferta-detalle"
-								id="collapse{{ $oferta->id }}"
-							>
+							<div class="collapse oferta-detalle" id="collapse{{ $oferta->id }}">
 								<div class="card card-profile">
 									<div class="card-body ">
 										<h6 class="card-subtitle  m-0">
@@ -172,8 +120,7 @@
 
 									<div class="card-body row">
 										<div class="col-md-8  ">
-											<small class=" font-weight-bold verde"
-												>{{ __("Forma Jurídica") }}:</small
+											<small class=" font-weight-bold verde">{{ __("Forma Jurídica") }}:</small
 											>
 											<h6>{{ e($oferta->forma->name) }}</h6>
 										</div>
@@ -289,21 +236,15 @@
 										<div class="col-md-4 ">
 											<small class="verde">{{ __("Contacto") }}:</small>
 											<h6>
-												<i class="ti-user"></i>
-												{{ e($oferta->contactFullName) }}
+												<i class="ti-user"></i> {{ e($oferta->contactFullName) }}
 											</h6>
 										</div>
 
 										<div class="col-md-4 ">
 											<small class="verde">{{ __("Email") }}:</small>
-											<a
-												href="mailto:{{ e($oferta->contactEmail) }}"
-												class="link text-muted"
-												target="_blank"
-											>
+											<a href="mailto:{{ e($oferta->contactEmail) }}" class="link text-muted" target="_blank">
 												<h6>
-													<i class="ti-email"></i>
-													{{ e($oferta->contactEmail) }}
+													<i class="ti-email"></i> {{ e($oferta->contactEmail) }}
 												</h6>
 											</a>
 										</div>
@@ -321,24 +262,15 @@
 									<div class="card-body row">
 										<div class="col-md-12 ">
 											@if ($invitado)
-											<button
-												class="btn btn-success waves-effect waves-light invitado"
-												data-id="{{ e($oferta->id) }}"
-											>
+											<button class="btn btn-success waves-effect waves-light invitado" data-id="{{ e($oferta->id) }}">
 												{{ __("Solicitar información") }}
-											</button>
-											@else @if (!in_array($oferta->id,$inversiones))
-											<button
-												class="btn btn-success waves-effect waves-light informacion"
-												data-id="{{ e($oferta->id) }}"
-											>
+											</button> @else @if (!in_array($oferta->id,$inversiones))
+											<button class="btn btn-success waves-effect waves-light informacion" data-id="{{ e($oferta->id) }}">
 												{{ __("Solicitar información") }}
-											</button>
-											@else
+											</button> @else
 											<button class="btn btn-info waves-effect waves-light ">
 												{{ __("Información solicitada") }}
-											</button>
-											@endif @endif
+											</button> @endif @endif
 										</div>
 									</div>
 								</div>
@@ -378,7 +310,10 @@
 		</div>
 	</div>
 </div>
-@include('public.modal') @endsection @section('scripts')
+	@include('public.modal')
+@endsection
+ 
+@section('scripts')
 <script>
 	$(document).ready(function($) {
 		$(".collapse-row").on("click", function(event) {
@@ -428,5 +363,6 @@
 			$("#ModalInvitado").modal("show");
 		});
 	});
+
 </script>
 @endsection
