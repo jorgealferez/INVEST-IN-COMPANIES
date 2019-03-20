@@ -1,153 +1,161 @@
-@extends('layouts.public')
+@extends('layouts.public') 
 @section('contenido')
+	@include('public.carrusel')
 
 <div class="container  pt-0 pb-5">
 
-    <div class="row">
+	<div class="row">
 
-        <div class="col-md-12  text-center p-5">
-            <h2 class="text-uppercase">Noticias</h2>
-        </div>
-    </div>
+		<div class="col-md-12  text-center p-5">
+			<h2 class="text-uppercase">Noticias</h2>
+		</div>
+	</div>
 
-    <div class="row pb-5">
+	<div class="row pb-5">
 
-        <div class="col-lg-4 ">
-            <img src="images/slider/noticia1.jpg" alt="" class="img-fluid">
-            <h3 class="pt-5 pb-2 text-center">Suspendisse accumsan consequat</h3>
-            <p class="p-3">Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula
-                ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-        </div>
+		<div class="col-lg-4 ">
+			<img src="images/slider/noticia1.jpg" alt="" class="img-fluid">
+			<h3 class="pt-5 pb-2 text-center">Una de las razones que mantienen la compra de empresas en España</h3>
+			<p class="p-3">Muchas empresas españolas son fruto del gran crecimiento del país después de la crisis de los años 70. Sus propietarios
+				están en edad de jubilación y muchos no tienen sucesión, con lo que su única alternativa es la venta.</p>
+		</div>
 
-        <div class="col-lg-4 ">
-            <img src="images/slider/noticia2.jpg" alt="" class="img-fluid">
-            <h3 class="pt-5 pb-2 text-center">Suspendisse accumsan consequat</h3>
-            <p class="p-3">Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula
-                ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-        </div>
+		<div class="col-lg-4 ">
+			<img src="images/slider/noticia2.jpg" alt="" class="img-fluid">
+			<h3 class="pt-5 pb-2 text-center">Empresas Unicornio, en busca de la nueva Apple</h3>
+			<p class="p-3">El término de unicornio se aplica a las empresas que consiguen un valor superior a 1.000 millones de dólares en su etapa
+				inicial (un billón, en términos anglosajones). Esta gran cifra, tan mitológica como el animal, en un período de tiempo
+				relativamente corto, sólo es alcanzada por empresas que tienen un negocio potencial muy grande, empresas con grandes
+				expectativas.
+			</p>
+		</div>
 
-        <div class="col-lg-4 ">
-            <img src="images/slider/noticia3.jpg" alt="" class="img-fluid">
-            <h3 class="pt-5 pb-2 text-center">Suspendisse accumsan consequat</h3>
-            <p class="p-3">Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula
-                ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-        </div>
-    </div>
-    <!-- /.col-lg-4 -->
+		<div class="col-lg-4 ">
+			<img src="images/slider/noticia3.jpg" alt="" class="img-fluid">
+			<h3 class="pt-5 pb-2 text-center">Las empresas no pueden ser una oficina de empleo para los miembros de las familias propietarias</h3>
+			<p class="p-3">En sus manos, como CEO de Vidal Golosinas -consejero delegado-, está seguir liderando un legado empresarial de más de
+				medio siglo. Francisco José Hernández Arnaldos, 53 años, padre de tres hijos, desempeña también el puesto de vicepresidente
+				con el reto de seguir haciendo crecer a una empresa que es todo un referente en Molina de Segura y en la Región. Un proyecto
+				que puso en marcha su abuelo, Francisco Hernández Vidal, en 1963, junto a sus hijos Juan Benito, Juan Antonio y Francisco,
+				quienes con mucho trabajo y talento convirtieron el negocio en un imperio del dulce. Unas figuras que están muy presentes
+				y que aún alientan a perpetuar el proyecto.</p>
+		</div>
+	</div>
+	<!-- /.col-lg-4 -->
 </div>
 <!-- /.row -->
 
 
 <div class="featurette bg-primary">
-    <form method="POST" class="" action="{{ route('buscador') }}">
-        @csrf @method('POST')
+	<form method="POST" class="" action="{{ route('buscador') }}">
+		@csrf @method('POST')
 
 
-        <div class="container">
+		<div class="container">
 
-            <div class="row">
+			<div class="row">
 
-                <div class="col-md-12  px-5 pt-5 pb-3">
-                    <h2 class=" text-uppercase text-center text-white mx-auto">Buscador</h2>
-                </div>
-            </div>
+				<div class="col-md-12  px-5 pt-5 pb-3">
+					<h2 class=" text-uppercase text-center text-white mx-auto">Buscador</h2>
+				</div>
+			</div>
 
-            <div class="row py-0 px-0">
+			<div class="row py-0 px-0">
 
-                <div class="col-md-3 ">
+				<div class="col-md-3 ">
 
-                     <div class="form-group ">
-                        <label for="asociacion_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __('Asociación') }}</label>
+					<div class="form-group ">
+						<label for="asociacion_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __('Asociación') }}</label>
 
-                        <div class="col-md-12">
-                            <select name="asociacion_id" id="asociacion_id" class="form-control ">
+						<div class="col-md-12">
+							<select name="asociacion_id" id="asociacion_id" class="form-control ">
                                 <option value="0">{{ __('Todas') }}</option>
                                 @foreach ($asociaciones as $asociacion)
                                 <option value="{{ $asociacion->id }}" @if ($request->input('asociacion_id')== $asociacion->id) selected @endif>{{ $asociacion->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                    </div>
-                </div>
+						</div>
+					</div>
+				</div>
 
-                <div class="col-md-3 ">
+				<div class="col-md-3 ">
 
-                     <div class="form-group ">
-                        <label for="provincia_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __('Provincia') }}</label>
+					<div class="form-group ">
+						<label for="provincia_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __('Provincia') }}</label>
 
-                        <div class="col-md-12">
-                            <select name="provincia_id" id="provincia_id" class="form-control ">
+						<div class="col-md-12">
+							<select name="provincia_id" id="provincia_id" class="form-control ">
                                 <option value="0">{{ __('Todas') }}</option>
                                 @foreach ($provincias as $provincia)
                                 <option value="{{ $provincia->id }}" @if ($request->input('provincia_id')== $provincia->id) selected @endif>{{ $provincia->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                    </div>
-                </div>
+						</div>
+					</div>
+				</div>
 
-                <div class="col-md-3 ">
+				<div class="col-md-3 ">
 
-                    <div class="form-group ">
-                        <label for="sector_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __('Sector') }}</label>
+					<div class="form-group ">
+						<label for="sector_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __('Sector') }}</label>
 
-                        <div class="col-md-12">
-                            <select name="sector_id" id="sector_id" class="form-control ">
+						<div class="col-md-12">
+							<select name="sector_id" id="sector_id" class="form-control ">
                                 <option value="0">{{ __('Todos') }}</option>
                                 @foreach ($sectores as $sector)
                                 <option value="{{ $sector->id }}" @if ($request->input('sector_id')== $sector->id) selected @endif>{{ $sector->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                    </div>
-                </div>
+						</div>
+					</div>
+				</div>
 
-                <div class="col-md-3 ">
+				<div class="col-md-3 ">
 
-                    <div class="form-group ">
-                        <label for="precio" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __('Precio') }}</label>
+					<div class="form-group ">
+						<label for="precio" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __('Precio') }}</label>
 
-                        <div class="col-md-12">
-                            <select name="precio" id="precio" class="form-control ">
+						<div class="col-md-12">
+							<select name="precio" id="precio" class="form-control ">
                                 <option value="0">{{ __('Selecciona cantidad') }}</option>
                                 @foreach ($precios as $precio)
                                 <option value="{{ $precio->value }}" @if ($request->input('precio')== $precio->value) selected @endif>{{ $precio->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                    </div>
+						</div>
+					</div>
 
-                </div>
-            </div>
+				</div>
+			</div>
 
-            <div class="row">
+			<div class="row">
 
-                <div class="col-md-12 text-center p-5">
-                    <button class="btn-invest d-inline-block bg-transparent text-uppercase fa-1x" type="submit">{{ __('Buscar') }}</button>
-                </div>
-            </div>
-        </div>
-    </form>
+				<div class="col-md-12 text-center p-5">
+					<button class="btn-invest d-inline-block bg-transparent text-uppercase fa-1x" type="submit">{{ __('Buscar') }}</button>
+				</div>
+			</div>
+		</div>
+	</form>
 </div>
 
 <div class="container  pt-0">
 
-    <div class="row">
+	<div class="row">
 
-        <div class="col-md-12  text-center p-5">
-            <h2 class="text-uppercase">{{ __('Puntos de atención') }}</h2>
-        </div>
-    </div>
+		<div class="col-md-12  text-center p-5">
+			<h2 class="text-uppercase">{{ __('Puntos de atención') }}</h2>
+		</div>
+	</div>
 
-    <div class="row">
+	<div class="row">
 
-        <div class="col-md-12 ">
+		<div class="col-md-12 ">
 
-            <div id="map"></div>
+			<div id="map"></div>
 
-        </div>
-    </div>
-    <!-- /.col-lg-4 -->
+		</div>
+	</div>
+	<!-- /.col-lg-4 -->
 </div>
 
 
@@ -156,11 +164,11 @@
 
 <div class="featurette bg-gris py-5">
 
-    <div class="container">
+	<div class="container">
 
-        <div class="row">
+		<div class="row">
 
-            <div class="col-md-12   px-5 pt-5 pb-3" ">
+			<div class="col-md-12   px-5 pt-5 pb-3" ">
                 <h4 class=" text-center text-uppercase ">{{ __('Patrocinadores') }}</h4>
             </div>
         </div>
@@ -188,43 +196,43 @@
     <div class=" container ">
         <div class=" row ">
             <div class=" col-md-12 px-5 pt-5 pb-3 " ">
-                <h4 class="text-center text-uppercase ">{{ __('Patrocinadores') }}</h4>
-            </div>
-        </div>
+				<h4 class="text-center text-uppercase ">{{ __('Patrocinadores') }}</h4>
+			</div>
+		</div>
 
-        <div class="row patrocinadores pb-5">
+		<div class="row patrocinadores pb-5">
 
-            <div class="col-md-2 col-sm-6 mx-auto text-center p-2 ">
-                <img src="images/patrocinador1.png " alt=" " class="img-fluid mx-auto ">
-            </div>
+			<div class="col-md-2 col-sm-6 mx-auto text-center p-2 ">
+				<img src="images/patrocinador1.png " alt=" " class="img-fluid mx-auto ">
+			</div>
 
-            <div class="col-md-2 col-sm-6 mx-auto text-center p-2 ">
-                <img src="images/patrocinador1.png " alt=" " class="img-fluid mx-auto ">
-            </div>
+			<div class="col-md-2 col-sm-6 mx-auto text-center p-2 ">
+				<img src="images/patrocinador1.png " alt=" " class="img-fluid mx-auto ">
+			</div>
 
-            <div class="col-md-2 col-sm-6 mx-auto text-center p-2 ">
-                <img src="images/patrocinador1.png " alt=" " class="img-fluid mx-auto ">
-            </div>
+			<div class="col-md-2 col-sm-6 mx-auto text-center p-2 ">
+				<img src="images/patrocinador1.png " alt=" " class="img-fluid mx-auto ">
+			</div>
 
-            <div class="col-md-2 col-sm-6 mx-auto text-center p-2 ">
-                <img src="images/patrocinador1.png " alt=" " class="img-fluid mx-auto ">
-            </div>
+			<div class="col-md-2 col-sm-6 mx-auto text-center p-2 ">
+				<img src="images/patrocinador1.png " alt=" " class="img-fluid mx-auto ">
+			</div>
 
-            <div class="col-md-2 col-sm-6 mx-auto text-center p-2 ">
-                <img src="images/patrocinador1.png " alt=" " class="img-fluid mx-auto ">
-            </div>
+			<div class="col-md-2 col-sm-6 mx-auto text-center p-2 ">
+				<img src="images/patrocinador1.png " alt=" " class="img-fluid mx-auto ">
+			</div>
 
-            <div class="col-md-2 col-sm-6 mx-auto text-center p-2 ">
-                <img src="images/patrocinador1.png " alt=" " class="img-fluid mx-auto ">
-            </div>
-        </div>
-    </div>
+			<div class="col-md-2 col-sm-6 mx-auto text-center p-2 ">
+				<img src="images/patrocinador1.png " alt=" " class="img-fluid mx-auto ">
+			</div>
+		</div>
+	</div>
 </div>
 @endsection
-
+ 
 @section('scripts')
 <script>
-    function initMap() {
+	function initMap() {
 
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 13,
@@ -379,6 +387,5 @@
     }
 
 </script>
-
-@include('public.googlemaps')
+	@include('public.googlemaps')
 @endsection

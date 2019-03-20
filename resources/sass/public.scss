@@ -1,327 +1,317 @@
 @import "variable";
 
-
 html,
 body {
-    font-family: $bodyfont;
-    font-weight: 300;
-    font-size: 14px;
+	font-family: $bodyfont;
+	font-weight: 300;
+	font-size: 14px;
 }
 
 h2,
 h3,
 h4 {
-    color: $principal;
+	color: $principal;
 }
 
 h2 {
-    font-size: 4em;
+	font-size: 4em;
 }
 
 h2 {
-    font-size: 3em;
+	font-size: 3em;
 }
 
 .patrocinadores {
-    img {
-        opacity: 0.6;
-    }
+	img {
+		opacity: 0.6;
+	}
 }
 
 .legal {
-    font-size: 0.7857142857142857em;
+	font-size: 0.7857142857142857em;
 }
 
 .bg-gris {
-    background-color: $gris;
+	background-color: $gris;
 }
 
 .navbar {
-    padding: 0;
+	padding: 0;
 
-    .menu-principal {
-        ul {
-            li.nav-item {
+	.menu-principal {
+		ul {
+			li.nav-item {
+				a.nav-link {
+					color: white;
+					text-transform: uppercase;
+					padding-right: 1rem;
+					padding-left: 1rem;
+					padding-top: 1.5em;
+					padding-bottom: 1.5em;
 
-                a.nav-link {
-                    color: white;
-                    text-transform: uppercase;
-                    padding-right: 1rem;
-                    padding-left: 1rem;
-                    padding-top: 1.5em;
-                    padding-bottom: 1.5em;
+					&:hover {
+						background-color: $themecolor-alt;
+					}
+				}
 
-                    &:hover {
-                        background-color: $themecolor-alt;
-                    }
-                }
-
-                &.active {
-                    background-color: $themecolor-dark;
-                }
-            }
-        }
-    }
+				&.active,
+				&.dropdown.show a.dropdown-toggle {
+					background-color: $themecolor-dark;
+				}
+			}
+		}
+	}
 }
 
 .login-register {
-    background-color: $sidebar;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 100%;
-    width: 100%;
-    padding: 10% 0;
-    position: fixed;
+	background-color: $sidebar;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 100%;
+	width: 100%;
+	padding: 10% 0;
+	position: fixed;
 
-    .login-box {
-        max-width: 400px;
-        margin: 0 auto;
+	.login-box {
+		max-width: 400px;
+		margin: 0 auto;
 
-        .card-body {
-            padding: 2rem;
-        }
-    }
+		.card-body {
+			padding: 2rem;
+		}
+	}
 }
 
-
 .bg-primary {
-    background-color: $principal !important;
+	background-color: $principal !important;
 }
 
 .rss-header {
-    a {
-        border-left: 1px solid #fff;
-    }
+	a {
+		border-left: 1px solid #fff;
+	}
 }
 
 .carousel-indicators {
-    li {
-        height: 15px;
-        width: 15px;
-        border-radius: 50%;
-        opacity: .9;
-        margin: 0 5px;
+	li {
+		height: 15px;
+		width: 15px;
+		border-radius: 50%;
+		opacity: 0.9;
+		margin: 0 5px;
 
-        &.active {
-            background-color: $principal;
-            opacity: 1;
-
-        }
-    }
-
+		&.active {
+			background-color: $principal;
+			opacity: 1;
+		}
+	}
 }
 
 .carousel-item {
-    img {
-        height: auto;
-    }
+	img {
+		height: auto !important;
+	}
 }
 
 .btn-invest {
-    border-top: 1px solid #FFF;
-    border-bottom: 1px solid #FFF;
-    border-left: 0px transparent;
-    border-right: 0 transparent;
-    padding: .5rem 4rem;
-    line-height: 1.5;
-    color: white;
-    cursor: pointer;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	border-left: 0px transparent;
+	border-right: 0 transparent;
+	padding: 0.5rem 4rem;
+	line-height: 1.5;
+	color: white;
+	cursor: pointer;
 
-    &:hover {
-        text-decoration: none;
-        color: white;
-        background-color: #343a40 !important;
-    }
+	&:hover {
+		text-decoration: none;
+		color: white;
+		background-color: #343a40 !important;
+	}
 
-    &.verde {
-        border-color: $themecolor;
-        color: $themecolor;
+	&.verde {
+		border-color: $themecolor;
+		color: $themecolor;
 
-        &:hover {
-            color: white;
-            background-color: $themecolor !important;
-            border-color: #343a40 !important;
-        }
-    }
+		&:hover {
+			color: white;
+			background-color: $themecolor !important;
+			border-color: #343a40 !important;
+		}
+	}
 }
 
 .btn-verde {
-    color: $white;
-    background-color: $themecolor;
-    border: 1px solid $themecolor;
+	color: $white;
+	background-color: $themecolor;
+	border: 1px solid $themecolor;
 
-    &:hover {
-        // background-color: $light-success ;
-        opacity: 0.7;
-        border: 1px solid $themecolor;
-        color: $white;
-    }
+	&:hover {
+		// background-color: $light-success ;
+		opacity: 0.7;
+		border: 1px solid $themecolor;
+		color: $white;
+	}
 }
 
 .btn-verde-alt {
-    color: $white;
-    background-color: $themecolor-alt;
-    border: 1px solid $themecolor-alt;
+	color: $white;
+	background-color: $themecolor-alt;
+	border: 1px solid $themecolor-alt;
 
-    &:hover {
-        // background-color: $light-success ;
-        opacity: 0.7;
-        border: 1px solid $themecolor-alt;
-        color: $white;
-    }
+	&:hover {
+		// background-color: $light-success ;
+		opacity: 0.7;
+		border: 1px solid $themecolor-alt;
+		color: $white;
+	}
 }
 
-
 .btn-desactivado {
-    background-color: $muted;
+	background-color: $muted;
 }
 
 #map {
-    height: 450px;
-    border: 1px solid $principal;
+	height: 450px;
+	border: 1px solid $principal;
 }
 
 @media (min-width: 768px) {
-    .navbar-expand-md .navbar-nav .nav-link {
-        padding: 1rem;
-    }
+	.navbar-expand-md .navbar-nav .nav-link {
+		padding: 1rem;
+	}
 }
 
 .collapse-row {
-    cursor: pointer;
+	cursor: pointer;
 
-    &.bg-verde {
-        background-color: $themecolor-alt !important;
-        color: $white;
+	&.bg-verde {
+		background-color: $themecolor-alt !important;
+		color: $white;
 
-        td {
-
-            color: $white;
-        }
-    }
+		td {
+			color: $white;
+		}
+	}
 }
 
 .table {
-    .thead-primary {
+	.thead-primary {
+		th {
+			text-transform: uppercase;
+			font-weight: 300;
+			border: none;
+			color: #fff;
+			background-color: $principal;
+			border-color: #32383e;
 
-        th {
-            text-transform: uppercase;
-            font-weight: 300;
-            border: none;
-            color: #fff;
-            background-color: $principal;
-            border-color: #32383e;
+			a {
+				text-decoration: none;
+				color: #fff;
+				opacity: 0.8;
+			}
+		}
+	}
 
-            a {
-                text-decoration: none;
-                color: #fff;
-                opacity: .8;
-            }
-        }
-    }
+	&.table-striped tbody tr:nth-of-type(odd) {
+		background-color: #ebefec;
+	}
 
-    &.table-striped tbody tr:nth-of-type(odd) {
-        background-color: #ebefec;
-    }
-
-    &.table-hover tbody tr:hover {
-        background-color: #dce0dd;
-    }
+	&.table-hover tbody tr:hover {
+		background-color: #dce0dd;
+	}
 }
 
 .pagination {
-    .page-item {
-        &.active {
-            .page-link {
-                background-color: $principal;
-                border-color: $principal;
-                color: #fff;
-            }
-        }
+	.page-item {
+		&.active {
+			.page-link {
+				background-color: $principal;
+				border-color: $principal;
+				color: #fff;
+			}
+		}
 
-        .page-link {
-            color: $principal;
-        }
-    }
+		.page-link {
+			color: $principal;
+		}
+	}
 }
 
 strong {
-    font-weight: 800;
+	font-weight: 800;
 }
 
 p {
-    margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 
 .lista {
-    list-style-type: none;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    padding-left: 0;
+	list-style-type: none;
+	margin-top: 10px;
+	margin-bottom: 15px;
+	padding-left: 0;
 
-    li {
-        color: #666666;
-        font-size: 14px;
-        line-height: 24px;
-        padding: 10px 0;
-        font-weight: 500;
+	li {
+		color: #666666;
+		font-size: 14px;
+		line-height: 24px;
+		padding: 10px 0;
+		font-weight: 500;
 
-        i {
-            font-size: 15px;
-            display: inline-block;
-            vertical-align: middle;
-            margin-right: 15px;
-            color: $themecolor-alt;
-            line-height: 30px;
-            // float: left;
-        }
-
-    }
-
+		i {
+			font-size: 15px;
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 15px;
+			color: $themecolor-alt;
+			line-height: 30px;
+			// float: left;
+		}
+	}
 }
 
 .servicio {
-    border-top: 5px solid $themecolor;
-    background-color: #f7f7f7;
-    padding: 10%;
+	border-top: 5px solid $themecolor;
+	background-color: #f7f7f7;
+	padding: 10%;
+	margin-bottom: 1em;
 
-    h4 {
-        color: #386244;
-        font-size: 2.143em;
-        margin-bottom: 1em;
+	h4 {
+		color: #386244;
+		font-size: 2.143em;
+		margin-bottom: 1em;
 
-        i {
-            font-size: 3em;
-            display: block;
+		i {
+			font-size: 3em;
+			display: block;
+			height: 100px;
+		}
+	}
 
-        }
-    }
-
-    input {
-        padding: 5%;
-    }
+	input {
+		padding: 5%;
+	}
 }
 
 .info {
-    border-top: 5px solid $themecolor;
-    background-color: #f7f7f7;
+	border-top: 5px solid $themecolor;
+	background-color: #f7f7f7;
 
-    i {
-        font-size: 2em;
-        float: right;
-        color: #386244;
-        padding: 0 20px 0 20px;
+	i {
+		font-size: 2em;
+		float: right;
+		color: #386244;
+		padding: 0 20px 0 20px;
+	}
 
-    }
+	a {
+		color: #386244;
+	}
 
-    a {
-        color: #386244;
-    }
-
-    a,
-    p {
-        line-height: 2em;
-    }
-
+	a,
+	p {
+		line-height: 2em;
+	}
 }

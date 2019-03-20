@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    <head>
-        @include('public.head')
+<head>
+	@include('public.head')
 
-    </head>
+</head>
 
-    <body>
-        @include('public.header')
-
-
-        <main role="main">
+<body>
+	@include('public.header')
 
 
-            @include('public.carrusel')
+	<main role="main">
 
 
-            @yield('contenido')
-            <!-- /.container -->
-            @include('public.footer')
 
-        </main>
 
-        @yield('scripts')
-        <script>
-            $(document).ready(function () {
+		@yield('contenido')
+		<!-- /.container -->
+	@include('public.footer')
+
+	</main>
+
+	@yield('scripts')
+	<script>
+		$(document).ready(function () {
                 console.log(window.location.href);
 
                 // -----------------------------------------------------------------------
@@ -34,8 +33,7 @@
                 });
                 // -----------------------------------------------------------------------
             });
-
-        </script>
-    </body>
+	</script>
+</body>
 
 </html>

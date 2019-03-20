@@ -53,7 +53,8 @@ h2 {
   background-color: #056633;
 }
 
-.navbar .menu-principal ul li.nav-item.active {
+.navbar .menu-principal ul li.nav-item.active,
+.navbar .menu-principal ul li.nav-item.dropdown.show a.dropdown-toggle {
   background-color: #1c3122;
 }
 
@@ -89,7 +90,7 @@ h2 {
   height: 15px;
   width: 15px;
   border-radius: 50%;
-  opacity: .9;
+  opacity: 0.9;
   margin: 0 5px;
 }
 
@@ -99,15 +100,15 @@ h2 {
 }
 
 .carousel-item img {
-  height: auto;
+  height: auto !important;
 }
 
 .btn-invest {
-  border-top: 1px solid #FFF;
-  border-bottom: 1px solid #FFF;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
   border-left: 0px transparent;
   border-right: 0 transparent;
-  padding: .5rem 4rem;
+  padding: 0.5rem 4rem;
   line-height: 1.5;
   color: white;
   cursor: pointer;
@@ -194,7 +195,7 @@ h2 {
 .table .thead-primary th a {
   text-decoration: none;
   color: #fff;
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .table.table-striped tbody tr:nth-of-type(odd) {
@@ -251,6 +252,7 @@ p {
   border-top: 5px solid #006242;
   background-color: #f7f7f7;
   padding: 10%;
+  margin-bottom: 1em;
 }
 
 .servicio h4 {
@@ -262,6 +264,7 @@ p {
 .servicio h4 i {
   font-size: 3em;
   display: block;
+  height: 100px;
 }
 
 .servicio input {

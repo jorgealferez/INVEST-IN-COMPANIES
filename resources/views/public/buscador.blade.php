@@ -1,6 +1,12 @@
 @extends('layouts.public') 
 @section('contenido')
-
+<div class="container my-5">
+	<div class="row">
+		<div class="col-md-12  text-center p-5">
+			<h2 class="text-uppercase">{{ __("Buscador de empresas") }}</h2>
+		</div>
+	</div>
+</div>
 <div class="container-fluid my-3">
 	<div class="row ">
 		<div class="col-md-3">
