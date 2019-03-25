@@ -52,9 +52,12 @@ h2 {
 					&:hover {
 						background-color: $themecolor-alt;
 					}
+
 				}
 
+
 				&.active,
+				.dropdown-item:active,
 				&.dropdown.show a.dropdown-toggle {
 					background-color: $themecolor-dark;
 				}
@@ -105,12 +108,40 @@ h2 {
 			background-color: $principal;
 			opacity: 1;
 		}
+
 	}
 }
 
 .carousel-item {
 	img {
-		height: auto !important;
+		// height: auto !important;
+	}
+
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+		/* FF3.6-15 */
+		background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+		/* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a6000000', endColorstr='#00000000', GradientType=1);
+		/* IE6-9 */
+
+	}
+}
+
+.carousel {
+
+	.carousel-caption {
+		bottom: 20%;
+		text-shadow: 1px 1px 0 rgba(0, 0, 0, .75);
 	}
 }
 

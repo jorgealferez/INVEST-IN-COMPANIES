@@ -14,7 +14,9 @@
                 <div class="card-body card-seccion-asociaciones">
                     <h4 class="card-title mb-0 title-section">
                         <span class="lstick"></span> {{ __('Listado Asociaciones')}}
+						@if($isAdmin)
                         <a href="{{ e(route('dashboardAsociacionesNueva')) }}" class="btn btn-verde btn-sm float-right"><i class="fas fa-plus-circle text-white"></i> {{ __('Nueva')}}</a>
+						@endif
                     </h4>
                 </div>
                 <hr class="mt-0">
@@ -80,13 +82,13 @@
                                                 <a href="<?php echo urldecode(route('dashboardAsociacion',['asociacion'=>$asociacion])); ?>" data-toggle="tooltip" data-original-title="{{ __('Ver') }}"
                                                     class="btn btn-sm btn-secondary">
                                                     {{ __('Ver') }}
-                                                </a> @if($asociacion->active)
+                                                </a> @if($asociacion->active && $isAdmin)
                                                 <a href="#" title="{{ __('Eliminar') }}" data-toggle="modal" data-original-title="{{ __('Borrar') }}" class="btn btn-sm btn-danger borrarasociacion "
                                                     data-url="<?php echo urldecode(route('dashboardAsociacionDelete',['asociacion'=>$asociacion])); ?>"
                                                     data-id="{{$asociacion->id}}" data-name="{{$asociacion->name}}" data-target="#borrarModal"
                                                     data-borrar="1">
                                                     <i class="fa fas fa-trash"></i>
-                                                </a> @else
+                                                </a> @elseif($isAdmin)
                                                 <a href="#" title="{{ __('Restablecer') }}" data-toggle="modal" data-borrar="0" data-original-title="{{ __('Restablecer') }}"
                                                     class="borrarasociacion btn btn-sm btn-success" data-url="<?php echo urldecode(route('dashboardAsociacionDelete',['asociacion'=>$asociacion])); ?>"
                                                     data-id="{{$asociacion->id}}" data-name="{{$asociacion->name}}" data-target="#borrarModal">

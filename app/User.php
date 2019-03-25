@@ -2,18 +2,21 @@
 
 namespace App;
 
-use Kyslik\ColumnSortable\Sortable;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Traits\DatesTranslator;
 use App\Role;
+use App\Traits\DatesTranslator;
+use Illuminate\Support\Facades\DB;
+use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\Usuarios\UsuarioNuevo;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\Usuarios\UsuarioResetPassword;
 use App\Notifications\Usuarios\UsuarioNuevoVerificar;
-use App\Notifications\Usuarios\UsuarioNuevo;
+use App\Notifications\Usuarios\UsuarioNuevoVerificado;
+
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\Usuarios\UsuarioResetPasswordConfirmacion;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -259,6 +262,13 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
+
+    public function NotificacionNuevoUsuarioVerificado()
+    {
+        Notification::send($this, new UsuarioNuevoVerificado($this));
+    }
+
+
     
 
     /**
@@ -271,5 +281,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new UsuarioResetPassword($token, $this));
+    }
+    public function sendPasswordResetNotificationConfirmacion($token)
+    {
+        Notification::send($this, new UsuarioResetPasswordConfirmacion($token, $this));
     }
 }

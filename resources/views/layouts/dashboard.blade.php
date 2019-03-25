@@ -1,89 +1,87 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- Tell the browser to be responsive to screen width -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ config('app.name', 'Laravel') }}</title>
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{ config('app.name', 'Laravel') }}</title>
+	<!-- CSRF Token -->
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <!-- Favicon icon -->
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
-        {{-- <script src="{{ asset('js/jquery.min.js') }}"></script> --}}
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}"> {{--
+	<script src="{{ asset('js/jquery.min.js') }}"></script> --}}
 
-        <script src="{{ asset('js/app.js') }}"></script>
+	<script src="{{ asset('js/app.js') }}"></script>
 
-        {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> --}}
+	{{--
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	 crossorigin="anonymous"></script> --}}
 
-        <link href="{{ asset('css/dashboard.css') }}" id="theme" rel="stylesheet">
+	<link href="{{ asset('css/dashboard.css') }}" id="theme" rel="stylesheet">
 
-        <link href="{{ asset('css/custom.css') }}" id="theme" rel="stylesheet">
+	<link href="{{ asset('css/custom.css') }}" id="theme" rel="stylesheet"> @yield('styles')
 
-        @yield('styles')
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-    </head>
+</head>
 
-    <body class="fix-header fix-sidebar card-no-border">
-
-
-        <div class="preloader">
-
-            <div class="loader">
-
-                <div class="loader__figure" style="border-color: #006242;"></div>
-                <p class="loader__label text-themecolor">INVESTin</p>
-            </div>
-        </div>
-
-        <div id="main-wrapper">
-            @include('dashboard.header')
-            @include('dashboard.sidebar')
-
-            <div class="page-wrapper">
-                @yield('content')
-                @include('dashboard.footer')
-            </div>
+<body class="fix-header fix-sidebar card-no-border">
 
 
-        </div>
+	<div class="preloader">
+
+		<div class="loader">
+
+			<div class="loader__figure" style="border-color: #006242;"></div>
+			<p class="loader__label text-themecolor">INVESTin</p>
+		</div>
+	</div>
+
+	<div id="main-wrapper">
+	@include('dashboard.header')
+	@include('dashboard.sidebar')
+
+		<div class="page-wrapper">
+			@yield('content')
+	@include('dashboard.footer')
+		</div>
 
 
-        {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
-        <script async src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
-    <script src="{{ asset('js/dashboard/jquery/jquery.min.js') }}"></script>
+	</div>
 
-        <script src="{{ asset('js/dashboard/bootstrap/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('js/dashboard/perfect-scrollbar.jquery.min.js') }}"></script> --}} {{--
-    <script src="{{ asset('js/dashboard/waves.js') }}"></script> --}} {{--
-    <script src="{{ asset('js/dashboard/sidebarmenu.js') }}"></script> --}} {{--
-    <script src="{{ asset('js/dashboard/sparkline/jquery.sparkline.min.js') }}"></script> --}} {{--
-    <script src="{{ asset('js/dashboard/chartist-js/dist/chartist.min.js') }}"></script> --}} {{--
-    <script src="{{ asset('js/dashboard/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js') }}"></script> --}} {{--
-    <script src="{{ asset('js/dashboard/d3/d3.min.js') }}"></script> --}} {{--
-    <script src="{{ asset('js/dashboard/c3-master/c3.min.js') }}"></script> --}} {{--
-    <script src="{{ asset('js/dashboard/toast-master/js/jquery.toast.js') }}"></script>
-        <script src="{{ asset('js/dashboard/styleswitcher/jQuery.style.switcher.js') }}"></script> --}}
-        {{-- '',
-        'resources/js/dashboard/waves.js',
-        'resources/js/dashboard/sidebarmenu.js', --}}
-        {{-- <script src="{{ asset('js/dashboard.js') }}"></script> --}}
 
-        <script src="{{ asset('js/dashboard/perfect-scrollbar.jquery.min.js') }}"></script>
-        <script src="{{ asset('js/dashboard/waves.js') }}"></script>
-        <script src="{{ asset('js/dashboard/sidebarmenu.js') }}"></script>
-        <script>
-            $(function () {
+	{{--
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+	<script async src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+	<script src="{{ asset('js/dashboard/jquery/jquery.min.js') }}"></script>
+
+	<script src="{{ asset('js/dashboard/bootstrap/js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/dashboard/perfect-scrollbar.jquery.min.js') }}"></script> --}} {{--
+	<script src="{{ asset('js/dashboard/waves.js') }}"></script> --}} {{--
+	<script src="{{ asset('js/dashboard/sidebarmenu.js') }}"></script> --}} {{--
+	<script src="{{ asset('js/dashboard/sparkline/jquery.sparkline.min.js') }}"></script> --}} {{--
+	<script src="{{ asset('js/dashboard/chartist-js/dist/chartist.min.js') }}"></script> --}} {{--
+	<script src="{{ asset('js/dashboard/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js') }}"></script> --}} {{--
+	<script src="{{ asset('js/dashboard/d3/d3.min.js') }}"></script> --}} {{--
+	<script src="{{ asset('js/dashboard/c3-master/c3.min.js') }}"></script> --}} {{--
+	<script src="{{ asset('js/dashboard/toast-master/js/jquery.toast.js') }}"></script>
+	<script src="{{ asset('js/dashboard/styleswitcher/jQuery.style.switcher.js') }}"></script> --}} {{-- '', 'resources/js/dashboard/waves.js', 'resources/js/dashboard/sidebarmenu.js', --}} {{--
+	<script src="{{ asset('js/dashboard.js') }}"></script> --}}
+
+	<script src="{{ asset('js/dashboard/perfect-scrollbar.jquery.min.js') }}"></script>
+	<script src="{{ asset('js/dashboard/waves.js') }}"></script>
+	<script src="{{ asset('js/dashboard/sidebarmenu.js') }}"></script>
+	<script>
+		$(function () {
                 "use strict";
                 $(function () {
                     $(".preloader").fadeOut();
@@ -183,11 +181,10 @@
                 $("body").trigger("resize");
 
             });
+	</script>
 
-        </script>
+	@yield('scripts')
 
-        @yield('scripts')
-
-    </body>
+</body>
 
 </html>

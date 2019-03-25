@@ -7,16 +7,15 @@
 
 	<div class="carousel-inner">
 
-		<div class="carousel-item carousel-item-next carousel-item-left">
+		<div class="carousel-item active  ">
 			<img src="images/slider/home1.jpg" alt="">
 
 			<div class="container">
 
-				<div class="carousel-caption text-left w-25">
+				<div class="carousel-caption text-left w-50">
 					<h1>Un plan para el futuro de las PYMES</h1>
-					<p>Nuestro principal objetivo es asegurar la continuidad de negocios viables que, en proceso de transmisión, corren el
-						riesgo de desaparecer y proporcionar alternativas a los emprendedores, empresarios y otros inversores fomentando y
-						apoyando los procesos de transmisión de empresas</p>
+					<p>Proporcionamos alternativas a los emprendedores, empresarios e inversores fomentando y apoyando los procesos de transmisión
+						de empresas</p>
 					<a class="btn-invest" href="{{ route('vendeEmpresa') }}" role="button">Ver más</a>
 				</div>
 			</div>
@@ -28,28 +27,25 @@
 
 			<div class="container">
 
-				<div class="carousel-caption text-left w-25">
-					<h1>Crece en buena compañía</h1>
-					<p>El camino del emprendedor o empresario puede ser muy solitario, pero no tiene porqué ser así. Rodearte de un compañero
-						o compañeros de viaje con los que compartas intereses comunes puede ser un gran aliciente para hacer crecer tu negocio
-						exponencialmente.
+				<div class="carousel-caption text-left w-50">
+					<h1>Un plan para tu futuro profesional</h1>
+					<p>
+						Invest in Companies te ofrece una valiosa oportunidad para emprendedores y empresarios para entrar en nuevos mercados o sectores.
 					</p>
 					<a class="btn-invest" href="{{ route('compraEmpresa') }}" role="button">Ver más</a>
 				</div>
 			</div>
 		</div>
 
-		<div class="carousel-item active carousel-item-left">
+		<div class="carousel-item  ">
 
 			<img src="images/slider/home3.jpg" alt="">
 
 			<div class="container">
 
-				<div class="carousel-caption text-right w-25">
+				<div class="carousel-caption text-left w-50">
 					<h1>Crece en buena compañía</h1>
-					<p>El camino del emprendedor o empresario puede ser muy solitario, pero no tiene porqué ser así. Rodearte de un compañero
-						o compañeros de viaje con los que compartas intereses comunes puede ser un gran aliciente para hacer crecer tu negocio
-						exponencialmente.
+					<p>El camino del emprendedor puede ser muy solitario, te acompañamos durante todo el proceso de crecimiento de tu negocio.
 					</p>
 					<a class="btn-invest" href="{{ route('socio') }}" role="button">Ver más</a>
 				</div>

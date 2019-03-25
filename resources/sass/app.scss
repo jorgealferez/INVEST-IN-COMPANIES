@@ -13,3 +13,22 @@
 
 
 @import 'carousel.css';
+
+.form-control:focus {
+	box-shadow: 0 0 0 0.2rem rgba(0, 98, 66, 0.18);
+	border-color: #006242;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+	border: 1px solid #006242;
+	-webkit-text-fill-color: #2d4f36;
+	-webkit-box-shadow: 0 0 0px 1000px rgba(0, 98, 66, 0.0392156862745098) inset;
+	transition: background-color 5000s ease-in-out 0s;
+}

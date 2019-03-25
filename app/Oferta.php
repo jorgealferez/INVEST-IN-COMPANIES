@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Oferta;
+// use App\Oferta;
 use App\Asociacion;
 use App\Traits\DatesTranslator;
 use Kyslik\ColumnSortable\Sortable;
@@ -128,8 +128,6 @@ class Oferta extends Model
         foreach ($administradores as $administrador) {
             Notification::send($administrador, new OfertaNueva($this->id, $administrador));
         }
-        //
-            // Notification::send($administradores, new OfertaNueva($this->id,$administradores));
     }
     public function NotificacionOfertaAprobada()
     {

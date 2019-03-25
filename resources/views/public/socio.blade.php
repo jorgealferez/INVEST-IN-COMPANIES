@@ -74,7 +74,7 @@
 
 			<div class="servicio">
 				<h4 class="text-center">
-					<i class="mdi mdi-currency-eur"></i>Financiación Corporativa</h4>
+					<i class="mdi mdi-currency-eur"></i>Financiación <br>Corporativa</h4>
 
 				<div class="row">
 
@@ -91,7 +91,7 @@
 
 			<div class="servicio">
 				<h4 class="text-center">
-					<i class="mdi mdi-chart-line"></i>Valoración de empresas</h4>
+					<i class="mdi mdi-chart-line"></i>Valoración <br>de empresas</h4>
 
 				<div class="row">
 
@@ -109,7 +109,7 @@
 
 			<div class="servicio">
 				<h4 class="text-center">
-					<i class="mdi mdi-certificate"></i>Búsqueda de Inversores adecuados</h4>
+					<i class="mdi mdi-certificate"></i>Búsqueda de <br>Inversores adecuados</h4>
 
 				<div class="row">
 
@@ -133,7 +133,7 @@
 
 					<div class="col-md-12">
 						Te acompañamos en el proceso de negociación y cierre de la operación, así como en el diseño del marco regulatorio por el
-						que se van a regir las relaciones futuras de los nuevos socios.<br><br>
+						que se van a regir las relaciones futuras de los nuevos socios.<br>
 					</div>
 
 				</div>

@@ -24,8 +24,6 @@
 	@yield('scripts')
 	<script>
 		$(document).ready(function () {
-                console.log(window.location.href);
-
                 // -----------------------------------------------------------------------
                 $.each($('#menu-principal ul').find('li'), function () {
                     $(this).toggleClass('active',

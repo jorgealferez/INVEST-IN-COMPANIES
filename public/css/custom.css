@@ -120,6 +120,26 @@
   border-left: 4px solid #006242;
 }
 
+.tabla-dashboard {
+  table-layout: fixed;
+}
+
+.tabla-dashboard td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tabla-dashboard tr:hover td {
+  text-overflow: clip;
+  white-space: normal;
+  word-break: break-all;
+}
+
+.dashboar-dflex {
+  display: flex !important;
+}
+
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success,
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-success {
   color: #fff;

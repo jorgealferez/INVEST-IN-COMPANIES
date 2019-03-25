@@ -168,7 +168,7 @@
 
 			<div class="servicio">
 				<h4 class="text-center">
-					<i class="fas fa-chart-line"></i>Diseño estratégico de crecimiento</h4>
+					<i class="fas fa-chart-line"></i>Diseño estratégico <br>de crecimiento</h4>
 
 				<div class="row">
 
@@ -184,13 +184,13 @@
 
 			<div class="servicio">
 				<h4 class="text-center">
-					<i class="fas fa-users"></i>Búsqueda de alianzas adecuadas</h4>
+					<i class="fas fa-users"></i>Búsqueda de <br>alianzas adecuadas</h4>
 
 				<div class="row">
 
 					<div class="col-md-12">
 						Podemos detectar a las compañías mas adecuadas por tamaño, ubicación, posicionamiento entre otros factores para poder integrar
-						en tu negocio.<br><br><br>
+						en tu negocio.<br><br>
 					</div>
 				</div>
 			</div>
@@ -200,13 +200,13 @@
 
 			<div class="servicio">
 				<h4 class="text-center">
-					<i class="mdi mdi-chart-bar"></i>Financiación Corporativa</h4>
+					<i class="mdi mdi-chart-bar"></i>Financiación <br>Corporativa</h4>
 
 				<div class="row">
 
 					<div class="col-md-12">
 						Estructuramos la empresa para la venta facilitando el atractivo y la entrada al posible inversor mediante diferentes mecanismos
-						de financiación.<br><br>
+						de financiación.<br>
 					</div>
 
 				</div>
@@ -218,7 +218,7 @@
 
 			<div class="servicio">
 				<h4 class="text-center">
-					<i class="far fa-handshake"></i>Proceso de negociación y cierre</h4>
+					<i class="far fa-handshake"></i>Proceso de <br>negociación y cierre</h4>
 
 				<div class="row">
 

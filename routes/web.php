@@ -37,6 +37,11 @@ Route::post('/registro', 'PublicController@registro');
 
 Route::namespace('Dashboard')->group(function () {
     Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function () {
+        Route::get('/ajax/{type}', array(
+            'as'    => 'items.type',
+            'uses'  => 'BoardController@getElementosDashboard'
+        ))->where('type', 'solicitudesEmpresa|second|third');
+
         Route::get('/', 'BoardController@index')->name('dashboard');
         Route::post('/notificacion/{id}/delete', 'BoardController@borrarNotificacion')->name('boorarNotificacion');
 
@@ -86,8 +91,6 @@ Route::namespace('Dashboard')->group(function () {
             Route::post('/searchpoblacionesbyprovincia', 'UsuariosController@searchPoblacionesByProvincia')->name('searchpoblacionesbyprovincia');
         });
 
-        Route::prefix('/inversiones')->group(function () {
-            Route::get('/inversiones', 'InversionesController@index')->middleware(['auth', 'verified'])->name('dashboardInversiones');
-        });
+        Route::get('/inversiones', 'InversionesController@index')->middleware(['auth', 'verified'])->name('dashboardInversiones');
     });
 });

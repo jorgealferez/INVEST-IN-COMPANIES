@@ -86,13 +86,13 @@
 
 			<div class="servicio">
 				<h4 class="text-center">
-					<i class="mdi mdi-chart-bar"></i>Financiación Corporativa</h4>
+					<i class="mdi mdi-chart-bar"></i>Financiación <br>Corporativa</h4>
 
 				<div class="row">
 
 					<div class="col-md-12">
 						Estructuramos la empresa para la venta facilitando el atractivo y la entrada al posible inversor mediante diferentes mecanismos
-						de financiación.<br><br><br>
+						de financiación.<br><br>
 					</div>
 
 				</div>
@@ -103,7 +103,7 @@
 
 			<div class="servicio">
 				<h4 class="text-center">
-					<i class="mdi mdi-account-multiple-plus"></i>Búsqueda de Inversores</h4>
+					<i class="mdi mdi-account-multiple-plus"></i>Búsqueda <br>de Inversores</h4>
 
 				<div class="row">
 
@@ -119,7 +119,7 @@
 
 			<div class="servicio">
 				<h4 class="text-center">
-					<i class="far fa-handshake"></i>Proceso de negociación y cierre</h4>
+					<i class="far fa-handshake"></i>Proceso de <br>negociación y cierre</h4>
 
 				<div class="row">
 
@@ -158,7 +158,7 @@
 
 					<div class="col-md-12 py-3">
 						<i class="fa fa-phone"></i>
-						<p>91 762 456 123</p>
+						<p>91 411 61 61</p>
 					</div>
 
 				</div>
@@ -185,10 +185,10 @@
 							<div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }}">
 								<input placeholder="{{ __('Nombre y apellidos') }}" type="text " value="{{ ((old( 'name')) ? old( 'name') : $request->name ) }}"
 								 class="form-control form-control-line
-                                            {{ $errors->has('name') ? ' form-control-danger'
+                                            {{ $errors->has('name') ? ' is-invalid'
                                         : '' }}" id="name" name="name" required> @if ($errors->has('name'))
 
-								<div class="col-md-12 form-control-feedback">{{ $errors->first('name') }}</div>
+								<div class="col-md-12 invalid-feedback">{{ $errors->first('name') }}</div>
 								@endif
 
 							</div>
@@ -198,10 +198,10 @@
 						<div class="col-md-12">
 
 							<div class="form-group {{ $errors->has('email') ? ' has-danger' : '' }}">
-								<input placeholder="{{ __('Email de contacto') }}" type="email " name="email" id="email" class="form-control form-control-line {{ $errors->has('email') ? ' form-control-danger' : '' }}">{{
-								((old( 'email')) ? old( 'email') : $request->email ) }} @if ($errors->has('email'))
+								<input placeholder="{{ __('Email de contacto') }}" type="email " name="email" id="email" class="form-control form-control-line {{ $errors->has('email') ? ' is-invalid' : '' }}"
+								 value="{{ ((old( 'email')) ? old( 'email') : $request->email ) }}"> @if ($errors->has('email'))
 
-								<div class="form-control-feedback">{{ $errors->first('email') }}</div>
+								<div class="invalid-feedback">{{ $errors->first('email') }}</div>
 								@endif
 
 							</div>
@@ -210,10 +210,10 @@
 						<div class="col-md-12">
 
 							<div class="form-group {{ $errors->has('phone') ? ' has-danger' : '' }}">
-								<input placeholder="{{ __('Teléfono') }}" type="text " name="phone" id="phone" class="form-control form-control-line {{ $errors->has('phone') ? ' form-control-danger' : '' }}"
-								 maxlength="9">{{ ((old( 'phone')) ? old( 'phone') : $request->phone ) }} @if ($errors->has('phone'))
+								<input placeholder="{{ __('Teléfono') }}" type="text " name="phone" id="phone" class="form-control form-control-line {{ $errors->has('phone') ? ' is-invalid' : '' }}"
+								 maxlength="9" value="{{ ((old( 'phone')) ? old( 'phone') : $request->phone ) }}">@if ($errors->has('phone'))
 
-								<div class="form-control-feedback">{{ $errors->first('phone') }}</div>
+								<div class="invalid-feedback">{{ $errors->first('phone') }}</div>
 								@endif
 
 							</div>

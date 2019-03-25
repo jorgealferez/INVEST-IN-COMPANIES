@@ -27,7 +27,7 @@ class AsociacionesController extends DashBoardController
     {
         Parent::RolesCheck();
         $query=array();
-        if (!$this->isAdmin){
+        if (!$this->isAdmin) {
             $query[]=["asociaciones.active" , "=", 1];
         }
         if ($request->input('name')) {
@@ -44,7 +44,7 @@ class AsociacionesController extends DashBoardController
         }
         $asociaciones = Asociacion::where($query);
         if ($this->isAsesor || $this->isGestor) {
-                $asociaciones=$asociaciones
+            $asociaciones=$asociaciones
                 ->whereIn('id', Auth::user()->getAsociacionesDelUsario());
         }
         $asociaciones->sortable(['created_at'=> 'desc'])
@@ -64,7 +64,8 @@ class AsociacionesController extends DashBoardController
                         'asociaciones',
                         'busqueda',
                         'notificaciones'
-                    ));
+                    )
+                );
     }
 
     /**
@@ -108,15 +109,15 @@ class AsociacionesController extends DashBoardController
         $nueva = false;
         $errors = Session::get('errors');
         if ($asociacion) {
-if (in_array($asociacion->id, $this->notifiacionesAsociaciones->pluck('data')->pluck('asociacion_id')->toArray())) {
-$this->notifiacionesAsociaciones->where('data', ['asociacion_id'=>$asociacion->id])->markAsRead();
-$nueva = true;
-}
+            if (in_array($asociacion->id, $this->notifiacionesAsociaciones->pluck('data')->pluck('asociacion_id')->toArray())) {
+                $this->notifiacionesAsociaciones->where('data', ['asociacion_id'=>$asociacion->id])->markAsRead();
+                $nueva = true;
+            }
             if (($this->isGestor || $this->isInversor || $this->isAsesor) && $asociacion->active) {
-                if (!in_array(Auth::user()->id,$asociacion->usuarios()->get()->pluck('id')->toArray())) {
+                if (!in_array(Auth::user()->id, $asociacion->usuarios()->get()->pluck('id')->toArray())) {
                     return redirect('dashboard/asociaciones');
                 }
-            }elseif(($this->isGestor || $this->isInversor || $this->isAsesor) && !$asociacion->active) {
+            } elseif (($this->isGestor || $this->isInversor || $this->isAsesor) && !$asociacion->active) {
                 return redirect('dashboard/asociaciones');
             }
             if ($request->old('tab')) {
@@ -194,7 +195,7 @@ $nueva = true;
      * @param  \App\Asociacion  $asociacion
      * @return \Illuminate\Http\Response
      */
-    public function delete(Asociacion $asociacion,Request $request)
+    public function delete(Asociacion $asociacion, Request $request)
     {
         $asociacion->active= $request->input('modalborrar_action');
         $asociacion->save();
@@ -229,6 +230,4 @@ $nueva = true;
         $data= $asociaciones->where($query)->get();
         return response()->json($data);
     }
-
-
 }

@@ -195,24 +195,10 @@
 												>{{ __("Direccion") }}:</small
 											>
 											<h6>
-												{{ e($oferta->address) }},
-												{{ e($oferta->poblacion->name) }}
 												({{ e($oferta->provincia->name) }})
 											</h6>
 										</div>
 
-										<div class="col-md-6">
-											<small class=" font-weight-bold verde"
-												>{{ __("Página web") }}:</small
-											>
-											<a
-												href="{{ urldecode($oferta->web) }}"
-												class="link text-muted"
-												target="_blank"
-											>
-												<h6>{{ e($oferta->web) }}</h6>
-											</a>
-										</div>
 
 										<div class="col-md-12">
 											<hr class=" verde" />
@@ -238,30 +224,6 @@
 									</div>
 									<hr class="m-0 verde" />
 
-									<div class="card-body row">
-										<div class="col-md-4 ">
-											<small class="verde">{{ __("Contacto") }}:</small>
-											<h6>
-												<i class="ti-user"></i> {{ e($oferta->contactFullName) }}
-											</h6>
-										</div>
-
-										<div class="col-md-4 ">
-											<small class="verde">{{ __("Email") }}:</small>
-											<a href="mailto:{{ e($oferta->contactEmail) }}" class="link text-muted" target="_blank">
-												<h6>
-													<i class="ti-email"></i> {{ e($oferta->contactEmail) }}
-												</h6>
-											</a>
-										</div>
-
-										<div class="col-md-4 ">
-											<small class="verde">{{ __("Teléfono") }}:</small>
-											<h6>
-												<i class="ti-mobile"></i> {{ e($oferta->contactPhone) }}
-											</h6>
-										</div>
-									</div>
 
 									<hr class="m-0" />
 
@@ -313,15 +275,15 @@
 					</tr>
 				</tfoot>
 			</table>
-		</div>
-	</div>
-</div>
+			</div>
+			</div>
+			</div>
 	@include('public.modal')
 @endsection
  
 @section('scripts')
-<script>
-	$(document).ready(function($) {
+			<script>
+				$(document).ready(function($) {
 		$(".collapse-row").on("click", function(event) {
 			$(this).addClass("bg-verde");
 		});
@@ -370,5 +332,5 @@
 		});
 	});
 
-</script>
+			</script>
 @endsection

@@ -54,10 +54,10 @@
 					<a class="nav-link " href="{{ route('compraEmpresa') }}">{{ __('Compra una empresa') }}</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link " href="{{ route('buscador') }}">{{ __('Buscador') }}</a>
+					<a class="nav-link " href="{{ route('socio') }}">{{ __('Busca un socio') }}</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link " href="{{ route('socio') }}">{{ __('Busca un socio') }}</a>
+					<a class="nav-link " href="{{ route('buscador') }}">{{ __('Buscador') }}</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link " href="{{ route('quienesSomos') }}">{{ __('¿Quiénes Somos?') }}</a>
