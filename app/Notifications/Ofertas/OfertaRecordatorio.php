@@ -46,7 +46,7 @@ class OfertaRecordatorio extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-        ->subject('Oferta recodatorio')
+        ->subject('Recordatorio Oferta')
             ->markdown('emails.ofertas.recordatorio', ['usuario'=>$this->usuario]);
     }
 }
