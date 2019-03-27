@@ -13,6 +13,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Notifications\Ofertas\OfertaNueva;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\Ofertas\OfertaAprobada;
+use App\Notifications\Ofertas\OfertaRecordatorio;
 
 class Oferta extends Model
 {
@@ -133,5 +134,21 @@ class Oferta extends Model
     {
         $usuario = User::find($this->user_id);
         Notification::send($usuario, new OfertaAprobada($this->id, $usuario));
+    }
+
+    public function NotificacionOfertaRecordatorio()
+    {
+        $administradores = Role::with('users')->where('name', 'Admin')->first()->users()->get();
+        $asesores= $this->asociacion->asesores();
+        $usuario = User::find($this->user_id);
+        if (!in_array($this->user_id, $asesores->pluck('id')->toArray())) {
+            Notification::send($usuario, new OfertaRecordatorio($this->id, $usuario));
+        }
+        foreach ($asesores as $asesor) {
+            Notification::send($asesor, new OfertaRecordatorio($this->id, $asesor));
+        }
+        foreach ($administradores as $administrador) {
+            Notification::send($administrador, new OfertaRecordatorio($this->id, $administrador));
+        }
     }
 }

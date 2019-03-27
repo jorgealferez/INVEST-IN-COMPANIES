@@ -46,6 +46,7 @@ Route::namespace('Dashboard')->group(function () {
         Route::post('/notificacion/{id}/delete', 'BoardController@borrarNotificacion')->name('boorarNotificacion');
 
         Route::prefix('/asociaciones')->group(function () {
+            Route::get('/prueba', 'AsociacionesController@OfertasAntiguas');
             Route::match(['get', 'post'], '/', 'AsociacionesController@index')->middleware(['asesor'])->name('dashboardAsociaciones');
             Route::get('/crear', 'AsociacionesController@create')->name('dashboardAsociacionesNueva')->middleware(['admin']);
             Route::get('/store', 'AsociacionesController@store')->middleware(['admin']);

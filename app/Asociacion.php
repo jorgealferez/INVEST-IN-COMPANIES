@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +16,6 @@ use App\Notifications\Asociaciones\AsociacionNueva;
 
 class Asociacion extends Model
 {
-
-
     use Notifiable;
     use DatesTranslator;
     use Sortable;
@@ -41,10 +40,9 @@ class Asociacion extends Model
 
     public function asesores()
     {
-
         $result = $this->usuarios->pluck('id');
 
-        $users = User::whereIn('id',$result)
+        $users = User::whereIn('id', $result)
         ->whereHas('roles', function ($query) {
             $query->where('name', '=', 'Asesor');
         })->get();
@@ -53,10 +51,9 @@ class Asociacion extends Model
 
     public function gestores()
     {
-
         $result = $this->usuarios->pluck('id');
 
-        $users = User::whereIn('id',$result)
+        $users = User::whereIn('id', $result)
         ->whereHas('roles', function ($query) {
             $query->where('name', '=', 'Gestor');
         })->get();
@@ -66,7 +63,7 @@ class Asociacion extends Model
     public function ofertas()
     {
         return $this
-        ->hasMany('App\Oferta','asociacion_id')
+        ->hasMany('App\Oferta', 'asociacion_id')
         ;
     }
 
@@ -78,8 +75,8 @@ class Asociacion extends Model
 
 
 
-    public function Asociaciones () {
-
+    public function Asociaciones()
+    {
         return $this->pluck('id');
     }
 
@@ -87,9 +84,27 @@ class Asociacion extends Model
     {
         return "{$this->contact} {$this->contactSurname}";
     }
+    
     public function NotificacionNuevaAsociacion()
     {
         $administradores = Role::with('users')->where('name', 'Admin')->first()->users()->get();
         Notification::send($administradores, new AsociacionNueva($this->id));
+    }
+
+
+    public function NotificacionEliminadoDeLaAsociacion($listado)
+    {
+        $usuarios = User::find($listado);
+        foreach ($usuarios as $usuario) {
+            Notification::send($usuario, new AsociacionEliminacionUsuario($this->name, $usuario->nombre));
+        }
+    }
+
+    public function NotificacionNuevoEnLaAsociacion($listado)
+    {
+        $usuarios = User::find($listado);
+        foreach ($usuarios as $usuario) {
+            Notification::send($usuarios, new AsociacionNuevoUsuario($this->name, $usuario->nombre));
+        }
     }
 }

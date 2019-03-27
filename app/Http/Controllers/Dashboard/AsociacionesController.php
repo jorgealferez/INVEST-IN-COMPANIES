@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Role;
+use App\User;
+use App\Oferta;
+use Carbon\Carbon;
+use App\Asociacion;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\User;
-use App\Role;
-use App\Notifications\Asociaciones\AsociacionNueva;
 use App\Http\Requests\AsociacionRequest;
+use Illuminate\Support\Facades\Notification;
 use App\Http\Controllers\DashBoardController;
-use App\Asociacion;
+use App\Notifications\Asociaciones\AsociacionNueva;
 
 class AsociacionesController extends DashBoardController
 {
-
+    
 
     /**
      * Display a listing of the resource.
@@ -179,6 +181,27 @@ class AsociacionesController extends DashBoardController
     {
         //
         $asociacion = \App\Asociacion::find($request->id);
+        /*$usuarios_anteriores = $asociacion->usuarios->pluck('id')->toArray();
+        $usuarios_nuevos = $request->usuarios;
+
+        $usuarios_eliminados = array();
+        $usuarios_agregados = array();
+
+        foreach ($usuarios_anteriores as $id) {
+            if (!in_array($id, $usuarios_nuevos)) {
+                $usuarios_eliminados[]=$id;
+            }
+        }
+
+        foreach ($usuarios_nuevos as $id) {
+            if (!in_array($id, $usuarios_anteriores)) {
+                $usuarios_agregados[]= $id;
+            }
+        }
+
+         $asociacion->NotificacionEliminadoDeLaAsociacion($usuarios_eliminados);
+         $asociacion->NotificacionNuevoEnLaAsociacion($usuarios_agregados);
+         dd($usuarios_anteriores, $usuarios_nuevos, $usuarios_eliminados, $usuarios_agregados);*/
         $asociacion->usuarios()->sync($request->usuarios);
         return redirect()->route('dashboardAsociacion', $asociacion)->with([
             'success'=> true,
@@ -229,5 +252,15 @@ class AsociacionesController extends DashBoardController
         }
         $data= $asociaciones->where($query)->get();
         return response()->json($data);
+    }
+    
+    public function OfertasAntiguas()
+    {
+        $ofertas_antiguas=Oferta::where('active', '1')
+        ->where('approved', '1')
+        ->where("created_at", "<=", Carbon::now()->subMonths(6))
+        ->get();
+        
+        dd($ofertas_antiguas);
     }
 }
