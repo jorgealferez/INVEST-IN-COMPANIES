@@ -4,7 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Jobs\Ofertasrecordatorio;
+
+// use App\Jobs\Ofertasrecordatorio;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,6 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        //'AppConsoleCommandOfertaRecordatorio'
     ];
 
     /**
@@ -25,7 +27,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new Ofertasrecordatorio)->everyMinute();
+        // $schedule->job(new Ofertasrecordatorio)->everyMinute();
+        $schedule->command('email:OfertaRecordatorio')->everyMinute();
     }
 
     /**
