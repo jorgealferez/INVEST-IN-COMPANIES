@@ -59,14 +59,9 @@
 
 														<div class="row">
 
-															<div class="col-md-8  ">
+															<div class="col-md-12  ">
 																<small class=" font-weight-bold verde">{{ __('Forma Jurídica') }}:</small>
 																<h6>{{ e($inversion->oferta->forma->name) }}</h6>
-															</div>
-
-															<div class="col-md-4 text-md-right">
-																<small class="verde font-weight-bold">{{ __('CIF') }}:</small>
-																<h6>{{ e($inversion->oferta->cif) }}</h6>
 															</div>
 
 														</div>
@@ -98,7 +93,6 @@
 																<h6>{{ e($inversion->oferta->motivo) }}</h6>
 															</div>
 														</div>
-
 														<div class="row">
 
 															<div class="col-md-12">
@@ -120,7 +114,7 @@
 
 															<div class="col-md-12">
 																<hr class=" verde">
-																<small class=" font-weight-bold verde">{{ __('Direccion') }}:</small>
+																<small class=" font-weight-bold verde">{{ __('Provincia') }}:</small>
 																<h6>{{ e($inversion->oferta->provincia->name) }}</h6>
 															</div>
 														</div>

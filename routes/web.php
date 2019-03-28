@@ -40,7 +40,7 @@ Route::namespace('Dashboard')->group(function () {
         Route::get('/ajax/{type}', array(
             'as'    => 'items.type',
             'uses'  => 'BoardController@getElementosDashboard'
-        ))->where('type', 'solicitudesEmpresa|second|third');
+        ))->where('type', 'solicitudesEmpresa|inversores');
 
         Route::get('/', 'BoardController@index')->name('dashboard');
         Route::post('/notificacion/{id}/delete', 'BoardController@borrarNotificacion')->name('boorarNotificacion');

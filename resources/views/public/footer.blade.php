@@ -18,19 +18,13 @@
 					<ul class="navbar-nav flex-row  d-md-flex">
 
 						<li class="nav-item">
-							<a class="nav-link px-3 py-2 text-white mx-auto" href="#"><i class="fas fa-rss"></i></a>
+							<a class="nav-link px-3 py-2 text-white" href="https://twitter.com/in_companies" target="_blank"><i class="fab fa-twitter"></i></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link px-3 py-2 text-white" href="#"><i class="fab fa-twitter"></i></a>
+							<a class="nav-link px-3 py-2 text-white" href="https://www.facebook.com/pg/Invest-in-Companies-370660103782176/" target="_blank"><i class="fab fa-facebook-f"></i></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link px-3 py-2 text-white" href="#"><i class="fab fa-tumblr"></i></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link px-3 py-2 text-white" href="#"><i class="fab fa-facebook-f"></i></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link pl-3 pr-0 py-2 text-white" href="#"><i class="fas fa-search"></i></a>
+							<a class="nav-link pl-3 pr-0 py-2 text-white" href="ttps://www.linkedin.com/company/invest-in-companies" target="_blank"><i class="fab fa-linkedin-in"></i></a>
 						</li>
 					</ul>
 				</nav>

@@ -136,6 +136,7 @@
 	</form>
 </div>
 
+{{--
 <div class="container  pt-0">
 
 	<div class="row">
@@ -153,13 +154,10 @@
 
 		</div>
 	</div>
-	<!-- /.col-lg-4 -->
-</div>
+</div> --}}
 
 
-<hr class="featurette-divider mb-0">
-
-
+<hr class="featurette-divider mb-0"> {{--
 <div class="featurette bg-gris py-5">
 
 	<div class="container">
@@ -225,10 +223,10 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> --}}
 @endsection
  
-@section('scripts')
+@section('scripts') {{--
 <script>
 	function initMap() {
 
@@ -385,5 +383,5 @@
     }
 
 </script>
-	@include('public.googlemaps')
+	@include('public.googlemaps')--}}
 @endsection

@@ -10,24 +10,21 @@
             <span aria-hidden="true">×</span>
         </button> {{ session('status') }}
 		</div>
-		@endif
+		@endif {{-- --}}
 		<div class="row">
 	@includeWhen($isAdmin,'dashboard.dashboard.estadisticasAdmin')
 	@includeWhen($isAsesor,'dashboard.dashboard.estadisticasAsesor')
 	@includeWhen($isGestor,'dashboard.dashboard.estadisticasGestor')
 		</div>
-		@if ($isAdmin)
+
 		<div class="row row-eq-height">
-
-
-			<div class="col-md-8">
-
+			@if ($isAdmin)
+			<div class="col-lg-6">
 				<div class="card">
-
 					<div class="card-body card-seccion-asociaciones">
 						<h4 class="card-title mb-0 title-section">
 							<span class="lstick"></span>{{ __('Solicitudes de Empresa')}}
-							<h6 class="card-subtitle r m-b-0 op-5">Las solicitudes de empresa nueva</h6>
+							<h6 class="card-subtitle r mb-0 op-5">{{ __('Las solicitudes de empresa nueva')}}</h6>
 						</h4>
 					</div>
 					<hr class="mt-0">
@@ -37,81 +34,36 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4">
+			@endif
+			<div class="@if($isAdmin) col-lg-6 @else col-lg-12 @endif">
 				<div class="card">
-					<div class="card-body bg-verde">
-						<h4 class="text-white card-title">{{ __('Últimos usuarios')}}</h4>
-						<h6 class="card-subtitle text-white m-b-0 op-5">Los últimos usuarios en darse de alta en la plataforma</h6>
+					<div class="card-body card-seccion-asociaciones">
+						<h4 class="card-title mb-0 title-section">
+							<span class="lstick"></span>{{ __('Inversores')}}
+							<h6 class="card-subtitle r mb-0 op-5">{{ __('Listado de inversiones en las ofertas de la asociacion') }}</h6>
+						</h4>
 					</div>
-					<div class="card-body">
-						<div class="message-box contact-box">
-							<div class="message-widget contact-widget">
-								@foreach ($usuarios as $usuario)
-								<a href="{{ route('dashboardUsuario',['usuario'=>$usuario]) }}">
-									<div class="float-left mr-2">
-										<span class="round {{ $usuario->getRoleClass() }} roleMedium">{{ substr($usuario->getRoleClass(),4,1) }}</span>
-									</div>
-									<div class="mail-contnet">
-										<h5>{{ $usuario->Fullname}}</h5> <span class="mail-desc">{{ $usuario->email}}</span>
-									</div>
-								</a>
-								@endforeach
-							</div>
-						</div>
+					<hr class="mt-0">
+					<div class="card-body" id="inversores">
+						<p class="saving">{{ __('Cargando') }}<span>.</span><span>.</span><span>.</span></p>
 					</div>
 				</div>
 			</div>
 		</div>
-		@endif
-		<div class="row row-eq-height">
-			@if ($isAdmin||$isAsesor||$isGestor)
-			<div class="col-lg-5">
-				<div class="card">
-					<div class="card-body">
-						<div class="d-flex no-block">
-							<h4 class="card-title">{{ __('Inversiones') }}</h4>
-						</div>
-						<h6 class="card-subtitle">{{ __('Listado de las últimas inversiones en las ofertas de la asociacion') }}</h6>
-						<div class="table-responsive">
-							<table class="table stylish-table tabla-dashboard f">
-								<thead>
-									<tr>
-										<th class="no-wrap" style="width: 50%">{{ __('Inversor') }}</th>
-										<th class="text-center no-wrap" style="width: 30%">{{ __('Oferta') }}</th>
-										<th class="no-wrap" style="width: 20%"></th>
-									</tr>
-								</thead>
-								<tbody>
-									@foreach ($inversiones as $inversion)
-									<tr>
-										<td class=" text-truncate">
-											<span class="badge estado-{{ $inversion->estado->id }} float-left text-white align-middle mr-2"> {{ e( $inversion->estado->name) }}</span>											{{ e( $inversion->usuario->FullName) }}
-										</td>
-										<td class="text-center">
-											{{ e($inversion->oferta->name) }}
-										</td>
-										<td class="text-right">
-											<a href="<?php echo urldecode(route('dashboardOferta',['oferta'=>$inversion->oferta])); ?>" data-toggle="tooltip" data-original-title="{{ __('Ver') }}"
-											 class="btn btn-sm btn-secondary">
-													 	{{ __('Ver') }}
-										            </a>
 
-										</td>
-									</tr>
-									@endforeach
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-7">
+
+		<div class="row row-eq-height">
+
+			<div class="col-lg-7 ">
 				<div class="card">
+					<div class="card-body card-seccion-asociaciones">
+						<h4 class="card-title mb-0 title-section">
+							<span class="lstick"></span>{{ __('Últimas ofertas') }}
+							<h6 class="card-subtitle r mb-0 op-5">{{ __('Listado de las últimas ofertas en la plataforma') }}</h6>
+						</h4>
+					</div>
+					<hr class="mt-0">
 					<div class="card-body">
-						<div class="d-flex no-block">
-							<h4 class="card-title">{{ __('Últimas ofertas') }}</h4>
-						</div>
-						<h6 class="card-subtitle">{{ __('Listado de las últimas ofertas en la plataforma') }}</h6>
 						<div class="table-responsive">
 							<table class="table stylish-table tabla-dashboard">
 								<thead>
@@ -151,16 +103,45 @@
 					</div>
 				</div>
 			</div>
-			@endif
+			<div class="col-lg-5  ">
+				<div class="card">
+					<div class="card-body card-seccion-asociaciones bg-verde text-white">
+						<h4 class="card-title mb-0 text-white">
+							<span class="lstick"></span>{{ __('Últimos usuarios')}}</h4>
+						<h6 class=" mb-0 op-5 text-white">{{ __('Los últimos usuarios en darse de alta en la plataforma') }}</h6>
+
+					</div>
+					<hr class="mt-0">
+					<div class="card-body">
+						<div class="message-box contact-box">
+							<div class="message-widget contact-widget">
+								@foreach ($usuarios as $usuario)
+								<a href="{{ route('dashboardUsuario',['usuario'=>$usuario]) }}">
+									<div class="float-left mr-2">
+										<span class="round {{ $usuario->getRoleClass() }} roleMedium">{{ substr($usuario->getRoleClass(),4,1) }}</span>
+									</div>
+									<div class="mail-contnet">
+										<h5>{{ $usuario->Fullname}}</h5> <span class="mail-desc">{{ $usuario->email}}</span>
+									</div>
+								</a>
+								@endforeach
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!-- -->
 			@if($isAdmin)
 			<div class="col-12">
 				<div class="card">
+					<div class="card-body card-seccion-asociaciones">
+						<h4 class="card-title mb-0 title-section">
+							<span class="lstick"></span>{{ __('Últimas asociaciones') }}
+							<h6 class="card-subtitle r mb-0 op-5">{{ __('Listado de las últimas asociaciones en la plataforma') }}</h6>
+						</h4>
+					</div>
+					<hr class="mt-0">
 					<div class="card-body">
-						<div class="d-flex no-block">
-							<h4 class="card-title">{{ __('Últimas asociaciones') }}</h4>
-						</div>
-						<h6 class="card-subtitle">{{ __('Listado de las últimas asociaciones en la plataforma') }}</h6>
 						<div class="table-responsive">
 							<table class="table stylish-table tabla-dashboard">
 								<thead>
@@ -227,11 +208,9 @@
     });
 	</script>
 	@endif
-	<!-- -->
-	@if ($isAdmin)
+
 	<script>
 		$(function () {
-			// 1.
 			function getPaginationSelectedPage(url) {
 				var chunks = url.split('?');
 				var baseUrl = chunks[0];
@@ -246,8 +225,28 @@
 				}
 				return pg;
 			}
-
-			$('#solicitudesEmpresa').on('click', '.pagination a', function (e) {
+			$('#inversores').on('click', '.pagination a', function (e) {
+				e.preventDefault();
+				var pg_inversores = getPaginationSelectedPage($(this).attr('href'));
+				$('#inversores').html("<p class='saving'>{{ __('Cargando') }}<span>.</span><span>.</span><span>.</span></p>");
+				$.ajax({
+					url: '/dashboard/ajax/inversores',
+					data: { 
+						"_token": "{{ csrf_token() }}",
+						page: pg_inversores
+						 },
+					success: function (data) {
+						$('#inversores').html(data);
+					}
+				});
+			});
+			$('#inversores').load('/dashboard/ajax/inversores?page=1');
+			});
+	</script>
+	<!-- -->
+	@if ($isAdmin)
+	<script>
+		$('#solicitudesEmpresa').on('click', '.pagination a', function (e) {
 				e.preventDefault();
 				var pg_solicitudesEmpresa = getPaginationSelectedPage($(this).attr('href'));
 				$('#solicitudesEmpresa').html("<p class='saving'>{{ __('Cargando') }}<span>.</span><span>.</span><span>.</span></p>");
@@ -262,12 +261,7 @@
 					}
 				});
 			});
-
-			
-
-
-			$('#solicitudesEmpresa').load('/dashboard/ajax/solicitudesEmpresa?page=1');
-		});
+		$('#solicitudesEmpresa').load('/dashboard/ajax/solicitudesEmpresa?page=1');
 	</script>
 	@endif
 @endsection

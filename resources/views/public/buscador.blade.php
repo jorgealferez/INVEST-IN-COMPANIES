@@ -125,18 +125,13 @@
 									<hr class=" verde" />
 
 									<div class="card-body row">
-										<div class="col-md-8  ">
+										<div class="col-md-12  ">
 											<small class=" font-weight-bold verde">{{ __("Forma Jurídica") }}:</small
 											>
 											<h6>{{ e($oferta->forma->name) }}</h6>
 										</div>
 
-										<div class="col-md-4">
-											<small class="verde font-weight-bold"
-												>{{ __("CIF") }}:</small
-											>
-											<h6>{{ e($oferta->cif) }}</h6>
-										</div>
+									
 
 										<div class="col-md-4 ">
 											<small class=" font-weight-bold verde"
@@ -171,7 +166,9 @@
 											<h6>{{ e($oferta->motivo) }}</h6>
 										</div>
 										@endif
-
+										<div class="col-md-12">
+											<hr class=" verde" />
+										</div>
 										<div class="col-md-6">
 											<small class=" font-weight-bold verde"
 												>{{ __("Sector") }}:</small
@@ -192,10 +189,10 @@
 
 										<div class="col-md-6">
 											<small class=" font-weight-bold verde"
-												>{{ __("Direccion") }}:</small
+												>{{ __("Provincia") }}:</small
 											>
 											<h6>
-												({{ e($oferta->provincia->name) }})
+												{{ e($oferta->provincia->name) }}
 											</h6>
 										</div>
 
@@ -331,6 +328,5 @@
 			$("#ModalInvitado").modal("show");
 		});
 	});
-
 			</script>
 @endsection

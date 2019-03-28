@@ -3,18 +3,19 @@
 	<input type="hidden" name="search" value="1">
 
 	<div class="table-responsive ">
-		<table class="table  table-hover tabla-usuarios">
+		<table class="table  table-hover tabla-usuarios tabla-dashboard">
 			<thead>
 				<tr>
-					<th>
+					<th class="no-wrap" style="width: 30%">
 						{{ __('Nombre') }}
 					</th>
-					<th>
+					<th class="no-wrap" style="width: 30%">
 						{{ __('Contacto') }}
 					</th>
-					<th>
+					<th class="no-wrap" style="width: 20%">
 						{{ __('Fecha') }}
 					</th>
+					<th class="no-wrap" style="width: 10%"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -24,7 +25,7 @@
 
 						{!! e($contacto->data['name']) !!}
 					</td>
-					<td>
+					<td class="text-truncate">
 						@if ($contacto->data['phone']) {{ e($contacto->data['phone']) }}<br> @endif @if ($contacto->data['email']) {{ e($contacto->data['email'])
 						}}
 						<br> @endif
@@ -34,8 +35,6 @@
 					</td>
 
 					<td class="text-right">
-						{{-- @if ($contacto->unread())
-						<i class="mdi mdi-star text-warning float-left"></i> @endif --}}
 
 						<div class="btn-group" role="group" aria-label="...">
 
@@ -57,6 +56,7 @@
 			<tfoot>
 				<tr>
 					<td colspan="2">{{ $elementos->links() }}</td>
+
 					<td colspan="2" class="text-right">
 						@if ($elementos->count()>1)
 						<small>

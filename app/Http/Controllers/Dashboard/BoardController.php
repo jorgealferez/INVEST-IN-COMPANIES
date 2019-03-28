@@ -62,8 +62,10 @@ class BoardController extends DashBoardController
             $inversiones = Inversion::whereIn('oferta_id', $ofertas->pluck('id')->toArray())->get();
             $numInversiones = $inversiones->count();
 
-
-            $usuarios =  DB::table('asociacion_user')->whereIn('asociacion_id', $asociacionesUsuario)->count();
+            // $usuarios =  DB::table('asociacion_user')->whereIn('asociacion_id', $asociacionesUsuario)->get();
+            $usuarios =  Asociacion::find($asociacionesUsuario->first())->usuarios()->take(5)->orderBy('created_at', 'DESC')->get();
+            $numUsuarios =  $usuarios->count();
+            
 
             $ofertas = $ofertas->take(5);
             $numInversores = $inversiones->count();
@@ -74,6 +76,9 @@ class BoardController extends DashBoardController
             $ofertas = Oferta::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
             $numOfertas = $ofertas->count();
             $ofertasaprobadas = $ofertas->where('approved', 1)->count();
+
+            $usuarios =  Asociacion::find($asociacionesUsuario->first())->usuarios()->take(5)->orderBy('created_at', 'DESC')->get();
+            $numUsuarios =  $usuarios->count();
             
             $inversiones = Inversion::whereIn('oferta_id', $ofertas->pluck('id')->toArray())->get();
             
@@ -99,6 +104,7 @@ class BoardController extends DashBoardController
                 'ofertasNoaprobadas',
                 'contactosEmpresasNuevas',
                 'usuarios',
+                'numUsuarios',
                 'ofertas',
                 'asociaciones'
             )
@@ -120,16 +126,38 @@ class BoardController extends DashBoardController
 
     public function getElementosDashboard($type)
     {
+        Parent::RolesCheck();
         switch ($type) {
-            default:
             case 'solicitudesEmpresa':
                 $elementos =Auth::User()->notifications()->where('type', 'App\Notifications\Generico\ContactoEmpresaNueva')->paginate(5);
-                // dd($elementos);
+                $view = View::make('dashboard.dashboard.solicitudesEmpresa')->with('elementos', $elementos);
+
+                break;
+
+            case 'inversores':
+                if ($this->isAdmin) {
+                    $inversiones = Inversion::orderBy('created_at', 'DESC');
+                } elseif ($this->isAsesor) {
+                    $asociacionesUsuario = Auth::user()->getAsociacionesDelUsario();
+
+                    $ofertas = Oferta::with('inversiones', 'asociacion')->whereHas('asociacion', function ($q) use ($asociacionesUsuario) {
+                        $q->whereIn('asociacion_id', $asociacionesUsuario);
+                    })->orderBy('created_at', 'DESC')->get();
+                    $inversiones = Inversion::whereIn('oferta_id', $ofertas->pluck('id')->toArray())->orderBy('created_at', 'DESC');
+                } elseif ($this->isGestor) {
+                    $ofertas = Oferta::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
+                    $inversiones = Inversion::whereIn('oferta_id', $ofertas->pluck('id')->toArray())->orderBy('created_at', 'DESC');
+                }
+                
+                //
+                $inversiones= $inversiones->paginate(5);
+                $view = View::make('dashboard.dashboard.inversores')->with('inversiones', $inversiones);
+
                 break;
         }
         
 
-        $view = View::make('dashboard.dashboard.solicitudesEmpresa')->with('elementos', $elementos);
+        
         return $view;
         exit;
     }
