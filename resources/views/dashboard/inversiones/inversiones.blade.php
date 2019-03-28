@@ -24,6 +24,7 @@
                         use Carbon\Carbon; ?>
 
 						<div class="table-responsive ">
+
 							<table class="table  table-hover table-boder  tabla-inversores">
 								<tbody>
 									@if($inversiones->total()>0) @foreach ($inversiones->sortByDesc('created_at') as $inversion)
@@ -152,8 +153,8 @@
 
 									@endforeach @else
 									<tr>
-										<td colspan="5" class="text-right">
-											<p>{{ __('No has solicitado información aún sobre ninguna empresa.') }}</p>
+										<td colspan="5" class="">
+											<p><strong>{{ __('No has solicitado información aún sobre ninguna empresa.') }}</strong></p>
 										</td>
 									</tr>
 									@endif

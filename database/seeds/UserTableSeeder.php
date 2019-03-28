@@ -20,9 +20,9 @@ class UserTableSeeder extends Seeder
 
         $role_admin = Role::where('name', 'Admin')->first();
         $user_admin = new User();
-        $user_admin->name = 'AdminRaul';
-        $user_admin->surname = 'Apellidos Apellidos';
-        $user_admin->phone = '666666666';
+        $user_admin->name = 'Raul';
+        $user_admin->surname = 'Sebastian';
+        $user_admin->phone = '615482046';
         $user_admin->LOPD = true;
         $user_admin->active = true;
         $user_admin->email = 'info@raulsebastian.es';
@@ -33,18 +33,32 @@ class UserTableSeeder extends Seeder
 
         $role_admin = Role::where('name', 'Admin')->first();
         $user_admin = new User();
-        $user_admin->name = 'Admin';
-        $user_admin->surname = 'Apellidos Apellidos';
-        $user_admin->phone = '666666666';
+        $user_admin->name = 'Alfonso';
+        $user_admin->surname = 'Beltrán';
+        $user_admin->phone = '910325973';
         $user_admin->LOPD = true;
         $user_admin->active = true;
-        $user_admin->email = 'admin@admin.com';
+        $user_admin->email = 'alfonsobeltran@grupopgs.es';
         $user_admin->password = bcrypt('secret');
         $user_admin->email_verified_at = now();
         $user_admin->save();
         $user_admin->roles()->save($role_admin);
 
-        $role_asesor = Role::where('name', 'Asesor')->first();
+
+        $role_admin = Role::where('name', 'Admin')->first();
+        $user_admin = new User();
+        $user_admin->name = 'Jorge';
+        $user_admin->surname = 'Alférez';
+        $user_admin->phone = '910325973';
+        $user_admin->LOPD = true;
+        $user_admin->active = true;
+        $user_admin->email = 'jorgealferez@grupopgs.es';
+        $user_admin->password = bcrypt('secret');
+        $user_admin->email_verified_at = now();
+        $user_admin->save();
+        $user_admin->roles()->save($role_admin);
+
+        /*$role_asesor = Role::where('name', 'Asesor')->first();
         $asociacion =   Asociacion::where('name', 'Asociacion Raul')->first();
         $user_asesor = new User();
         $user_asesor->name = 'Asesor';
@@ -126,5 +140,6 @@ class UserTableSeeder extends Seeder
             $user->save();
             $user->roles()->save($role_user);
         }
+        */
     }
 }

@@ -63,11 +63,17 @@ class BoardController extends DashBoardController
             $numInversiones = $inversiones->count();
 
             // $usuarios =  DB::table('asociacion_user')->whereIn('asociacion_id', $asociacionesUsuario)->get();
-            $usuarios =  Asociacion::find($asociacionesUsuario->first())->usuarios()->take(5)->orderBy('created_at', 'DESC')->get();
-            $numUsuarios =  $usuarios->count();
             
-
+            if ($asociacionesUsuario->isNotEmpty()) {
+                $usuarios =  Asociacion::find($asociacionesUsuario->first())->usuarios()->take(5)->orderBy('created_at', 'DESC')->get();
+                $numUsuarios =  $usuarios->count();
+            } else {
+                $usuarios =collect();
+                $numUsuarios = 0;
+            }
+    
             $ofertas = $ofertas->take(5);
+           
             $numInversores = $inversiones->count();
             $inversiones = $inversiones->take(5);
         } elseif ($this->isGestor) {
@@ -77,8 +83,14 @@ class BoardController extends DashBoardController
             $numOfertas = $ofertas->count();
             $ofertasaprobadas = $ofertas->where('approved', 1)->count();
 
-            $usuarios =  Asociacion::find($asociacionesUsuario->first())->usuarios()->take(5)->orderBy('created_at', 'DESC')->get();
-            $numUsuarios =  $usuarios->count();
+            if ($asociacionesUsuario->isNotEmpty()) {
+                $usuarios =  Asociacion::find($asociacionesUsuario->first())->usuarios()->take(5)->orderBy('created_at', 'DESC')->get();
+                $numUsuarios =  $usuarios->count();
+            } else {
+                $usuarios =collect();
+                $numUsuarios = 0;
+            }
+           
             
             $inversiones = Inversion::whereIn('oferta_id', $ofertas->pluck('id')->toArray())->get();
             

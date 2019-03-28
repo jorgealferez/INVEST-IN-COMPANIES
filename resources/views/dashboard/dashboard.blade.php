@@ -75,7 +75,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									@foreach ($ofertas as $oferta)
+									@if($ofertas->isNotEmpty()) @foreach ($ofertas as $oferta)
 									<tr>
 										<td>
 											@if (in_array($oferta->id, $notifiacionesOfertas->pluck('data')->pluck('oferta_id')->toArray()))
@@ -96,7 +96,13 @@
 
 										</td>
 									</tr>
-									@endforeach
+									@endforeach @else
+									<tr>
+										<td colspan="4">
+											<p>{{ __('No hay resultados disponibles') }}</p>
+										</td>
+									</tr>
+									@endif
 								</tbody>
 							</table>
 						</div>
@@ -115,7 +121,7 @@
 					<div class="card-body">
 						<div class="message-box contact-box">
 							<div class="message-widget contact-widget">
-								@foreach ($usuarios as $usuario)
+								@if($usuarios->isNotEmpty()) @foreach ($usuarios as $usuario)
 								<a href="{{ route('dashboardUsuario',['usuario'=>$usuario]) }}">
 									<div class="float-left mr-2">
 										<span class="round {{ $usuario->getRoleClass() }} roleMedium">{{ substr($usuario->getRoleClass(),4,1) }}</span>
@@ -124,7 +130,11 @@
 										<h5>{{ $usuario->Fullname}}</h5> <span class="mail-desc">{{ $usuario->email}}</span>
 									</div>
 								</a>
-								@endforeach
+								@endforeach @else
+
+								<p>{{ __('No hay resultados disponibles') }}</p>
+
+								@endif
 							</div>
 						</div>
 					</div>
@@ -152,7 +162,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									@foreach ($asociaciones as $asociacion)
+									@if($asociaciones->isNotEmpty()) @foreach ($asociaciones as $asociacion)
 									<tr class="@if(!$asociacion->active) registro-eliminado @endif">
 										<td class=" text-truncate">
 											@if (in_array($asociacion->id, $notifiacionesAsociaciones->pluck('data')->pluck('asociacion_id')->toArray()))
@@ -169,7 +179,13 @@
 
 										</td>
 									</tr>
-									@endforeach
+									@endforeach @else
+									<tr>
+										<td colspan="3">
+											<p>{{ __('No hay resultados disponibles') }}</p>
+										</td>
+									</tr>
+									@endif
 								</tbody>
 							</table>
 						</div>
@@ -261,7 +277,7 @@
 				});
 			});
 		$('#solicitudesEmpresa').load('/dashboard/ajax/solicitudesEmpresa?page=1');
-		});
 	@endif
+		});
 	</script>
 @endsection

@@ -49,9 +49,9 @@ class UsuariosController extends DashBoardController
     public function index(Request $request)
     {
         Parent::RolesCheck();
-        // $query[]=["active" , "<>", NULL];
         if ($this->isAdmin) {
-            $query[]=['id','<>',Auth::user()->id];
+            // $query[]=['id','<>',Auth::user()->id];
+            $query = array();
         } else {
             $query[]=["active" , "=", 1];
         }
@@ -159,7 +159,7 @@ class UsuariosController extends DashBoardController
     {
         Parent::RolesCheck();
         $nueva = false;
-        if ($usuario->id<>Auth::user()->id) {
+        if (($usuario->id<>Auth::user()->id) || $this->isAdmin) {
             $errors = Session::get('errors');
             if ($request->tab) {
                 $tab=$request->tab;

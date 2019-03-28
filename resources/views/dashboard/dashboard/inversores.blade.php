@@ -8,7 +8,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach ($inversiones as $inversion)
+			@if($inversiones->count()>0) @foreach ($inversiones as $inversion)
 			<tr>
 				<td class=" text-truncate">
 					<span class="badge estado-{{ $inversion->estado->id }} float-left text-white align-middle mr-2">
@@ -24,7 +24,13 @@
 
 				</td>
 			</tr>
-			@endforeach
+			@endforeach @else
+			<tr>
+				<td colspan="3">
+					<p>{{ __('No hay resultados disponibles') }}</p>
+				</td>
+			</tr>
+			@endif
 		</tbody>
 		<tfoot>
 			<tr>

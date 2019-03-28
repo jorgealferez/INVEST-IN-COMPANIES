@@ -207,10 +207,14 @@ class User extends Authenticatable implements MustVerifyEmail
                 break;
             case 'Asesor':
             case 'Gestor':
+            if ($this->asociaciones()->count()>0) {
                 $asociaciones=Asociacion::where([
                     ['active','=',1],
                     ['id','=',$this->asociaciones()->first()->id]
                     ])->get();
+            } else {
+                $asociaciones = collect();
+            }
                 break;
 
             default:
