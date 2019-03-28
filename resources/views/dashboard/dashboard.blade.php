@@ -227,13 +227,13 @@
 			}
 			$('#inversores').on('click', '.pagination a', function (e) {
 				e.preventDefault();
-				var pg_inversores = getPaginationSelectedPage($(this).attr('href'));
+				var pg = getPaginationSelectedPage($(this).attr('href'));
 				$('#inversores').html("<p class='saving'>{{ __('Cargando') }}<span>.</span><span>.</span><span>.</span></p>");
 				$.ajax({
 					url: '/dashboard/ajax/inversores',
 					data: { 
 						"_token": "{{ csrf_token() }}",
-						page: pg_inversores
+						page: pg
 						 },
 					success: function (data) {
 						$('#inversores').html(data);
@@ -241,20 +241,19 @@
 				});
 			});
 			$('#inversores').load('/dashboard/ajax/inversores?page=1');
-			});
-	</script>
-	<!-- -->
+			
+	
+
 	@if ($isAdmin)
-	<script>
 		$('#solicitudesEmpresa').on('click', '.pagination a', function (e) {
 				e.preventDefault();
-				var pg_solicitudesEmpresa = getPaginationSelectedPage($(this).attr('href'));
+				var pg = getPaginationSelectedPage($(this).attr('href'));				
 				$('#solicitudesEmpresa').html("<p class='saving'>{{ __('Cargando') }}<span>.</span><span>.</span><span>.</span></p>");
 				$.ajax({
 					url: '/dashboard/ajax/solicitudesEmpresa',
 					data: { 
 						"_token": "{{ csrf_token() }}",
-						page: pg_solicitudesEmpresa
+						page: pg
 						 },
 					success: function (data) {
 						$('#solicitudesEmpresa').html(data);
@@ -262,6 +261,7 @@
 				});
 			});
 		$('#solicitudesEmpresa').load('/dashboard/ajax/solicitudesEmpresa?page=1');
-	</script>
+		});
 	@endif
+	</script>
 @endsection

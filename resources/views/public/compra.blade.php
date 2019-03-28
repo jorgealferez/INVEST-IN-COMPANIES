@@ -53,7 +53,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="col-lg-6 mx-auto text-white p-3 bg-dark mt-md-5 mt-lg-0 ">
+		<div class="col-lg-6 mx-auto text-white p-3 bg-verdeOscuro mt-md-5 mt-lg-0 ">
 			@if (session()->has('enviado'))
 
 			<div class="row h-100">

@@ -36,6 +36,10 @@ h2 {
   background-color: #f7f7f7;
 }
 
+.bg-verdeOscuro {
+  background-color: #1c3122;
+}
+
 .navbar {
   padding: 0;
 }
@@ -137,7 +141,7 @@ h2 {
 .btn-invest:hover {
   text-decoration: none;
   color: white;
-  background-color: #343a40 !important;
+  background-color: #056633 !important;
 }
 
 .btn-invest.verde {
@@ -148,7 +152,7 @@ h2 {
 .btn-invest.verde:hover {
   color: white;
   background-color: #006242 !important;
-  border-color: #343a40 !important;
+  border-color: #056633 !important;
 }
 
 .btn-verde {
