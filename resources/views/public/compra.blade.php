@@ -68,7 +68,7 @@
 				<div class="col-md-12">
 					<div class="card-body">
 						<a name="formulario"></a>
-						<h3 class="text-white-50 mb-4">Regístrate</h3>
+						<h3 class="text-white mb-4 text-uppercase">Regístrate</h3>
 						<form method="POST" action="{{ action('PublicController@registro') }}">
 							@csrf
 
