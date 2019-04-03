@@ -37,7 +37,13 @@
 	<div class=" container ">
 		<div class="row  ">
 			<div class="col-md-12 ">
-				<p class="my-4 legal">@2018 Copyright. Todos los derechos reservados por tu empresa | Política de privacidad | Ayuda</p>
+				<ul class="my-4 navbar legal navbar-nav ml-auto mr-auto  text-center" id="menu-footer">
+					<li>@2019 Copyright. Todos los derechos reservados</li>
+					<li class="nav-item "><a class="nav-link " href="{{ route('privacidad') }}">Política de privacidad</a></li>
+					<li class="nav-item "><a class="nav-link " href="{{ route('aviso') }}">Aviso Legal</a></li>
+					<li class="nav-item "><a class="nav-link " href="{{ route('proteccion') }}">Protección de datos</a></li>
+				</ul>
+
 			</div>
 		</div>
 	</div>

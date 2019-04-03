@@ -30,10 +30,11 @@ Route::get('/compra-tu-empresa', 'PublicController@compra')->name('compraEmpresa
 Route::any('/buscador', 'PublicController@buscador')->name('buscador');
 Route::get('/busca-socio', 'PublicController@socio')->name('socio');
 Route::get('/quienes-somos', 'PublicController@quienes')->name('quienesSomos');
-Route::get('/origintal', 'PublicController@origintal')->name('origintal');
+Route::get('/politica-proteccion', 'PublicController@proteccion')->name('proteccion');
+Route::get('/politica-privacidad', 'PublicController@privacidad')->name('privacidad');
+Route::get('/aviso-legal', 'PublicController@aviso')->name('aviso');
 Route::post('/registro', 'PublicController@registro');
 
-// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::namespace('Dashboard')->group(function () {
     Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function () {
@@ -46,7 +47,6 @@ Route::namespace('Dashboard')->group(function () {
         Route::post('/notificacion/{id}/delete', 'BoardController@borrarNotificacion')->name('boorarNotificacion');
 
         Route::prefix('/asociaciones')->group(function () {
-            Route::get('/prueba', 'AsociacionesController@OfertasAntiguas');
             Route::match(['get', 'post'], '/', 'AsociacionesController@index')->middleware(['asesor'])->name('dashboardAsociaciones');
             Route::get('/crear', 'AsociacionesController@create')->name('dashboardAsociacionesNueva')->middleware(['admin']);
             Route::get('/store', 'AsociacionesController@store')->middleware(['admin']);

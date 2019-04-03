@@ -87,6 +87,19 @@ class PublicController extends Controller
             )
         );
     }
+
+    public function privacidad()
+    {
+        return view('public.privacidad');
+    }
+    public function proteccion()
+    {
+        return view('public.proteccion');
+    }
+    public function aviso()
+    {
+        return view('public.aviso');
+    }
     public function vende(NuevaEmpresaRequest $request)
     {
         $provincias=Provincia::all();

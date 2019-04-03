@@ -31,6 +31,24 @@ h2 {
 	font-size: 0.7857142857142857em;
 }
 
+.texto-legal {
+	a.verde {
+		color: $principal;
+		font-weight: 400;
+	}
+
+	h3 {
+		margin-top: 50px;
+		margin-bottom: 20px;
+	}
+
+	ul,
+	dl {
+		padding-left: 50px;
+		margin-bottom: 30px;
+	}
+}
+
 .bg-gris {
 	background-color: $gris;
 }
@@ -67,6 +85,30 @@ h2 {
 					background-color: $themecolor-dark;
 				}
 			}
+		}
+	}
+
+	&#menu-footer {
+		display: inline-block;
+
+		li {
+			display: inline-block;
+
+			a {
+				color: $white;
+
+				&:hover {
+					text-decoration-line: underline;
+				}
+
+				&:before {
+					content: " | ";
+					padding: 0 10px;
+					float: left;
+					color: $white;
+				}
+			}
+
 		}
 	}
 }

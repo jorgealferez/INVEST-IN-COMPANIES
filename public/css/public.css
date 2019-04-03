@@ -32,6 +32,22 @@ h2 {
   font-size: 0.7857142857142857em;
 }
 
+.texto-legal a.verde {
+  color: #2d4f36;
+  font-weight: 400;
+}
+
+.texto-legal h3 {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.texto-legal ul,
+.texto-legal dl {
+  padding-left: 50px;
+  margin-bottom: 30px;
+}
+
 .bg-gris {
   background-color: #f7f7f7;
 }
@@ -61,6 +77,29 @@ h2 {
 .navbar .menu-principal ul li.nav-item .dropdown-item:active,
 .navbar .menu-principal ul li.nav-item.dropdown.show a.dropdown-toggle {
   background-color: #1c3122;
+}
+
+.navbar#menu-footer {
+  display: inline-block;
+}
+
+.navbar#menu-footer li {
+  display: inline-block;
+}
+
+.navbar#menu-footer li a {
+  color: #ffffff;
+}
+
+.navbar#menu-footer li a:hover {
+  text-decoration-line: underline;
+}
+
+.navbar#menu-footer li a:before {
+  content: " | ";
+  padding: 0 10px;
+  float: left;
+  color: #ffffff;
 }
 
 .login-register {
