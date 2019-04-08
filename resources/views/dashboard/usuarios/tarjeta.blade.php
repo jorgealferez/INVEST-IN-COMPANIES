@@ -1,9 +1,9 @@
 <div class="col-lg-4 col-xlg-3 col-md-5">
 
-    <div class="card card-profile">
+	<div class="card card-profile">
 
-        <div class="card-body text-center  bg-gray" style="max-height: 120px;">
-            <span class="round {{ $usuario->getRoleClass() }} roleBig profile-rol ">
+		<div class="card-body text-center  bg-gray" style="max-height: 120px;">
+			<span class="round {{ $usuario->getRoleClass() }} roleBig profile-rol ">
                 @switch($usuario->roles->first()->name)
                 @case("Admin")
                 @case("Gestor")
@@ -21,35 +21,33 @@
 
                 @endswitch
             </span>
-        </div>
+		</div>
 
-        <div class="card-body pro-img text-center pt-5">
-            <h4 class="card-title m-t-10">{{ e($usuario->fullName) }}</h4>
-            @if (!$usuario->active)
-            <span class="badge badge-danger"> {{ __('Usuario Eliminado') }}</span> @endif
-            @if ($nueva)
-            <span class="badge badge-warning float-right mr-2">
+		<div class="card-body pro-img text-center pt-5">
+			<h4 class="card-title m-t-10">{{ e($usuario->fullName) }}</h4>
+			@if (!$usuario->active)
+			<span class="badge badge-danger"> {{ __('Usuario Eliminado') }}</span> @endif @if ($nueva)
+			<span class="badge badge-warning float-right mr-2">
                 <i class="mdi mdi-star text-white "></i>
                 {{ __('Nuevo') }}
-            </span>
-            @endif
-        </div>
+            </span> @endif
+		</div>
 
-        <hr class="m-0">
+		<hr class="m-0">
 
-        <div class="card-body ">
-            <small class="text-muted"><i class="ti-email"></i> {{ __('Email') }}</small>
-            <a href="mailto:{{ e($usuario->email) }}" class="link text-muted">
-                <h6>{{ e($usuario->email) }}</h6>
-            </a>
+		<div class="card-body ">
+			<small class="text-muted"><i class="ti-email"></i> {{ __('Email') }}</small>
+			<a href="mailto:{{ e($usuario->email) }}" class="link text-muted">
+				<h6>{{ e($usuario->email) }}</h6>
+			</a>
 
-            <small class="text-muted"><i class="ti-mobile"></i> {{ __('Teléfono') }}</small>
-            <h6>{{ e($usuario->phone) }}</h6>
+			<small class="text-muted"><i class="ti-mobile"></i> {{ __('Teléfono') }}</small>
+			<h6>{{ e($usuario->phone) }}</h6>
 
-            <small class="text-muted"><i class="mdi mdi-security-home"></i> {{ __('Asociaciones') }}</small><br> @if ($usuario->asociaciones)
-            @foreach ($usuario->asociaciones as $asociacion)
-            <span class="badge badge-primary">{{ e($asociacion->name)}}</span> @endforeach @endif
+			<small class="text-muted"><i class="mdi mdi-security-home"></i> {{ __('Entidades') }}</small><br> @if ($usuario->asociaciones)
+			@foreach ($usuario->asociaciones as $asociacion)
+			<span class="badge badge-primary">{{ e($asociacion->name)}}</span> @endforeach @endif
 
-        </div>
-    </div>
+		</div>
+	</div>
 </div>

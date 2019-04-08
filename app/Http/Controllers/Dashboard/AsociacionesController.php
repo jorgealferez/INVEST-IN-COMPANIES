@@ -101,7 +101,7 @@ class AsociacionesController extends DashBoardController
         $asociacion->NotificacionNuevaAsociacion();
         return redirect()->route('dashboardAsociaciones')->with([
             'success'=> true,
-            'mensaje'=>__('Asociación creada correctamente')
+            'mensaje'=>__('Entidad creada correctamente')
         ]);
     }
 
@@ -164,7 +164,7 @@ class AsociacionesController extends DashBoardController
         // return redirect()->back()->with('success', true);
         return redirect()->action('Dashboard\AsociacionesController@show', ['asociacion'=>$asociacion,'tab'=>$tab])->with([
             'success'=> true,
-            'mensaje'=>__('Asociación modificada correctamente')
+            'mensaje'=>__('Entidad modificada correctamente')
         ]);
     }
 
@@ -205,7 +205,7 @@ class AsociacionesController extends DashBoardController
         $asociacion->usuarios()->sync($request->usuarios);
         return redirect()->route('dashboardAsociacion', $asociacion)->with([
             'success'=> true,
-            'mensaje'=>__('Usuarios de la asociación actualizados correctamente')
+            'mensaje'=>__('Usuarios de la entidad actualizados correctamente')
         ]);
     }
 

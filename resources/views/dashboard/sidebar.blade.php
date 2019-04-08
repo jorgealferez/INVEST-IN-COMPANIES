@@ -18,7 +18,7 @@
 				@endif
 				<!-- -->
 				@if($isAdmin)
-				<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-security-home"></i><span class="hide-menu">{{ __('Asociaciones') }}
+				<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-security-home"></i><span class="hide-menu">{{ __('Entidades') }}
                     @if (isset($notifiacionesAsociaciones) && count ($notifiacionesAsociaciones)>0)
                         <span class="badge badge-success bg-warning etiqueta-sidebar">
                             {{ count ($notifiacionesAsociaciones) }}
@@ -36,7 +36,7 @@
 				@if($isAsesor)
 				<li>
 					<a href="{{ e(route('dashboardAsociaciones')) }}" data-active="/asociaciones">
-                        <i class="mdi mdi-security-home"></i><span class="hide-menu">{{ __('Mis asociaciones') }}
+                        <i class="mdi mdi-security-home"></i><span class="hide-menu">{{ __('Mis entidades') }}
                         </span>
                     </a>
 				</li>
@@ -48,10 +48,10 @@
 
 					<a href="{{ e(route('dashboardAsociacion', auth()->user()->asociaciones->first()->id)) }}" data-active="/asociaciones">
                         <i class="mdi mdi-security-home"></i>
-                        <span class="hide-menu">{{ __('Mi Asociación') }}</span>
+                        <span class="hide-menu">{{ __('Mi Entidad') }}</span>
                     </a>
 					<li>
-						<?php } ?> @endif @if ( !auth()->user()->asociaciones->isEmpty() || $isAdmin)
+						<?php } ?> @endif @if ( (!auth()->user()->asociaciones->isEmpty() || $isAdmin) && !$isInversor)
 						<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                         <i class="mdi mdi-tag-text-outline"></i>
                         <span class="hide-menu">

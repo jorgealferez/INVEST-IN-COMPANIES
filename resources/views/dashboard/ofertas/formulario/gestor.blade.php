@@ -2,12 +2,13 @@
 
 <div class="row">
 
-    <div class="col-md-12">
+	<div class="col-md-12">
 
-        <div class="form-group {{ $errors->has('asociacion_id') ? ' has-danger' : '' }}">
-            <label for="asociacion_id"><i class="mdi mdi-security-home"></i> {{ __('Asociación') }}</label>
-            <select name="asociacion_id" id="asociacion_id" class="form-control form-control-line {{ $errors->has('asociacion_id') ? ' form-control-danger' : '' }}" required>
-                <option value="">{{ __('Seleciona asociación') }}</option>
+		<div class="form-group {{ $errors->has('asociacion_id') ? ' has-danger' : '' }}">
+			<label for="asociacion_id"><i class="mdi mdi-security-home"></i> {{ __('Entidad') }}</label>
+			<select name="asociacion_id" id="asociacion_id" class="form-control form-control-line {{ $errors->has('asociacion_id') ? ' form-control-danger' : '' }}"
+			 required>
+                <option value="">{{ __('Seleciona entidad') }}</option>
                 @foreach ($asociacionesDisponibles as $asociacion)
                 @if ( old('asociacion_id'))
                 <option value="{{ $asociacion->id }}" @if ( old('asociacion_id')==$asociacion->id) selected @endif >
@@ -20,15 +21,16 @@
                 @endif
                 @endforeach
             </select>
-        </div>
-    </div>
+		</div>
+	</div>
 
 
-    <div class="col-md-12">
+	<div class="col-md-12">
 
-        <div class="form-group {{ $errors->has('user_id') ? ' has-danger' : '' }}">
-            <label for="user_id"><i class="mdi mdi-account-multiple"></i> {{ __('Gestor') }}</label>
-            <select name="user_id" id="user_id" class="form-control form-control-line {{ $errors->has('user_id') ? ' form-control-danger' : '' }}" required @if (!$usuariosAsociacion){{ e( 'disabled' ) }} @endif>
+		<div class="form-group {{ $errors->has('user_id') ? ' has-danger' : '' }}">
+			<label for="user_id"><i class="mdi mdi-account-multiple"></i> {{ __('Gestor') }}</label>
+			<select name="user_id" id="user_id" class="form-control form-control-line {{ $errors->has('user_id') ? ' form-control-danger' : '' }}"
+			 required @if (!$usuariosAsociacion){{ e( 'disabled' ) }} @endif>
                 @if ($usuariosAsociacion)
                 {{-- && !Request::is('dashboard/ofertas/crear')) --}}
                 @foreach ($usuariosAsociacion as $usuarioAsociacion)
@@ -44,21 +46,20 @@
                 @endforeach
                 @endif
             </select>
-        </div>
-    </div>
+		</div>
+	</div>
 </div>
-@endif
-
-@if($isAsesor)
+@endif @if($isAsesor)
 
 <div class="row">
 
-    <div class="col-md-12">
+	<div class="col-md-12">
 
-        <div class="form-group {{ $errors->has('user_id') ? ' has-danger' : '' }}">
-            <label for="user_id" class="col-md-12 col-form-label ">{{ __('Gestor') }}</label>
+		<div class="form-group {{ $errors->has('user_id') ? ' has-danger' : '' }}">
+			<label for="user_id" class="col-md-12 col-form-label ">{{ __('Gestor') }}</label>
 
-            <select name="user_id" id="user_id" class="form-control form-control-line {{ $errors->has('user_id') ? ' form-control-danger' : '' }}" required>
+			<select name="user_id" id="user_id" class="form-control form-control-line {{ $errors->has('user_id') ? ' form-control-danger' : '' }}"
+			 required>
                 <option value="">{{ __('Seleciona usuario') }}</option>
                 @foreach ($usuariosAsociacion as $usuarioAsociacion)
                 @if ( old('user_id'))
@@ -72,7 +73,7 @@
                 @endif
                 @endforeach
             </select>
-        </div>
-    </div>
+		</div>
+	</div>
 </div>
 @endif

@@ -20,7 +20,7 @@
 				<div class="round round-lg align-self-center roleAs "><i class="mdi mdi-security-home"></i></div>
 				<div class="m-l-10 align-self-center">
 					<h3 class="m-b-0 font-light">{{ $numAsociaciones }}</h3>
-					<h5 class="text-muted m-b-0">{{ __('Asociaciones') }}</h5>
+					<h5 class="text-muted m-b-0">{{ __('Entidades Colaboradoras') }}</h5>
 				</div>
 			</div>
 		</div>

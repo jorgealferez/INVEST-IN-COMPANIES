@@ -12,7 +12,7 @@
 			</div>
 			<div class="col-md-3 align-self-end text-right py-3 ">
 				<p class="mb-0">
-					Tel: +34 91 411 61 61<br> E-mail: <a href="mailto:contacto@cepyme.es" target="_blank" class="text-white">contacto@cepyme.es</a>
+					E-mail: <a href="mailto:contacto@investincompanies.es" target="_blank" class="text-white">contacto@investincompanies.es</a>
 				</p>
 				<nav class="d-inline-block">
 					<ul class="navbar-nav flex-row  d-md-flex">

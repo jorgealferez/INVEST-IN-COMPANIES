@@ -3,7 +3,9 @@
 	<div class="row justify-content-end bg-primary text-white rss-header mx-0">
 
 		<div class="text-center col-sm-12 col-md-4">
+			{{--
 			<h5 class="my-0 mr-auto align-middle py-2"><i class="fas fa-phone"></i> 91 411 61 61</h5>
+			--}}
 		</div>
 
 		<div class="col-4 pr-0">

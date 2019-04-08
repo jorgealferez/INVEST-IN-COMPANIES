@@ -40,7 +40,7 @@
 					<div class="card-body card-seccion-asociaciones">
 						<h4 class="card-title mb-0 title-section">
 							<span class="lstick"></span>{{ __('Inversores')}}
-							<h6 class="card-subtitle r mb-0 op-5">{{ __('Listado de inversiones en las ofertas de la asociacion') }}</h6>
+							<h6 class="card-subtitle r mb-0 op-5">{{ __('Listado de inversiones en las ofertas de las entidades colaboradoras') }}</h6>
 						</h4>
 					</div>
 					<hr class="mt-0">
@@ -69,7 +69,7 @@
 								<thead>
 									<tr>
 										<th class="no-wrap" style="width: 38%">{{ __('Oferta') }}</th>
-										<th class="no-wrap" style="width: 25%">{{ __('Asociacion') }}</th>
+										<th class="no-wrap" style="width: 25%">{{ __('Entidad') }}</th>
 										<th class="text-center no-wrap" style="width: 22%">{{ __('Inversores') }}</th>
 										<th class="no-wrap" style="width: 15%"></th>
 									</tr>
@@ -146,8 +146,8 @@
 				<div class="card">
 					<div class="card-body card-seccion-asociaciones">
 						<h4 class="card-title mb-0 title-section">
-							<span class="lstick"></span>{{ __('Últimas asociaciones') }}
-							<h6 class="card-subtitle r mb-0 op-5">{{ __('Listado de las últimas asociaciones en la plataforma') }}</h6>
+							<span class="lstick"></span>{{ __('Últimas Entidades') }}
+							<h6 class="card-subtitle r mb-0 op-5">{{ __('Listado de las últimas entidades en la plataforma') }}</h6>
 						</h4>
 					</div>
 					<hr class="mt-0">
@@ -156,7 +156,7 @@
 							<table class="table stylish-table tabla-dashboard">
 								<thead>
 									<tr>
-										<th class="no-wrap" style="width: 50%">{{ __('Asociación') }}</th>
+										<th class="no-wrap" style="width: 50%">{{ __('Entidad') }}</th>
 										<th class="text-center no-wrap" style="width: 30%">{{ __('Ofertas') }}</th>
 										<th class="no-wrap" style="width: 20%"></th>
 									</tr>

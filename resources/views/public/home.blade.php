@@ -63,7 +63,7 @@
 				<div class="col-md-3 ">
 
 					<div class="form-group ">
-						<label for="asociacion_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __('Asociación') }}</label>
+						<label for="asociacion_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __('Entidades Colaboradoras') }}</label>
 
 						<div class="col-md-12">
 							<select name="asociacion_id" id="asociacion_id" class="form-control ">

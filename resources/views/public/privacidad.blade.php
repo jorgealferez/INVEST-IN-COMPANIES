@@ -19,8 +19,7 @@
 				<strong>LA CONFEDERACIÓN ESPAÑOLA DE LA PEQUEÑA Y MEDIANA EMPRESA</strong> (en adelante <strong>CEPYME</strong>), con
 				C.I.F. nº  <i>G-28511897</i>, domicilio en la calle Diego de León 50 3º Planta, 28006-Madrid, y dirección general de
 				correo electrónico <a href="mailto:cepyme@cepyme.es" target="_blank" class="verde">cepyme@cepyme.es</a> propietaria del
-				sitio web en Internet <a href="www.cepymeemprende.es" target="_blank" class="verde">www.cepymeemprende.es</a> (en adelante,
-				el SITIO WEB).
+				sitio web en Internet <a href="http://www.investincompanies.es" target="_blank" class="verde">www.investincompanies.es</a>				(en adelante, el SITIO WEB).
 			</p>
 			<p>
 				<strong>CEPYME</strong>, es el Responsable del tratamiento de los datos personales de usted como usuario registrado (usuario)
@@ -310,7 +309,7 @@
 			<p>
 				<strong>Teléfono:</strong> 34 91 411 61 6
 				<br>
-				<strong>E-mail:</strong> <a class="verde" target="_blank" href="mailto:cepymeemprende@cepyme.es">cepymeemprende@cepyme.es</a><br>
+				<strong>E-mail:</strong> <a class="verde" target="_blank" href="mailto:cepyme@cepyme.es">cepyme@cepyme.es</a><br>
 				<strong>Delegado de Protección de Datos o Responsable de Seguridad:</strong>
 				<br>
 				<strong>Correo electrónico</strong>: <a class="verde" target="_blank" href="mailto:rgpd@cepyme.es">rgpd@cepyme.es</a>

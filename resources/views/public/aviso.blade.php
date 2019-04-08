@@ -36,8 +36,8 @@
 				<p>
 					CONFEDERACIÓN ESPAÑOLA DE LA PEQUEÑA Y MEDIANA EMPRESA (en adelante CEPYME), con C.I.F. nº G-28511897, domicilio en la calle
 					Diego de León, nº 50 3º Planta, 28006 Madrid, y dirección general de correo electrónico <a href="mailto:cepyme@cepyme.es"
-					 target="_blank" class="verde">cepyme@cepyme.es</a> es propietaria del sitio web en Internet <a href="http://www.cepymeemprende.es"
-					 target="_blank" class="verde">www.cepymeemprende.es</a> (en adelante, el SITIO WEB), a través del cual pone determinada
+					 target="_blank" class="verde">cepyme@cepyme.es</a> es propietaria del sitio web en Internet <a href="http://www.investincompanies.es"
+					 target="_blank" class="verde">www.investincompanies.es</a> (en adelante, el SITIO WEB), a través del cual pone determinada
 					información a disposición de sus usuarios.
 				</p>
 				<p>CEPYME podrá modificar en cualquier momento las condiciones generales reflejadas en el presente Aviso Legal, haciendo
@@ -343,8 +343,8 @@
 						Web, deberá contar previamente con su autorización expresa y por escrito.
 					</dd>
 					<dd>
-						5) CEPYME no autoriza el establecimiento de un enlace al SITIO WEB <a href="http://www.cepymeemprende.es" target="_blank"
-						 class="verde">www.cepymeemprende.es</a> desde aquellas páginas Web que contengan materiales, información o contenidos
+						5) CEPYME no autoriza el establecimiento de un enlace al SITIO WEB <a href="http://www.investincompanies.es" target="_blank"
+						 class="verde">www.investincompanies.es</a> desde aquellas páginas Web que contengan materiales, información o contenidos
 						ilícitos, ilegales, degradantes, obscenos, y en general, que contravengan la moral, el orden público o las normas sociales
 						generalmente aceptadas.
 				</dl>
