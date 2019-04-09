@@ -14,7 +14,7 @@
 
                     <div class="card-body">
                         <h4 class="card-title mb-0 title-section">
-                            <span class="lstick"></span> <i class="mdi mdi-security-home"></i> {{ __('Nueva asociación')}}
+                            <span class="lstick"></span> <i class="mdi mdi-security-home"></i> {{ __('Nueva entidad')}}
 
                         </h4>
                     </div>
@@ -80,7 +80,7 @@
                         <div class="form-group">
 
                             <div class="col-sm-12">
-                                <button class="btn btn-verde  waves-effect waves-light">{{ __('Crear Asociación') }}</button>
+                                <button class="btn btn-verde  waves-effect waves-light">{{ __('Crear Entidad') }}</button>
                             </div>
                         </div>
 
@@ -95,7 +95,7 @@
 
                     <div class="card-body bg-verde">
                         <h4 class="text-white card-title">{{ __('Información de contacto') }}</h4>
-                        <h6 class="card-subtitle text-white m-b-0 op-5">Información de contacto de la empresa ofertada</h6>
+                        <h6 class="card-subtitle text-white m-b-0 op-5">Información de contacto de la entidad</h6>
                     </div>
 
                     <div class="card-body">
