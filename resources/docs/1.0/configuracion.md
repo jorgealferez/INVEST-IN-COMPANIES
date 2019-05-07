@@ -44,9 +44,12 @@ La clave generada con el comando anterior.
 
 Url de la aplicación.
 
-`APP_DEBUG` [_true_] [_true_]
+`APP_DEBUG` [_false_] [_true_]
 
 Si queremos poner la aplicación en modo depuración de errores.
+
+
+> {danger} Si se actualizan valores se deberán cambiar también en el archivo `config/app.php` .
 
 <a name="base-de-datos"></a>
 
@@ -59,7 +62,7 @@ Para crear la conexión con la base de datos podemos editar los siguientes valor
 
 Tipo de conexión servidor BBDD.
 
-`DB_HOST` [_*.*.*.*_] [_localhost_]
+`DB_HOST` [_&ast;.&ast;.&ast;.&ast;_] [_localhost_]
 
 Host de conexión.
 
@@ -79,6 +82,8 @@ Nombre de usuario del servidor de la base de datos.
 
 Contraseña usuario del servidor de la base de datos.
 
+> {danger} Si se actualizan valores se deberán cambiar también en el archivo `config/database.php` .
+
 <a name="email"></a>
 ## Email 
 
@@ -88,7 +93,7 @@ También podemos configurar los datos de acceso al servidor de correo dentro del
 
 Tipo de conexión con el servidor de correo.
 
-`MAIL_HOST` [_smtp.gmail.com_] [_*.*.*.*_]
+`MAIL_HOST` [_smtp.gmail.com_] [_&ast;.&ast;.&ast;.&ast;_]
 
 Dirección del servidor de correo.
 
@@ -108,6 +113,9 @@ Contraseña usuario del servidor de correo.
 `MAIL_ENCRYPTION` [_smtp_] [_ssl_]
 
 Tipo de cifrado con el servidor de correo.
+
+
+> {danger} Si se actualizan valores se deberán cambiar también en el archivo `config/mail.php` .
 
 
 
