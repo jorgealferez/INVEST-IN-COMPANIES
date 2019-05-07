@@ -1,12 +1,15 @@
-#General
+#Instalación
 
 ---
 
-- [Instalación](#instalaci%C3%B3n)
+- [Requisitos](#requisitos)
+- [Composer](#composer)
+- [Npm](#npm)
+  
 
-<a name="instalaci%C3%B3n"></a>
+<a name="requisitos"></a>
 
-## Instalación
+## Requisitos
 
 Para instalar el site se deben cumplir los siguientes requisitos en el servidor:
 
@@ -21,6 +24,7 @@ Para instalar el site se deben cumplir los siguientes requisitos en el servidor:
 - JSON PHP Extension
 - BCMath PHP Extension
 - Composer
+- NPM
 - Git
 
 Una vez comprobados los requisitos del sistema se puede realizar la copia con el siguiente comando, reemplazando `DIRECTORIO` por el directorio deseado dentro del servidor.
@@ -28,3 +32,26 @@ Una vez comprobados los requisitos del sistema se puede realizar la copia con el
 ```bash
 git clone https://github.com/darkraul79/PGS.git DIRECTORIO
 ```
+
+<a name="composer"></a>
+## Composer
+
+Para instalar las depencias de la parte backend del proyecto mediante composer nos situamos en el directorio raíz del proyecto y ejecutamos el siguiente comando. Esto instalará todas las depencias de `php`.
+
+```bash
+composer install
+```
+
+Este comando creará la carpeta `vendor` dentro de nuestro proyecto.
+
+<a name="npm"></a>
+
+## Npm
+
+Para instalar las depencias de la parte frontend del proyecto mediante npm nos situamos en el directorio raíz del proyecto y ejecutamos el siguiente comando. Esto instalará todas las depencias de `js`.
+
+```bash
+composer install
+```
+
+Este comando creará la carpeta `node_module` dentro de nuestro proyecto.
