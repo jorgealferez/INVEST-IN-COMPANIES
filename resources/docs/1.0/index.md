@@ -1,0 +1,16 @@
+- ## Primeros pasos
+  - [Instalación](/docs/{{version}}/instalacion)
+  - [Configuración](/docs/{{version}}/configuracion)
+  - [Dependencias](/docs/{{version}}/dependencias)
+  - [Bases de datos](/docs/{{version}}/bbdd)
+- ## Modelos de datos
+  - [Asociacion](/docs/{{version}}/datos_asociacion)
+  - [Oferta](/docs/{{version}}/datos_oferta)
+  - [Inversión](/docs/{{version}}/datos_inversion)
+  - [Estado Inversion](/docs/{{version}}/datos_estadoinversor)
+  - [User](/docs/{{version}}/datos_usuario)
+  - [Role](/docs/{{version}}/datos_role)
+  - [Forma](/docs/{{version}}/datos_forma)
+  - [Provincia](/docs/{{version}}/datos_provincia)
+  - [Población](/docs/{{version}}/datos_poblacion)
+  - [Sector](/docs/{{version}}/datos_sector)
