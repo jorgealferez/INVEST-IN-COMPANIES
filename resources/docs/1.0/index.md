@@ -1,7 +1,6 @@
 - ## Primeros pasos
   - [Instalación](/docs/{{version}}/instalacion)
   - [Configuración](/docs/{{version}}/configuracion)
-  - [Dependencias](/docs/{{version}}/dependencias)
   - [Bases de datos](/docs/{{version}}/bbdd)
 - ## Modelos de datos
   - [Asociacion](/docs/{{version}}/datos_asociacion)

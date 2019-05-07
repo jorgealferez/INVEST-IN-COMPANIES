@@ -51,7 +51,7 @@ Este comando creará la carpeta `vendor` dentro de nuestro proyecto.
 Para instalar las depencias de la parte frontend del proyecto mediante npm nos situamos en el directorio raíz del proyecto y ejecutamos el siguiente comando. Esto instalará todas las depencias de `js`.
 
 ```bash
-composer install
+npm install
 ```
 
-Este comando creará la carpeta `node_module` dentro de nuestro proyecto.
+Este comando creará la carpeta `node_modules` dentro de nuestro proyecto.
