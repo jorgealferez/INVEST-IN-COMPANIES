@@ -10,7 +10,7 @@ Una vez configurado el archivo de entorno, tendremos que instalar las tablas nec
 php artisan migrate:fresh --seed
 ```
 
-Este comando nos crea automáticamente las tablas necesarias para el proyecto.
+Este comando nos crea automáticamente las tablas necesarias para el proyecto e incluirá los datos por defecto en las mismas.
 
 <a name="tablas"></a>
 
@@ -18,18 +18,27 @@ Este comando nos crea automáticamente las tablas necesarias para el proyecto.
 
 
 
-| Tabla                                          | Descripción                                                                                               |
-| :--------------------------------------------- | :-------------------------------------------------------------------------------------------------------- |
-| `usuarios()`                                   | Lista los usuarios que pertenecen a la entidad.                                                           |
-| `asesores()`                                   | Lista los Asesores que pertenecen a la entidad.                                                           |
-| `gestores()`                                   | Lista los Gestores que pertenecen a la entidad.                                                           |
-| `ofertas()`                                    | Listado de ofertas que hay dentro de la entidad.                                                          |
-| `getUsers()`                                   | Lista los usuarios que pertenecen a la entidad en forrmato Array.                                         |
-| `Asociacion()`                                 | Listado de ID's de todas las entidades en formato Array.                                                  |
-| `getFullNameAttribute()`                       | Devuelve el nombre y apellidos de la persona de contacto.                                                 |
-| `NotificacionNuevaAsociacion()`                | Crea una notificación de **Nueva entidad** a los Administradores del site.                                |
-| `NotificacionEliminadoDeLaAsociacion(array())` | Crea una nueva notificación de **Eliminación de Usuario** al listado de usuarios enviados como parámetro. |
-| `NotificacionNuevoEnLaAsociacion(array())`     | Crea una nueva notificación de **Nuevo de Usuario** a los usuarios enviados como parámetro.               |
+| Tabla                  | Descripción                            |
+| :--------------------- | :------------------------------------- |
+| asociacion_user        | Relación Entidad-Usuario               |
+| asociaciones           | Entidades                              |
+| estados_inversores     | Estados posibles de inversor           |
+| formas                 | Formas Jurídicas de empresa            |
+| inversiones            | Inversiones                            |
+| migrations             | Registro de migraciones                |
+| notifications          | Notificaciones dentro de la plataforma |
+| ofertas                | Ofertas                                |
+| password_resets        | Reinicios de contraseñas               |
+| poblaciones            | Poblaciones de España                  |
+| provincias             | Provincias de España                   |
+| role_user              | Relación Role-Usuario                  |
+| roles                  | Diferentes Roles de la plataforma      |
+| sectores               | Sectores de actividad de empresas      |
+| telescope_entries      |
+| telescope_entries_tags |
+| telescope_monitoring   |
+| users                  |
+
 
 Podemos usar el siguiente ejemplo para obtener los usuarios de la entidad.
 
