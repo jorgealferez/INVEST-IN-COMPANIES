@@ -17,20 +17,12 @@ use App\Http\Requests\NuevaEmpresaRequest;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\Generico\ContactoEmpresaNueva;
 
-/**
- * @group Parte Pública
- *
- * Parte publica del site
- */
+
 
 class PublicController extends Controller
 {
 	public $precios;
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
+
 	public function __construct()
 	{
 		$this->precios = collect([
@@ -48,19 +40,7 @@ class PublicController extends Controller
 		// $this->middleware(['auth', 'verified']);
 	}
 
-	/**
-	 * Home
-	 * @queryParam sort Field to sort by
-	 * @queryParam page The page number to return
-	 * @queryParam fields required The fields to include
-	 *  
-	 * @bodyParam title string required The title of the post.
-	 * @bodyParam body string required The title of the post.
-	 * @bodyParam type string The type of post to create. Defaults to 'textophonious'.
-	 * @bodyParam author_id int the ID of the author
-	 * @bodyParam thumbnail image This is required if the post type is 'imagelicious'.
-	 * @return \Illuminate\Contracts\Support\Renderable
-	 */
+
 	public function index()
 	{
 		$provincias = Provincia::all();
@@ -328,17 +308,6 @@ class PublicController extends Controller
 					'inversiones',
 					'invitado',
 					'ofertas'
-				)
-			);
-	}
-
-	public function origintal()
-	{
-		$provincias = Provincia::all();
-		return view('public.home')
-			->with(
-				compact(
-					'provincias'
 				)
 			);
 	}
