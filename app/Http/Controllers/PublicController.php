@@ -61,7 +61,7 @@ class PublicController extends Controller
 	 * @bodyParam thumbnail image This is required if the post type is 'imagelicious'.
 	 * @return \Illuminate\Contracts\Support\Renderable
 	 */
-	public function index(Request $request)
+	public function index()
 	{
 		$provincias = Provincia::all();
 		$sectores = Sector::all();
@@ -81,7 +81,6 @@ class PublicController extends Controller
 		return view('public.home')
 			->with(
 				compact(
-					'request',
 					'provincias',
 					'sectores',
 					'asociaciones',
