@@ -1,4 +1,7 @@
 {
-    "easysass.targetDir": "public/css"
+	"easysass.targetDir": "public/css",
+	"cSpell.ignoreWords": [
+		"asociacion"
+	]
 
 }

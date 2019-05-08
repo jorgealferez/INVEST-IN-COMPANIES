@@ -2,6 +2,17 @@
   - [Instalación](/docs/{{version}}/instalacion)
   - [Configuración](/docs/{{version}}/configuracion)
   - [Bases de datos](/docs/{{version}}/bbdd)
+- ## Middleware
+  - [Middleware](/docs/{{version}}/middleware)
+- ## Controladores
+  - [PublicController](/docs/{{version}}/controlador_public)
+  - [DashBoardController](/docs/{{version}}/controlador_dashboard)
+  - [BoardController](/docs/{{version}}/controlador_board)
+  <!-- - [AjaxController](/docs/{{version}}/controlador_ajax) -->
+  - [AsociacionesController](/docs/{{version}}/controlador_asociaciones)
+  - [InversionesController](/docs/{{version}}/controlador_inversiones)
+  - [OfertasController](/docs/{{version}}/controlador_ofertas)
+  - [UsuariosController](/docs/{{version}}/controlador_usuarios)
 - ## Modelos de datos
   - [Asociacion](/docs/{{version}}/datos_asociacion)
   - [Oferta](/docs/{{version}}/datos_oferta)

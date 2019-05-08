@@ -5,6 +5,7 @@
 /vendor
 /_material
 .env
+.markdownlint.json
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml

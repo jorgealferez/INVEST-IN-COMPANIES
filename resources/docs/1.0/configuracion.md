@@ -1,31 +1,32 @@
 #	Configuración
 
-
-Dentro del directorio donde se ha copiado el proyecto hay un archivo de configuración de entorno llamdao `.env.example`, hacemos una copia y lo renombramos como `.env`. Podemos usar el siguiente comando en Linux para hacer la copia.
+Dentro del directorio donde se ha copiado el proyecto hay un archivo de configuración de entorno llamado `.env.example`, hacemos una copia y lo renombramos como `.env`. Podemos usar el siguiente comando en Linux para hacer la copia.
 
 ---
 
 - [Base de datos](#base-de-datos)
 - [Email](#email)
   
-
-
 ```bash
 cp .env.example .env
 ```
+
 <br><br>
 
-Lo primero que tenemos que hacer es generar una clave de propyecto, para ello usamos el comando:
+Lo primero que tenemos que hacer es generar una clave de proyecto, para ello usamos el comando:
 
 ```bash
 php artisan key:generate
 ```
+
 <br><br>
+
 Una vez creada la clave editaremos los valores de configuración del proyecto dentro del archivo `.env`:
 
 ```bash
 sudo nano .env
 ```
+
 <br><br>
 
 `APP_NAME` [_InvestinCompanies_]
@@ -85,11 +86,12 @@ Contraseña usuario del servidor de la base de datos.
 > {danger} Si se actualizan valores se deberán cambiar también en el archivo `config/database.php` .
 
 <a name="email"></a>
-## Email 
+
+## Email
 
 También podemos configurar los datos de acceso al servidor de correo dentro del archivo `.env`.<br><br>
 
-`MAIL_DRIVER` [_smtp_] 
+`MAIL_DRIVER` [_smtp_]
 
 Tipo de conexión con el servidor de correo.
 
@@ -109,15 +111,8 @@ Nombre de usuario del servidor de correo.
 
 Contraseña usuario del servidor de correo.
 
-
 `MAIL_ENCRYPTION` [_smtp_] [_ssl_]
 
 Tipo de cifrado con el servidor de correo.
 
-
 > {danger} Si se actualizan valores se deberán cambiar también en el archivo `config/mail.php` .
-
-
-
-
-
