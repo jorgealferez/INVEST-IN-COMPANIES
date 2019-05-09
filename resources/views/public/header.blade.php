@@ -43,6 +43,12 @@
 					<a class="nav-link " href="{{ route('home') }}/">{{ __('Home') }}<span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link " href="{{ route('queEs') }}">{{ __('¿Qué es?') }}</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " href="{{ route('quienesSomos') }}">{{ __('¿Quiénes Somos?') }}</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link " href="{{ route('vendeEmpresa') }}">{{ __('Vende tu empresa') }}</a>
 				</li>
 				<li class="nav-item">
@@ -55,7 +61,10 @@
 					<a class="nav-link " href="{{ route('buscador') }}">{{ __('Buscador') }}</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link " href="{{ route('quienesSomos') }}">{{ __('¿Quiénes Somos?') }}</a>
+					<a class="nav-link " href="{{ route('noticias') }}">{{ __('Noticias') }}</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " href="{{ route('puntosAtencion') }}">{{ __('Puntos de atención') }}</a>
 				</li>
 
 
