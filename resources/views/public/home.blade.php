@@ -2,57 +2,6 @@
 @section('contenido')
 @include('public.carrusel')
 
-<div class="container  pt-0 pb-5">
-
-	<div class="row">
-
-		<div class="col-md-12  text-center p-5">
-			<h2 class="text-uppercase">Noticias</h2>
-		</div>
-	</div>
-
-	<div class="row pb-5">
-
-		<div class="col-lg-4 text-center equal">
-			<img src="images/slider/noticia1.jpg" alt="" class="img-fluid mx-auto">
-			<h3 class="pt-5 pb-2 text-center ">Una de las razones que mantienen la compra de empresas en España</h3>
-			<p class="p-3 text-justify ">Muchas empresas españolas son fruto del gran crecimiento del país después de la
-				crisis de los años 70. Sus propietarios
-				están en edad de jubilación y muchos no tienen sucesión, con lo que su única alternativa es la venta de
-				la sociedad a
-				capitales externos para mantener el negocio en funcionamiento obteniendo además liquidez.</p>
-		</div>
-
-		<div class="col-lg-4  text-center equal">
-			<img src="images/slider/noticia2.jpg" alt="" class="img-fluid">
-			<h3 class="pt-5 pb-2 text-center">Empresas Unicornio,<br> en busca de <br>la nueva Apple</h3>
-			<p class="p-3 text-justify">El término de unicornio se aplica a las empresas que consiguen un valor superior
-				a 1.000 millones de dólares en su etapa
-				inicial (un billón, en términos anglosajones). Esta gran cifra, tan mitológica como el animal, en un
-				período de tiempo
-				relativamente corto, sólo es alcanzada por empresas que tienen un negocio potencial muy grande, empresas
-				con grandes
-				expectativas.
-			</p>
-		</div>
-
-		<div class="col-lg-4  text-center equal">
-			<img src="images/slider/noticia3.jpg" alt="" class="img-fluid">
-			<h3 class="pt-5 pb-2 text-center">Las empresas no pueden ser una oficina de empleo para los propietarios
-			</h3>
-			<p class="p-3 text-justify">En sus manos, como CEO de Vidal Golosinas -consejero delegado-, está seguir
-				liderando un legado empresarial de más de
-				medio siglo. Francisco José Hernández Arnaldos, 53 años, padre de tres hijos, desempeña también el
-				puesto de vicepresidente
-				con el reto de seguir haciendo crecer a una empresa que es todo un referente en Molina de Segura y en la
-				Región.</p>
-		</div>
-	</div>
-	<!-- /.col-lg-4 -->
-</div>
-<!-- /.row -->
-
-
 <div class="featurette bg-primary">
 	<form method="POST" class="" action="{{ route('buscador') }}">
 		@csrf @method('POST')
@@ -149,6 +98,136 @@
 		</div>
 	</form>
 </div>
+
+<div class="container pt-5 pb-5">
+    
+        <div class="row">
+            
+                <div class="col-md-12">
+                        <h3 class="text-center">“EL PROGRAMA DE APOYO GRATUITO PARA LA TRANSMISIÓN Y LA PROMOCIÓN DEL CRECIMIENTO DE LAS PYMES Y LOS AUTÓNOMOS”.</h3>
+                </div>
+            
+        </div>
+    
+</div>
+
+
+<div class="container pt-0 pb-5">
+    
+    <div class="row">
+        
+        <div class="col-lg-6">
+            <img src="/images/banner/testigo.png" width="100%" alt="" title="">
+        </div>
+        
+        <div class="col-lg-6">
+            <img src="/images/banner/manos.png" width="100%" alt="" title="">            
+        </div>
+        
+    </div>
+    
+</div>
+
+
+<div class="container pt-0 pb-5">
+    
+    <div class="row">
+        
+        <div class="col-md-12">
+            
+            <p class="p-0 text-justify ">Estudios como el del Colegio de Registradores de la Propiedad que publican en su web[1], 
+                    revelan que en los ultimos 3 años (2018-2017-2016) se extinguen una media de alrededor de 30.000 empresas por año. 
+                    Una parte de esos cierres tienen que ver con la falta de un relevo en la propiedad del negocio o la direccion y/o 
+                    por no conocer formulas adecuadas para su promoción.</p>
+            
+            <p class="p-0 text-justify ">Por lo que muchas de ellas continuarían generando empleos y riqueza directamente e indirectamente, 
+                    de encontrar a alguien dispuesto a continuar con la actividad o a invertir en ella.</p>
+            
+            <p  class="p-0 text-justify ">A nales de 2018, la Confederación Española de la Pequeña y Mediana Empresa, CEPYME, decidió 
+                    impulsar PLAN INVEST IN COMPANIES, en adelante PIC, con la participacion de las entidades colaboradoras que conforman 
+                    la red de puntos de apoyo, con el propósito de mantener, apoyar y promover el tejido empresarial de nuestro pais, 
+                    muy especialmente la pequeña y microempresa, mediante el asesoramiento profesional gratuito a empresarias y empresarios 
+                    que no pueden continuar con su negocio por distintos motivos; jubilación, enfermedad, carga de trabajo, etc. Y no siempre 
+                    es facil saber qué hacer o cómo actuar, para pasar el relevo de tus ganas e ilusiones a otro que quiera sucederle.</p>
+            
+            <p class="p-0 text-justify ">Tambien el proyecto va dirigido a empresarios que se están planteando impulsar o redimensionar 
+                    su negocio, y desean saber como hacerlo.</p>
+            
+            <p class="p-0 text-justify">Y por último, también presta asisitencia a quienes se estén planteando emprender un negocio de los 
+                    que se oferta en al plataforma.</p>
+            
+            <p class="p-0 text-justify">Para este proyecto CEPYME cuenta con la experiencia de mas de 2 años como coordinadores del
+                    Plan de Apoyo a la Transmisión de Empresas, impulsado por el Ministerio de Economia y Empresas
+                    del Gobierno de España. Tiempo que nos ha permitido aprender de los éxitos y de los fracasos,
+                    pero sobre todo ha sido muy inspirador para crear el PIC con mas servicios gratuitos que son
+                    demandados.</p>
+            
+            <p class="p-0 text-justify">También contamos con la experiencia de los asesores de negocio, de los puntos de
+                    apoyo de las Entidades Adheridas al PIC, con experiencia en diversos campos, y con un
+                    equipo de expertos profesionales en la materia que dan soporte a la red de puntos de
+                    apoyo y a los clientes, para las operación mas complejas.</p>
+            <p class="p-0 text-justify">Invest in Companies de forma gratutita, favorece la continuidad de empresas rentables
+                    mediante asesoramiento sobre el relevo de sus propietarios y/o informando sobre posibles
+                    vias interesantes para el crecimiento de los negocios, estimulando a emprendedores
+                    y a empresarios con cierta experiencia a tomar el testigo de negocios, contribuyendo
+                    a mantener, reforzar y consolidar el tejido empresarial en España.</p>
+            
+        </div>
+        
+    </div>
+    
+</div> 
+    
+
+<div class="container  pt-0 pb-5">
+
+	<div class="row">
+
+		<div class="col-md-12  text-center">
+			<h2 class="text-uppercase">Noticias</h2>
+		</div>
+	</div>
+
+	<div class="row pb-5 pt-5">
+
+		<div class="col-lg-4 text-center equal">
+			<img src="images/slider/noticia1.jpg" alt="" class="img-fluid mx-auto">
+			<h3 class="pt-5 pb-2 text-center ">Una de las razones que mantienen la compra de empresas en España</h3>
+			<p class="p-3 text-justify ">Muchas empresas españolas son fruto del gran crecimiento del país después de la
+				crisis de los años 70. Sus propietarios
+				están en edad de jubilación y muchos no tienen sucesión, con lo que su única alternativa es la venta de
+				la sociedad a
+				capitales externos para mantener el negocio en funcionamiento obteniendo además liquidez.</p>
+		</div>
+
+		<div class="col-lg-4  text-center equal">
+			<img src="images/slider/noticia2.jpg" alt="" class="img-fluid">
+			<h3 class="pt-5 pb-2 text-center">Empresas Unicornio,<br> en busca de <br>la nueva Apple</h3>
+			<p class="p-3 text-justify">El término de unicornio se aplica a las empresas que consiguen un valor superior
+				a 1.000 millones de dólares en su etapa
+				inicial (un billón, en términos anglosajones). Esta gran cifra, tan mitológica como el animal, en un
+				período de tiempo
+				relativamente corto, sólo es alcanzada por empresas que tienen un negocio potencial muy grande, empresas
+				con grandes
+				expectativas.
+			</p>
+		</div>
+
+		<div class="col-lg-4  text-center equal">
+			<img src="images/slider/noticia3.jpg" alt="" class="img-fluid">
+			<h3 class="pt-5 pb-2 text-center">Las empresas no pueden ser una oficina de empleo para los propietarios
+			</h3>
+			<p class="p-3 text-justify">En sus manos, como CEO de Vidal Golosinas -consejero delegado-, está seguir
+				liderando un legado empresarial de más de
+				medio siglo. Francisco José Hernández Arnaldos, 53 años, padre de tres hijos, desempeña también el
+				puesto de vicepresidente
+				con el reto de seguir haciendo crecer a una empresa que es todo un referente en Molina de Segura y en la
+				Región.</p>
+		</div>
+	</div>
+	<!-- /.col-lg-4 -->
+</div>
+<!-- /.row -->
 
 {{--
 <div class="container  pt-0">
