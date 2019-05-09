@@ -10,9 +10,10 @@
 
 		<div class="col-4 pr-0">
 			<nav class="">
+                            {{--	
 				<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex float-right">
 					<li class="nav-item">
-						<a class="nav-link px-3 py-2 text-white" href="https://twitter.com/in_companies" target="_blank"><i class="fab fa-twitter"></i></a>
+					<a class="nav-link px-3 py-2 text-white" href="https://twitter.com/in_companies" target="_blank"><i class="fab fa-twitter"></i></a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link px-3 py-2 text-white" href="https://www.facebook.com/pg/Invest-in-Companies-370660103782176/" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -21,6 +22,7 @@
 						<a class="nav-link px-3 py-2 text-white" href="ttps://www.linkedin.com/company/invest-in-companies" target="_blank"><i class="fab fa-linkedin-in"></i></a>
 					</li>
 				</ul>
+                            --}}
 			</nav>
 		</div>
 	</div>
@@ -92,7 +94,16 @@
 				</li>
 				@endif
 
-
+                                
+					<li class="nav-item">
+						<a class="nav-link text-white" href="https://twitter.com/in_companies" target="_blank"><i class="fab fa-twitter"></i></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-white" href="https://www.facebook.com/pg/Invest-in-Companies-370660103782176/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-white" href="ttps://www.linkedin.com/company/invest-in-companies" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+					</li>
 			</ul>
 		</div>
 	</nav>
