@@ -96,6 +96,32 @@ class PublicController extends Controller
 				)
 			);
 	}
+        
+        public function quees ()
+        {
+            $provincias = Provincia::all();
+
+		return view('public.quees')
+			->with(
+				compact(
+					'provincias',
+					'request'
+				)
+			);
+        }
+        
+        public function noticias ()
+        {
+            $provincias = Provincia::all();
+
+		return view('public.noticias')
+			->with(
+				compact(
+					'provincias',
+					'request'
+				)
+			);
+        }
 
 	public function privacidad()
 	{
@@ -130,15 +156,30 @@ class PublicController extends Controller
 				)
 			);
 	}
-	public function socio()
+	public function socio(NuevaEmpresaRequest $request)
 	{
+                $provincias = Provincia::all();
+            
 		return view('public.socio')
+			->with(
+				compact(
+					'provincias',
+					'request'
+				)
+			);
+	}
+        public function puntosatencion()
+	{
+                $provincias = Provincia::all();
+            
+		return view('public.puntosatencion')
 			->with(
 				compact(
 					'provincias'
 				)
 			);
 	}
+        
 	public function registro(RegistroRequest $request)
 	{
 		$user = User::create([

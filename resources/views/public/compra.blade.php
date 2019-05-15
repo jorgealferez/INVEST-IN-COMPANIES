@@ -10,50 +10,38 @@
 	<div class="row">
 		<div class="col-md-12">
 			<p>
-				Tal vez te encanta la idea de ser tu propio jefe o hacer crecer un negocio exitoso. Comprar una compañía que ya está establecida
-				puede ser un camino más rápido y más fácil que empezar de cero o la mejor alternativa para hacer crecer tu negocio, conseguir
-				mayor cobertura geográfica o integrar nuevas líneas de negocio.
+				Tal vez te encanta la idea de ser tu propio jefe o hacer crecer un negocio exitoso. Comprar una compañía 
+                                que ya está establecida puede ser un camino más rápido y más fácil que empezar de cero o la mejor 
+                                alternativa para hacer crecer tu negocio, conseguir mayor cobertura geográca o integrar nuevas líneas de 
+                                negocio.
 			</p>
 		</div>
 	</div>
-	<div class="row mt-5">
+	<div class="row mb-5">
 		<div class="col-lg-6">
 			<p>
 				No son escasas las razones por las que se decide comprar una empresa:
 			</p>
 			<ul>
-				<li>
-					Satisfacer la iniciativa emprendedora a través de una empresa ya en marcha en lugar de crear una nueva.
-				</li>
-				<li>
-					Consolidar la posición de dominio en el sector: Integrando a un competidor y reforzando la presencia de la empresa en el
-					mercado.
-				</li>
-				<li>
-					Disfrutar de ventajas vinculadas a una ampliación de dimensión tales como:
-					<ul>
-						<li>La reducción y el reparto de costes de estructura.</li>
-						<li>La mayor y mejor posición de negociación con terceros.</li>
-					</ul>
-				</li>
-				<li>
-					Entrar en nuevos mercados: La empresa que compra le aporta diferentes redes comerciales, así como una cartera de clientes
-					en un mercado en el que hasta ahora no tenía presencia.
-				</li>
-				<li>
-					Diversificar la gama de producto, de tal forma que permita reducir riesgos, costes y retrasos asociados al desarrollo interno.
-				</li>
-				<li>
-					Adquirir nuevas tecnologías reduciendo los períodos de aprendizaje.
-				</li>
-				<li>Aprovechar sinergias financieras.</li>
-				<li>Sacar mayor y mejor rentabilidad al dinero.</li>
-				<li>
-					Obtener subvenciones o ayudas fiscales destinadas a reflotar a empresas en crisis, etc.)
-				</li>
+				<li>Satisfacer la iniciativa emprendedora a través de una empresa ya en marcha en lugar de crear 
+                                        una nueva.
+                                </li>
+                                <li>Consolidar la posición de dominio en el sector: Integrando a un competidor y reforzando la 
+                                        presencia de la empresa en el mercado e incluso entrar en otros nuevos
+                                </li>
+                                <li>Disfrutar de ventajas vinculadas a una ampliación de dimensión tales como:
+                                </li>
+                                
+                                        <ul>
+                                                <li>La reducción y el reparto de costes de estructura.</li>
+                                                <li>La mayor y mejor posición de negociación con terceros.</li>
+                                        </ul>
+                                
+                                <li>Diversificar la gama de producto, adquirir nuevas tecnologías de tal forma que permita reducir riesgos</li>
+                                <li>Aprovechar sinergias financieras.</li>
 			</ul>
 		</div>
-		<div class="col-lg-6 mx-auto text-white p-3 bg-verdeOscuro mt-md-5 mt-lg-0 ">
+		<div class="col-lg-6 mx-auto text-white p-3 bg-verde mt-md-5 mt-lg-0 ">
 			@if (session()->has('enviado'))
 
 			<div class="row h-100">
@@ -159,81 +147,103 @@
 	<div class="row">
 
 		<div class="col-md-12  text-center p-5">
-			<h3 class="text-uppercase">{{ __('Servicios') }}</h3>
+			<h3 class="text-uppercase">{{ __('Servicios gratuitos') }}</h3>
 		</div>
-	</div>
-	<div class="row   text-justify">
-
-		<div class="col-md-6 ">
-
-			<div class="servicio">
-				<h4 class="text-center">
-					<i class="fas fa-chart-line"></i>Diseño estratégico <br>de crecimiento</h4>
-
-				<div class="row">
-
-					<div class="col-md-12">
-						Analizamos el mercado anticipándonos las tendencias del mismo y a los derroteros de la innovación permitiendo definir los
-						siguientes pasos estratégicos para mantener tu empresa en constante crecimiento.
-					</div>
-				</div>
-			</div>
-
-		</div>
-		<div class="col-md-6 ">
-
-			<div class="servicio">
-				<h4 class="text-center">
-					<i class="fas fa-users"></i>Búsqueda de <br>alianzas adecuadas</h4>
-
-				<div class="row">
-
-					<div class="col-md-12">
-						Podemos detectar a las compañías mas adecuadas por tamaño, ubicación, posicionamiento entre otros factores para poder integrar
-						en tu negocio.<br><br>
-					</div>
-				</div>
-			</div>
-
-		</div>
-		<div class="col-md-6 ">
-
-			<div class="servicio">
-				<h4 class="text-center">
-					<i class="mdi mdi-chart-bar"></i>Financiación <br>Corporativa</h4>
-
-				<div class="row">
-
-					<div class="col-md-12">
-						Estructuramos la empresa para la venta facilitando el atractivo y la entrada al posible inversor mediante diferentes mecanismos
-						de financiación.<br>
-					</div>
-
-				</div>
-			</div>
-
-		</div>
-
-		<div class="col-md-6 ">
-
-			<div class="servicio">
-				<h4 class="text-center">
-					<i class="far fa-handshake"></i>Proceso de <br>negociación y cierre</h4>
-
-				<div class="row">
-
-					<div class="col-md-12">
-						Velamos por la imparcialidad del proceso, asegurando el juego limpio de la operación y que la decisión que tomes hoy sea
-						de tu total conformidad.
-					</div>
-
-				</div>
-			</div>
-
-		</div>
-
 	</div>
 </div>
+
+<div class="row text-justify bulletbox flexlist">
+
+        <div class="bullet-col-5 flexlist-item">
+
+                <div class="servicio">
+                        <h4 class="text-center">
+                                <i class="mdi mdi-seal"></i>ANÁLISIS<br> ESTRATÉGICO</h4>
+
+                        <div class="row">
+
+                                <div class="col-md-12">
+                                        Análisis de objetivos pretendidos para realizar la compra de una nueva empresa y orientación
+                                        a la búsqueda.
+                                </div>
+                        </div>
+                </div>
+
+        </div>
+
+        <div class="bullet-col-5 flexlist-item">
+
+                <div class="servicio">
+                        <h4 class="text-center">
+                                <i class="mdi mdi-chart-bar"></i>CONSIDERACIONES<br> CORPORATIVAS</h4>
+
+                        <div class="row">
+
+                                <div class="col-md-12">
+                                        Orientación sobre formas de Financiación, valoración de la empresa y economías de escala.
+                                </div>
+
+                        </div>
+                </div>
+
+        </div>
+        <div class="bullet-col-5 flexlist-item">
+
+                <div class="servicio">
+                        <h4 class="text-center">
+                                <i class="mdi mdi-account-multiple-plus"></i>FASES<br> DEL PROCESO</h4>
+
+                        <div class="row">
+
+                                <div class="col-md-12">
+                                        Orientación sobre las fases del proceso (lanzamiento de ofertas y negociación y cierre) y 
+                                        condiciones de entrada.
+                                </div>
+                        </div>
+                </div>
+
+        </div>
+
+        <div class="bullet-col-5 flexlist-item">
+
+                <div class="servicio">
+                        <h4 class="text-center">
+                                <i class="far fa-handshake"></i>COSTES Y DURACIÓN<br> DEL PROCESO</h4>
+
+                        <div class="row">
+
+                                <div class="col-md-12">
+                                        Asesoramiento para la búsqueda de los recursos de apoyo más adecuados para el proceso.
+                                </div>
+
+                        </div>
+                </div>
+
+        </div>
+        <div class="bullet-col-5 flexlist-item">
+
+                <div class="servicio">
+                        <h4 class="text-center">
+                                <i class="far fa-handshake"></i>REGISTRO<br> COMO INVERSOR</h4>
+
+                        <div class="row">
+
+                                <div class="col-md-12">
+                                        Registro gratuito con un perfil de inversor en la plataforma de Invest in Companies para analizar
+                                        todas las ofertas de venta vigentes.
+                                </div>
+
+                        </div>
+                </div>
+
+        </div>
+
+</div>
+
+<div class="container my-5">
+    
+</div>
+
 @endsection
  
 @section('scripts')

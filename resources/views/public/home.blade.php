@@ -143,7 +143,7 @@
             <p class="p-0 text-justify ">Por lo que muchas de ellas continuarían generando empleos y riqueza directamente e indirectamente, 
                     de encontrar a alguien dispuesto a continuar con la actividad o a invertir en ella.</p>
             
-            <p  class="p-0 text-justify ">A nales de 2018, la Confederación Española de la Pequeña y Mediana Empresa, CEPYME, decidió 
+            <p  class="p-0 text-justify ">A finales de 2018, la Confederación Española de la Pequeña y Mediana Empresa, CEPYME, decidió 
                     impulsar PLAN INVEST IN COMPANIES, en adelante PIC, con la participacion de las entidades colaboradoras que conforman 
                     la red de puntos de apoyo, con el propósito de mantener, apoyar y promover el tejido empresarial de nuestro pais, 
                     muy especialmente la pequeña y microempresa, mediante el asesoramiento profesional gratuito a empresarias y empresarios 

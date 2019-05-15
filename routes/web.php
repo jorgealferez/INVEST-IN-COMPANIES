@@ -30,6 +30,9 @@ Route::get('/compra-tu-empresa', 'PublicController@compra')->name('compraEmpresa
 Route::any('/buscador', 'PublicController@buscador')->name('buscador');
 Route::get('/busca-socio', 'PublicController@socio')->name('socio');
 Route::get('/quienes-somos', 'PublicController@quienes')->name('quienesSomos');
+Route::get('/que-es', 'PublicController@quees')->name('queEs'); // FALTA AÑADIR
+Route::get('/puntos-de-atencion', 'PublicController@puntosatencion')->name('puntosAtencion'); // FALTA AÑADIR
+Route::get('/noticias', 'PublicController@noticias')->name('noticias'); // FALTA AÑADIR
 Route::get('/politica-proteccion', 'PublicController@proteccion')->name('proteccion');
 Route::get('/politica-privacidad', 'PublicController@privacidad')->name('privacidad');
 Route::get('/aviso-legal', 'PublicController@aviso')->name('aviso');

@@ -13,19 +13,24 @@
 
 	<div class="row   text-justify">
 
-		<div class="col-md-5">
-			<img src="images/about2.jpg" alt="" class="img-fluid img-thumbnail">
+		<div class="col-md-4">
+			<img src="images/pic/old-man-coffee.jpg" alt="" class="img-fluid img-thumbnail">
 		</div>
 
-		<div class="col-md-7">
+		<div class="col-md-8">
 			<ul class="lista text-justify">
 				<li>
-					<i class="fas fa-check"></i>¿Se aproxima la edad de jubilación y no cuentas con herederos que quieran
-					<strong>continuar con la actividad</strong> de la empresa?
+					<i class="fas fa-check"></i>¿Se aproxima la edad de jubilación y no cuentas con herederos que 
+                                        quieran continuar con la actividad de la empresa?
 				</li>
 				<li>
-					<i class="fas fa-check"></i>¿Ha llegado el momento de recoger los frutos del trabajo de tantos años de sacrificio?
+					<i class="fas fa-check"></i>¿Ha llegado el momento de recoger los frutos del trabajo de tantos años 
+                                        de sacrificio?
 				</li>
+                                <li>
+                                        <i class="fas fa-check"></i>¿Quieres desinvertir en tu proyecto para acometer nuevos retos 
+                                        empresariales?
+                                </li>
 			</ul>
 
 
@@ -36,20 +41,12 @@
 	<div class="row mt-5 text-justify">
 
 		<div class="col-md-12">
-			<p>Puede que alguna o varias de estas razones sean la causa de la venta. La decisión de vender una empresa es posiblemente
-				una de las decisiones más difíciles en la vida de un empresario. Por otra parte, el propio proceso de transmisión de
-				empresas se considera como la principal barrera para la conclusión de contratos de compraventa de empresas. Este problema
-				se pone especialmente de manifiesto en caso de emprendedores y pequeñas empresas, ya que las grandes empresas pueden
-				normalmente encontrar sin excesivos problemas el asesoramiento fiscal y legal apropiado.</p>
-
-		</div>
-	</div>
-
-	<div class="row text-justify">
-
-		<div class="col-md-12">
-			<p>En cualquier caso, una vez tomada la decisión, lo importante es hacerlo de la forma adecuada, entendiendo y aplicando
-				la normativa vigente en esta materia, ¿y qué mejor manera que hacerlo de la mano de CEPYME y Grupo PGS?.</p>
+			<p>Puede que alguna o varias de estas razones sean la causa de la venta. La decisión de vender una empresa es 
+                            posiblemente una de las decisiones más difíciles en la vida de un empresario. Por otra parte, el propio 
+                            proceso de transmisión de empresas se considera como la principal barrera para la conclusión de contratos 
+                            de compraventa de empresas. Este problema se pone especialmente de maniesto en caso de emprendedores y pequeñas 
+                            empresas, ya que las grandes empresas pueden normalmente encontrar sin excesivos problemas el asesoramiento 
+                            fiscal y legal apropiado.</p>
 
 		</div>
 	</div>
@@ -59,82 +56,102 @@
 	<div class="row">
 
 		<div class="col-md-12  text-center p-5">
-			<h3 class="text-uppercase">{{ __('Servicios') }}</h3>
+			<h3 class="text-uppercase">{{ __('Servicios gratuitos') }}</h3>
 		</div>
 	</div>
+    
+</div>
+	
+<div class="row text-justify bulletbox flexlist">
 
-	<div class="row   text-justify">
+        <div class="bullet-col-5 flexlist-item">
 
-		<div class="col-md-6 ">
+                <div class="servicio">
+                        <h4 class="text-center">
+                                <i class="mdi mdi-seal"></i>ANÁLISIS<br> PREELIMINAR</h4>
 
-			<div class="servicio">
-				<h4 class="text-center">
-					<i class="mdi mdi-seal"></i>Valoración<br> de empresas</h4>
+                        <div class="row">
 
-				<div class="row">
+                                <div class="col-md-12">
+                                        Recogida de datos preliminares y principales magnitudes de la compañía para análisis de situación.
+                                </div>
+                        </div>
+                </div>
 
-					<div class="col-md-12">
-						Poseemos larga experiencia en el proceso de valoración de empresas, utilizando diferentes métodos de valoración y optimizando
-						el mismo para ajustarnos a la demanda del mercado y a las expectativas del vendedor.
-					</div>
-				</div>
-			</div>
+        </div>
 
-		</div>
+        <div class="bullet-col-5 flexlist-item">
 
-		<div class="col-md-6 ">
+                <div class="servicio">
+                        <h4 class="text-center">
+                                <i class="mdi mdi-chart-bar"></i>VALORACIÓN<br> DE EMPRESA</h4>
 
-			<div class="servicio">
-				<h4 class="text-center">
-					<i class="mdi mdi-chart-bar"></i>Financiación <br>Corporativa</h4>
+                        <div class="row">
 
-				<div class="row">
+                                <div class="col-md-12">
+                                        Explicación de los diferentes métodos de valoración para cada caso y orientación sobre el precio 
+                                        de venta.
+                                </div>
 
-					<div class="col-md-12">
-						Estructuramos la empresa para la venta facilitando el atractivo y la entrada al posible inversor mediante diferentes mecanismos
-						de financiación.<br><br>
-					</div>
+                        </div>
+                </div>
 
-				</div>
-			</div>
+        </div>
+        <div class="bullet-col-5 flexlist-item">
 
-		</div>
-		<div class="col-md-6 ">
+                <div class="servicio">
+                        <h4 class="text-center">
+                                <i class="mdi mdi-account-multiple-plus"></i>FASES<br> DEL PROCESO</h4>
 
-			<div class="servicio">
-				<h4 class="text-center">
-					<i class="mdi mdi-account-multiple-plus"></i>Búsqueda <br>de Inversores</h4>
+                        <div class="row">
 
-				<div class="row">
+                                <div class="col-md-12">
+                                        Orientación sobre las fases del proceso (propuesta de venta, búsqueda de compradores y negociación y 
+                                        cierre) y condiciones de salida.
+                                </div>
+                        </div>
+                </div>
 
-					<div class="col-md-12">
-						Tenemos acceso al mercado mas activo y con mayor capacidad inversora, buscando al comprador más adecuado.<br><br>
-					</div>
-				</div>
-			</div>
+        </div>
 
-		</div>
+        <div class="bullet-col-5 flexlist-item">
 
-		<div class="col-md-6 ">
+                <div class="servicio">
+                        <h4 class="text-center">
+                                <i class="far fa-handshake"></i>COSTES Y DURACIÓN<br> DEL PROCESO</h4>
 
-			<div class="servicio">
-				<h4 class="text-center">
-					<i class="far fa-handshake"></i>Proceso de <br>negociación y cierre</h4>
+                        <div class="row">
 
-				<div class="row">
+                                <div class="col-md-12">
+                                        Asesoramiento para la búsqueda de los recursos de apoyo más adecuados para el proceso.
+                                </div>
 
-					<div class="col-md-12">
-						Velamos por la imparcialidad del proceso, asegurando el juego limpio de la operación y que la decisión que tomes hoy sea
-						de tu total conformidad.
-					</div>
+                        </div>
+                </div>
 
-				</div>
-			</div>
+        </div>
+        <div class="bullet-col-5 flexlist-item">
 
-		</div>
+                <div class="servicio">
+                        <h4 class="text-center">
+                                <i class="far fa-handshake"></i>PUBLICACIÓN<br> DE LA OFERTA</h4>
 
-	</div>
+                        <div class="row">
 
+                                <div class="col-md-12">
+                                        Publicación de la empresa en venta con información relevante con visibilidad de todos los inversores 
+                                        interesados.
+                                </div>
+
+                        </div>
+                </div>
+
+        </div>
+
+</div>
+
+<div class="container my-5">
+    
 </div>
 
 <div class="container-fluid info py-5">

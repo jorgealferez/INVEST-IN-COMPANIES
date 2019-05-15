@@ -13,23 +13,23 @@
 
 	<div class="row   text-justify">
 
-		<div class="col-md-5">
-			<img src="images/about2.jpg" alt="" class="img-fluid img-thumbnail">
+		<div class="col-md-4">
+			<img src="images/pic/partner.jpg" alt="" class="img-fluid img-thumbnail">
 		</div>
 
-		<div class="col-md-7">
+		<div class="col-md-8">
 			<ul class="lista text-justify">
 				<li>
-					<i class="fas fa-check"></i>¿La falta de <strong>medios financieros, organizativos o técnicos</strong> te impiden continuar
-					con tu proyecto?
+					<i class="fas fa-check"></i>¿La falta de medios financieros, organizativos o técnicos te 
+                                        impiden continuar con tu proyecto?
 				</li>
 				<li>
-					<i class="fas fa-check"></i>¿Necesitas obtener <strong>liquidez</strong>?
+					<i class="fas fa-check"></i>¿Necesitas obtener liquidez?
 				</li>
-				<li>
-					<i class="fas fa-check"></i>¿La <strong>obsolescencia tecnológica</strong> te obliga a realizar inversiones que no puedes
-					afrontar?
-				</li>
+                                <li>
+                                        <i class="fas fa-check"></i>¿La obsolescencia tecnológica te obliga a realizar inversiones 
+                                        que no puedes afrontar?
+                                </li>
 			</ul>
 
 
@@ -40,21 +40,16 @@
 	<div class="row mt-5 text-justify">
 
 		<div class="col-md-12">
-			<p>La incorporación de un socio es un proceso complejo que requiere de un asesoramiento profesional por los múltiples factores
-				que confluyen en el mismo, pero un nuevo socio puede suponer un gran aliado a tener muy en cuenta. Un socio es una persona
-				o empresa que te va a acompañar durante mucho tiempo y con la que tendrás que tomar decisiones ahora velando por el bien
-				común.
-			</p>
-
-		</div>
-	</div>
-
-	<div class="row text-justify">
-
-		<div class="col-md-12">
-			<p>Por ello, escoger al socio adecuado y sentar desde el inicio las bases de las reglas del juego (con el pacto de socios)
-				es casi tan importante como saber qué valor hay que darle a la parte de tu empresa que estás dispuesto a ceder a cambio
-				de que entre un nuevo socio en tu compañía.</p>
+			<p>La incorporación de un socio es un proceso complejo que requiere de un asesoramiento profesional por los 
+                            múltiples factores que confluyen en el mismo, pero un nuevo socio puede suponer un gran aliado a tener 
+                            muy en cuenta. Un socio es una persona o empresa que te va a acompañar durante mucho tiempo y con la que 
+                            tendrás que tomar decisiones ahora velando por el bien común.
+                        </p>
+                        <p>
+                            Por ello, escoger al socio adecuado y sentar desde el inicio las bases de las reglas del juego (con el 
+                            pacto de socios) es casi tan importante como saber qué valor hay que darle a la parte de tu empresa que 
+                            estás dispuesto a ceder a cambio de que entre un nuevo socio en tu compañía.
+                        </p>
 
 		</div>
 	</div>
@@ -64,84 +59,198 @@
 	<div class="row">
 
 		<div class="col-md-12  text-center p-5">
-			<h3 class="text-uppercase">{{ __('Servicios') }}</h3>
+			<h3 class="text-uppercase">{{ __('Servicios gratuitos') }}</h3>
+		</div>
+	</div>
+    
+</div>
+	
+<div class="row text-justify bulletbox flexlist">
+
+        <div class="bullet-col-5 flexlist-item">
+
+                <div class="servicio">
+                        <h4 class="text-center">
+                                <i class="mdi mdi-seal"></i>ANÁLISIS<br> ESTRATÉGICO</h4>
+
+                        <div class="row">
+
+                                <div class="col-md-12">
+                                        Análisis de objetivos pretendidos con la incorporación de un socio y orientación a la 
+                                        selección del inversor más adecuado
+                                </div>
+                        </div>
+                </div>
+
+        </div>
+
+        <div class="bullet-col-5 flexlist-item">
+
+                <div class="servicio">
+                        <h4 class="text-center">
+                                <i class="mdi mdi-chart-bar"></i>VALORACIÓN<br> DE EMPRESAS</h4>
+
+                        <div class="row">
+
+                                <div class="col-md-12">
+                                        Orientación sobre los diferentes métodos de valoración.
+                                </div>
+
+                        </div>
+                </div>
+
+        </div>
+        <div class="bullet-col-5 flexlist-item">
+
+                <div class="servicio">
+                        <h4 class="text-center">
+                                <i class="mdi mdi-account-multiple-plus"></i>PROPUESTA<br> DE INVERSIÓN</h4>
+
+                        <div class="row">
+
+                                <div class="col-md-12">
+                                        Orientación sobre la propuesta de inversión a un posible socio (porcentaje ofertado, 
+                                        ventajas competitivas, etc).
+                                </div>
+                        </div>
+                </div>
+
+        </div>
+
+        <div class="bullet-col-5 flexlist-item">
+
+                <div class="servicio">
+                        <h4 class="text-center">
+                                <i class="far fa-handshake"></i>COSTES Y DURACIÓN<br> DEL PROCESO</h4>
+
+                        <div class="row">
+
+                                <div class="col-md-12">
+                                        Asesoramiento para la búsqueda de los recursos de apoyo más adecuados para el proceso.
+                                </div>
+
+                        </div>
+                </div>
+
+        </div>
+        <div class="bullet-col-5 flexlist-item">
+
+                <div class="servicio">
+                        <h4 class="text-center">
+                                <i class="far fa-handshake"></i>PUBLICACIÓN<br> DE LA OFERTA</h4>
+
+                        <div class="row">
+
+                                <div class="col-md-12">
+                                        Publicación de la propuesta de inversión visible para todos los inversores interesados.
+                                </div>
+
+                        </div>
+                </div>
+
+        </div>
+
+</div>
+
+<div class="container my-5">
+    
+</div>
+
+<div class="container-fluid info py-5">
+	<div class="container">
+		<a name="formulario"></a>
+
+
+		<div class="row row justify-content-center">
+			<div class="col-md-12   p-5">
+				<h2 class="text-uppercase text-center pb-5">{{ __('Busca un socio') }}</h2>
+				<p class="text-center">Solicita más información sobre la búsqueda de socios para su empresa.</p>
+			</div>
+			<div class="col-md-3 text-right">
+				<div class="row">
+
+					<div class="col-md-12 py-3">
+						<a href="mailto:{{ Config::get('app.email') }}" target="_blank"><i class="fa fa-envelope"></i> {{ Config::get('app.email') }}</a>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-md-5">
+				@if (session()->has('enviado'))
+
+				<div class="row">
+
+					<div class="col-md-12 pt-4">
+						<h4>{{ __('Gracias por ponerte en contacto con nosotros') }}</h4>
+						{{ __('en breve nos pondremos en contacto contigo.') }}
+					</div>
+				</div>
+				@else
+				<form method="POST" class="" action="{{ action('PublicController@vendeContacto')}}">
+					@csrf @method('PUT')
+					<input type="hidden" name="tab" value="modificar">
+
+					<div class="row">
+
+						<div class="col-md-12">
+
+							<div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }}">
+								<input placeholder="{{ __('Nombre y apellidos') }}" type="text " value="{{ ((old( 'name')) ? old( 'name') : $request->name ) }}"
+								 class="form-control form-control-line
+                                            {{ $errors->has('name') ? ' is-invalid'
+                                        : '' }}" id="name" name="name" required> @if ($errors->has('name'))
+
+								<div class="col-md-12 invalid-feedback">{{ $errors->first('name') }}</div>
+								@endif
+
+							</div>
+						</div>
+
+
+						<div class="col-md-12">
+
+							<div class="form-group {{ $errors->has('email') ? ' has-danger' : '' }}">
+								<input placeholder="{{ __('Email de contacto') }}" type="email " name="email" id="email" class="form-control form-control-line {{ $errors->has('email') ? ' is-invalid' : '' }}"
+								 value="{{ ((old( 'email')) ? old( 'email') : $request->email ) }}"> @if ($errors->has('email'))
+
+								<div class="invalid-feedback">{{ $errors->first('email') }}</div>
+								@endif
+
+							</div>
+						</div>
+
+						<div class="col-md-12">
+
+							<div class="form-group {{ $errors->has('phone') ? ' has-danger' : '' }}">
+								<input placeholder="{{ __('Teléfono') }}" type="text " name="phone" id="phone" class="form-control form-control-line {{ $errors->has('phone') ? ' is-invalid' : '' }}"
+								 maxlength="9" value="{{ ((old( 'phone')) ? old( 'phone') : $request->phone ) }}">@if ($errors->has('phone'))
+
+								<div class="invalid-feedback">{{ $errors->first('phone') }}</div>
+								@endif
+
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row py-4">
+
+						<div class="col-md-12 ">
+
+							<div class="form-group">
+								<button class="btn-invest bg-transparent text-uppercase verde">{{ __('Enviar') }}</button>
+
+							</div>
+						</div>
+					</div>
+				</form>
+				@endif
+			</div>
+
+
 		</div>
 	</div>
 
-	<div class="row   text-justify">
-
-		<div class="col-md-6 ">
-
-			<div class="servicio">
-				<h4 class="text-center">
-					<i class="mdi mdi-currency-eur"></i>Financiación <br>Corporativa</h4>
-
-				<div class="row">
-
-					<div class="col-md-12">
-						Estructuramos la empresa para la entrada de un nuevo socio pudiendo por un lado maximizar el valor de la compañía y por otro
-						asegurar al socio entrante el retorno de su inversión.<br><br>
-					</div>
-				</div>
-			</div>
-
-		</div>
-
-		<div class="col-md-6 ">
-
-			<div class="servicio">
-				<h4 class="text-center">
-					<i class="mdi mdi-chart-line"></i>Valoración <br>de empresas</h4>
-
-				<div class="row">
-
-					<div class="col-md-12">
-						Poseemos larga experiencia en el proceso de valoración de empresas, utilizando diferentes métodos de valoración y optimizando
-						el mismo para ajustarnos a la demanda del mercado y a las expectativas del vendedor.
-					</div>
-
-				</div>
-			</div>
-
-		</div>
-
-		<div class="col-md-6 ">
-
-			<div class="servicio">
-				<h4 class="text-center">
-					<i class="mdi mdi-certificate"></i>Búsqueda de <br>Inversores adecuados</h4>
-
-				<div class="row">
-
-					<div class="col-md-12">
-						Encontramos al socio mas adecuado para poder constituir un equipo directivo con el potencial suficiente para hacer crecer
-						tu negocio y llevarlo al punto estratégico que necesitas.
-					</div>
-
-				</div>
-			</div>
-
-		</div>
-
-		<div class="col-md-6 ">
-
-			<div class="servicio">
-				<h4 class="text-center">
-					<i class="fas fa-handshake"></i>Preparación del pacto de socios</h4>
-
-				<div class="row">
-
-					<div class="col-md-12">
-						Te acompañamos en el proceso de negociación y cierre de la operación, así como en el diseño del marco regulatorio por el
-						que se van a regir las relaciones futuras de los nuevos socios.<br>
-					</div>
-
-				</div>
-			</div>
-
-		</div>
-
-	</div>
 
 </div>
 @endsection
