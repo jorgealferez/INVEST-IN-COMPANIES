@@ -29,18 +29,15 @@
 
 
 	<div class="py-3 text-center">
-		<img class="d-block mx-auto p-4 img-fluid" src="{{ asset('images/logo.png') }}" alt="{{ __('INVESTin Company') }}" width="547"
-		 height="85">
+		<img class="d-block mx-auto p-4 img-fluid logo-top" src="{{ asset('images/logo.png') }}" alt="{{ __('INVESTin Company') }}">
 	</div>
-	<nav class="navbar navbar-expand-md navbar-dark bg-primary text-white">
-
-		<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
-		 aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-		<div class="navbar  navbar-collapse collapse  menu-principal" id="menu-principal" style="">
-			<ul class="navbar-nav ml-auto mr-auto  text-center">
+	<nav class="navbar navbar-expand-lg navbar-light bg-primary bg-light text-white">
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                
+		<div class="navbar navbar-collapse collapse menu-principal" id="menu-principal" style="">
+			<ul class="navbar-nav ml-auto mr-auto text-center">
 				<li class="nav-item ">
 					<a class="nav-link " href="{{ route('home') }}/">{{ __('Home') }}<span class="sr-only">(current)</span></a>
 				</li>
@@ -95,15 +92,15 @@
 				@endif
 
                                 
-					<li class="nav-item">
-						<a class="nav-link text-white" href="https://twitter.com/in_companies" target="_blank"><i class="fab fa-twitter"></i></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-white" href="https://www.facebook.com/pg/Invest-in-Companies-370660103782176/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-white" href="ttps://www.linkedin.com/company/invest-in-companies" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-					</li>
+                                <li class="nav-item nav-social-icon">
+                                        <a class="nav-link text-white" href="https://twitter.com/in_companies" target="_blank"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li class="nav-item nav-social-icon">
+                                        <a class="nav-link text-white" href="https://www.facebook.com/pg/Invest-in-Companies-370660103782176/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li class="nav-item nav-social-icon">
+                                        <a class="nav-link text-white" href="ttps://www.linkedin.com/company/invest-in-companies" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                </li>
 			</ul>
 		</div>
 	</nav>

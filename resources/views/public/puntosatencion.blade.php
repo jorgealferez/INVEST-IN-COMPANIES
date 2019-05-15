@@ -2,28 +2,28 @@
 @section('contenido')
 
 
-<div class="container my-5">
+
+<div class="container  pt-0">
 
 	<div class="row">
 
 		<div class="col-md-12  text-center p-5">
 			<h2 class="text-uppercase">{{ __('Puntos de atención') }}</h2>
-		</div>
+</div>
+</div>
+
+<div class="row pb-5">
+
+	<div class="col-md-12 ">
+
+		<div id="map"></div>
+
 	</div>
-
-	<div class="row   text-justify">
-
-		<div class="row pb-5 pt-5">
-                    
-                    
-                </div>
-            
-        </div>
-                    
-                    
+</div>
 </div>
 @endsection
-                    
+  
+@section('scripts')
 <script>
 	function initMap() {
 
@@ -34,7 +34,7 @@
 
         var geocoder = new google.maps.Geocoder;
         geocoder.geocode({
-            'address': 'Madrid'
+            'address': 'Calle Diego de León, 50 Madrid'
         }, function (results, status) {
             if (status === 'OK') {
                 map.setCenter(results[0].geometry.location);
@@ -180,4 +180,6 @@
     }
 
 </script>
-@include('public.googlemaps')--}}
+@endsection
+
+@include('public.googlemaps')
