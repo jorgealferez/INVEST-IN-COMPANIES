@@ -161,10 +161,19 @@ h2 {
   /* IE6-9 */
 }
 
-.carousel .carousel-caption {
-  bottom: 20%;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.75);
+@media (min-width:768px){
+    .carousel .carousel-caption {
+      bottom: 20%;
+      text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.75);
+    }
 }
+
+@media (max-width:767px){
+    .carousel .carousel-caption {
+      text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.75);
+    }
+}
+
 
 .btn-invest {
   border-top: 1px solid #fff;
