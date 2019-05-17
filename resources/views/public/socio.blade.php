@@ -43,11 +43,11 @@
 			<p>La incorporación de un socio es un proceso complejo que requiere de un asesoramiento profesional por los 
                             múltiples factores que confluyen en el mismo, pero un nuevo socio puede suponer un gran aliado a tener 
                             muy en cuenta. Un socio es una persona o empresa que te va a acompañar durante mucho tiempo y con la que 
-                            tendrás que tomar decisiones ahora velando por el bien común.
+                            tendrás que tomar decisiones, ahora velando por el bien común.
                         </p>
                         <p>
-                            Por ello, escoger al socio adecuado y sentar desde el inicio las bases de las reglas del juego (con el 
-                            pacto de socios) es casi tan importante como saber qué valor hay que darle a la parte de tu empresa que 
+                            Por ello, escoger al socio adecuado y sentar desde el inicio las bases de las reglas del juego, a través 
+                            del pacto de socios, es casi tan importante como saber qué valor hay que darle a la parte de tu empresa que 
                             estás dispuesto a ceder a cambio de que entre un nuevo socio en tu compañía.
                         </p>
 

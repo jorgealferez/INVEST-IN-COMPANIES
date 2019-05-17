@@ -30,7 +30,7 @@
 				<div class="carousel-caption text-left w-50">
 					<h1>Un plan para tu futuro profesional</h1>
 					<p>
-						Invest in Companies te ofrece una valiosa oportunidad para emprendedores y empresarios para entrar en nuevos mercados o sectores.
+						Invest in Companies ofrece la oportunidad a emprendedores y empresarios de entrar en nuevos mercados o sectores.
 					</p>
 					<a class="btn-invest" href="{{ route('compraEmpresa') }}" role="button">Ver más</a>
 				</div>

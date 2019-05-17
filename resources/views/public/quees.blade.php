@@ -16,11 +16,9 @@
 		<div class="col-md-12">
 			<p class="mb-5">Es una iniciativa impulsada por CEPYME que busca favorecer el éxito en los procesos de transmisión 
                             de pequeñas y medianas empresas.
-                            Para ello, se pone a disposición de compradores y vendedores con los recursos necesarios para proveer una serie 
-                            de servicios de información,
-                            asesoramiento y gestión que posibilitan la compra-venta de estos pequeños negocios o microempresas.
+                            Para ello, se ponen a disposición de compradores y vendedores los recursos necesarios que posibilitan la compra-venta de estos pequeños negocios o microempresas.
                             De esta forma, situaciones tales como el relevo generacional, el cambio de orientación profesional, la búsqueda 
-                            de nuevas oportunidades o la movilidad geográca no se convierten en condicionantes insalvables para dar 
+                            de nuevas oportunidades o la movilidad geográfica, no se convierten en condicionantes insalvables para dar 
                             continuidad a la actividad de estas empresas.
 			</p>
 		</div>
@@ -37,10 +35,11 @@
 	<div class="row text-justify">
 
 		<div class="col-md-12">
-			<p class="mb-5">Invest in Companies está a disposición de todos aquellos empresarios o profesionales que se 
-                            encuentren ante la necesidad o posibilidad de transmitir su negocio. Se dirige también hacia empresarios 
+			<p>Invest in Companies está a disposición de todos aquellos empresarios o profesionales que se 
+                            encuentren ante la necesidad o posibilidad de transmitir su negocio. Se dirige también a empresarios 
                             e inversores que buscan una nueva oportunidad o proyecto empresarial.
-                            Invest in Companies, a través de una red de puntos de atención personalizada, cubre las necesidades de 
+                        </p>
+                        <p>Invest in Companies, a través de una red de puntos de atención personalizada, cubre las necesidades de 
                             orientación y asesoramiento que tienen aquellos emprendedores y empresarios autónomos que evalúan la 
                             posibilidad de adquirir o invertir en un negocio ya existente.
 			</p>

@@ -135,38 +135,38 @@
         
         <div class="col-md-12">
             
-            <p class="p-0 text-justify ">Estudios como el del Colegio de Registradores de la Propiedad que publican en su web[1], 
-                    revelan que en los ultimos 3 años (2018-2017-2016) se extinguen una media de alrededor de 30.000 empresas por año. 
-                    Una parte de esos cierres tienen que ver con la falta de un relevo en la propiedad del negocio o la direccion y/o 
-                    por no conocer formulas adecuadas para su promoción.</p>
+            <p class="p-0 text-justify ">Estudios como el del Colegio de Registradores de la Propiedad[1], 
+                    revelan que en los ultimos 3 años se extinguen una media de alrededor de 30.000 empresas por año. 
+                    Una parte de esos cierres tienen que ver con la falta de un relevo en la propiedad del negocio o la direccion. Además
+                    existe un profundo desconocimiento de las fórmulas adecuadas para afrontar dicha situación.
+            </p>
             
-            <p class="p-0 text-justify ">Por lo que muchas de ellas continuarían generando empleos y riqueza directamente e indirectamente, 
+            <p class="p-0 text-justify ">Muchas de estas empresas continuarían generando empleos y riqueza directamente e indirectamente, 
                     de encontrar a alguien dispuesto a continuar con la actividad o a invertir en ella.</p>
             
             <p  class="p-0 text-justify ">A finales de 2018, la Confederación Española de la Pequeña y Mediana Empresa, CEPYME, decidió 
                     impulsar PLAN INVEST IN COMPANIES, en adelante PIC, con la participacion de las entidades colaboradoras que conforman 
-                    la red de puntos de apoyo, con el propósito de mantener, apoyar y promover el tejido empresarial de nuestro pais, 
-                    muy especialmente la pequeña y microempresa, mediante el asesoramiento profesional gratuito a empresarias y empresarios 
-                    que no pueden continuar con su negocio por distintos motivos; jubilación, enfermedad, carga de trabajo, etc. Y no siempre 
+                    la red de puntos de apoyo, y cuyo propósito es apoyar a empresarias y empresarios 
+                    que no pueden continuar con su negocio por distintos motivos; jubilación, enfermedad, carga de trabajo. No siempre 
                     es facil saber qué hacer o cómo actuar, para pasar el relevo de tus ganas e ilusiones a otro que quiera sucederle.</p>
             
-            <p class="p-0 text-justify ">Tambien el proyecto va dirigido a empresarios que se están planteando impulsar o redimensionar 
+            <p class="p-0 text-justify ">Por otro lado, el proyecto va dirigido también a empresarios que se están planteando impulsar o redimensionar 
                     su negocio, y desean saber como hacerlo.</p>
             
-            <p class="p-0 text-justify">Y por último, también presta asisitencia a quienes se estén planteando emprender un negocio de los 
-                    que se oferta en al plataforma.</p>
+            <p class="p-0 text-justify">Por último, también presta asistencia a quienes se estén planteando emprender un negocio de los 
+                    que se oferta en la plataforma.</p>
             
-            <p class="p-0 text-justify">Para este proyecto CEPYME cuenta con la experiencia de mas de 2 años como coordinadores del
+            <p class="p-0 text-justify">Para este proyecto, CEPYME cuenta con una experiencia de mas de 2 años como coordinadores del
                     Plan de Apoyo a la Transmisión de Empresas, impulsado por el Ministerio de Economia y Empresas
-                    del Gobierno de España. Tiempo que nos ha permitido aprender de los éxitos y de los fracasos,
+                    del Gobierno de España. Este hecho que nos ha permitido aprender de los éxitos y de los fracasos,
                     pero sobre todo ha sido muy inspirador para crear el PIC con mas servicios gratuitos que son
                     demandados.</p>
             
-            <p class="p-0 text-justify">También contamos con la experiencia de los asesores de negocio, de los puntos de
+            <p class="p-0 text-justify">Asimismo contamos con la experiencia de los asesores de negocio, de los puntos de
                     apoyo de las Entidades Adheridas al PIC, con experiencia en diversos campos, y con un
                     equipo de expertos profesionales en la materia que dan soporte a la red de puntos de
                     apoyo y a los clientes, para las operación mas complejas.</p>
-            <p class="p-0 text-justify">Invest in Companies de forma gratutita, favorece la continuidad de empresas rentables
+            <p class="p-0 text-justify">Invest in Companies de forma gratuita, favorece la continuidad de empresas rentables
                     mediante asesoramiento sobre el relevo de sus propietarios y/o informando sobre posibles
                     vias interesantes para el crecimiento de los negocios, estimulando a emprendedores
                     y a empresarios con cierta experiencia a tomar el testigo de negocios, contribuyendo
