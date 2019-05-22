@@ -54,6 +54,8 @@ class Oferta extends Model
        'user_id',
        'valoracion',
        'web',
+       'ofertatipo_id',
+       'facturacion',
     ];
     // protected $casts = [
     //     'endeudamiento' => 'decimal:2',
@@ -87,6 +89,12 @@ class Oferta extends Model
     {
         return $this
         ->belongsTo('App\Sector');
+    }
+    
+    public function ofertatipo()
+    {
+        return $this
+        ->belongsTo('App\Ofertatipo');
     }
 
     public function provincia()

@@ -9,6 +9,7 @@ use App\Inversion;
 use App\Poblacion;
 use App\Provincia;
 use App\Asociacion;
+use App\Ofertatipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RegistroRequest;
@@ -246,7 +247,8 @@ class PublicController extends Controller
 		$provincias = Provincia::all();
 		$sectores = Sector::all();
 		$asociaciones = Asociacion::all();
-
+		$ofertastipos = Ofertatipo::all();
+                
 		if (Auth::check()) {
 			$inversiones = Auth::User()->inversiones->pluck('oferta_id')->toArray();
 			$invitado = 0;
@@ -275,12 +277,15 @@ class PublicController extends Controller
 		if ($request->input('asociacion_id')) {
 			$query[] = ["ofertas.asociacion_id", "=", $request->input('asociacion_id')];
 		}
+                if ($request->input('ofertatipo_id')) {
+                        $query[] = ["ofertas.ofertatipo_id", "=", $request->input('ofertatipo_id')];
+                }
 
 
-
-		$ofertas = Oferta::with('provincia', 'sector', 'forma', 'poblacion')
+		$ofertas = Oferta::with('provincia', 'sector', 'forma', 'poblacion','ofertatipo')
 			->leftJoin('provincias', 'provincias.id', '=', 'ofertas.provincia_id')
 			->leftJoin('sectores', 'sectores.id', '=', 'ofertas.sector_id')
+			->leftJoin('ofertas_tipos', 'ofertas_tipos.id', '=', 'ofertas.ofertatipo_id')
 			->where($query);
 
 
@@ -332,9 +337,14 @@ class PublicController extends Controller
 			$ofertas = $ofertas
 				->orderBy('sectores.name', $request->get('direction'));
 		}
+                
+                if ($request->get('sort') == "ofertatipo") {
+			$ofertas = $ofertas
+				->orderBy('ofertas_tipos.name', $request->get('direction'));
+		}
 
 
-		$ofertas = $ofertas->select('ofertas.*', 'sectores.name as sector_name')->sortable()->paginate(15);
+		$ofertas = $ofertas->select('ofertas.*', 'sectores.name as sector_name', 'ofertas_tipos.name as ofertastipos_name')->sortable()->paginate(15);
 
 		$busqueda = ($request->input('search')) ? $request->input('search') : null;
 
@@ -348,7 +358,8 @@ class PublicController extends Controller
 					'precios',
 					'inversiones',
 					'invitado',
-					'ofertas'
+					'ofertas',
+					'ofertastipos'
 				)
 			);
 	}

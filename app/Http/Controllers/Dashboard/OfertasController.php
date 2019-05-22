@@ -13,6 +13,7 @@ use App\Provincia;
 use App\Poblacion;
 use App\Oferta;
 use App\Inversion;
+use App\Ofertatipo;
 use App\Http\Requests\OfertaRequest;
 use App\Http\Requests\AsociacionRequest;
 use App\Http\Controllers\DashBoardController;
@@ -133,6 +134,7 @@ class OfertasController extends DashBoardController
         $formasJuridicas=Forma::all();
         $sectores=Sector::all();
         $provincias=Provincia::all();
+        $ofertastipos=Ofertatipo::all();
         if (old('provincia_id')) {
             $poblaciones = Poblacion::where('provincia_id', old('provincia_id'))->get();
         } else {
@@ -150,7 +152,8 @@ class OfertasController extends DashBoardController
             'provincias',
             'poblaciones',
             'asociacionesDisponibles',
-            'oferta'
+            'oferta',
+            'ofertastipos'
         ));
     }
 
@@ -215,13 +218,18 @@ class OfertasController extends DashBoardController
         $estadosInversor=Estadoinversor::all();
         $sectores=Sector::all();
         $provincias=Provincia::all();
+        $ofertastipos=Ofertatipo::all();
+        
         if ($request->tab) {
             $tab=$request->tab;
         } else {
             $tab="inversores";
         }
-        $oferta->load('inversiones', 'provincia', 'poblacion', 'asociacion');
+        
+        $oferta->load('inversiones', 'provincia', 'poblacion', 'asociacion','ofertatipo');
+        
         $oferta->inversiones->load('usuario.roles', 'estado');
+        
         if ($oferta) {
             if (in_array($oferta->id, $this->notifiacionesOfertas->pluck('data')->pluck('oferta_id')->toArray())) {
                 $this->notifiacionesOfertas->where('data', ['oferta_id'=>$oferta->id])->markAsRead();
@@ -264,7 +272,8 @@ class OfertasController extends DashBoardController
                         'sectores',
                         'provincias',
                         'poblaciones',
-                        'asociacionesDisponibles'
+                        'asociacionesDisponibles',
+                        'ofertastipos'
                     )
                 );
         } else {
