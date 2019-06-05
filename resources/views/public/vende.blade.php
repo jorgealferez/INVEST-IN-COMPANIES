@@ -166,7 +166,7 @@
 					lo recorrieses solo, y estarías acompañado y asesorado en todo momento por grandes profesionales y especialistas en
 					el sector.</p>
 			</div>
-			<div class="col-md-3 text-right">
+			<!--<div class="col-md-3 text-right">
 				<div class="row">
 
 					<div class="col-md-12 py-3">
@@ -179,8 +179,8 @@
 					</div>
 
 				</div>
-			</div>
-			<div class="col-md-5">
+			</div>-->
+			<div class="col-md-6 col-md-offset-3">
 				@if (session()->has('enviado'))
 
 				<div class="row">

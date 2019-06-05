@@ -89,6 +89,11 @@
 						<small class=" font-weight-bold verde">{{ __('Valoración de la compañía') }}:</small>
 						<h6>{{ number_format($oferta->valoracion,0,'','.') }} €</h6>
 					</div>
+                                    
+                                        <div class="col-md-12">
+						<small class=" font-weight-bold verde">{{ __('Facturación') }}:</small>
+						<h6>{{ number_format($oferta->facturacion,0,'','.') }} €</h6>
+					</div>
 
 					<div class="col-md-12">
 						<small class=" font-weight-bold verde">{{ __('Endeudamiento') }}:</small>

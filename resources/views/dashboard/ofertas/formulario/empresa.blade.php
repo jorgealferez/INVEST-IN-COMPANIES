@@ -278,6 +278,25 @@
             @endif
         </div>
     </div>
+    
+    <div class="col-md-12">
+
+        <div class="form-group {{ $errors->has('facturacion') ? ' has-danger' : '' }}">
+            <label for="facturacion">{{ __('Facturación') }}</label>
+
+            <div class="input-group">
+                <input type="number" value="{{ (old( 'facturacion')) ?  old( 'facturacion') : $oferta->facturacion  }}" class="form-control form-control-line {{ $errors->has('facturacion') ? ' form-control-danger' : '' }}" id="facturacion" name="facturacion">
+
+                <div class="input-group-append">
+                    <span class="input-group-text">€</span>
+                </div>
+            </div>
+            @if ($errors->has('facturacion'))
+
+            <div class="form-control-feedback">{{ $errors->first('facturacion') }}</div>
+            @endif
+        </div>
+    </div>
 
     <div class="col-md-12">
 

@@ -104,7 +104,7 @@
         <div class="row">
             
                 <div class="col-md-12">
-                        <h3 class="text-center">“EL PROGRAMA DE APOYO GRATUITO PARA LA TRANSMISIÓN Y LA PROMOCIÓN DEL CRECIMIENTO DE LAS PYMES Y LOS AUTÓNOMOS”.</h3>
+                        <h3 class="text-center">“EL PROGRAMA DE APOYO GRATUITO PARA LA TRANSMISIÓN Y FOMENTO DE LA INVERSION EN LAS PYMES”.</h3>
                 </div>
             
         </div>
@@ -135,10 +135,12 @@
         
         <div class="col-md-12">
             
-            <p class="p-0 text-justify ">Estudios como el del Colegio de Registradores de la Propiedad[1], 
-                    revelan que en los ultimos 3 años se extinguen una media de alrededor de 30.000 empresas por año. 
-                    Una parte de esos cierres tienen que ver con la falta de un relevo en la propiedad del negocio o la direccion. Además
-                    existe un profundo desconocimiento de las fórmulas adecuadas para afrontar dicha situación.
+            <p class="p-0 text-justify "> 
+                    Según el Instituto Nacional de Estadística (INE) y su informe de Estadística de Sociedades Mercantiles (SM), en 
+                    España se han destruido un total de 73.478 empresas desde enero de 2016 hasta el pasado mes de marzo de 2019, 
+                    lo que supone una media de 22.500 empresas al añoUna parte de esos cierres tienen que ver con la falta de un 
+                    relevo en la propiedad del negocio o la direccion. Además existe un profundo desconocimiento de las fórmulas 
+                    adecuadas para afrontar dicha situación.
             </p>
             
             <p class="p-0 text-justify ">Muchas de estas empresas continuarían generando empleos y riqueza directamente e indirectamente, 
@@ -155,12 +157,6 @@
             
             <p class="p-0 text-justify">Por último, también presta asistencia a quienes se estén planteando emprender un negocio de los 
                     que se oferta en la plataforma.</p>
-            
-            <p class="p-0 text-justify">Para este proyecto, CEPYME cuenta con una experiencia de mas de 2 años como coordinadores del
-                    Plan de Apoyo a la Transmisión de Empresas, impulsado por el Ministerio de Economia y Empresas
-                    del Gobierno de España. Este hecho que nos ha permitido aprender de los éxitos y de los fracasos,
-                    pero sobre todo ha sido muy inspirador para crear el PIC con mas servicios gratuitos que son
-                    demandados.</p>
             
             <p class="p-0 text-justify">Asimismo contamos con la experiencia de los asesores de negocio, de los puntos de
                     apoyo de las Entidades Adheridas al PIC, con experiencia en diversos campos, y con un

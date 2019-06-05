@@ -67,6 +67,20 @@
 							</select>
 						</div>
 					</div>
+                                        
+                                        <div class="form-group ">
+						<label for="ofertatipo_id" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __("Tipo de oferta") }}</label>
+
+						<div class="col-md-12">
+							<select name="ofertatipo_id" id="ofertatipo_id" class="form-control ">
+								<option value="0">{{ __("Todos") }}</option>
+								@foreach ($ofertastipos as $ofertatipo)
+								<option value="{{ $ofertatipo->id }}" 
+								@if ($request->input('ofertatipo_id')== $ofertatipo->id) selected @endif>{{ $ofertatipo->name }}</option>
+								@endforeach
+							</select>
+						</div>
+					</div>
 
 					<div class="form-group ">
 						<label for="precio" class="col-md-12 col-form-label text-white text-uppercase text-left">{{ __("Precio") }}</label>
@@ -97,6 +111,8 @@
 					<tr>
 						<th scope="col">@sortablelink('sector', __('Sector'))</th>
 						<th scope="col">@sortablelink('name', __('Nombre'))</th>
+						<th scope="col">@sortablelink('created_at', __('Tipo oferta'))</th>
+						<th scope="col">@sortablelink('created_at', __('Fecha'))</th>
 						<th scope="col" class="text-right">
 							@sortablelink('valoracion', __('Valoracion'))
 						</th>
@@ -106,14 +122,16 @@
 					@if ($ofertas->count()>0) @foreach ($ofertas as $oferta)
 					<tr aria-controls="collapse{{ $oferta->id }}" data-toggle="collapse" data-target="#collapse{{ $oferta->id }}" class="collapse-row">
 						<td style="width: 30%">{{ e($oferta->sector_name) }}</td>
-						<td style="width: 50%">{{ e($oferta->name) }}</td>
-						<td style="width: 20%" class="text-right">
+						<td style="width: 30%">{{ e($oferta->name) }}</td>
+						<td style="width: 15%">{{ e($oferta->ofertastipos_name) }}</td>
+						<td style="width: 10%">{{ date('d/m/Y', strtotime($oferta->created_at)) }}</td>
+						<td style="width: 15%" class="text-right">
 							{{ number_format($oferta->valoracion,0,'','.') }} €
 						</td>
 					</tr>
 
 					<tr>
-						<td colspan="3" style="padding:0px;">
+						<td colspan="5" style="padding:0px;">
 							<div class="collapse oferta-detalle" id="collapse{{ $oferta->id }}">
 								<div class="card card-profile">
 									<div class="card-body ">
@@ -201,7 +219,7 @@
 											<hr class=" verde" />
 										</div>
 
-										<div class="col-md-6">
+										<div class="col-md-4">
 											<small class=" font-weight-bold verde"
 												>{{ __("Valoración de la compañía") }}:</small
 											>
@@ -209,8 +227,17 @@
 												{{ number_format($oferta->valoracion,0,'','.') }} €
 											</h6>
 										</div>
+                                                                                
+                                                                                <div class="col-md-4">
+											<small class=" font-weight-bold verde"
+												>{{ __("Facturación") }}:</small
+											>
+											<h6>
+												{{ number_format($oferta->facturacion,0,'','.') }} €
+											</h6>
+										</div>
 
-										<div class="col-md-6">
+										<div class="col-md-4">
 											<small class=" font-weight-bold verde"
 												>{{ __("Endeudamiento") }}:</small
 											>
@@ -244,7 +271,7 @@
 					</tr>
 					@endforeach @else
 					<tr>
-						<td colspan="3">
+						<td colspan="5">
 							<small>{{ __("No hay ofertas con esos criterios.") }}</small>
 						</td>
 					</tr>
@@ -252,7 +279,7 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<td colspan="2">
+						<td colspan="4">
 							<span class="d-inline-block float-right">
 								{{ $ofertas->appends(
                                             Request::except('page'))

@@ -166,7 +166,7 @@
 				<h2 class="text-uppercase text-center pb-5">{{ __('Busca un socio') }}</h2>
 				<p class="text-center">Solicita más información sobre la búsqueda de socios para su empresa.</p>
 			</div>
-			<div class="col-md-3 text-right">
+			<!--<div class="col-md-3 text-right">
 				<div class="row">
 
 					<div class="col-md-12 py-3">
@@ -174,8 +174,8 @@
 					</div>
 
 				</div>
-			</div>
-			<div class="col-md-5">
+			</div>-->
+			<div class="col-md-6 col-md-offset-3">
 				@if (session()->has('enviado'))
 
 				<div class="row">
